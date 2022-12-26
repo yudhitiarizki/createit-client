@@ -2,7 +2,7 @@ import React from 'react';
 const Home = () => {
     return (
         <>
-          This is Home Page
+          This is Home Page go
         </>
   );
 };
