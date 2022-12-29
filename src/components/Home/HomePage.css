@@ -1,0 +1,59 @@
+.top-container {
+    position: relative;
+}
+
+.Banner1 {
+    height: 638px;
+    background: url('../../asset/HomePage/Banner.png') bottom no-repeat;
+    background-size: cover;
+}
+
+.ellipse1 {
+    position: absolute;
+    left: 43%;
+    right: 0%;
+    top: 36.3%;
+    bottom: 0%;
+    background: url('../../asset/HomePage/Ellipse3.png') no-repeat;
+    background-size: cover;
+}
+
+.pose1 {
+    position: absolute;
+    left: 0%;
+    top: -22%;
+}
+
+@media (max-width: 991.98px) {
+    .Banner1 {
+        height: 38vh;
+    }
+
+    .pose1 {
+        top: -15%;
+        width: 95%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .Banner1 {
+        height: 350px;
+    }
+
+    .ellipse1,
+    .pose1 {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .Banner1 {
+        height: 30vh;
+        background-size: cover;
+    }
+
+    .ellipse1,
+    .pose1 {
+        display: none;
+    }
+}
