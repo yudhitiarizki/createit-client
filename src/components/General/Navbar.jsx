@@ -68,7 +68,7 @@ const Navbar = () => {
     const user = {
         "username": "Ahmad Na Jaemin",
         "email": "User1@gmail.com",
-        "role": 3,
+        "role": 1,
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };
@@ -242,6 +242,10 @@ const Navbar = () => {
                                         </div>
                                         <li>
                                             <Link to="/user/order" className="nav-link">Order</Link>
+                                            <i className='bx bx-chevron-right'></i>
+                                        </li>
+                                        <li>
+                                            <Link to="/applyseller" className="nav-link">Apply as a seller</Link>
                                             <i className='bx bx-chevron-right'></i>
                                         </li>
                                         <div type="button" className='logout-btn' onClick={handleLogout}>Logout</div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 .top-container {
     position: relative;
 }
@@ -22,6 +24,168 @@
     position: absolute;
     left: 0%;
     top: -22%;
+}
+
+.text1-container {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    color: #333333;
+}
+
+.text1-1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.text1-2 {
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.text2-1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+}
+
+.text2-2 {
+    font-weight: 400;
+    font-size: 28px;
+}
+
+.searchbox-cntr {
+    position: absolute;
+    left: 10%;
+    top: 60%;
+}
+
+.textcategory-container {
+    margin-top: 70px;
+    margin-bottom: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    color: #333333;
+}
+
+.homepage-center {
+    background: rgba(229, 229, 229, 0.2);
+    margin-top: 70px;
+    padding: 80px 10% 114px 10%;
+}
+
+.textcontainer-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.applyasseller-homepage {
+    width: 100%;
+    height: 395px;
+    border-radius: 16px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../../asset/HomePage/Rectangle16.png');
+    background-size: cover;
+    color: white;
+    padding: 47px 71px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gettingstartedasseller {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.text-applyseller {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.text-applyseller2 {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+}
+
+.applyseller-btn {
+    width: 200px;
+    padding: 16px 48px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.applyseller-btn:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+.text4container {
+    position: relative;
+    margin: 80px 10% 0px 10%;
+}
+
+.text5-container {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    text-align: end;
+}
+
+.text5-1-cntr {
+    width: 490px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 40px;
+}
+
+.text5-1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.text5-2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.getservice-btn {
+    position: absolute;
+    right: 0;
+    width: 212px;
+    margin-top: 48px;
+    padding: 16px 48px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.getservice-btn:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+    color: white;
 }
 
 @media (max-width: 991.98px) {

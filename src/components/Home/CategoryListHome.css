@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.owlcarousel-container {
+    margin: 0px 10%;
+}
+
+.carouselimg-container {
+    width: 340px;
+    height: 440px;
+    border-radius: 16px;
+    overflow: clip;
+    cursor: pointer;
+}
+
+.carouselimg {
+    width: 340px;
+    height: 440px;
+    border-radius: 16px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.carouselimg-container:hover .carouselimg {
+    transform: scale(1.1);
+}
+
+.categoryname-carousel {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 340px;
+    height: 440px;
+    border-radius: 16px;
+    background: linear-gradient(0deg, #000000bb, #07070700);
+}
+
+.categoryname-carousel span {
+    color: white;
+    position: absolute;
+    bottom: 80px;
+    left: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.carouselimg-container:hover .categoryname-carousel {
+    display: block;
+}
+
+.owl-next, 
+.owl-prev {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    position: absolute;
+    top: 180px;
+}
+
+.owl-next {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%) !important;
+    right: -40px;
+}
+
+.owl-prev {
+    background: linear-gradient(-255.68deg, #E8504B 8.13%, #F2703C 93.86%) !important;
+    left: -40px;
+}
