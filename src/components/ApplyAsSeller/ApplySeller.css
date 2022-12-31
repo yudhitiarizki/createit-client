@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.top-container1 {
+    position: relative;
+}
+
+.Banner1-1 {
+    height: 750px;
+    background: url('../../asset/Seller/Banner.png') bottom no-repeat;
+    background-size: cover;
+}
+
+.ellipse1-1 {
+    position: absolute;
+    left: 43%;
+    right: 0%;
+    top: 33%;
+    bottom: 0%;
+    background: url('../../asset/Seller/Ellipse3.png') no-repeat;
+    background-size: cover;
+}
+
+.group12 {
+    position: absolute;
+    right: 0;
+    top: -10%;
+    height: 850px;
+    object-fit: contain;
+}
+
+.applyseller-cntrmid {
+    background: rgba(229, 229, 229, 0.2);
+    margin-top: 300px;
+    padding: 70px 9% 100px 9%;
+}
+
+.nav-seller1 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    left: 9%;
+    top: 150px;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.nav-seller1 i {
+    font-size: 24px;
+}
+
+.text6 {
+    position: absolute;
+    left: 9%;
+    top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;
+    width: 540px;
+    color: #333333;
+}
+
+.text6-1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.text6-2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+.cntrmid-moto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 88px;
+}
+
+.text6-3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.text6-4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.cntrmid-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.midbenefit-row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1120px;
+    gap: 27px;
+}
+
+.midbenefit-row2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1120px;
+    gap: 168px;
+}
+
+.midbenefit-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    gap: 40px;
+    width: 260px;
+    height: 240px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.midbenefit-box:hover {
+    transform: scale(105%);
+}
+
+.midbenefit-box img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.midbenefit-box div {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    text-align: center;
+}
+
+.applyseller-formcntr {
+    padding-top: 90px;
+    padding-bottom: 220px;
+    width: 100%;
+    height: 1600px;
+    background: url('../../asset/Seller/jamur.png') no-repeat;
+    background-size: cover;
+}
+
+.text6-5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: #333333;
+    margin-bottom: 56px;
+    text-align: center;
+}
+
+.applyseller-formcntr2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 834px;
+    padding: 80px 100px;
+    margin: 0px auto;
+    gap: 28px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
+}
+
+.text6-6 {
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.sellerreg-inputcntr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+.sellerreg-inputcntr label {
+    font-weight: 400;
+    font-size: 20px;
+    color: #333333;
+}
+
+.sellerreg-inputcntr label span {
+    color: #E64A4E;
+}
+
+.inputfield-1 {
+    background: #F4F4F4;
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px 25px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+}
+
+.inputfield-1:focus {
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: #333333;
+}
+
+.inputphotoseller {
+    width: 100%;
+    position: relative;
+}
+
+.inputphotoseller input {
+    width: 100%;
+    padding: 15px 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.custom-fileinput1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.custominputfile1-thumb {
+    width: calc(100% - 172px);
+    padding: 15px 25px;
+    background: #F4F4F4;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.custominputfil1-btn {
+    background: #E5E5E5;
+    border-radius: 0px 10px 10px 0px;
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+}
+
+.custominputfil1-btn:hover {
+    background: #dadada;
+    cursor: pointer;
+}
+
+.custominputfil1-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.submit-btn1 {
+    padding: 16px 48px;
+    width: 170px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 70px;
+}
+
+.submit-btn1:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}

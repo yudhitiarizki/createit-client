@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes  } from "react-router-dom";
 import AdminApproveOrder from "../pages/AdminApproveOrder";
 import AdminNewOrder from "../pages/AdminNewOrder";
+import ApplyAsSeller from "../pages/ApplyAsSeller";
 import CategoryDetail from "../pages/CategoryDetail";
 import CreateCategory from "../pages/CreateCategory";
 import Home from "../pages/Home";
@@ -27,6 +28,7 @@ const Router = () => {
         <Route exact path="/manageseller" element={<ManageSeller />} />
         <Route exact path="/admin/order/new" element={<AdminNewOrder />} />
         <Route exact path="/admin/order/approve" element={<AdminApproveOrder />}/>
+        <Route exact path="/applyseller" element={<ApplyAsSeller />}/>
         <Route exact path="/seller/profile" element={<SellerProfile />}/>
         <Route exact path="/seller/order/new" element={<SellerNewOrder />}/>
         <Route exact path="/seller/order/progress" element={<SellerProgressOrder />}/>

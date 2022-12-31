@@ -8,7 +8,6 @@ import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
 import Feature from '../../asset/HomePage/Feature.png';
 import { Link } from 'react-router-dom';
-import Footer from '../General/Footer';
 
 const HomePage = () => {
     return (
@@ -61,7 +60,6 @@ const HomePage = () => {
                     <Link to='/' className='nav-link getservice-btn'>Get Service</Link>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
