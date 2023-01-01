@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.nav-seller2 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    left: 10%;
+    top: 140px;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.text1-container1 {
+    position: absolute;
+    left: 10%;
+    top: 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    color: #333333;
+}
+
+.text1-11 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+}
+
+.text1-21 {
+    font-weight: 400;
+    font-size: 31px;
+}
+
+.searchbox-cntr1 {
+    position: absolute;
+    left: 10%;
+    top: 67%;
+}
+
+.categorylist1 {
+    margin: 0px 10% 56px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.categorybox1 {
+    width: 260px;
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.catbox1 {
+    background: #E8504B;
+    color: #FFFFFF;
+}
+
+.catbox2 {
+    background: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.catbox2:hover {
+    border: 2px solid #E8504B;
+    transform: scale(95%);
+}

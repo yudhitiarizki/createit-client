@@ -90,7 +90,7 @@ const TopRatedServices = () => {
     return (
         <div className='toprated-container'>
             {topRatedServices.slice(0,6).map((service) => (
-                <div className='topratedservc-cntr'>
+                <div className='topratedservc-cntr' key={`id-${service.serviceId}`}>
                     <Link className='toprated-imgcntr' to={`/service/${service.serviceId}`}>
                         <img src={service.image[0]} alt='' className='toprated-img'></img>
                         <div className='toprated-ratebuy'>

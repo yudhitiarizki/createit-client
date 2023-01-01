@@ -13,8 +13,26 @@ import codecircle from '../../asset/Seller/code-circle.png';
 import calendar from '../../asset/Seller/calendar.png';
 import { Link } from 'react-router-dom';
 import RegSellerForm from './RegSellerForm';
+import { Navigate } from 'react-router-dom';
 
 const ApplySeller = () => {
+    // ini nanti dari redux
+    const isLoggedIn = true;
+    const user = {
+        "username": "Ahmad Na Jaemin",
+        "email": "User1@gmail.com",
+        "role": 2,
+        "phoneNumber": "081972197028",
+        "token": "xsh38hjddnwkdj82"
+    };
+
+    if(isLoggedIn) {
+        if (user.role !== 1) {
+            return <Navigate to='/' />
+        }
+    } else {
+        return <Navigate to='/' />
+    }
 
     return (
         <div>
@@ -25,7 +43,7 @@ const ApplySeller = () => {
                         <img src={Group12} alt='' className='group12'></img>
                     </div>
                     <div className='nav-seller1'>
-                        <Link ton='/' className='nav-link'>Home</Link>
+                        <Link to='/' className='nav-link'>Home</Link>
                         <i className='bx bx-chevron-right'></i>
                         <span>Seller</span>
                     </div>

@@ -3,14 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { useState } from 'react';
 import link from '../../asset/Seller/link.png';
-import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RegSellerForm = () => {
-    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const { user } = useSelector(state => state.auth);
     // uncomment kalau login udah bisa
     // const token = user.token;
 
@@ -20,11 +19,6 @@ const RegSellerForm = () => {
     const [noRekening, setNoRekening] = useState('');
     const [bankName, setBankName] = useState('');
     const [cardHolder, setCardHolder] = useState('');
-
-    // uncomment setelah redux login berfungsi
-    // if(!isLoggedIn) {
-    //     return <Navigate to='/' />
-    // }
 
     const uploadFile = () => {
         document.getElementById('real-inputfile1').click();
@@ -47,7 +41,7 @@ const RegSellerForm = () => {
     const handleSubmit = () => {
         // uncomment kalau login udah bisa
         // axios.post(
-        //     "https://bloom-short-seismosaurus.glitch.me/regseller",
+        //     "https://hot-wheat-salesman.glitch.me/regseller",
         //     { 
         //         userId: user.userId,
         //         sellerName,
