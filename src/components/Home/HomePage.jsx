@@ -7,10 +7,61 @@ import Searchbox from '../General/Searchbox';
 import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
 import Feature from '../../asset/HomePage/Feature.png';
-import { Link } from 'react-router-dom';
-import Footer from '../General/Footer';
+import { Link, Navigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const HomePage = () => {
+    // ini nanti dari redux
+    const isLoggedIn = true;
+    const user = {
+        "username": "Ahmad Na Jaemin",
+        "email": "User1@gmail.com",
+        "role": 2,
+        "phoneNumber": "081972197028",
+        "token": "xsh38hjddnwkdj82"
+    };
+
+    const toApplySellerPage = () => {
+        if (isLoggedIn) {
+            if (user.role === 1) {
+                return <Navigate to='/applyseller' />
+            } else if (user.role === 3) {
+                toast.error("Admin can't access this page.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                toast.error('You already become a seller.', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        } else {
+            toast.error('Login is needed.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    }
+
     return (
         <div>
             <div className='top-container'>
@@ -44,11 +95,11 @@ const HomePage = () => {
                     <div className='text-applyseller'>
                         <div className='text-applyseller2'>
                             <span>Freelance Work While Studying?</span>
-                            <spann>Here's How To Do It!</spann>
+                            <span>Here's How To Do It!</span>
                         </div>
                         <div className='gettingstartedasseller'>Choosing what you work on and the clients you work with, and earning potential!</div>
                     </div>
-                    <Link to='/applyseller' className='nav-link applyseller-btn'>Start Now!</Link>
+                    <div type='button' className='applyseller-btn' onClick={toApplySellerPage}>Start Now!</div>
                 </div>
             </div>
             <div className='text4container'>
@@ -61,7 +112,7 @@ const HomePage = () => {
                     <Link to='/' className='nav-link getservice-btn'>Get Service</Link>
                 </div>
             </div>
-            <Footer />
+            <ToastContainer />
         </div>
     )
 }

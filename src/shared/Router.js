@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Routes  } from "react-router-dom";
-import AdminApproveOrder from "../pages/AdminApproveOrder";
-import AdminNewOrder from "../pages/AdminNewOrder";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ScrollToTop from "../Helpers/ScrollToTop";
+import AdminFinishedOrder from "../pages/AdminFinishedOrder";
+import ApplyAsSeller from "../pages/ApplyAsSeller";
 import CategoryDetail from "../pages/CategoryDetail";
 import CreateCategory from "../pages/CreateCategory";
 import Home from "../pages/Home";
@@ -15,9 +16,9 @@ import ServiceDetail from "../pages/ServiceDetail";
 import UserOrder from "../pages/UserOrder";
 
 const Router = () => {
-  
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
@@ -25,13 +26,13 @@ const Router = () => {
         <Route exact path="/category/:id" element={<CategoryDetail />} />
         <Route exact path="/service/:id" element={<ServiceDetail />} />
         <Route exact path="/manageseller" element={<ManageSeller />} />
-        <Route exact path="/admin/order/new" element={<AdminNewOrder />} />
-        <Route exact path="/admin/order/approve" element={<AdminApproveOrder />}/>
-        <Route exact path="/seller/profile" element={<SellerProfile />}/>
-        <Route exact path="/seller/order/new" element={<SellerNewOrder />}/>
-        <Route exact path="/seller/order/progress" element={<SellerProgressOrder />}/>
-        <Route exact path="/seller/:id" element={<OtherSellerProfile />}/>
-        <Route exact path="/user/order" element={<UserOrder />}/>
+        <Route exact path="/admin/order" element={<AdminFinishedOrder />} />
+        <Route exact path="/applyseller" element={<ApplyAsSeller />} />
+        <Route exact path="/seller/profile" element={<SellerProfile />} />
+        <Route exact path="/seller/order/new" element={<SellerNewOrder />} />
+        <Route exact path="/seller/order/progress" element={<SellerProgressOrder />} />
+        <Route exact path="/seller/:id" element={<OtherSellerProfile />} />
+        <Route exact path="/user/order" element={<UserOrder />} />
       </Routes>
     </BrowserRouter>
   );

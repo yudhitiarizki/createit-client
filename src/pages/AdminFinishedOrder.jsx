@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminApproveOrder = () => {
+const AdminFinishedOrder = () => {
     return (
         <>
           Admin TF ke seller untuk order yang udah beres
@@ -8,4 +8,4 @@ const AdminApproveOrder = () => {
   );
 };
 
-export default AdminApproveOrder;
+export default AdminFinishedOrder;

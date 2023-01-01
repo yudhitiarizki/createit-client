@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.servicelists1 {
+    padding: 64px 8% 40px 8%;
+    width: 100%;
+    background: #e5e5e533;
+}
+
+.servicelist1-cntr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 80px;
+}
+
+.serviceslist1-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 24px;
+    width: 260px;
+    height: 408px;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+}
+
+.service1imgcntr {
+    position: relative;
+    width: 228px;
+    height: 228px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.servicelist1-img {
+    width: 228px;
+    height: 228px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.toprated-ratebuy1 {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 228px;
+    height: 228px;
+    border-radius: 8px;
+    background: linear-gradient(0deg, #000000e3, #07070700);
+    color: white;
+    padding: 15px 20px;
+}
+
+.toprated-ratebuy1 div i {
+    margin-right: 5px;
+}
+
+.serviceslist1-box:hover .toprated-ratebuy1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.servicelist1-info {
+    width: 228px;
+    height: 124px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.service1-info1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.service1-info2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    cursor: pointer;
+}
+
+.service1-info2:hover {
+    color: #E8504B;
+}
+
+.service1-info2 img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.service1-info3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333333;
+    width: 228px;
+    cursor: pointer;
+}
+
+.service1-info3:hover {
+    color: #E8504B;
+}
+
+.service1-info4 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666666;
+}
+
+.service1-info4 i {
+    font-size: 18px;
+}
+
+.pagination1 {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.pagination1 .page-num1 {
+    padding: 5px 8px;
+    border-radius: 50%;
+    border: 1px solid #E8504B;
+    color: #E8504B;
+    font-size: 18px;
+}
+
+.pagination1 .page-num1:hover {
+    background: #E8504B;
+    color: #FFFFFF;
+}
+
+.pagination1 .page-num {
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.pagination1 .page-num:hover {
+    color: #E8504B;
+}
+
+.pagination1 .page-active {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination1 .page-active .page-active-font {
+    color: #FFFFFF;
+}
