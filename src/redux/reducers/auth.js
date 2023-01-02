@@ -11,10 +11,12 @@ const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
     ? {
         isLoggedIn: true,
+        role: 0,
         user,
     }
     : {
         isLoggedIn: false,
+        role: 0,
         user: null,
     };
 
@@ -32,6 +34,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
+                role: payload.user.role,
                 user: payload.user,
             };
         case LOGIN_FAIL:

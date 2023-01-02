@@ -1,5 +1,6 @@
 import {
     FETCH_PACKAGES,
+    FETCH_PACKAGES_BYSLUG,
     SET_MESSAGE,
 } from './types';
 
@@ -10,6 +11,42 @@ export const getPackage = (serviceId) => async dispatch => {
         response => {
             dispatch({
                 type: FETCH_PACKAGES,
+                payload: {
+                    packages: response.data.data
+                }
+            });
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: response.data.message,
+                    status: response.status
+                },
+            });
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: message.data.message,
+                    status: message.status
+                },
+            });
+
+            return Promise.reject();
+        },
+    );
+};
+
+export const getPackageBySlug = (slug) => async dispatch => {
+    return PackagesService.getPackageBySlug(slug).then(
+        response => {
+            dispatch({
+                type: FETCH_PACKAGES_BYSLUG,
                 payload: {
                     packages: response.data.data
                 }

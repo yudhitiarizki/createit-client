@@ -2,7 +2,8 @@ import {
     FETCH_SERVICEBYCATEGORY,
     FETCH_SERVICE,
     FETCH_DETAILSERVICE,
-    FETCH_TOPSERVICE
+    FETCH_TOPSERVICE,
+    FETCH_SERVICE_BYSLUG
 } from "../actions/types";
 
 
@@ -34,6 +35,11 @@ const serviceReducer = (service = initialState, action) => {
             return service = {
                 ...service,
                 service: payload.service
+            };
+        case FETCH_SERVICE_BYSLUG:
+            return service = {
+                ...service,
+                detail: payload.service
             };
         default: 
             return service;

@@ -1,5 +1,6 @@
 import { 
-    FETCH_PACKAGES
+    FETCH_PACKAGES,
+    FETCH_PACKAGES_BYSLUG
 } from "../actions/types";
 
 
@@ -10,6 +11,8 @@ const packagesReducer = (packages = initialState, action) => {
 
     switch (type){
         case FETCH_PACKAGES:
+            return packages = payload.packages
+        case FETCH_PACKAGES_BYSLUG:
             return packages = payload.packages
         default: 
             return packages;

@@ -14,6 +14,7 @@ import SellerProfile from "../pages/SellerProfile";
 import SellerProgressOrder from "../pages/SellerProgressOrder";
 import ServiceDetail from "../pages/ServiceDetail";
 import UserOrder from "../pages/UserOrder";
+import Test from "../pages/Test"
 
 const Router = () => {
   return (
@@ -33,6 +34,7 @@ const Router = () => {
         <Route exact path="/seller/order/progress" element={<SellerProgressOrder />} />
         <Route exact path="/seller/:id" element={<OtherSellerProfile />} />
         <Route exact path="/user/order" element={<UserOrder />} />
+        <Route exact path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );
