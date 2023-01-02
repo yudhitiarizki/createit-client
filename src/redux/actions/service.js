@@ -4,6 +4,7 @@ import {
     FETCH_DETAILSERVICE,
     SET_MESSAGE,
     FETCH_TOPSERVICE,
+    FETCH_SERVICE_BYSLUG
 } from './types';
 
 import Service from '../../services/service';
@@ -80,7 +81,7 @@ export const getService = () => async dispatch => {
             return Promise.reject();
         },
     );
-}
+};
 
 export const getDetailService = (serviceId) => async dispatch => {
     return Service.getDetailService(serviceId).then(
@@ -150,3 +151,40 @@ export const getTopService = () => async dispatch => {
         }
     )
 }
+
+export const getServiceBySlug = (slug) => async dispatch => {
+    return Service.getServiceBySlug(slug).then(
+        response => {
+
+            dispatch({
+                type: FETCH_SERVICE_BYSLUG,
+                payload: {
+                    service: response.data.data
+                }
+            });
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: response.data.message,
+                    status: response.status
+                },
+            });
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: message.data.message,
+                    status: message.status
+                },
+            });
+
+            return Promise.reject();
+        },
+    );
+};

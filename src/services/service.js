@@ -14,13 +14,18 @@ const getDetailService = (serviceId) => {
 
 const getTopService = () => {
     return Api.get('/toprated');
+};
+
+const getServiceBySlug = (slug) => {
+    return Api.get(`/service/slug/${slug}`);
 }
 
 const ServiceServices = {
     getServiceByCategory,
     getService,
     getDetailService,
-    getTopService
+    getTopService,
+    getServiceBySlug
 };
 
 export default ServiceServices;

@@ -8,6 +8,7 @@ import packages from './packages';
 import review from './review';
 import seller from './seller';
 import service from './service';
+import user from './user';
 
 export default combineReducers({
     auth,
@@ -18,5 +19,6 @@ export default combineReducers({
     packages,
     review,
     seller,
-    service
+    service,
+    user
 });
