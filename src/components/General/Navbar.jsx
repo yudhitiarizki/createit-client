@@ -68,11 +68,11 @@ const Navbar = () => {
     const user = {
         "username": "Ahmad Na Jaemin",
         "email": "User1@gmail.com",
-        "role": 2,
+        "role": 1,
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };
-    const isSeller = true;
+    const isSeller = false;
 
     // nanti ambil dari redux atau pakai axios langsung
     const notifMessages = [

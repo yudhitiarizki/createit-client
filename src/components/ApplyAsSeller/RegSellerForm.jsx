@@ -13,7 +13,6 @@ const RegSellerForm = () => {
     // uncomment kalau login udah bisa
     // const token = user.token;
 
-    const [sellerName, setSellerName] = useState('');
     const [photoProfile, setPhotoProfile] = useState();
     const [description, setDescription] = useState('');
     const [noRekening, setNoRekening] = useState('');
@@ -89,12 +88,8 @@ const RegSellerForm = () => {
             <div className='applyseller-formcntr2'>
                 <div className='text6-6'>Sign up as a seller here</div>
                 <div className='sellerreg-inputcntr'>
-                    <label>Seller/Shop Name <span>*</span></label>
-                    <input type='text' className='inputfield-1' onChange={(event) => { setSellerName(event.target.value) }} />
-                </div>
-                <div className='sellerreg-inputcntr'>
                     <label>Description <span>*</span></label>
-                    <textarea rows={5} className='inputfield-1' onChange={(event) => { setDescription(event.target.value) }} />
+                    <textarea rows={5} className='inputfield-1' onChange={(event) => { setDescription(event.target.value) }} placeholder='Describe the skills you have here...'/>
                 </div>
                 <div className='sellerreg-inputcntr'>
                     <label>Card Holder <span>*</span></label>
