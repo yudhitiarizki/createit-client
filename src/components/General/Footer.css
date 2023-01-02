@@ -9,12 +9,17 @@
 .footer-flex {
     position: absolute;
     bottom: 0;
-    left:calc(50% - 192px);
+    left:calc(50% - 136px);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 50px;
     margin-bottom: 80px;
+}
+
+.footer-flex img {
+    width: 175px;
+    object-fit: contain;
 }
 
 .footer-medsos {
@@ -23,8 +28,8 @@
     gap: 48px;
 }
 
-.footer-medsos img {
-    width: 60px;
-    height: 60px;
+.footer-flex .footer-medsos img {
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 }

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.detailservice-navbar {
+    width: 100%;
+    height: 150px;
+    background: hsl(51, 82%, 89%);
+}
+
+.navbar-text1 {
+    margin: 50px 0px 60px 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+}
+
+.detailsrvc-seller {
+    margin: 0px 0px 48px 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #666666;
+}
+
+.detailsrvc-seller img {
+    width: 48px;
+    height: 48px;
+    border-radius: 48px;
+    object-fit: cover;
+}
+
+.detailsrvc-carousel {
+    margin: 0px 15% 90px;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-stage-outer .owl-stage .owl-item {
+    width: 100%;
+    border-radius: 16px;
+}
+
+.detailsrvc-carouselimg {
+    height: 550px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-nav .owl-prev,
+.owl-next {
+    height: 56px;
+    width: 56px;
+    position: absolute;
+    top: 225px;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-nav .owl-prev {
+    left: -28px;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-nav .owl-next {
+    right: -28px;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-dots {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 32px;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-dots .owl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    background: #E5E5E5;
+}
+
+.detailsrvc-carousel .owl-carousel .owl-dots .active {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+}
+
+.detailsrvc-info {
+    margin: 0px 120px 64px;
+    color: #333333;
+}
+
+.detailsrvc-title {
+    margin-bottom: 70px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+}
+
+.detailsrvc-desc {
+    width: 250px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    border-bottom: solid 2px #E8504B;
+}
+
+.detailsrvc-info p {
+    font-weight: 400;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.packages-container {
+    padding: 21px 120px 32px 120px;
+    background: rgba(229, 229, 229, 0.2);
+}
+
+.errfetch-detailsrvc {
+    background: #ffcbd2;
+    width: fit-content;
+    padding: 15px 30px;
+    text-align: center;
+    margin: 0px 0px 64px 120px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: red;
+}

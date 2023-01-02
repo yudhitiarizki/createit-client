@@ -7,16 +7,17 @@ import Searchbox from '../General/Searchbox';
 import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
 import Feature from '../../asset/HomePage/Feature.png';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 const HomePage = () => {
+    const navigate = useNavigate();
     // ini nanti dari redux
     const isLoggedIn = true;
     const user = {
         "username": "Ahmad Na Jaemin",
         "email": "User1@gmail.com",
-        "role": 2,
+        "role": 1,
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };
@@ -24,7 +25,7 @@ const HomePage = () => {
     const toApplySellerPage = () => {
         if (isLoggedIn) {
             if (user.role === 1) {
-                return <Navigate to='/applyseller' />
+                navigate('/applyseller');
             } else if (user.role === 3) {
                 toast.error("Admin can't access this page.", {
                     position: "top-right",
