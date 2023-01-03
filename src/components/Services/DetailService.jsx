@@ -4,6 +4,8 @@ import './DetailService.css';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 // untuk data dummy
 import Ellipse107 from '../../asset/ImgDummy/Ellipse107.png';
