@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'poppins';
+}
+
+.service-section {
+    display: flex;
+    flex-direction: row;
+    padding: 50px 120px;
+}
+
+.my-service {
+    margin-left: 25px;
+    width: 75%;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.service-create {
+    background-color: white;
+    color: #E8504B;
+    border: 1px solid #E8504B;
+    padding: 5px 13px;
+    border-radius: 10px;
+}
+
+.service-create:hover {
+    color: #b6322e;
+    border: 1px solid #b6322e;
+}
+
+.service-header h4 {
+    font-size: 25px;
+    padding-bottom: 10px;
+    border: solid #c0c0c0;
+    border-top: #fff;
+    border-left: #fff;
+    border-right: #fff;
+    border-width: 1px;
+    width: 20%;
+}
+
+.servicelist {
+    display: flex;
+    justify-content: space-between;
+}
+
+.servicelists1 {
+    padding: 64px 8% 40px 8%;
+    width: 100%;
+    background: #e5e5e533;
+}
+
+.servicelist1-cntr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 80px;
+}
+
+.serviceslist1-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 24px;
+    width: 32%;
+    height: 408px;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+}
+
+.service1imgcntr {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.servicelist1-img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.toprated-ratebuy1 {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border-radius: 8px;
+    background: linear-gradient(0deg, #000000e3, #07070700);
+    color: white;
+    padding: 15px 20px;
+}
+
+.toprated-ratebuy1 div i {
+    margin-right: 5px;
+}
+
+.serviceslist1-box:hover .toprated-ratebuy1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.servicelist1-info {
+    width: 100%;
+    height: 124px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.service1-info1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.service1-info2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    cursor: pointer;
+}
+
+.service1-info2:hover {
+    color: #E8504B;
+}
+
+.service1-info2 img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.service1-info3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333333;
+    width: 228px;
+    cursor: pointer;
+}
+
+.service1-info3:hover {
+    color: #E8504B;
+}
+
+.service1-info4 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.service-price i {
+    font-size: 18px;
+}
+
+.service-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666666;
+}
+
+.service-edit {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -3px;
+}
+
+.icon-edit {
+    height: 18px;
+    margin-right: 8px;
+}
+
+.icon-delete {
+    height: 18px;
+}
+

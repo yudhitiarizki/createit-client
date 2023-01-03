@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.icon-style {
+    margin: 10px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-style p {
+    font-family: 'poppins';
+    font-size: 23px;
+    font-weight: bolder;
+    margin-bottom: 0px;
+    color: #FFC53D;
+}
+
+.icon {
+    color: #FFC53D;
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.icon-empty {
+    margin-top: 2px;
+    font-size: 30px;
+}
+
+@media (max-width:  575.98px){
+    .icon-style {
+        align-items: center;
+        justify-content: center;
+        margin: 0px 10px;
+    }
+
+    .icon {
+        color: #FFC53D;
+        font-size: 18px;
+        margin-right: 15px;
+    }
+
+    .icon-style p {
+        
+        font-size: 20px;
+    }
+
+    .icon-empty {
+        margin-top: 2px;
+        font-size: 22px;
+    }
+}
