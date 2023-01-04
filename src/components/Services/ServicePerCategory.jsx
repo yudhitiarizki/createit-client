@@ -76,7 +76,7 @@ const ServicePerCategory = () => {
                         <i className='bx bx-chevron-right'></i>
                         <span>Service List</span>
                     </div>
-                    <div className='text1-container1'>
+                    <div className='text1-container11'>
                         <div className='text1-11'>It's Nothing But Service</div>
                         <div className='text1-21'>Get The Best IT Service Only In Create IT!</div>
                     </div>

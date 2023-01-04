@@ -40,32 +40,32 @@ const ServiceListCategory = () => {
     };
 
     return (
-        <div className="servicelists1">
-            <div className="servicelist1-cntr">
+        <div className="servicelists11">
+            <div className="servicelist11-cntr">
                 {currentItems.map(item => (
-                    <div className="serviceslist1-box" key={`id-${item.id}`}>
+                    <div className="serviceslist11-box" key={`id-${item.id}`}>
                         {/* item.id nanti diganti jadi item.serviceId */}
-                        <Link className="service1imgcntr" to={`/service/${item.id}`}>
+                        <Link className="service1imgcntr1" to={`/service/${item.id}`}>
                             {/* nanti diganti pakai image dari item */}
-                            <img src={Rectangle21} alt='' className="servicelist1-img"></img>
-                            <div className='toprated-ratebuy1'>
+                            <img src={Rectangle21} alt='' className="servicelist11-img"></img>
+                            <div className='toprated-ratebuy11'>
                                 {/* masih data dummy */}
                                 <div><i className='bx bx-star'></i>{4.9}</div>
                                 <div><i className='bx bx-group'></i>{item.id}</div>
                             </div>
                         </Link>
-                        <div className="servicelist1-info">
-                            <div className="service1-info1">
-                                <div className="service1-info2">
+                        <div className="servicelist11-info">
+                            <div className="service11-info1">
+                                <div className="service11-info2">
                                     {/* masih data dummy */}
                                     <img src={Ellipse107} alt=''></img>
                                     {/* nanti ganti sellerId */}
                                     <Link to={`/seller/${item.id}`} className='nav-link'>Ahmad Na Jaemin</Link>
                                 </div>
                                 {/* nanti ganti jadi serviceId */}
-                                <Link to={`/service/${item.id}`} className="service1-info3 nav-link">{item.title}</Link>
+                                <Link to={`/service/${item.id}`} className="service11-info3 nav-link">{item.title}</Link>
                             </div>
-                            <div className="service1-info4">
+                            <div className="service11-info4">
                                 <i className='bx bx-dollar-circle'></i>
                                 {/* masih data dummy */}
                                 <span>Start from Rp 20000</span>

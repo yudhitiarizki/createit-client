@@ -9,6 +9,7 @@ import TopRatedServices from './TopRatedServices';
 import Feature from '../../asset/HomePage/Feature.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const HomePage = () => {
     const user = {
         "username": "Ahmad Na Jaemin",
         "email": "User1@gmail.com",
-        "role": 1,
+        "role": 2,
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };
