@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "../Helpers/ScrollToTop";
 import AdminFinishedOrder from "../pages/AdminFinishedOrder";
@@ -15,14 +15,18 @@ import SellerProgressOrder from "../pages/SellerProgressOrder";
 import ServiceDetail from "../pages/ServiceDetail";
 import UserOrder from "../pages/UserOrder";
 import Test from "../pages/Test"
+import CreateOrder from "../pages/CreateOrder";
+import Register from "../pages/Register";
 
 const Router = () => {
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
         <Route exact path="/newcategory" element={<CreateCategory />} />
         <Route exact path="/category/:id" element={<CategoryDetail />} />
         <Route exact path="/service/:id" element={<ServiceDetail />} />
@@ -35,6 +39,7 @@ const Router = () => {
         <Route exact path="/seller/:id" element={<OtherSellerProfile />} />
         <Route exact path="/user/order" element={<UserOrder />} />
         <Route exact path="/test" element={<Test />} />
+        <Route exact path="/create-order" element={<CreateOrder />} />
       </Routes>
     </BrowserRouter>
   );
