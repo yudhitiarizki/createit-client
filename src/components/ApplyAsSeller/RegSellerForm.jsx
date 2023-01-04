@@ -9,8 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RegSellerForm = () => {
-    const { user } = useSelector(state => state.auth);
-    // uncomment kalau login udah bisa
+    // const { user } = useSelector(state => state.auth);
     // const token = user.token;
 
     const [photoProfile, setPhotoProfile] = useState();
@@ -38,12 +37,10 @@ const RegSellerForm = () => {
     };
 
     const handleSubmit = () => {
-        // uncomment kalau login udah bisa
         // axios.post(
-        //     "https://hot-wheat-salesman.glitch.me/regseller",
+        //     "https://coal-jolly-single.glitch.me/regseller",
         //     { 
         //         userId: user.userId,
-        //         sellerName,
         //         photoProfile,
         //         description,
         //         noRekening,
@@ -62,7 +59,6 @@ const RegSellerForm = () => {
         //         progress: undefined,
         //         theme: "light",
         //     });
-        //     setSellerName('');
         //     setPhotoProfile();
         //     setDescription('');
         //     setNoRekening('');

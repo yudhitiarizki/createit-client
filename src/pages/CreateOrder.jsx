@@ -1,15 +1,10 @@
-import React from "react";
-import Navbar from "../components/General/Navbar";
-import '../components/CreateOrder/CreateOrder.css';
+import React from 'react';
 
 const CreateOrder = () => {
     return (
         <>
-            <div className="header">
-                <Navbar />
-            </div>
+            Create Order Page
         </>
-    )
-}
-
+    );
+};
 export default CreateOrder;

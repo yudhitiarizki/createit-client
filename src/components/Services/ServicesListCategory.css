@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-.servicelists1 {
+.servicelists11 {
     padding: 64px 8% 40px 8%;
     width: 100%;
     background: #e5e5e533;
 }
 
-.servicelist1-cntr {
+.servicelist11-cntr {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,7 +16,7 @@
     margin-bottom: 80px;
 }
 
-.serviceslist1-box {
+.serviceslist11-box {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -28,7 +28,7 @@
     border-radius: 8px;
 }
 
-.service1imgcntr {
+.service1imgcntr1 {
     position: relative;
     width: 228px;
     height: 228px;
@@ -36,14 +36,14 @@
     cursor: pointer;
 }
 
-.servicelist1-img {
+.servicelist11-img {
     width: 228px;
     height: 228px;
     border-radius: 8px;
     object-fit: cover;
 }
 
-.toprated-ratebuy1 {
+.toprated-ratebuy11 {
     display: none;
     position: absolute;
     left: 0;
@@ -56,18 +56,18 @@
     padding: 15px 20px;
 }
 
-.toprated-ratebuy1 div i {
+.toprated-ratebuy11 div i {
     margin-right: 5px;
 }
 
-.serviceslist1-box:hover .toprated-ratebuy1 {
+.serviceslist11-box:hover .toprated-ratebuy1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-.servicelist1-info {
+.servicelist11-info {
     width: 228px;
     height: 124px;
     display: flex;
@@ -77,7 +77,7 @@
     gap: 20px;
 }
 
-.service1-info1 {
+.service11-info1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -85,7 +85,7 @@
     overflow: hidden;
 }
 
-.service1-info2 {
+.service11-info2 {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -97,18 +97,18 @@
     cursor: pointer;
 }
 
-.service1-info2:hover {
+.service11-info2:hover {
     color: #E8504B;
 }
 
-.service1-info2 img {
+.service11-info2 img {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.service1-info3 {
+.service11-info3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 18px;
@@ -117,11 +117,11 @@
     cursor: pointer;
 }
 
-.service1-info3:hover {
+.service11-info3:hover {
     color: #E8504B;
 }
 
-.service1-info4 {
+.service11-info4 {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -131,7 +131,7 @@
     color: #666666;
 }
 
-.service1-info4 i {
+.service11-info4 i {
     font-size: 18px;
 }
 
