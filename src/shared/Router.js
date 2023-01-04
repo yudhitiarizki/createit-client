@@ -15,6 +15,7 @@ import SellerProgressOrder from "../pages/SellerProgressOrder";
 import ServiceDetail from "../pages/ServiceDetail";
 import UserOrder from "../pages/UserOrder";
 import Test from "../pages/Test"
+import CreateOrder from "../pages/CreateOrder";
 
 const Router = () => {
   return (
@@ -25,7 +26,7 @@ const Router = () => {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/newcategory" element={<CreateCategory />} />
         <Route exact path="/category/:id" element={<CategoryDetail />} />
-        <Route exact path="/service/:id" element={<ServiceDetail />} />
+        <Route exact path="/service/:slug" element={<ServiceDetail />} />
         <Route exact path="/manageseller" element={<ManageSeller />} />
         <Route exact path="/admin/order" element={<AdminFinishedOrder />} />
         <Route exact path="/applyseller" element={<ApplyAsSeller />} />
@@ -35,6 +36,7 @@ const Router = () => {
         <Route exact path="/seller/:id" element={<OtherSellerProfile />} />
         <Route exact path="/user/order" element={<UserOrder />} />
         <Route exact path="/test" element={<Test />} />
+        <Route exact path="/createorder" element={<CreateOrder />} />
       </Routes>
     </BrowserRouter>
   );
