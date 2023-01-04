@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+.banner {
+    width: 100%;
+    background: url('../../asset/HomePage/Banner.png') bottom no-repeat;
+    background-size: cover;
+}
+
+.profile{
+    padding: 180px 120px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.photo-profile {
+    height: 250px;
+    width: 250px;
+    border-radius: 100%;
+}
+
+.detail-profile {
+    padding-left: 50px;
+    height: 10px;
+    width: 80%;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: 'poppins';
+    font-weight: 700;
+}
+
+.edit-name{
+    margin-top: 10px;
+    height: 20px;
+}
+
+.name-profile {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-description {
+}
+
+.profile-description p {
+    font-size: 22px;
+}
+
+
+@media (max-width: 991.98px) {
+
+}
+
+@media (max-width: 767.98px) {
+}
+
+@media (max-width: 575.98px) {
+    .section-container {
+        padding: 0px;
+    }
+    .banner {
+        padding: 0px;
+    }
+
+    .detail-profile {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .name {
+        text-align: center;
+    }
+
+    .name h1 {
+        margin: 0px;
+        font-size: 25px;
+    }
+
+    .edit-name {
+        margin-top: -8px;
+    }
+
+    .edit-icon {
+        margin: 0px;
+        padding: 0px;
+        height: 20px;
+    }
+
+    .name-profile {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+     
+    .profile-description {
+        text-align: center;
+    }
+
+
+    .photo-profile {
+        height: 100px;
+        width: 100px;
+    }
+
+    .profile {
+        margin: auto;
+        flex-direction: column;
+        align-items: center;
+        padding: 150px 0px;
+    }
+
+}
