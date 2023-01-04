@@ -64,9 +64,9 @@ const Packages = ({ slug, serviceId }) => {
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
     const [revision, setRevision] = useState('');
-    const [concepts, setConcepts] = useState(null);
-    const [pages, setPages] = useState(null);
-    const [maxduration, setMaxduration] = useState(null);
+    const [concepts, setConcepts] = useState('');
+    const [pages, setPages] = useState('');
+    const [maxduration, setMaxduration] = useState('');
     const [price, setPrice] = useState('');
 
     useEffect(() => {
@@ -118,9 +118,9 @@ const Packages = ({ slug, serviceId }) => {
             setType('');
             setDelivery('');
             setRevision('');
-            setConcepts(null);
-            setPages(null);
-            setMaxduration(null);
+            setConcepts('');
+            setPages('');
+            setMaxduration('');
             setPrice('');
         }).catch((error) => {
             toast.error(error.response.data.message, {

@@ -1,10 +1,13 @@
 import React from 'react';
+import AdminApproval from '../components/Admin/AdminApproval';
+import Footer from '../components/General/Footer';
 
 const ManageSeller = () => {
-    return (
-        <>
-          Admin manage new seller account
-        </>
+  return (
+    <>
+      <AdminApproval />
+      <Footer />
+    </>
   );
 };
 

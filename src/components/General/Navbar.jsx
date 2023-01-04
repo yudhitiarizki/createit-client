@@ -79,7 +79,7 @@ const Navbar = () => {
     const user = {
         "username": "Ahmad Na Jaemin",
         "email": "User1@gmail.com",
-        "role": 3,
+        "role": 2,
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };

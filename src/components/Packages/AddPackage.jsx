@@ -14,9 +14,9 @@ const AddPackage = ({ serviceId, packages }) => {
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
     const [revision, setRevision] = useState('');
-    const [concepts, setConcepts] = useState(null);
-    const [pages, setPages] = useState(null);
-    const [maxduration, setMaxduration] = useState(null);
+    const [concepts, setConcepts] = useState('');
+    const [pages, setPages] = useState('');
+    const [maxduration, setMaxduration] = useState('');
     const [price, setPrice] = useState('');
 
     const handleAddPckg = () => {
