@@ -1,0 +1,143 @@
+.section-container {
+    height: 100vh;
+    display: flex;
+    
+    overflow-x: hidden;
+}
+
+.figure {
+    min-height: 100%;
+    margin: 0%;
+    width: 50%;
+    background-image: url('../../asset/Login/Login.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container-login {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color:#ffffff;
+    width:80%;
+    padding: 75px 50px;
+    filter:drop-shadow(0px 2px 18px rgba(0,0,0,0.10000000149011612));
+}
+
+.form-title {
+    width: 100%;
+    text-align: center;
+}
+
+.form-title h4 {
+    font-size:32px;
+    font-family:'Poppins';
+    font-weight: 700;
+    color: #E8504B;
+    background-color: #E8504B;
+    background-image: linear-gradient(to right, #E8504B 0%, #F2703C 100%);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.form-input-name {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-input label {
+    margin-bottom: 10px;
+}
+
+.form-input label span {
+    color: red;
+}
+
+.form-input input {
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    min-height: 40px;
+    border-width: 0;
+    padding: 5px 20px;
+}
+
+.form-input input:focus {
+    outline: #E8504B;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.form-footer p .link{
+    color: #E8504B;
+    text-decoration: none;
+}
+
+.form-footer button {
+    background-image: linear-gradient(to right, #E8504B 0%, #F2703C 100%);
+    border: none;
+    color: white;
+    padding: 8px 50px;
+    border-radius: 10px;
+}
+
+.Loading {
+    width: 200px;
+    margin-top: -20px
+}
+
+@media (max-width: 1500px) {
+    .form-input-name {
+        flex-direction: column;
+        gap: 0px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .form-input-name {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .container-login {
+        width: 100%;
+    }
+
+    .form-login {
+        width: 90%;
+        padding: 50px 20px;
+    }
+
+    .figure {
+        display: none;
+    }
+}

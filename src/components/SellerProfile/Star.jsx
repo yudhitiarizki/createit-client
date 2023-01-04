@@ -6,20 +6,20 @@ import './Star.css';
 const Star = ({star}) => {
     const ratingStar = Array.from({length:5}, (elem, index) => {
 
-        let number = index + 0.5;
-        return (
-            <span key={index}>
-                {
-                    star >= index + 1 ? (
-                        <FaStar className='icon' />
-                            ) : star >= number ? (
-                        <FaStarHalfAlt className='icon' />
-                            ) : (
-                        <AiOutlineStar className='icon icon-empty' />
-                            )
-                }
-            </span>
-        )
+    let number = index + 0.5;
+    return (
+        <span key={index}>
+            {
+                star >= index + 1 ? (
+                    <FaStar className='icon' />
+                        ) : star >= number ? (
+                    <FaStarHalfAlt className='icon' />
+                        ) : (
+                    <AiOutlineStar className='icon icon-empty' />
+                        )
+            }
+        </span>
+    )
 
     })
     return (
