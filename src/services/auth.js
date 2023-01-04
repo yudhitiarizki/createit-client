@@ -1,19 +1,19 @@
 import Api from '../Api';
 
-const register = (firstName, lastName, email, password, repassword) => {
+const register = (firstName, lastName, email, username, password, repassword, phoneNumber) => {
     return Api.post('/register', {
-        firstName, lastName, email, password, repassword
+        firstName, lastName, email, username, password, repassword, phoneNumber
     });
 };
 
-const login = (email, password) => {
+const login = (username, password) => {
     return Api.post('/login', {
-        email: email,
+        username: username,
         password: password,
     }).then(response => {
         if (response.data.token) {
             localStorage.setItem('user', JSON.stringify(response.data));
-        }
+        } 
         return response.data;
     });
 };

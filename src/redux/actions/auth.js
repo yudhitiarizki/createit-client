@@ -7,13 +7,26 @@ import {
     SET_MESSAGE,
 } from './types';
 
+import { toast } from 'react-toastify';
+
 import AuthService from '../../services/auth';
 
-export const register = (firstName, lastName, email, password, repassword) => dispatch => {
-    return AuthService.register(firstName, lastName, email, password, repassword).then(
+export const register = (firstName, lastName, email, username, password, repassword, phoneNumber) => dispatch => {
+    return AuthService.register(firstName, lastName, email, username, password, repassword, phoneNumber).then(
         response => {
             dispatch({
                 type: REGISTER_SUCCESS,
+            });
+
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
             });
 
             dispatch({
@@ -33,6 +46,17 @@ export const register = (firstName, lastName, email, password, repassword) => di
                 type: REGISTER_FAIL,
             });
 
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
             dispatch({
                 type: SET_MESSAGE,
                 payload: {
@@ -46,12 +70,23 @@ export const register = (firstName, lastName, email, password, repassword) => di
     );
 };
 
-export const login = (email, password) => dispatch => {
-    return AuthService.login(email, password).then(
+export const login = (username, password) => dispatch => {
+    return AuthService.login(username, password).then(
         data => {
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: { user: data },
+            });
+
+            toast.success('ok', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
             });
 
             return Promise.resolve();
@@ -62,6 +97,17 @@ export const login = (email, password) => dispatch => {
             });
 
             const message = error.response;
+
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
 
 
             dispatch({

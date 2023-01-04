@@ -4,10 +4,21 @@ import './Navbar.css';
 import logo from '../../asset/Navbar/logo.png';
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import MessageQuestion from '../../asset/Navbar/message-question.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { clearMessage } from "../../redux/actions/message";
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (['/login', '/register'].includes(location.pathname)) {
+            dispatch(clearMessage());
+        }
+    }, [dispatch, location]);
 
     // ini nanti ganti pakai axios get "/category" dari redux
     const categoryList = [
