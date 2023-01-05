@@ -1,11 +1,15 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import './Service.css';
 import GeneralInfo from "./GeneralInfo";
 import { Link } from "react-router-dom";
 import Rectangle21 from '../../asset/ImgDummy/Rectangle21.png';
 import Ellipse107 from '../../asset/ImgDummy/Ellipse107.png';
-import Edit from '../../asset/Seller/edit.png'
-import Trash from '../../asset/Seller/trash.png'
+import Edit from '../../asset/Seller/edit.png';
+import Trash from '../../asset/Seller/trash.png';
+import AddService from './AddService';
+import EditService from "./EditService";
 
 const ServiceList = () => {
     return (
@@ -15,7 +19,7 @@ const ServiceList = () => {
             <div className="my-service">
                 <div className="service-header">
                     <h4>My Service</h4>
-                    <button className="service-create">Create New</button>
+                    <button  className="service-create" type="button" data-bs-toggle="modal" data-bs-target="#AddService">Create New</button>
                 </div>
                 <div className="servicelist">
                     <div className="serviceslist1-box" key={1}>
@@ -40,7 +44,7 @@ const ServiceList = () => {
                                     <span>Start from Rp 20000</span>
                                 </div>
                                 <div className="service-edit">
-                                    <Link>
+                                    <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
                                         <img className="icon-edit" src={Edit} alt="" />
                                     </Link>
                                     <Link>
@@ -114,6 +118,8 @@ const ServiceList = () => {
                             </div>
                         </div>
                     </div>
+                    <AddService />
+                    <EditService />
                 </div>
             </div>
         </div>

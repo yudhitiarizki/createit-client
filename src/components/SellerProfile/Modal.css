@@ -1,0 +1,117 @@
+.title-modal {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.modal-body {
+    padding: 40px 30px;
+}
+
+.form-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-input label {
+    margin-bottom: 10px;
+}
+
+.form-input label span {
+    color: red;
+}
+
+.form-input input {
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    min-height: 40px;
+    border-width: 0;
+    padding: 5px 20px;
+}
+
+.form-input textarea {
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    min-height: 40px;
+    border-width: 0;
+    padding: 10px 20px;
+}
+
+.form-input .form-select {
+    background-color: #F4F4F4;
+    border: none;
+}
+
+.form-input select:focus {
+    background-color: #F4F4F4;
+    box-shadow: none;
+    border: none;
+}
+
+option:hover {
+    background-color: yellow !important;
+}
+
+option:checked {
+    background-color: #fff;
+  }
+
+select-items {
+    background-color: #999999;
+}
+
+.form-input select option {
+    background-color: #F4F4F4;
+    box-shadow: none;
+    border: none;
+}
+
+.form-input textarea:focus {
+    outline: #E8504B;
+}
+
+.form-input input:focus {
+    outline: #E8504B;
+}
+
+input[type=file] {
+    padding: 0px;
+    display: flex;
+    flex-direction: row-reverse;
+    color: #999999;
+}
+
+input[type=file]::file-selector-button {
+    height: 100%;
+    padding: 10px 20px;
+    margin-right: 20px;
+    border: none;
+    background: #E5E5E5;
+    border-radius: 10px 0px 0px 10px;
+    color: #999999;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #9c9b9b;
+    color: white;
+  }
+
+  .modal-footer {
+    justify-content: center;
+    margin-top: 20px;
+    border: none;
+  }
+
+  .create-service {
+    color: #fff;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 8px;
+    border: none;
+    border-top: none;
+    padding: 10px 30px;
+  }

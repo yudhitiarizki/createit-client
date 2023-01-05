@@ -8,7 +8,7 @@
 }
 
 .profile{
-    padding: 180px 120px;
+    padding: 80px 120px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -43,8 +43,6 @@ h1 {
     justify-content: space-between;
 }
 
-.profile-description {
-}
 
 .profile-description p {
     font-size: 22px;
@@ -114,4 +112,28 @@ h1 {
         padding: 150px 0px;
     }
 
+}
+
+@media (max-width: 767.98px) {
+    .photo-profile {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+
+    .profile {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+    }
+
+    .name-profile {
+        margin-bottom: 10px;
+    }
+
+    .profile-description p {
+        font-size: 15px;
+        margin-top: 10px;
+    }
 }
