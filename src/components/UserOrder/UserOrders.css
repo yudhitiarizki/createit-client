@@ -2,4 +2,571 @@
 
 .userorder-cntr {
     margin: 40px 9% 72px 9%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.userorder-gnrlinfo {
+    width: 18vw;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 25px 30px;
+    gap: 16px;
+}
+
+.userorder-infotitle {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid #999999;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333333;
+}
+
+.userorder-row {
+    width: calc(18vw - 60px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.userorder-row div {
+    color: #666666;
+    font-weight: 400;
+}
+
+.userorder-row span {
+    font-weight: 600;
+    color: #E8504B;
+}
+
+.user-list-cntr {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.usrorder-toggletab {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.usrorder-toggletab div {
+    width: calc(100%/3);
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #BFBFBF;
+    border-bottom: 1px solid #BFBFBF;
+    cursor: pointer;
+}
+
+.usrorder-toggletab .usrordr-toggleactv {
+    color: #E8504B;
+    border-bottom: 2px solid #E8504B;
+}
+
+.usr-all-order-cntr {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.searchbox-usrorder {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #CCCCCC;
+    padding: 3px 3px 3px 15px;
+    font-weight: 400;
+    color: #666666;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.searchbox-usrorder i {
+    font-size: 16px;
+}
+
+.searchbox-usrorder input {
+    width: 80%;
+    outline: none;
+    border: none;
+    font-size: 12px;
+}
+
+.tbl-usr-order {
+    --bs-table-bg: #F7F7F7;
+    --bs-table-striped-bg: #FFFFFF;
+    --bs-table-border-color: #F7F7F7;
+}
+
+.tbl-usr-order thead tr {
+    --bs-table-bg: #E8504B;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.tbl-usr-order thead tr td {
+    padding: 10px 15px;
+}
+
+.tbl-usr-order tbody tr td {
+    padding-left: 15px;
+    font-size: 13px;
+}
+
+.tbl-usr-order tbody tr .usr-order-show {
+    font-size: 20px;
+    color: #E8504B;
+    text-align: center;
+    cursor: pointer;
+    padding-left: 0;
+}
+
+.sort-col-td {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    border-bottom: none;
+}
+
+.sort-col-td i {
+    cursor: pointer;
+}
+
+.completed-status {
+    width: fit-content;
+    background: #F6FFED;
+    color: #52C41A;
+}
+
+.ongoing-status {
+    width: fit-content;
+    background: #edeeff;
+    color: #1a2bc4;
+}
+
+.pending-status {
+    width: fit-content;
+    background: #FEFFE6;
+    color: #D4B106;
+}
+
+.order-not-found {
+    width: 100%;
+    background: #ffe6e6;
+    color: #d40606;
+    text-align: center;
+    padding: 5px;
+}
+
+/* pagination style */
+.pagination2 {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.pagination2 .page-num1 {
+    padding: 4px 7px 3px 7px;
+    border-radius: 50%;
+    border: 1px solid #E8504B;
+    color: #E8504B;
+    font-size: 18px;
+}
+
+.pagination2 .page-num1:hover {
+    background: #E8504B;
+    color: #FFFFFF;
+}
+
+.pagination2 .page-num {
+    text-decoration: none;
+    color: #333333;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.pagination2 .page-num:hover {
+    color: #E8504B;
+}
+
+.pagination2 .page-active {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #E8504B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination2 .page-active .page-active-font {
+    color: #FFFFFF;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .userorder-cntr {
+        margin: 30px 9% 72px 9%;
+    }
+
+    .userorder-gnrlinfo {
+        width: 19vw;
+        padding: 20px;
+        gap: 12px;
+    }
+    
+    .userorder-infotitle {
+        font-size: 15px;
+    }
+    
+    .userorder-row {
+        width: calc(19vw - 40px);
+        font-size: 13px;
+    }
+    
+    .user-list-cntr {
+        gap: 20px;
+    }
+
+    .usrorder-toggletab {
+        width: 60vw;
+    }
+    
+    .usrorder-toggletab div {
+        width: calc(100%/3);
+        font-size: 13px;
+    }
+    
+    .searchbox-usrorder {
+        width: 60vw;
+    }
+    
+    .searchbox-usrorder i {
+        font-size: 14px;
+    }
+
+    .tbl-usr-order thead tr {
+        font-size: 13px;
+    }
+    
+    .tbl-usr-order thead tr td {
+        padding: 8px 10px;
+    }
+    
+    .tbl-usr-order tbody tr td {
+        padding-left: 10px;
+        font-size: 12px;
+    }
+    
+    .pagination2 .page-num1 {
+        padding: 3px 5px 2px 5px;
+        font-size: 16px;
+    }
+    
+    .pagination2 .page-num {
+        font-size: 13px;
+    }
+
+    .pagination2 .page-active {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .userorder-cntr {
+        margin: 0px 9% 50px 9%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+    }
+
+    .userorder-gnrlinfo {
+        width: 26vw;
+        padding: 25px;
+        gap: 12px;
+    }
+    
+    .userorder-infotitle {
+        width: calc(26vw - 50px);
+        font-size: 14px;
+    }
+    
+    .userorder-row {
+        width: calc(26vw - 50px);
+        font-size: 12px;
+    }
+    
+    .user-list-cntr {
+        gap: 20px;
+    }
+
+    .usrorder-toggletab {
+        width: calc(100vw - 25%);
+    }
+    
+    .usrorder-toggletab div {
+        width: calc(100%/3);
+        font-size: 13px;
+    }
+    
+    .searchbox-usrorder {
+        width: calc(100vw - 25%);
+    }
+    
+    .searchbox-usrorder i {
+        font-size: 14px;
+    }
+
+    .tbl-usr-order {
+        width: calc(100vw - 25%);
+    }
+
+    .tbl-usr-order thead tr {
+        font-size: 13px;
+    }
+    
+    .tbl-usr-order thead tr td {
+        padding: 8px 10px;
+    }
+    
+    .tbl-usr-order tbody tr td {
+        padding-left: 10px;
+        font-size: 12px;
+    }
+    
+    .pagination2 .page-num1 {
+        padding: 3px 5px 2px 5px;
+        font-size: 16px;
+    }
+    
+    .pagination2 .page-num {
+        font-size: 13px;
+    }
+
+    .pagination2 .page-active {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Small devices */
+@media (min-width: 500px) and (max-width: 767.98px) {
+    .userorder-cntr {
+        margin: 0px 5% 50px 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .userorder-gnrlinfo {
+        width: 35vw;
+        padding: 15px 20px;
+        gap: 11px;
+        justify-content: center;
+    }
+    
+    .userorder-infotitle {
+        width: calc(35vw - 40px);
+        font-size: 13px;
+    }
+    
+    .userorder-row {
+        width: calc(35vw - 40px);
+        font-size: 11px;
+    }
+    
+    .user-list-cntr {
+        gap: 15px;
+    }
+
+    .usrorder-toggletab {
+        width: 100%;
+    }
+    
+    .usrorder-toggletab div:first-child {
+        width: calc(100%/4);
+        font-size: 12px;
+    }
+
+    .usrorder-toggletab div {
+        width: calc((100% - 100%/4)/2);
+        font-size: 12px;
+    }
+    
+    .searchbox-usrorder {
+        width: 100%;
+    }
+    
+    .searchbox-usrorder i {
+        font-size: 14px;
+    }
+
+    .tbl-usr-order {
+        width: 100%;
+    }
+
+    .tbl-usr-order thead tr {
+        font-size: 11px;
+    }
+    
+    .tbl-usr-order thead tr td {
+        padding: 8px;
+        min-height: 50px;
+        border: none;
+        
+    }
+    
+    .tbl-usr-order tbody tr td {
+        padding-left: 8px;
+        font-size: 10px;
+    }
+
+    .sort-col-td {
+        gap: 5px;
+    }
+
+    .pagination2 {
+        gap: 20px;
+    }
+    
+    .pagination2 .page-num1 {
+        padding: 2px 4px 1px 4px;
+        font-size: 14px;
+    }
+    
+    .pagination2 .page-num {
+        font-size: 11px;
+    }
+
+    .pagination2 .page-active {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* X-Small devices */
+@media (max-width: 499.98px) {
+    .userorder-cntr {
+        margin: 0px 3% 50px 3%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .userorder-gnrlinfo {
+        width: 48vw;
+        padding: 15px 20px;
+        gap: 11px;
+        justify-content: center;
+    }
+    
+    .userorder-infotitle {
+        width: calc(48vw - 40px);
+        font-size: 13px;
+    }
+    
+    .userorder-row {
+        width: calc(48vw - 40px);
+        font-size: 11px;
+    }
+    
+    .user-list-cntr {
+        gap: 15px;
+    }
+
+    .usrorder-toggletab {
+        width: 100%;
+    }
+    
+    .usrorder-toggletab div:first-child {
+        width: calc(100%/4);
+        font-size: 12px;
+    }
+
+    .usrorder-toggletab div {
+        width: calc((100% - 100%/4)/2);
+        font-size: 12px;
+    }
+    
+    .searchbox-usrorder {
+        width: 100%;
+    }
+    
+    .searchbox-usrorder i {
+        font-size: 14px;
+    }
+
+    .tbl-usr-order {
+        width: 100%;
+    }
+
+    .tbl-usr-order thead tr {
+        font-size: 11px;
+    }
+    
+    .tbl-usr-order thead tr td {
+        padding: 5px;
+        min-height: 50px;
+        border: none;
+        
+    }
+    
+    .tbl-usr-order tbody tr td {
+        padding-left: 5px;
+        font-size: 10px;
+    }
+
+    .sort-col-td {
+        gap: 5px;
+    }
+
+    .pagination2 {
+        gap: 20px;
+    }
+    
+    .pagination2 .page-num1 {
+        padding: 2px 4px 1px 4px;
+        font-size: 14px;
+    }
+    
+    .pagination2 .page-num {
+        font-size: 11px;
+    }
+
+    .pagination2 .page-active {
+        width: 30px;
+        height: 30px;
+    }
 }

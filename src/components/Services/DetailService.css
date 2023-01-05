@@ -141,7 +141,8 @@
     .navbar-text1 {
         font-size: 12px;
         margin-top: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        margin-left: 5%;
         gap: 5px;
     }
 
