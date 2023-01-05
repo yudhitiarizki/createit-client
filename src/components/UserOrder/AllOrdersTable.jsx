@@ -67,7 +67,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
             type: 'Business',
             price: 199999,
             note: 'logo name: CreateIT',
-            status: 'Revision',
+            status: 'Revising',
             revisionLeft: '2',
             response: '',
             createdAt: '2022-07-11'
@@ -100,7 +100,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
         }
     ];
 
-    const orderOngoing = Order.filter(item => (item.status === 'Revision' || item.status === 'Working'));
+    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working'));
     const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
 
     // search button
@@ -273,7 +273,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                                         {(item.status === 'Approved' || item.status === 'Done') ? (
                                             <td><div className='completed-status'>Completed</div></td>
                                         ) : (
-                                            ((item.status === 'Working' || item.status === 'Revision') ? (
+                                            ((item.status === 'Working' || item.status === 'Revising') ? (
                                                 <td><div className='ongoing-status'>Ongoing</div></td>
                                             ) : (
                                                 <td><div className='pending-status'>{item.status}</div></td>

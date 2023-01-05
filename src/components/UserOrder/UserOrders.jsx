@@ -79,7 +79,7 @@ const UserOrders = () => {
             type: 'Business',
             price: 199999,
             note: 'logo name: CreateIT',
-            status: 'Revision',
+            status: 'Revising',
             revisionLeft: '2',
             response: '',
             createdAt: '02/01/2023'
@@ -113,7 +113,7 @@ const UserOrders = () => {
     ];
 
     const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
-    const orderOngoing = Order.filter(item => (item.status === 'Revision' || item.status === 'Working'));
+    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working'));
 
     const allOrderTab = () => {
         document.getElementById('user-all-order').style.display = 'flex';
