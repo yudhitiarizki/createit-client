@@ -42,7 +42,6 @@
     border-left: #fff;
     border-right: #fff;
     border-width: 1px;
-    width: 20%;
 }
 
 .servicelist {
@@ -73,7 +72,7 @@
     padding: 16px;
     gap: 24px;
     width: 32%;
-    height: 408px;
+    height: 100%;
     border: 1px solid #CCCCCC;
     border-radius: 8px;
 }
@@ -98,6 +97,7 @@
     top: 0;
     width: 100%;
     border-radius: 8px;
+    height: 100%;
     background: linear-gradient(0deg, #000000e3, #07070700);
     color: white;
     padding: 15px 20px;
@@ -122,6 +122,7 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
+    
 }
 
 .service1-info1 {
@@ -130,18 +131,20 @@
     align-items: flex-start;
     gap: 5px;
     overflow: hidden;
+    width: 100%;
 }
 
 .service1-info2 {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     gap: 8px;
     font-weight: 400;
     font-size: 14px;
     color: #666666;
     cursor: pointer;
+    width: 100%;
 }
 
 .service1-info2:hover {
@@ -205,5 +208,29 @@
 
 .icon-delete {
     height: 18px;
+}
+
+@media (max-width: 767.98px) {
+    .service-section {
+        flex-direction: column;
+        padding: 0px 20px;
+    }
+
+    .my-service {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .service-create {
+        margin-top: -5px;
+    }
+    .servicelist {
+        flex-direction: column;
+    }
+
+    .serviceslist1-box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
 

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import './Profile.css';
 import Navbar from '../General/Navbar';
 import { Link } from 'react-router-dom';
 import Edit from '../../asset/Seller/edit.png'
 import Avatar from '../../asset/Seller/Hero-section.png'
 import Star from './Star';
+import EditProfile from './EditProfile';
 
 const Profile = () => {
 
@@ -21,7 +24,7 @@ const Profile = () => {
                                     <h1>Ahmad Nan Jamin</h1>
                                 </div>
                                 <div className='edit-name col-1'>
-                                    <Link>
+                                    <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
                                         <img className="edit-icon" src={Edit} alt="" />
                                     </Link>
                                 </div>
@@ -35,6 +38,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
+                <EditProfile />
             </div>
     )
 }

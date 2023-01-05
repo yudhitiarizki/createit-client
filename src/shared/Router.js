@@ -40,7 +40,6 @@ const Router = () => {
         <Route exact path="/user/order" element={<UserOrder />} />
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/createorder" element={<CreateOrder />} />
-        <Route exact path="/create-order" element={<CreateOrder />} />
       </Routes>
     </BrowserRouter>
   );
