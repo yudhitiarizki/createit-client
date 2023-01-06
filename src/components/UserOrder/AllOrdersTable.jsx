@@ -139,7 +139,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                 setServices(filteredOrder3);
             }
         }
-    }, [searchkey])
+    }, [searchkey, allOrder, onGoing]) // jangan dikasih dependencies Order, orderCompleted, dan orderOngoing => sort not working
 
     //sort
     const [dateSort, setDateSort] = useState(0);
@@ -147,27 +147,45 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
 
     const handleSortPrice = () => {
         if (priceSort) {
-            if (allOrder) {
-                const ordered1 = Order.sort((a,b) => (a.price - b.price));
-                setServices(ordered1);
-            } else if (onGoing) {
-                const ordered2 = orderOngoing.sort((a,b) => (a.price - b.price));
-                setServices(ordered2);
+            if (searchkey) {
+                const ordered0 = [...services]
+                ordered0.sort((a, b) => (a.price - b.price));
+                setServices(ordered0);
             } else {
-                const ordered3 = orderCompleted.sort((a,b) => (a.price - b.price));
-                setServices(ordered3);
+                if (allOrder) {
+                    const ordered1 = [...Order];
+                    ordered1.sort((a, b) => (a.price - b.price));
+                    setServices(ordered1);
+                } else if (onGoing) {
+                    const ordered2 = [...orderOngoing]
+                    ordered2.sort((a, b) => (a.price - b.price));
+                    setServices(ordered2);
+                } else {
+                    const ordered3 = [...orderCompleted]
+                    ordered3.sort((a, b) => (a.price - b.price));
+                    setServices(ordered3);
+                }
             }
             setPriceSort(0)
         } else {
-            if (allOrder) {
-                const ordered1 = Order.sort((a,b) => (b.price - a.price));
-                setServices(ordered1);
-            } else if (onGoing) {
-                const ordered2 = orderOngoing.sort((a,b) => (b.price - a.price));
-                setServices(ordered2);
+            if (searchkey) {
+                const ordered10 = [...services]
+                ordered10.sort((a, b) => (b.price - a.price));
+                setServices(ordered10);
             } else {
-                const ordered3 = orderCompleted.sort((a,b) => (b.price - a.price));
-                setServices(ordered3);
+                if (allOrder) {
+                    const ordered11 = [...Order]
+                    ordered11.sort((a, b) => (b.price - a.price));
+                    setServices(ordered11);
+                } else if (onGoing) {
+                    const ordered12 = [...orderOngoing]
+                    ordered12.sort((a, b) => (b.price - a.price));
+                    setServices(ordered12);
+                } else {
+                    const ordered13 = [...orderCompleted]
+                    ordered13.sort((a, b) => (b.price - a.price));
+                    setServices(ordered13);
+                }
             }
             setPriceSort(1)
         }
@@ -175,27 +193,45 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
 
     const handleSortDate = () => {
         if (dateSort) {
-            if (allOrder) {
-                const ordered1 = Order.sort((a,b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                setServices(ordered1);
-            } else if (onGoing) {
-                const ordered2 = orderOngoing.sort((a,b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                setServices(ordered2);
+            if (searchkey) {
+                const ordered0 = [...services]
+                ordered0.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
+                setServices(ordered0);
             } else {
-                const ordered3 = orderCompleted.sort((a,b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                setServices(ordered3);
+                if (allOrder) {
+                    const ordered1 = [...Order];
+                    ordered1.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
+                    setServices(ordered1);
+                } else if (onGoing) {
+                    const ordered2 = [...orderOngoing]
+                    ordered2.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
+                    setServices(ordered2);
+                } else {
+                    const ordered3 = [...orderCompleted]
+                    ordered3.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
+                    setServices(ordered3);
+                }
             }
             setDateSort(0)
         } else {
-            if (allOrder) {
-                const ordered1 = Order.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                setServices(ordered1);
-            } else if (onGoing) {
-                const ordered2 = orderOngoing.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                setServices(ordered2);
+            if (searchkey) {
+                const ordered10 = [...services]
+                ordered10.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
+                setServices(ordered10);
             } else {
-                const ordered3 = orderCompleted.sort((a,b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                setServices(ordered3);
+                if (allOrder) {
+                    const ordered11 = [...Order]
+                    ordered11.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
+                    setServices(ordered11);
+                } else if (onGoing) {
+                    const ordered12 = [...orderOngoing]
+                    ordered12.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
+                    setServices(ordered12);
+                } else {
+                    const ordered13 = [...orderCompleted]
+                    ordered13.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
+                    setServices(ordered13);
+                }
             }
             setDateSort(1)
         }
@@ -244,18 +280,18 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                         <table className='table table-striped tbl-usr-order'>
                             <thead>
                                 <tr>
-                                    <td scope="col" className='sort-col-td'>
+                                    <td className='sort-col-td'>
                                         <span>Date</span>
                                         <i className='bx bx-sort' onClick={handleSortDate}></i>
                                     </td>
-                                    <td scope="col">Service Name</td>
-                                    <td scope="col">Package Name</td>
-                                    <td scope="col" className='sort-col-td'>
+                                    <td>Service Name</td>
+                                    <td>Package Name</td>
+                                    <td className='sort-col-td'>
                                         <span>Amount</span>
                                         <i className='bx bx-sort' onClick={handleSortPrice}></i>
                                     </td>
-                                    <td scope="col">Status</td>
-                                    <td scope="col">Actions</td>
+                                    <td>Status</td>
+                                    <td>Actions</td>
                                 </tr>
                             </thead>
                             <tbody>

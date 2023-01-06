@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.incomingorder-cntr {
+    margin: 0px 9% 100px 9%;
+    position: relative;
+    height: 700px;
+}
+
+.newordersellerlist {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease;
+}
+
+.newordersellerlist1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease;
+}
+
+.newordrlist-hdr {
+    width: calc(82vw/2.2);
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 16px 16px 0px 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 15px 25px;
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.ordrdetail-trnstn {
+    transform: translateX(110%);
+}
+
+.back-arrow {
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
+    border: 2px solid #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.back-arrow:hover {
+    background: #FFFFFF;
+    color: #E8504B;
+}
+
+.newordrlist-cntr {
+    width: calc(82vw/2.2);
+    background: #F7F7F7;
+    border-radius: 0px 0px 8px 8px;
+    padding: 25px;
+    height: calc(700px - 50px);
+    border: 1px solid #E8504B;
+}
+
+.newordrlist-cntr1 {
+    width: calc(82vw/2.2);
+    background: #FFFFFF;
+    border-radius: 0px 0px 8px 8px;
+    padding: 25px;
+    height: calc(700px - 50px);
+    border: 1px solid #E8504B;
+}
+
+.newordrlist-cntr1 img {
+    width: calc(82vw/2.2 - 50px);
+    height: 290px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.newordrlist-inside {
+    max-height: calc(700px - 100px);
+    overflow-y: scroll;
+    background: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.newordrlist-inside::-webkit-scrollbar {
+    width: 0;
+}
+
+.newordrlist-inside1 {
+    max-height: calc(700px - 100px);
+    overflow-y: scroll;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.newordrlist-inside1::-webkit-scrollbar {
+    width: 0;
+}
+
+.newordr-item-cntr {
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 16px;
+}
+
+.newordr-item-left {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.newordr-item-left img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.second-left-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.second-left-item div {
+    font-weight: 400;
+    font-size: 13px;
+    color: #666666;
+}
+
+.second-left-item .second-leftitem-title {
+    font-weight: 500;
+    font-size: 16px;
+    color: #333333;
+}
+
+.newordr-item-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.approve-btn-seller-order {
+    background: #52C41A;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.approve-btn-seller-order:hover {
+    background: #5fdd20;
+}
+
+.showdetail-btn {
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border-radius: 24px;
+    color: #E8504B;
+    border: 1px solid #E8504B;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.showdetail-btn:hover {
+    background: #E8504B;
+    color: #FFFFFF;
+}
+
+.ordrdetail-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333333;
+}
+
+.ordrdetail-rowleft {
+    width: 35%;
+}
+
+.ordrdetail-rowright {
+    width: 65%;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .incomingorder-cntr {
+        height: 640px;
+    }
+
+    .newordrlist-hdr {
+        width: calc(82vw/2.1);
+        font-size: 17px;
+    }
+
+    .newordrlist-cntr {
+        width: calc(82vw/2.1);
+        height: calc(640px - 47px);
+    }
+    
+    .newordrlist-cntr1 {
+        width: calc(82vw/2.1);
+        height: calc(640px - 47px);
+    }
+    
+    .newordrlist-cntr1 img {
+        width: calc(82vw/2.1 - 47px);
+        height: 240px;
+    }
+
+    .newordrlist-inside {
+        max-height: calc(640px - 97px);
+    }
+    
+    .newordrlist-inside1 {
+        max-height: calc(640px - 97px);
+    }
+
+    .second-left-item div {
+        font-size: 12px;
+    }
+    
+    .second-left-item .second-leftitem-title {
+        font-size: 15px;
+    }
+
+    .approve-btn-seller-order {
+        padding: 3px 7px;
+        font-size: 12px;
+    }
+
+    .showdetail-btn {
+        font-size: 14px;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+    }
+
+    .ordrdetail-row {
+        font-size: 13px;
+    }
+    
+    .ordrdetail-rowleft {
+        width: 40%;
+    }
+    
+    .ordrdetail-rowright {
+        width: 60%;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .incomingorder-cntr {
+        margin: 0px 5% 100px 5%;
+        height: 640px;
+    }
+
+    .newordrlist-hdr {
+        width: calc(90vw/2.1);
+        font-size: 16px;
+    }
+
+    .back-arrow {
+        width: 21px;
+        height: 21px;
+        border-radius: 21px;
+    }
+
+    .ordrdetail-trnstn {
+        transform: translateX(108%);
+    }
+
+    .newordrlist-cntr {
+        width: calc(90vw/2.1);
+        height: calc(640px - 46px);
+        padding: 15px;
+    }
+    
+    .newordrlist-cntr1 {
+        width: calc(90vw/2.1);
+        height: calc(640px - 46px);
+        padding: 15px;
+    }
+    
+    .newordrlist-cntr1 img {
+        width: calc(90vw/2.1 - 30px);
+        height: 240px;
+    }
+
+    .newordrlist-inside {
+        max-height: calc(640px - 76px);
+    }
+    
+    .newordrlist-inside1 {
+        max-height: calc(640px - 76px);
+    }
+
+    .second-left-item div {
+        font-size: 12px;
+    }
+    
+    .second-left-item .second-leftitem-title {
+        font-size: 15px;
+    }
+
+    .approve-btn-seller-order {
+        padding: 3px 7px;
+        font-size: 12px;
+    }
+
+    .showdetail-btn {
+        font-size: 14px;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+    }
+
+    .ordrdetail-row {
+        font-size: 13px;
+    }
+    
+    .ordrdetail-rowleft {
+        width: 40%;
+    }
+    
+    .ordrdetail-rowright {
+        width: 60%;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .incomingorder-cntr {
+        margin: 0px 4% 50px 4%;
+        height: 550px;
+    }
+
+    .newordersellerlist1 {
+        position: absolute;
+        left: -96vw;
+        top: 0;
+        z-index: 1;
+        transition: all 0.5s ease;
+    }
+
+    .newordrlist-hdr {
+        width: calc(92vw);
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+
+    .back-arrow {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+    }
+
+    .ordrdetail-trnstn {
+        transform: translateX(96vw);
+        z-index: 1;
+    }
+
+    .newordrlist-cntr {
+        width: calc(92vw);
+        height: calc(550px - 35px);
+        padding: 15px;
+    }
+    
+    .newordrlist-cntr1 {
+        width: calc(92vw);
+        height: calc(550px - 35px);
+        padding: 15px;
+    }
+    
+    .newordrlist-cntr1 img {
+        width: calc(92vw - 30px);
+        height: 240px;
+    }
+
+    .newordrlist-inside {
+        max-height: calc(550px - 65px);
+    }
+    
+    .newordrlist-inside1 {
+        max-height: calc(550px - 65px);
+    }
+
+    .second-left-item div {
+        font-size: 11px;
+    }
+    
+    .second-left-item .second-leftitem-title {
+        font-size: 13px;
+    }
+
+    .approve-btn-seller-order {
+        padding: 3px 7px;
+        font-size: 11px;
+    }
+
+    .showdetail-btn {
+        font-size: 13px;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+    }
+
+    .ordrdetail-row {
+        font-size: 12px;
+    }
+    
+    .ordrdetail-rowleft {
+        width: 40%;
+    }
+    
+    .ordrdetail-rowright {
+        width: 60%;
+    }
+}
