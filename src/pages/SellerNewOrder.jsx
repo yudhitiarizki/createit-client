@@ -1,9 +1,12 @@
 import React from 'react';
+import Footer from '../components/General/Footer';
+import SellerIncomingOrder from '../components/SellerIncomingOrder/SellerIncomingOrder';
 
 const SellerNewOrder = () => {
     return (
         <>
-          Seller New Order List
+          <SellerIncomingOrder />
+          <Footer />
         </>
   );
 };
