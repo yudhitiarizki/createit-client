@@ -1,8 +1,6 @@
 .section-container {
     height: 100vh;
     display: flex;
-    
-    overflow-x: hidden;
 }
 
 .figure {
@@ -16,7 +14,7 @@
 
 .container-login {
     width: 50%;
-    height: 100%;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;

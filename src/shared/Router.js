@@ -17,6 +17,7 @@ import UserOrder from "../pages/UserOrder";
 import Test from "../pages/Test"
 import CreateOrder from "../pages/CreateOrder";
 import Register from "../pages/Register";
+import AdminApproveOrder from "../pages/AdminApproveOrder";
 
 const Router = () => {
 
@@ -40,6 +41,7 @@ const Router = () => {
         <Route exact path="/user/order" element={<UserOrder />} />
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/createorder" element={<CreateOrder />} />
+        <Route exact path="/admin/approve/order" element={<AdminApproveOrder />} />
       </Routes>
     </BrowserRouter>
   );

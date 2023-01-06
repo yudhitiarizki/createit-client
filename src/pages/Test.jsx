@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { getCategory } from "../redux/actions/category";
 import { getServiceByCategory, getService, getDetailService, getTopService, getServiceBySlug } from "../redux/actions/service";
 import { getPackage, getPackageBySlug } from "../redux/actions/packages";
@@ -9,6 +10,8 @@ import { getNotification } from "../redux/actions/notification";
 import { getUser } from "../redux/actions/user";
 
 const Test = () => {
+    const location = useLocation();
+    console.log(location, 'ok')
     const dispatch = useDispatch();
 
     const service = useSelector(state => state.service);

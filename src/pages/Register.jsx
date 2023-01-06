@@ -22,7 +22,6 @@ const Register = () => {
     const onHandleRegister = () => {
         setLoading(true);
         dispatch(register(firstName, lastName, email, username, password, repassword, phoneNumber)).then(() => {
-
             setLoading(false);
             setFirstName('');
             setLastName('');

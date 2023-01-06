@@ -14,7 +14,7 @@ const CreateOrder = () => {
                 <Navbar />
             </div>
             <div className="order-path">
-                <div className="link">
+                <div className="path">
                     <Link to='/' className="nav-link">Home</Link>
                     <i className='bx bx-chevron-right'></i>
                     <div>Service List</div>
