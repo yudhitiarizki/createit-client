@@ -7,7 +7,7 @@ if (user){
 }
 
 export default axios.create({
-    baseURL: 'https://coal-jolly-single.glitch.me',
+    baseURL: 'http://localhost:3001',
     headers: {
         "Authorization": `Bearer ${token}`
     }

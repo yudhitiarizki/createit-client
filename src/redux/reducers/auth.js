@@ -9,13 +9,20 @@ import {
 const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = user
-    ? {
+    ? user.role === 2 ?  { 
         isLoggedIn: true,
-        role: 0,
-        user,
-    }
+        isVerified: user.seller.isVerified,
+        role: user.role,
+        user: user,
+     } : {
+        isLoggedIn: true,
+        isVerified: 0,
+        role: user.role,
+        user: user,
+     }
     : {
         isLoggedIn: false,
+        isVerified: 0,
         role: 0,
         user: null,
     };
@@ -31,12 +38,24 @@ const authReducer = (state = initialState, action) => {
                 isLoggedIn: false,
             };
         case LOGIN_SUCCESS:
-            return {
-                ...state,
-                isLoggedIn: true,
-                role: payload.user.role,
-                user: payload.user,
-            };
+            if (payload.user.role  === 2){
+                return {
+                    ...state,
+                    isLoggedIn: true,
+                    isVerified: payload.user.seller.isVerified,
+                    role: payload.user.role,
+                    user: payload.user,
+                };
+            } else {
+                return {
+                    ...state,
+                    isLoggedIn: true,
+                    isVerified: 0,
+                    role: payload.user.role,
+                    user: payload.user,
+                };
+            }
+            
         case LOGIN_FAIL:
             return {
                 ...state,

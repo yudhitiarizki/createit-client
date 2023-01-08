@@ -29,14 +29,6 @@ export const register = (firstName, lastName, email, username, password, repassw
                 theme: "light",
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
-
             return Promise.resolve();
         },
         error => {
@@ -55,14 +47,6 @@ export const register = (firstName, lastName, email, username, password, repassw
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
             });
 
             return Promise.reject();

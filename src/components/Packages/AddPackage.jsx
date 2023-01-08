@@ -2,67 +2,41 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { useState } from 'react';
 import './Packages.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { createPackage, getPackageBySlug } from '../../redux/actions/packages';
+import Gif from '../../asset/Login/loader.gif';
 
-const AddPackage = ({ serviceId, packages }) => {
-    // const { user } = useSelector(state => state.auth);
-    // const token = user.token;
+const AddPackage = ({ serviceId, packages, slug }) => {
+
+    const dispatch = useDispatch();
 
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
     const [revision, setRevision] = useState('');
-    const [concepts, setConcepts] = useState('');
-    const [pages, setPages] = useState('');
-    const [maxduration, setMaxduration] = useState('');
+    const [noOfConcept, setnoOfConcept] = useState('');
+    const [noOfPages, setnoOfPages] = useState('');
+    const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
+    const [Loading, setLoading] = useState(false);
+
     const handleAddPckg = () => {
-        // axios.post(
-        //     "https://coal-jolly-single.glitch.me/packages",
-        //     { 
-        //         serviceId: serviceId,
-        //         type: type,
-        //         delivery: delivery,
-        //         revision: revision,
-        //         noOfConcept: concepts,
-        //         noOfPages: pages,
-        //         maxDuration: maxduration,
-        //         price: price
-        //     },
-        //     { headers: { Authorization: `Bearer ${token}` } }
-        // ).then((response) => {
-        //     toast.success(response.data.message, {
-        //         position: "top-right",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //     });
-        //     setType('');
-        //     setDelivery('');
-        //     setRevision('');
-        //     setConcepts(null);
-        //     setPages(null);
-        //     setMaxduration(null);
-        //     setPrice('');
-        // }).catch((error) => {
-        //     toast.error(error.response.data.message, {
-        //         position: "top-right",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //     });
-        // })
+        setLoading(true);
+        dispatch(createPackage(serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price)).then(() => {
+            dispatch(getPackageBySlug(slug));
+            setType('');
+            setDelivery('');
+            setRevision('');
+            setnoOfConcept(null);
+            setnoOfPages(null);
+            setmaxDuration(null);
+            setPrice('');
+            setLoading(false);
+        }).catch(() => {
+            setLoading(false);
+        })
     }
 
     return (
@@ -98,39 +72,39 @@ const AddPackage = ({ serviceId, packages }) => {
                             {(packages.length === 0) ? (
                                 <>
                                     <div className='modal1-inputcntr'>
-                                        <label>No of Concepts</label>
+                                        <label>No of noOfConcept</label>
                                         <span className='keterangan-modal'>(Fill this if you provide a service related to design)</span>
-                                        <input type='number' min='0' className='inputfield-2' value={concepts} onChange={(event) => { setConcepts(event.target.value) }}/>
+                                        <input type='number' min='0' className='inputfield-2' value={noOfConcept} onChange={(event) => { setnoOfConcept(event.target.value) }}/>
                                     </div>
                                     <div className='modal1-inputcntr'>
-                                        <label>No of Pages</label>
+                                        <label>No of noOfPages</label>
                                         <span className='keterangan-modal'>(Fill this if you provide a service related to web/mobile design etc.)</span>
-                                        <input type='number' min='0' className='inputfield-2' value={pages} onChange={(event) => { setPages(event.target.value) }}/>
+                                        <input type='number' min='0' className='inputfield-2' value={noOfPages} onChange={(event) => { setnoOfPages(event.target.value) }}/>
                                     </div>
                                     <div className='modal1-inputcntr'>
                                         <label>Max Duration (in minutes)</label>
                                         <span className='keterangan-modal'>(Fill this if you provide a service related to video editing etc.)</span>
-                                        <input type='number' min='0' className='inputfield-2' value={maxduration} onChange={(event) => { setMaxduration(event.target.value) }}/>
+                                        <input type='number' min='0' className='inputfield-2' value={maxDuration} onChange={(event) => { setmaxDuration(event.target.value) }}/>
                                     </div>
                                 </>
                             ) : (
                                 <>
                                     {(packages[0].noOfConcept) ? (
                                         <div className='modal1-inputcntr'>
-                                            <label>No of Concepts <span>*</span></label>
-                                            <input type='number' min='1' className='inputfield-2' value={concepts} onChange={(event) => { setConcepts(event.target.value) }} required />
+                                            <label>No of noOfConcept <span>*</span></label>
+                                            <input type='number' min='1' className='inputfield-2' value={noOfConcept} onChange={(event) => { setnoOfConcept(event.target.value) }} required />
                                         </div>
                                     ) : (<></>)}
-                                    {(packages[0].noOfPages) ? (
+                                    {(packages[0].noOfnoOfPages) ? (
                                         <div className='modal1-inputcntr'>
-                                            <label>No of Pages <span>*</span></label>
-                                            <input type='number' min='1' className='inputfield-2' value={pages} onChange={(event) => { setPages(event.target.value) }} required />
+                                            <label>No of noOfPages <span>*</span></label>
+                                            <input type='number' min='1' className='inputfield-2' value={noOfPages} onChange={(event) => { setnoOfPages(event.target.value) }} required />
                                         </div>
                                     ) : (<></>)}
                                     {(packages[0].maxDuration) ? (
                                         <div className='modal1-inputcntr'>
                                             <label>Max Duration (in minutes) <span>*</span></label>
-                                            <input type='number' min='1' className='inputfield-2' value={maxduration} onChange={(event) => { setMaxduration(event.target.value) }} required />
+                                            <input type='number' min='1' className='inputfield-2' value={maxDuration} onChange={(event) => { setmaxDuration(event.target.value) }} required />
                                         </div>
                                     ) : (<></>)}
                                 </>
@@ -142,7 +116,11 @@ const AddPackage = ({ serviceId, packages }) => {
                         </div>
 
                         <div className="modal-footer1">
-                            <button className="modal-save-btn" onClick={handleAddPckg}>Add Package</button>
+                            { !Loading ? (
+                                <button className="modal-save-btn" onClick={handleAddPckg}>Add Package</button>
+                            ) : (
+                                <img  src={Gif} alt="" className='Loading' />
+                            )}
                         </div>
                     </div>
                 </div>

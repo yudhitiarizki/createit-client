@@ -1,3 +1,6 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './HomePage.css';
@@ -13,15 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
-    // ini nanti dari redux
-    const isLoggedIn = true;
-    const user = {
-        "username": "Ahmad Na Jaemin",
-        "email": "User1@gmail.com",
-        "role": 2,
-        "phoneNumber": "081972197028",
-        "token": "xsh38hjddnwkdj82"
-    };
+    const { isLoggedIn, user } = useSelector(state => state.auth);
 
     const toApplySellerPage = () => {
         if (isLoggedIn) {
