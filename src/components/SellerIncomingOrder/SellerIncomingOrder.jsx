@@ -146,7 +146,7 @@ const SellerIncomingOrder = () => {
 
     const handleApproved = () => {
         // dispatch axios patch buat ubah status order jadi working
-    }
+    };
 
     return (
         <div>
@@ -154,7 +154,7 @@ const SellerIncomingOrder = () => {
                 <Navbar />
             </div>
             <div className="navbar-text1">
-                <div className="nav-link">User</div>
+                <div className="nav-link">Seller</div>
                 <i className='bx bx-chevron-right'></i>
                 <div>Incoming Order List</div>
             </div>

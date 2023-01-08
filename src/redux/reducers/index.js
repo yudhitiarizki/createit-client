@@ -11,6 +11,7 @@ import service from './service';
 import user from './user';
 import payment from './payment';
 import neworderdetailseller from './neworderdetailseller';
+import sllrOnPrgrssOrderDetail from './workingorderdetailseller';
 
 export default combineReducers({
     auth,
@@ -23,6 +24,7 @@ export default combineReducers({
     seller,
     service,
     user,
+    neworderdetailseller,
+    sllrOnPrgrssOrderDetail,
     payment,
-    neworderdetailseller
 });

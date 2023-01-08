@@ -23,9 +23,9 @@ const RegSellerForm = () => {
     };
 
     const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0].name;
+        const selectedFile = event.target.files[0];
         if (selectedFile) {
-            document.getElementById('custom-inputtext1').innerHTML = selectedFile;
+            document.getElementById('custom-inputtext1').innerHTML = selectedFile.name;
 
             const reader = new FileReader();
             reader.readAsDataURL(selectedFile);
