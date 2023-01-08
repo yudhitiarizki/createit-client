@@ -1,72 +1,30 @@
+
+import { useDispatch, useSelector } from "react-redux";
 import './Packages.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddPackage from './AddPackage';
-import axios from 'axios';
+import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
+import { sendMessage } from "../../redux/actions/message";
 
-const Packages = ({ slug, serviceId }) => {
+const Packages = ({ data, serviceId, slug, name }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    // data dummy
-    const packages = [
-        {
-            packageId: 1,
-            serviceId: 1,
-            slug: slug,
-            type: "REGULAR",
-            delivery: 3,
-            revision: 1,
-            noOfConcept: 1,
-            noOfPages: null,
-            maxDuration: null,
-            price: 50999
-        },
-        {
-            packageId: 2,
-            serviceId: 1,
-            slug: slug,
-            type: "ADVANCED",
-            delivery: 3,
-            revision: 2,
-            noOfConcept: 2,
-            noOfPages: null,
-            maxDuration: null,
-            price: 79999
-        }
-        // {
-        //     packageId: 3,
-        //     serviceId: 1,
-        //     slug: slug,
-        //     type: "BUSINESS",
-        //     delivery: 2,
-        //     revision: 3,
-        //     noOfConcept: 2,
-        //     noOfPages: null,
-        //     maxDuration: null,
-        //     price: 199999
-        // }
-    ]
-
-    // ini nanti dari redux
-    const isLoggedIn = true;
-    const user = {
-        "username": "Ahmad Na Jaemin",
-        "email": "User1@gmail.com",
-        "role": 2,
-        "phoneNumber": "081972197028",
-        "token": "xsh38hjddnwkdj82"
-    };
+    const packages = data;
+    
+    const { isLoggedIn, user } = useSelector(state => state.auth);
     const isSeller = true;
 
     const [packageId, setPackageId] = useState('');
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
     const [revision, setRevision] = useState('');
-    const [concepts, setConcepts] = useState('');
-    const [pages, setPages] = useState('');
-    const [maxduration, setMaxduration] = useState('');
+    const [noOfConcept, setnoOfConcept] = useState('');
+    const [noOfPages, setnoOfPages] = useState('');
+    const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
     useEffect(() => {
@@ -84,128 +42,30 @@ const Packages = ({ slug, serviceId }) => {
         setType(item.type);
         setDelivery(item.delivery);
         setRevision(item.revision);
-        setConcepts(item.concepts);
-        setPages(item.noOfPages);
-        setMaxduration(item.maxDuration);
+        setnoOfConcept(item.noOfConcept);
+        setnoOfPages(item.noOfnoOfPages);
+        setmaxDuration(item.maxDuration);
         setPrice(item.price);
     }
 
     const handleEditPckg = () => {
-        axios.put(
-            `https://coal-jolly-single.glitch.me/packages/${packageId}`,
-            {
-                type: type,
-                delivery: delivery,
-                revision: revision,
-                noOfConcept: concepts,
-                noOfPages: pages,
-                maxDuration: maxduration,
-                price: price
-            },
-            { headers: { Authorization: `Bearer ${user.token}` } }
-        ).then((response) => {
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setPackageId('');
-            setType('');
-            setDelivery('');
-            setRevision('');
-            setConcepts('');
-            setPages('');
-            setMaxduration('');
-            setPrice('');
-        }).catch((error) => {
-            toast.error(error.response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+        dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price)).then(() => {
+            dispatch(getPackageBySlug(slug));
+            window.location.reload();
         })
     }
 
     const handleDeletePckg = (packageId) => {
-        axios.delete(
-            "https://coal-jolly-single.glitch.me/packages",
-            {
-                data: { packageId: packageId },
-                headers: { Authorization: `Bearer ${user.token}` }
-            }
-        ).then((response) => {
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }).catch((error) => {
-            toast.error(error.response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+        dispatch(deletePackage(packageId)).then(() => {
+            dispatch(getPackageBySlug(slug));
         })
     }
 
-    const orderNow = () => {
+    const orderNow = (packageData) => {
         if (isLoggedIn) {
-            if (user.role === 3) {
-                toast.error("Admin can't make an order.", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            } else if (user.role === 2 && isSeller) {
-                toast.error("Seller can't make an order.", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            } else {
-                navigate('/createorder');
-            }
+            navigate('/createorder', {state: {package: packageData, service: name}});
         } else {
-            toast.error("Login is required.", {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', "Login is required.");
         }
     }
 
@@ -217,7 +77,7 @@ const Packages = ({ slug, serviceId }) => {
                     ((packages.length === 3) ? (
                         <></>
                     ) : (
-                        <AddPackage serviceId={serviceId} packages={packages}/>
+                        <AddPackage serviceId={serviceId} slug={slug} packages={packages}/>
                     ))
                 ) : (
                     <></>
@@ -233,12 +93,12 @@ const Packages = ({ slug, serviceId }) => {
                                     <div>Delivery Time: {item.delivery} days</div>
                                     <div>Limit of Revisions: {item.revision}</div>
                                     {(item.noOfConcept) ? (
-                                        <div>Number of Concepts: {item.noOfConcept}</div>
+                                        <div>Number of noOfConcept: {item.noOfConcept}</div>
                                     ) : (
                                         <></>
                                     )}
-                                    {(item.noOfPages) ? (
-                                        <div>Number of Pages: {item.noOfPages}</div>
+                                    {(item.noOfnoOfPages) ? (
+                                        <div>Number of noOfPages: {item.noOfnoOfPages}</div>
                                     ) : (
                                         <></>
                                     )}
@@ -253,7 +113,7 @@ const Packages = ({ slug, serviceId }) => {
                         {(index === 0) ? (
                             <>
                                 <div className='orange-arrow top-pckg-cntr'>
-                                    <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
+                                    <div className='pckgdetail-price'>Rp {item.price},-</div>
                                     {(isLoggedIn && user.role === 2 && isSeller) ? (
                                         <div className='edit-delete'>
                                             <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
@@ -266,13 +126,13 @@ const Packages = ({ slug, serviceId }) => {
                                     )}
                                     <div className='pckgdetail-type'>{item.type}</div>
                                 </div>
-                                <div className='ordernow-btn orange-btn' type='button' onClick={orderNow}>ORDER NOW</div>
+                                <div className='ordernow-btn orange-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
                             </>
                         ) : (
                             (index === 1) ? (
                                 <>
                                     <div className='pink-arrow top-pckg-cntr'>
-                                        <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
+                                        <div className='pckgdetail-price'>Rp {item.price},-</div>
                                         {(isLoggedIn && user.role === 2 && isSeller) ? (
                                             <div className='edit-delete'>
                                                 <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
@@ -285,12 +145,12 @@ const Packages = ({ slug, serviceId }) => {
                                         )}
                                         <div className='pckgdetail-type'>{item.type}</div>
                                     </div>
-                                    <div className='ordernow-btn pink-btn' type='button' onClick={orderNow}>ORDER NOW</div>
+                                    <div className='ordernow-btn pink-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
                                 </>
                             ) : (
                                 <>
                                     <div className='purple-arrow top-pckg-cntr'>
-                                        <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
+                                        <div className='pckgdetail-price'>Rp {item.price},-</div>
                                         {(isLoggedIn && user.role === 2 && isSeller) ? (
                                             <div className='edit-delete'>
                                                 <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
@@ -303,7 +163,7 @@ const Packages = ({ slug, serviceId }) => {
                                         )}
                                         <div className='pckgdetail-type'>{item.type}</div>
                                     </div>
-                                    <div className='ordernow-btn purple-btn' type='button' onClick={orderNow}>ORDER NOW</div>
+                                    <div className='ordernow-btn purple-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
                                 </>
                             )
                         )}
@@ -334,22 +194,22 @@ const Packages = ({ slug, serviceId }) => {
                                 <label>Delivery Time (in days) <span>*</span></label>
                                 <input type='number' min='1' className='inputfield-2' value={delivery} onChange={(event) => { setDelivery(event.target.value) }} required />
                             </div>
-                            {(concepts) ? (
+                            {(noOfConcept) ? (
                                 <div className='modal1-inputcntr'>
-                                    <label>No of Concepts <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={concepts} onChange={(event) => { setConcepts(event.target.value) }} required />
+                                    <label>No of noOfConcept <span>*</span></label>
+                                    <input type='number' min='1' className='inputfield-2' value={noOfConcept} onChange={(event) => { setnoOfConcept(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}
-                            {(pages) ? (
+                            {(noOfPages) ? (
                                 <div className='modal1-inputcntr'>
-                                    <label>No of Pages <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={pages} onChange={(event) => { setPages(event.target.value) }} required />
+                                    <label>No of noOfPages <span>*</span></label>
+                                    <input type='number' min='1' className='inputfield-2' value={noOfPages} onChange={(event) => { setnoOfPages(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}
-                            {(maxduration) ? (
+                            {(maxDuration) ? (
                                 <div className='modal1-inputcntr'>
                                     <label>Max Duration (in minutes) <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={maxduration} onChange={(event) => { setMaxduration(event.target.value) }} required />
+                                    <input type='number' min='1' className='inputfield-2' value={maxDuration} onChange={(event) => { setmaxDuration(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}
                             <div className='modal1-inputcntr'>

@@ -14,7 +14,7 @@
 
 .container-login {
     width: 50%;
-    height: fit-content;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

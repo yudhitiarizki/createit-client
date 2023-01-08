@@ -9,6 +9,7 @@ import review from './review';
 import seller from './seller';
 import service from './service';
 import user from './user';
+import payment from './payment';
 import neworderdetailseller from './neworderdetailseller';
 import sllrOnPrgrssOrderDetail from './workingorderdetailseller';
 
@@ -24,5 +25,6 @@ export default combineReducers({
     service,
     user,
     neworderdetailseller,
-    sllrOnPrgrssOrderDetail
+    sllrOnPrgrssOrderDetail,
+    payment,
 });

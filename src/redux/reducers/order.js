@@ -1,5 +1,6 @@
 import { 
-    FETCH_ORDER_USER
+    FETCH_ORDER_USER, 
+    CREATE_ORDER
 } from "../actions/types";
 
 
@@ -17,6 +18,8 @@ const orderReducer = (order = initialState, action) => {
                 ...order,
                 order: payload.order
             }
+        case CREATE_ORDER:
+            return order;
         default: 
             return order;
     }
