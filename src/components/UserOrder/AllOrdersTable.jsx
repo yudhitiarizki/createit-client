@@ -3,8 +3,11 @@ import './UserOrders.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import ReactPaginate from 'react-paginate';
+import { useNavigate } from 'react-router-dom';
 
 const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
+    const navigate = useNavigate();
+
     // Data dummy
     const Order = [
         {
@@ -15,7 +18,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
             type: 'Regular',
             price: 50999,
             note: 'logo name: CreateIT',
-            status: 'Checking Payment',
+            status: 'Waiting Payment',
             revisionLeft: 1,
             response: '',
             createdAt: '2022-12-11'
@@ -266,6 +269,14 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
         }
     }, [searchkey, services])
 
+    const handleShowDetail = (order) => {
+        if (order.status === 'Waiting Payment') {
+            navigate('/verifypayment')
+        } else {
+            // dispatch disini untuk get order detail pakai order.orderId
+        }
+    }
+
     return (
         <>
             <div className="usr-all-order-cntr">
@@ -315,7 +326,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                                                 <td><div className='pending-status'>{item.status}</div></td>
                                             ))
                                         )}
-                                        <td className='usr-order-show'><i className='bx bx-show'></i></td>
+                                        <td className='usr-order-show'><i className='bx bx-show' onClick={() => {handleShowDetail(item)}}></i></td>
                                     </tr>
                                 ))}
                             </tbody>

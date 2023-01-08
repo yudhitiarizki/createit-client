@@ -27,7 +27,7 @@ const UserOrders = () => {
             type: 'Regular',
             price: 50999,
             note: 'logo name: CreateIT',
-            status: 'Checking Payment',
+            status: 'Waiting Payment',
             revisionLeft: 1,
             response: '',
             createdAt: '02/01/2023'
