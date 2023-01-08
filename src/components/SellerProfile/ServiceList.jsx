@@ -11,10 +11,10 @@ import Trash from '../../asset/Seller/trash.png';
 import AddService from './AddService';
 import EditService from "./EditService";
 
-const ServiceList = () => {
+const ServiceList = ({ seller }) => {
     return (
         <div className="service-section">
-            <GeneralInfo since={'27/06/2002'} total={'6'} sold={'2.230'} rating={"4.5"} />
+            <GeneralInfo since={seller.createdAt} total={seller.serviceSold} sold={seller.noOfBuyer} rating={seller.rating} />
 
             <div className="my-service">
                 <div className="service-header">

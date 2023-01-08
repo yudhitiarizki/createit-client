@@ -2,12 +2,19 @@ import React from "react";
 import './GeneralInfo.css'
 
 const GeneralInfo = (props) => {
+    const date = new Date(props.since);
+    const formattedDate = date.toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+      });
+
     return (
         <div className="general-information">
             <h5>General Information</h5>
             <div className="list-info">
                 <h6>Seller Since</h6>
-                <p>{props.since}</p>
+                <p>{formattedDate}</p>
             </div>
             <div className="list-info">
                 <h6>Total Services</h6>
