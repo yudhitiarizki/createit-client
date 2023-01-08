@@ -1,7 +1,8 @@
 import React from "react";
 import './Order.css'
 
-const OrderSummary = () => {
+const OrderSummary = ({ data, funcOrder }) => {
+
     return (
         <div className="order-summary">
             <div className="personal-title order-title">
@@ -17,26 +18,26 @@ const OrderSummary = () => {
             </div>
             <div className="form-disable-1">
                 <h6>Service Name</h6>
-                <p>Educational Mobile Apps</p>
+                <p>{data.service}</p>
             </div>
             <div className="form-disable-2">
                 <h6>Package Type</h6>
-                <p>Regular</p>
+                <p>{data.package.type}</p>
             </div>
             <div className="form-disable-1">
-                <h6>Limit of Revision 3</h6>
-                <p>3</p>
+                <h6>Limit of Revision</h6>
+                <p>{data.package.revision}</p>
             </div>
             <div className="form-disable-2">
                 <h6>Delivery Time</h6>
-                <p>7 Days</p>
+                <p>{data.package.delivery} Days</p>
             </div>
             <div className="form-disable-1 total">
                 <h6>Total</h6>
-                <p>Rp 50.999 ,-</p>
+                <p>Rp {data.package.price} ,-</p>
             </div>
             <div className="button-footer">
-                <div className="button-order">Order Now</div>
+                <div className="button-order" onClick={() => funcOrder()}>Order Now</div>
             </div>
         </div>
     )

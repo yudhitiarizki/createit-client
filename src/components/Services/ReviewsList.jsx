@@ -1,63 +1,8 @@
 import './ReviewsList.css';
 
-const ReviewsList = ({ slug }) => {
-    // data dummy
-    const Reviews = [
-        {
-            reviewId: 1,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 5
-        },
-        {
-            reviewId: 2,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 4
-        },
-        {
-            reviewId: 3,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 5
-        },
-        {
-            reviewId: 4,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 5
-        },
-        {
-            reviewId: 5,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 5
-        },
-        {
-            reviewId: 6,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 4
-        },
-        {
-            reviewId: 7,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 5
-        },
-        {
-            reviewId: 8,
-            username: 'Lee Felix',
-            review: 'Nice color & style, Good Job! \n Thank You',
-            rating: 5
-        },
-        {
-            reviewId: 9,
-            username: 'Lee Felix',
-            review: `Nice color & style, Good Job! \n Thank You`,
-            rating: 5
-        }
-    ];
+const ReviewsList = ({ data }) => {
+    
+    const Reviews = data;
 
     return (
         <div className="review-cntr">
