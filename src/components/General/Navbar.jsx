@@ -25,7 +25,6 @@ const Navbar = () => {
         }
     }, [dispatch, location]);
 
-    // ini nanti dari redux
     const { isLoggedIn, user } = useSelector(state => state.auth);
     const isSeller = true;
 

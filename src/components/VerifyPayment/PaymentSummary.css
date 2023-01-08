@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.paymentdata-cntr {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.paymentdata-box {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 40px 60px 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.pymntdata-header {
+    width: calc(35vw - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.pymntdata-header img {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+}
+
+.order-cnfrmd {
+    width: calc(35vw - 80px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.paymentdata-msg {
+    width: calc(35vw - 80px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #999999;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #E8504B;
+    text-align: center;
+}
+
+.pymntdata-row {
+    width: calc(35vw - 80px);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 15px;
+}
+
+.pymntdata-col1 {
+    width: calc((35vw - 80px) * 0.4);
+    font-weight: 400;
+    color: #999999;
+}
+
+.pymntdata-col2 {
+    width: calc((35vw - 80px) * 0.6);
+    font-weight: 500;
+    color: #333333;
+    text-align: end;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .paymentdata-box {
+        width: 40vw;
+        padding: 40px 35px 60px 35px;
+    }
+
+    .pymntdata-header {
+        width: calc(40vw - 70px);
+    }
+
+    .order-cnfrmd {
+        width: calc(40vw - 70px);
+        font-size: 18px;
+    }
+
+    .paymentdata-msg {
+        width: calc(40vw - 70px);
+        font-size: 13px;
+    }
+
+    .pymntdata-row {
+        width: calc(40vw - 70px);
+        font-size: 15px;
+    }
+
+    .pymntdata-col1 {
+        width: calc((40vw - 70px) * 0.4);
+    }
+
+    .pymntdata-col2 {
+        width: calc((40vw - 70px) * 0.6);
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .paymentdata-cntr {
+        margin-bottom: calc(90vh - 850px);
+    }
+
+    .paymentdata-box {
+        width: 55vw;
+        padding: 40px 35px 60px 35px;
+    }
+
+    .pymntdata-header {
+        width: calc(55vw - 70px);
+    }
+
+    .order-cnfrmd {
+        width: calc(55vw - 70px);
+        font-size: 16px;
+    }
+
+    .paymentdata-msg {
+        width: calc(55vw - 70px);
+        font-size: 13px;
+    }
+
+    .pymntdata-row {
+        width: calc(55vw - 70px);
+        font-size: 14px;
+    }
+
+    .pymntdata-col1 {
+        width: calc((55vw - 70px) * 0.4);
+    }
+
+    .pymntdata-col2 {
+        width: calc((55vw - 70px) * 0.6);
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .paymentdata-box {
+        width: 80vw;
+        padding: 40px 20px 60px 20px;
+    }
+
+    .pymntdata-header {
+        width: calc(80vw - 40px);
+    }
+
+    .pymntdata-header img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .order-cnfrmd {
+        width: calc(80vw - 40px);
+        font-size: 15px;
+    }
+
+    .paymentdata-msg {
+        width: calc(80vw - 40px);
+        font-size: 12px;
+    }
+
+    .pymntdata-row {
+        width: calc(80vw - 40px);
+        font-size: 13px;
+        padding: 0px 10px;
+    }
+
+    .pymntdata-col1 {
+        width: calc((80vw - 40px) * 0.4);
+    }
+
+    .pymntdata-col2 {
+        width: calc((80vw - 40px) * 0.6);
+    }
+}

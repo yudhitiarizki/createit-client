@@ -42,6 +42,10 @@ const SellerInProgressDetail = () => {
         }
     }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 
+    const handleDownload = () => {
+        // axios get downloadS
+    }
+
     const handleCopyUrl = () => {
         navigator.clipboard.writeText(document.getElementById('url-file').innerText)
             .then(success => {
@@ -193,7 +197,7 @@ const SellerInProgressDetail = () => {
                             <div className='download-file'>
                                 <div className='upload-file-2'>Download latest uploaded file</div>
                                 <div className='download-btn1'>
-                                    <div>Download</div>
+                                    <div onClick={handleDownload}>Download</div>
                                     <i className='bx bxs-download'></i>
                                 </div>
                             </div>
