@@ -301,3 +301,260 @@
 .send-btn div:hover {
     background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
 }
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .sllr-inprgrsorder-tab {
+        width: calc(82vw/2.1 * 2 + 82vw/21);
+    }
+    
+    .sllr-inprgrsorder-tab div {
+        width: calc(82vw/2.1 + 82vw/10.5);
+        padding: 0px 0px 15px 0px;
+        font-size: 15px;
+    }
+
+    .newordrlist-inside2 {
+        max-height: calc(640px - 97px);
+    }
+
+    .order-summary11 {
+        font-size: 16px;
+    }
+    
+    .ordersummary-row {
+        width: calc(82vw/2.1 - 50px);
+        font-size: 14px;
+    }
+
+    .download-btn1 {
+        font-size: 14px;
+    }
+
+    .file-link-cntr {
+        width: calc(82vw/2.1 - 50px);
+        font-size: 14px;
+    }
+    
+    .url-container {
+        width: calc((82vw/2.1 - 50px) * 0.90);
+    }
+    
+    
+    .filesize-msg {
+        font-size: 13px;
+    }
+    
+    .inputFile {
+        width: calc(82vw/2.1 - 50px);
+    }
+    
+    .inputFile input {
+        width: calc(82vw/2.1 - 50px);
+        font-size: 13px;
+    }
+    
+    .custom-fileinput2 {
+        width: calc(82vw/2.1 - 50px);
+        font-size: 13px;
+    }
+    
+    .custom-fileinput2 .thumb1 {
+        width: calc((82vw/2.1 - 50px) * 0.60);
+    }
+    
+    .custominputfile2-btn {
+        width: calc((82vw/2.1 - 50px) * 0.40);
+    }
+    
+    .custominputfile2-btn .link-img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .external-link {
+        font-size: 14px;
+    }
+    
+    .urlfile-input {
+        font-size: 13px;
+    }
+    
+    .send-btn div {
+        width: 40%;
+        font-size: 16px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sllr-inprgrsorder-tab {
+        margin: 0px 5% 30px 5%;
+        width: calc(90vw/2.1 * 2 + 90vw/21);
+    }
+
+    .sllr-inprgrsorder-tab div {
+        width: calc(90vw/2.1 + 90vw/10.5);
+        padding: 0px 0px 15px 0px;
+        font-size: 14px;
+    }
+
+    .newordrlist-inside2 {
+        max-height: calc(640px - 76px);
+    }
+
+    .order-summary11 {
+        font-size: 15px;
+    }
+    
+    .ordersummary-row {
+        width: calc(90vw/2.1 - 30px);
+        font-size: 13px;
+    }
+
+    .download-btn1 {
+        font-size: 13px;
+    }
+
+    .file-link-cntr {
+        width: calc(90vw/2.1 - 30px);
+        font-size: 14px;
+    }
+    
+    .url-container {
+        width: calc((90vw/2.1 - 30px) * 0.90);
+    }
+    
+    
+    .filesize-msg {
+        font-size: 13px;
+    }
+    
+    .inputFile {
+        width: calc(90vw/2.1 - 30px);
+    }
+    
+    .inputFile input {
+        width: calc(90vw/2.1 - 30px);
+        font-size: 13px;
+    }
+    
+    .custom-fileinput2 {
+        width: calc(90vw/2.1 - 30px);
+        font-size: 13px;
+    }
+    
+    .custom-fileinput2 .thumb1 {
+        width: calc((90vw/2.1 - 30px) * 0.60);
+    }
+    
+    .custominputfile2-btn {
+        width: calc((90vw/2.1 - 30px) * 0.40);
+        padding: 10px;
+    }
+    
+    .custominputfile2-btn .link-img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .external-link {
+        font-size: 14px;
+    }
+    
+    .urlfile-input {
+        font-size: 13px;
+    }
+    
+    .send-btn div {
+        width: 40%;
+        font-size: 15px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .sllr-inprgrsorder-tab {
+        margin: 0px 4% 30px 4%;
+        width: calc(92vw/2.1 * 2 + 92vw/21);
+    }
+
+    .sllr-inprgrsorder-tab div {
+        width: calc(92vw/2.1 + 92vw/10.5);
+        padding: 0px 0px 10px 0px;
+        font-size: 13px;
+    }
+
+    .newordrlist-inside2 {
+        max-height: calc(550px - 65px);
+    }
+
+    .order-summary11 {
+        font-size: 15px;
+    }
+    
+    .ordersummary-row {
+        width: calc(92vw - 30px);
+        font-size: 13px;
+    }
+
+    .download-btn1 {
+        font-size: 13px;
+        width: 50%;
+    }
+
+    .file-link-cntr {
+        width: calc(92vw - 30px);
+        font-size: 14px;
+    }
+    
+    .url-container {
+        width: calc((92vw - 30px) * 0.90);
+    }
+    
+    
+    .filesize-msg {
+        font-size: 13px;
+    }
+    
+    .inputFile {
+        width: calc(92vw - 30px);
+    }
+    
+    .inputFile input {
+        width: calc(92vw - 30px);
+        font-size: 13px;
+    }
+    
+    .custom-fileinput2 {
+        width: calc(92vw - 30px);
+        font-size: 13px;
+    }
+    
+    .custom-fileinput2 .thumb1 {
+        width: calc((92vw - 30px) * 0.60);
+    }
+    
+    .custominputfile2-btn {
+        width: calc((92vw - 30px) * 0.40);
+        padding: 10px;
+    }
+    
+    .custominputfile2-btn .link-img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .external-link {
+        font-size: 13px;
+    }
+    
+    .urlfile-input {
+        font-size: 12px;
+    }
+    
+    .send-btn div {
+        width: 40%;
+        font-size: 14px;
+    }
+}
