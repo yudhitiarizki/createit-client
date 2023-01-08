@@ -8,6 +8,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { clearMessage } from "../../redux/actions/message";
+import { logout } from '../../redux/actions/auth';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -127,7 +128,7 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
-        // dispatch logout
+        dispatch(logout());
         navigate("/");
     };
 

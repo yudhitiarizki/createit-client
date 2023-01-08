@@ -1,10 +1,15 @@
 import {
     FETCH_PACKAGES,
     FETCH_PACKAGES_BYSLUG,
+    CREATE_PACKAGES,
+    DELETE_PACKAGES,
+    EDIT_PACKAGES,
     SET_MESSAGE,
 } from './types';
 
 import PackagesService from '../../services/packages';
+
+import { toast } from 'react-toastify';
 
 export const getPackage = (serviceId) => async dispatch => {
     return PackagesService.getPackage(serviceId).then(
@@ -77,3 +82,120 @@ export const getPackageBySlug = (slug) => async dispatch => {
         },
     );
 };
+
+export const createPackage = (serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price) => async dispatch => {
+    return PackagesService.createPackage(serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price).then(
+        response => {
+            dispatch({
+                type: CREATE_PACKAGES,
+            });
+
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.resolve();
+        }, 
+        error => {
+            const message = error.response;
+
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const deletePackage = (packageId) => async dispatch => {
+    return PackagesService.deletePackage(packageId).then(
+        response => {
+            dispatch({
+                type: DELETE_PACKAGES,
+            });
+
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.resolve();
+        }, 
+        error => {
+            const message = error.response;
+
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const editPackage = (packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price) => async dispatch => {
+    PackagesService.editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price).then(
+        response => {
+            dispatch({
+                type: EDIT_PACKAGES,
+            });
+
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.resolve();
+        }, 
+        error => {
+            const message = error.response;
+
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.reject();
+        }
+    )
+}
