@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.newcat-container {
+    background: url('../../asset/CreateCategory/createcatbg.svg') no-repeat bottom;
+    background-size: cover;
+    height: 1058px;
+    width: 100%;
+}
+
+.newcat-cntr {
+    height: calc(1058px - 380px);
+}
+
+.form-container {
+    margin: 70px 9% 0px 9%;
+    display: flex;
+    justify-content: center;
+}
+
+.newcat-form {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 30px;
+    gap: 32px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.newcatform-title {
+    width: calc(35vw - 60px);
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 2px solid #E8504B;
+}
+
+.newcatform-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newcatform-col1 {
+    width: calc(35vw - 60px);
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #333333;
+}
+
+.newcatform-col1 span {
+    color: #E8504B;
+}
+
+.newcatform-row input {
+    width: calc(35vw - 60px);
+    padding: 8px 15px;
+    background: #F7F7F7;
+    border: 1.5px solid #F7F7F7;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.newcatform-row input:focus {
+    border: 1.5px solid #333333;
+}
+
+.newcatform-imginput {
+    width: calc(35vw - 60px);
+    position: relative;
+    font-size: 14px;
+    height: 41px;
+}
+
+.newcatform-imginput input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 41px;
+}
+
+.cstm-imginput3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(35vw - 60px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 41px;
+}
+
+.thumb2 {
+    width: calc((35vw - 60px) * 0.65);
+    height: 41px;
+    border-radius: 10px 0px 0px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    background: #F7F7F7;
+}
+
+.custominputimg3-btn {
+    width: calc((35vw - 60px) * 0.35);
+    height: 41px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: #E5E5E5;
+}
+
+.custominputimg3-btn .link-img2 {
+    width: 20px;
+    height: 20px;
+    background: url('../../asset/Seller/link.png') no-repeat;
+    background-size: contain;
+}
+
+.custominputimg3-btn:hover {
+    background: #dbdbdb;
+}
+
+.createcategory-btn {
+    width: 40%;
+    padding: 16px 40px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+}
+
+.createcategory-btn:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .newcat-container {
+        height: 1000px;
+    }
+    
+    .newcat-cntr {
+        height: calc(1000px - 380px);
+    }
+    
+    .newcat-form {
+        width: 40vw;
+    }
+    
+    .newcatform-title {
+        width: calc(40vw - 60px);
+    }
+    
+    .newcatform-col1 {
+        width: calc(40vw - 60px);
+    }
+
+    .newcatform-row input {
+        width: calc(40vw - 60px);
+    }
+    
+    .newcatform-imginput {
+        width: calc(40vw - 60px);
+    }
+    
+    .cstm-imginput3 {
+        width: calc(40vw - 60px);
+    }
+    
+    .thumb2 {
+        width: calc((40vw - 60px) * 0.65);
+    }
+    
+    .custominputimg3-btn {
+        width: calc((40vw - 60px) * 0.35);
+    }
+
+    .createcategory-btn {
+        width: 45%;
+        padding: 16px 40px;
+        font-size: 16px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .newcat-container {
+        height: 100vh;
+    }
+    
+    .newcat-cntr {
+        height: calc(100vh - 380px);
+    }
+
+    .form-container {
+        margin: 50px 9% 0px 9%;
+    }
+    
+    .newcat-form {
+        width: 50vw;
+    }
+    
+    .newcatform-title {
+        width: calc(50vw - 60px);
+        font-size: 16px;
+    }
+    
+    .newcatform-col1 {
+        width: calc(50vw - 60px);
+        font-size: 15px;
+    }
+
+    .newcatform-row input {
+        width: calc(50vw - 60px);
+    }
+    
+    .newcatform-imginput {
+        width: calc(50vw - 60px);
+    }
+    
+    .cstm-imginput3 {
+        width: calc(50vw - 60px);
+    }
+    
+    .thumb2 {
+        width: calc((50vw - 60px) * 0.60);
+    }
+    
+    .custominputimg3-btn {
+        width: calc((50vw - 60px) * 0.40);
+    }
+
+    .createcategory-btn {
+        width: 45%;
+        padding: 14px 40px;
+        font-size: 16px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .newcat-container {
+        height: 850px;
+    }
+    
+    .newcat-cntr {
+        height: calc(850px - 380px);
+    }
+
+    .form-container {
+        margin: 30px 2% 0px 2%;
+    }
+    
+    .newcat-form {
+        width: 80vw;
+        padding: 25px 20px;
+    }
+    
+    .newcatform-title {
+        width: calc(80vw - 40px);
+        font-size: 15px;
+    }
+    
+    .newcatform-col1 {
+        width: calc(80vw - 40px);
+        font-size: 14px;
+    }
+
+    .newcatform-row input {
+        width: calc(80vw - 40px);
+        font-size: 12px;
+    }
+    
+    .newcatform-imginput {
+        width: calc(80vw - 40px);
+    }
+    
+    .cstm-imginput3 {
+        width: calc(80vw - 40px);
+    }
+    
+    .thumb2 {
+        width: calc((80vw - 40px) * 0.60);
+        font-size: 12px;
+    }
+    
+    .custominputimg3-btn {
+        width: calc((80vw - 40px) * 0.40);
+        font-size: 12px;
+    }
+
+    .custominputimg3-btn .link-img2 {
+        width: 16px;
+        height: 16px;
+    }
+
+    .createcategory-btn {
+        width: 45%;
+        padding: 10px 40px;
+        font-size: 15px;
+    }
+}

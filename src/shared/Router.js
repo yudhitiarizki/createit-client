@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "../Helpers/ScrollToTop";
-import AdminFinishedOrder from "../pages/AdminFinishedOrder";
 import ApplyAsSeller from "../pages/ApplyAsSeller";
 import CategoryDetail from "../pages/CategoryDetail";
 import CreateCategory from "../pages/CreateCategory";
@@ -32,7 +31,7 @@ const Router = () => {
         <Route exact path="/category/:id" element={<CategoryDetail />} />
         <Route exact path="/service/:slug" element={<ServiceDetail />} />
         <Route exact path="/manageseller" element={<ManageSeller />} />
-        <Route exact path="/admin/order" element={<AdminFinishedOrder />} />
+        <Route exact path="/admin/order" element={<AdminApproveOrder />} />
         <Route exact path="/applyseller" element={<ApplyAsSeller />} />
         <Route exact path="/seller/profile" element={<SellerProfile />} />
         <Route exact path="/seller/order/new" element={<SellerNewOrder />} />
@@ -41,7 +40,6 @@ const Router = () => {
         <Route exact path="/user/order" element={<UserOrder />} />
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/createorder" element={<CreateOrder />} />
-        <Route exact path="/admin/approve/order" element={<AdminApproveOrder />} />
       </Routes>
     </BrowserRouter>
   );
