@@ -83,6 +83,7 @@
 
 .newordrlist-inside {
     max-height: calc(700px - 100px);
+    padding-bottom: 5px;
     overflow-y: scroll;
     background: #F7F7F7;
     display: flex;

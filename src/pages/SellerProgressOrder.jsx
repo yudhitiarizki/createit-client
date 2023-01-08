@@ -1,10 +1,13 @@
 import React from 'react';
+import Footer from '../components/General/Footer';
+import SellerOrderInProgress from '../components/SellerOrderInProgress/SellerOrderInProgress';
 
 const SellerProgressOrder = () => {
-    return (
-        <>
-          Seller on progress order list
-        </>
+  return (
+    <>
+      <SellerOrderInProgress />
+      <Footer />
+    </>
   );
 };
 

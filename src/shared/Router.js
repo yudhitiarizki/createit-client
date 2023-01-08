@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "../Helpers/ScrollToTop";
 import AdminFinishedOrder from "../pages/AdminFinishedOrder";
