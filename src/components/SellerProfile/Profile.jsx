@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Profile.css';
@@ -9,19 +9,19 @@ import Avatar from '../../asset/Seller/Hero-section.png'
 import Star from './Star';
 import EditProfile from './EditProfile';
 
-const Profile = () => {
+const Profile = ({ seller }) => {
 
     return (
             <div className='section-container'>
                 <div className='banner'>
                     <Navbar />
                     <div className="profile">
-                        <img src={Avatar} className="photo-profile">
+                        <img src={seller.photoProfile} className="photo-profile">
                         </img>
                         <div className="detail-profile">
                             <div className="name-profile">
                                 <div className="name">
-                                    <h1>Ahmad Nan Jamin</h1>
+                                    <h1>{seller.firstName} {seller.lastName}</h1>
                                 </div>
                                 <div className='edit-name col-1'>
                                     <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
@@ -30,15 +30,15 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="profile-rating row">
-                                <Star star={4}/>
+                                <Star star={seller.rating}/>
                             </div>
                             <div className="profile-description">
-                                <p>I have more than 5 years working as a website developer (Mostly CMS Wordpress). I have created more than 50 websites. I have helped many people and companies to create websites that not only look good but work well too.</p>
+                                <p>{seller.description}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <EditProfile />
+                <EditProfile seller={seller}/>
             </div>
     )
 }

@@ -1,27 +1,19 @@
-import axios from "axios";
 import { React, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link, useParams } from "react-router-dom";
 import './ServicesListCategory.css';
-import Rectangle21 from '../../asset/ImgDummy/Rectangle21.png';
-import Ellipse107 from '../../asset/ImgDummy/Ellipse107.png';
+import { useSelector, useDispatch } from "react-redux";
+import { getServiceByCategory } from "../../redux/actions/service";
 
 const ServiceListCategory = () => {
+    const dispatch = useDispatch();
     const { id } = useParams();
-    const categoryId = +id;
-    const [services, setServices] = useState([]);
+
+    const { service } = useSelector(state => state.service);
 
     useEffect(() => {
-        axios.get(
-            // `https://hot-wheat-salesman.glitch.me/category/${categoryId}` //data asli
-            'https://jsonplaceholder.typicode.com/todos' // data dummy
-        ).then((response) => {
-            const data = response.data;
-            setServices(data);
-        }).catch((error) => {
-            console.log(error)
-        })
-    }, []);
+        dispatch(getServiceByCategory(id));
+    }, [id]);
 
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -30,49 +22,56 @@ const ServiceListCategory = () => {
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(services.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(services.length / itemsPerPage))
-    }, [itemOffset, itemsPerPage, services]);
+        setCurrentItems(service.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(service.length / itemsPerPage))
+    }, [itemOffset, itemsPerPage, service]);
 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % services.length;
+        const newOffset = (event.selected * itemsPerPage) % service.length;
         setItemOffset(newOffset);
     };
 
     return (
         <div className="servicelists11">
             <div className="servicelist11-cntr">
-                {currentItems.map(item => (
-                    <div className="serviceslist11-box" key={`id-${item.id}`}>
-                        {/* item.id nanti diganti jadi item.serviceId */}
-                        <Link className="service1imgcntr1" to={`/service/${item.id}`}>
-                            {/* nanti diganti pakai image dari item */}
-                            <img src={Rectangle21} alt='' className="servicelist11-img"></img>
-                            <div className='toprated-ratebuy11'>
-                                {/* masih data dummy */}
-                                <div><i className='bx bx-star'></i>{4.9}</div>
-                                <div><i className='bx bx-group'></i>{item.id}</div>
-                            </div>
-                        </Link>
-                        <div className="servicelist11-info">
-                            <div className="service11-info1">
-                                <div className="service11-info2">
+                { service.length ? ( 
+                <>
+                    { currentItems.map(item => (
+                        <div className="serviceslist11-box" key={`id-${item.serviceId}`}>
+                            {/* item.id nanti diganti jadi item.serviceId */}
+                            <Link className="service1imgcntr1" to={`/service/${item.slug}`}>
+                                {/* nanti diganti pakai image dari item */}
+                                <img src={item.image} alt='' className="servicelist11-img"></img>
+                                <div className='toprated-ratebuy11'>
                                     {/* masih data dummy */}
-                                    <img src={Ellipse107} alt=''></img>
-                                    {/* nanti ganti sellerId */}
-                                    <Link to={`/seller/${item.id}`} className='nav-link'>Ahmad Na Jaemin</Link>
+                                    <div><i className='bx bx-star'></i>{item.rating ? item.rating : 0}</div>
+                                    <div><i className='bx bx-group'></i>{item.noOfBuyer}</div>
                                 </div>
-                                {/* nanti ganti jadi serviceId */}
-                                <Link to={`/service/${item.id}`} className="service11-info3 nav-link">{item.title}</Link>
-                            </div>
-                            <div className="service11-info4">
-                                <i className='bx bx-dollar-circle'></i>
-                                {/* masih data dummy */}
-                                <span>Start from Rp 20000</span>
+                            </Link>
+                            <div className="servicelist11-info">
+                                <div className="service11-info1">
+                                    <div className="service11-info2">
+                                        {/* masih data dummy */}
+                                        <img src={item.photoProfile} alt=''></img>
+                                        {/* nanti ganti sellerId */}
+                                        <Link to={`/seller/${item.sellerId}`} className='nav-link'>{item.firstName} {item.lastName}</Link>
+                                    </div>
+                                    {/* nanti ganti jadi serviceId */}
+                                    <Link to={`/service/${item.slug}`} className="service11-info3 nav-link">{item.title}</Link>
+                                </div>
+                                <div className="service11-info4">
+                                    <i className='bx bx-dollar-circle'></i>
+                                    {/* masih data dummy */}
+                                    <span>Start from Rp 20000</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </>
+                ) : (
+                    <></>
+                ) }
+                
             </div>
             <ReactPaginate
                 breakLabel="..."

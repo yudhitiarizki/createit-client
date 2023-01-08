@@ -17,10 +17,18 @@ const serviceReducer = (service = initialState, action) => {
 
     switch (type){
         case FETCH_SERVICEBYCATEGORY:
-            return service = {
-                ...service,
-                service: payload.service
-            };
+            if (payload.service[0] == null){
+                return {
+                    ...service,
+                    service: []
+                };
+            } else {
+                return service = {
+                    ...service,
+                    service: payload.service
+                };
+            }
+            
         case FETCH_SERVICE:
             return service = {
                 ...service,
