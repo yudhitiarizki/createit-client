@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 import './Navbar.css';
 import logo from '../../asset/Navbar/logo.png';
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
-import MessageQuestion from '../../asset/Navbar/message-question.png';
+import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
@@ -84,7 +84,7 @@ const Navbar = () => {
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };
-    const isSeller = false;
+    const isSeller = true;
 
     // nanti ambil dari redux atau pakai axios langsung
     const notifMessages = [
