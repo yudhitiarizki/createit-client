@@ -7,6 +7,8 @@ import {
     FETCH_SERVICE_BYSLUG
 } from './types';
 
+import { toast } from 'react-toastify';
+
 import Service from '../../services/service';
 
 export const getServiceByCategory = (categoryId) => async dispatch => {
@@ -176,12 +178,15 @@ export const getServiceBySlug = (slug) => async dispatch => {
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
             });
 
             return Promise.reject();
