@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.searchhome-msg {
+    width: 82%;
+    padding: 10px 20px;
+    text-align: center;
+    background: #FCE2D8;
+    color: #E8504B;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.srchhomeresult-cntr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.serviceslist22-box {
+    width: calc((100% - 45px)/4);
+    height: 408px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+}
+
+.service1imgcntr22 {
+    position: relative;
+    width: 100%;
+    height: 228px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.servicelist22-img {
+    width: 100%;
+    height: 228px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.toprated-ratebuy22 {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 228px;
+    border-radius: 8px;
+    background: linear-gradient(0deg, #000000e3, #07070700);
+    color: white;
+    padding: 15px 20px;
+}
+
+.toprated-ratebuy22 div i {
+    margin-right: 5px;
+}
+
+.serviceslist22-box:hover .toprated-ratebuy22 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.servicelist22-info {
+    width: 100%;
+    height: 124px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.service22-info1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.service22-info2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    cursor: pointer;
+}
+
+.service22-info2:hover {
+    color: #E8504B;
+}
+
+.service22-info2 img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.service22-info3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333333;
+    width: 228px;
+    cursor: pointer;
+}
+
+.service22-info3:hover {
+    color: #E8504B;
+}
+
+.service22-info4 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666666;
+}
+
+.service22-info4 i {
+    font-size: 18px;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .searchhome-msg {
+        font-size: 16px;
+    }
+    
+    .srchhomeresult-cntr {
+        gap: 15px;
+    }
+    
+    .serviceslist22-box {
+        width: calc((100% - 45px)/3);
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .searchhome-msg {
+        width: 82%;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    .srchhomeresult-cntr {
+        gap: 15px;
+    }
+    
+    .serviceslist22-box {
+        width: calc((100% - 45px)/3);
+        height: 320px;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .service1imgcntr22 {
+        height: 180px;
+    }
+    
+    .servicelist22-img {
+        height: 180px;
+    }
+    
+    .toprated-ratebuy22 {
+        height: 180px;
+        padding: 15px;
+    }
+    
+    .servicelist22-info {
+        height: calc(320px - 210px);
+        gap: 15px;
+    }
+    
+    .service22-info2 {
+        font-size: 12px;
+    }
+    
+    .service22-info2 img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .service22-info3 {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .service22-info4 {
+        font-size: 12px;
+    }
+    
+    .service22-info4 i {
+        font-size: 18px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .searchhome-msg {
+        width: 94vw;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .srchhomeresult-cntr {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .serviceslist22-box {
+        width: calc((100% - 30px)/2);
+        height: 290px;
+        padding: 10px;
+        gap: 15px;
+    }
+    
+    .service1imgcntr22 {
+        height: 150px;
+    }
+    
+    .servicelist22-img {
+        height: 150px;
+    }
+    
+    .toprated-ratebuy22 {
+        height: 150px;
+        padding: 15px;
+    }
+    
+    .servicelist22-info {
+        height: calc(290px - 190px);
+        gap: 15px;
+    }
+    
+    .service22-info2 {
+        font-size: 11px;
+    }
+    
+    .service22-info2 img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .service22-info3 {
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .service22-info4 {
+        font-size: 11px;
+    }
+    
+    .service22-info4 i {
+        font-size: 18px;
+    }
+}
