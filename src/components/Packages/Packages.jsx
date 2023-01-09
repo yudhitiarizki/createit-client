@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import './Packages.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -9,15 +9,15 @@ import AddPackage from './AddPackage';
 import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
 import { sendMessage } from "../../redux/actions/message";
 
-const Packages = ({ data, serviceId, slug, name }) => {
+const Packages = ({ data, serviceId, slug, name, userId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const packages = data;
     
     const { isLoggedIn, user } = useSelector(state => state.auth);
-    const isSeller = true;
 
+    const [isSeller, setIsSeller] = useState(false);
     const [packageId, setPackageId] = useState('');
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
@@ -27,6 +27,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
+
     useEffect(() => {
         if (packages.length !== 3) {
             document.getElementById('pckg-list').classList.remove('package-list');
@@ -35,7 +36,13 @@ const Packages = ({ data, serviceId, slug, name }) => {
             document.getElementById('pckg-list').classList.add('package-list');
             document.getElementById('pckg-list').classList.remove('package-list1');
         }
-    }, [packages.length]);
+
+        if (user) {
+            if(user.userId == userId) {
+                setIsSeller(true)
+            };
+        }
+    }, [packages.length, user]);
 
     const EditPckg = (item) => {
         setPackageId(item.packageId);

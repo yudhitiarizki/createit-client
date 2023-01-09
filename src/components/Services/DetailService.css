@@ -226,3 +226,9 @@
 .list-review-star div span {
     color: #666666;
 }
+
+.loading-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

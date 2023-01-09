@@ -1,42 +1,38 @@
 import {
-    SET_MESSAGE,
+    FETCH_MY_SELLER,
 } from './types';
 
 import SellerService from '../../services/seller';
 
-export const getSeller = () => async dispatch => {
-    return SellerService.getCategory().then(
-        response => {
+import { toast } from 'react-toastify';
 
+export const getMySeller = (sellerId) => async dispatch => {
+    return SellerService.getMySeller(sellerId).then(
+        response => {
             dispatch({
-                type: FETCH_CATEGORY,
+                type: FETCH_MY_SELLER,
                 payload: {
-                    category: response.data.data
+                    seller: response.data.data
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
-
             return Promise.resolve();
-        },
-        error => {
+        }, error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
             });
 
             return Promise.reject();
-        },
-    );
-};
+        }
+    )
+}
+

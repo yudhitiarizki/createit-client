@@ -6,85 +6,27 @@ import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearMessage } from "../../redux/actions/message";
 import { logout } from '../../redux/actions/auth';
+import { getCategory } from '../../redux/actions/category';
 
 const Navbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
 
+    const category = useSelector(state => state.category);
+
     useEffect(() => {
+        dispatch(getCategory())
         if (['/login', '/register'].includes(location.pathname)) {
             dispatch(clearMessage());
         }
     }, [dispatch, location]);
 
-    // ini nanti ganti pakai axios get "/category" dari redux
-    const categoryList = [
-        {
-            "categoryId": 1,
-            "category": "Android Developer",
-            "image": "category1"
-        },
-        {
-            "categoryId": 2,
-            "category": "AR VR Developer",
-            "image": "category2"
-        },
-        {
-            "categoryId": 3,
-            "category": "Game Developer",
-            "image": "category3"
-        },
-        {
-            "categoryId": 4,
-            "category": "iOS Developer",
-            "image": "category4"
-        },
-        {
-            "categoryId": 5,
-            "category": "Website Developer",
-            "image": "category5"
-        },
-        {
-            "categoryId": 6,
-            "category": "Website Developer",
-            "image": "category5"
-        },
-        {
-            "categoryId": 7,
-            "category": "Website Developer",
-            "image": "category5"
-        },
-        {
-            "categoryId": 8,
-            "category": "Website Developer",
-            "image": "category5"
-        },
-        {
-            "categoryId": 9,
-            "category": "Website Developer",
-            "image": "category5"
-        },
-        {
-            "categoryId": 10,
-            "category": "Website Developer",
-            "image": "category5"
-        }
-    ];
-
-    // ini nanti dari redux
-    const isLoggedIn = true;
-    const user = {
-        "username": "Ahmad Na Jaemin",
-        "email": "User1@gmail.com",
-        "role": 2,
-        "phoneNumber": "081972197028",
-        "token": "xsh38hjddnwkdj82"
-    };
-    const isSeller = false;
+    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const isSeller = true;
 
     // nanti ambil dari redux atau pakai axios langsung
     const notifMessages = [
@@ -153,7 +95,7 @@ const Navbar = () => {
                             Category List
                         </div>
                         <ul className="dropdown-menu cat-list" aria-labelledby="dropdownMenuOffset1">
-                            {categoryList.map((category) => (
+                            {category.map((category) => (
                                 <li key={`id-${category.categoryId}`}>
                                     <Link to={`/category/${category.categoryId}`} className="nav-link">{category.category}</Link>
                                     <i className='bx bx-chevron-right'></i>
@@ -226,7 +168,11 @@ const Navbar = () => {
                     {(isLoggedIn) ? (
                         <li className='dropdown me-1'>
                             <div type="button" id="dropdownMenuOffset3" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="0,20">
-                                <img src={Ellipse2} alt='' className='profilpic-navbar'></img>
+                                { user.role === 2 ? (
+                                    <img src={user.seller.photoProfile} alt='' className='profilpic-navbar'></img>
+                                ) : (
+                                    <img src={Ellipse2} alt='' className='profilpic-navbar'></img>
+                                )}
                             </div>
                             <ul className="dropdown-menu cat-list1" aria-labelledby="dropdownMenuOffset3">
                                 {(user.role === 3) ? (
