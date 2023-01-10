@@ -4,7 +4,7 @@ import './ServicePerCategory.css';
 import '../Home/HomePage.css';
 import Navbar from '../General/Navbar';
 import Searchbox from '../General/Searchbox';
-import Pose10 from '../../asset/HomePage/Pose10.png';
+import Pose10 from '../../asset/HomePage/Pose10.svg';
 import { Link, useParams } from 'react-router-dom';
 import ServiceListCategory from './ServicesListCategory';
 import { getCategory } from '../../redux/actions/category';

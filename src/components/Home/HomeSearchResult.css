@@ -139,6 +139,24 @@
     font-size: 18px;
 }
 
+@media (hover: hover) {
+    .serviceslist22-box:hover .toprated-ratebuy22 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+@media (hover: none) {
+    .serviceslist22-box .toprated-ratebuy22 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
 /* Nest Hub */
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .searchhome-msg {

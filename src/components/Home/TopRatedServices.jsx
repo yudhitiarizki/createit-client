@@ -39,7 +39,11 @@ const TopRatedServices = () => {
                         <div className='toprated-infobot'>
                             <div>
                                 <i className='bx bx-dollar-circle'></i>
-                                <span>Start from Rp {service.startingPrice}</span>
+                                {(service.startingPrice % 1000 === 0) ? (
+                                    <span>Start from Rp {service.startingPrice/1000}.000,-</span>
+                                ) : (
+                                    <span>Start from Rp {service.startingPrice/1000},-</span>
+                                )}
                             </div>
                             <Link to={`/service/${service.slug}`}><i className='bx bx-right-arrow-alt toprated-rightarrow'></i></Link>
                         </div>

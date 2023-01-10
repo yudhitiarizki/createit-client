@@ -53,10 +53,6 @@
     font-size: 24px;
 }
 
-.carouselimg-container:hover .categoryname-carousel {
-    display: block;
-}
-
 .owl-next, 
 .owl-prev {
     height: 80px;
@@ -74,6 +70,18 @@
 .owl-prev {
     background: linear-gradient(-255.68deg, #E8504B 8.13%, #F2703C 93.86%) !important;
     left: -40px;
+}
+
+@media (hover: hover) {
+    .carouselimg-container:hover .categoryname-carousel {
+        display: block;
+    }
+}
+
+@media (hover: none) {
+    .carouselimg-container .categoryname-carousel {
+        display: block;
+    }
 }
 
 /* Nest Hub */
