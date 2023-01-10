@@ -24,21 +24,19 @@ const SellerInProgressDetail = () => {
         }
     }, [orderDetail.orderId]);
 
-    Date.prototype.addDays = function (days) {
-        const date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days)
-        return date
+    const addDays = (date, days) => {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result
     }
 
     useEffect(() => {
         if (orderDetail.status === 'Working') {
-            const date = new Date(orderDetail.createdAt);
-            const dueDate = date.addDays(orderDetail.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0])
+            const dueDate = addDays(orderDetail.createdAt, orderDetail.delivery);
+            setDeliveryTime(dueDate.toString().split('(')[0]);
         } else if (orderDetail.status === 'Revising') {
-            const date = new Date(orderDetail.updatedAt);
-            const dueDate = date.addDays(orderDetail.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0])
+            const dueDate = addDays(orderDetail.updatedAt, orderDetail.delivery);
+            setDeliveryTime(dueDate.toString().split('(')[0]);
         }
     }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 

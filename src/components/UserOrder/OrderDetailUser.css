@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.orderdetuser-cntr {
+    margin: 0px 9vw 100px 9vw;
+}
+
+.usrordrdet-hdr {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+
+    width: 70vw;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 16px 16px 0px 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 15px 25px;
+    color: #FFFFFF;
+}
+
+.backtolist {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    border: 2px solid #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.backtolist:hover {
+    background: #FFFFFF;
+    color: #E8504B;
+}
+
+.usrordrdet-cntn {
+    width: 70vw;
+    border-radius: 0px 0px 8px 8px;
+    padding: 25px 40px 50px 40px;
+    border: 1px solid #E8504B;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-summary22 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333333;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #E8504B;
+    margin-bottom: 5px;
+}
+
+.ordersummary22-row {
+    display: flex;
+    flex-direction: row;
+    width: calc(70vw - 80px);
+    align-items: flex-start;
+    padding: 8px 20px;
+    font-size: 15px;
+}
+
+.ordersummary22-row1 {
+    width: 40%;
+}
+
+.ordersummary22-row2 {
+    width: 60%;
+    text-align: end;
+    color: #E8504B;
+}
+
+.orange {
+    background: linear-gradient(255.68deg, rgba(232, 80, 75, 0.05) 8.13%, rgba(242, 112, 60, 0.05) 93.86%);
+}
+
+.order-file22 {
+    margin-top: 25px;
+}
+
+.upload-file-22 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.upload-file-22 span {
+    color: #E8504B;
+}
+
+.download-file22 {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.download-btn22 {
+    width: 20vw;
+    margin-top: 15px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 1s ease;
+}
+
+.download-btn22:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+.file-link-cntr22 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    width: 40vw;
+    font-size: 14px;
+}
+
+.url-container22 {
+    width: calc(40vw * 0.90);
+    padding: 10px 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #F2F2F2;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.copy-cntr22 {
+    background: #FCE2D8;
+    color: #E8504B;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 0px 8px 8px 0px;
+    cursor: pointer;
+}
+
+.copy-cntr22:hover {
+    background: #E8504B;
+    color: #FFFFFF;
+}
+
+.copy-msg22 {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-top: 15px;
+    text-align: center;
+    color: #333333;
+}
+
+.green-msg {
+    background: #e9fcd8;
+}
+
+.red-msg {
+    background: #FCE2D8;
+}
+
+.revapprv-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.rev-btn {
+    padding: 15px 40px;
+    border-radius: 8px;
+    color: #F5222D;
+    border: 2px solid #F5222D;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rev-btn:hover {
+    color: #FFFFFF;
+    background: #F5222D;
+}
+
+.apprv-btn {
+    padding: 15px 40px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    background: #52C41A;
+    cursor: pointer;
+}
+
+.apprv-btn:hover {
+    background: #6cdf32;
+}
+
+.askrvsn-modal {
+    padding: 30px 40px;
+}
+
+.modal-title22 {
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #333333;
+}
+
+.modal-body22 {
+    margin: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.askrvsn-box {
+    width: 100%;
+    padding: 20px 25px;
+    outline: none;
+    background: #F4F4F4;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+}
+
+.modal-footer22 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.askrvsn-cancelbtn {
+    padding: 10px 40px;
+    border: 2px solid #666666;
+    border-radius: 8px;
+    color: #333333;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.askrvsn-cancelbtn:hover {
+    background: #666666;
+    color: #FFFFFF;
+}
+
+.askrevsn-submit {
+    padding: 10px 40px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    transition: all 1s ease;
+    border: none;
+}
+
+.askrevsn-submit:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+.starrating-cntr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    gap: 10px;
+}
+
+.on {
+    color: #FFC53D;
+}
+
+.off {
+    color: #666666;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .usrordrdet-hdr {
+        font-size: 18px;
+    }
+    
+    .order-summary22 {
+        font-size: 16px;
+    }
+    
+    .ordersummary22-row {
+        font-size: 14px;
+    }
+    
+    .file-link-cntr22 {
+        width: 50vw;
+    }
+    
+    .url-container22 {
+        width: calc(50vw * 0.90);
+    }
+    
+    .revapprv-btn {
+        font-size: 15px;
+    }
+    
+    .modal-title22 {
+        font-size: 20px;
+    }
+    
+    .modal-footer22 {
+        font-size: 16px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .usrordrdet-hdr {
+        font-size: 16px;
+        width: 80vw;
+    }
+
+    .usrordrdet-cntn {
+        width: 80vw;
+        padding: 25px 30px 40px 30px;
+    }
+    
+    .order-summary22 {
+        font-size: 15px;
+    }
+    
+    .ordersummary22-row {
+        font-size: 14px;
+        width: calc(80vw - 60px);
+    }
+
+    .download-btn22 {
+        width: 25vw;
+        font-size: 14px;
+    }
+
+    .file-link-cntr22 {
+        width: 60vw;
+    }
+    
+    .url-container22 {
+        width: calc(60vw * 0.90);
+    }
+    
+    .revapprv-btn {
+        font-size: 14px;
+    }
+
+    .rev-btn {
+        padding: 10px 30px;
+    }
+    
+    .apprv-btn {
+        padding: 10px 30px;
+    }
+    
+    .modal-title22 {
+        font-size: 20px;
+    }
+    
+    .modal-footer22 {
+        font-size: 15px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .orderdetuser-cntr {
+        margin: 0px 5vw 80px 5vw;
+    }
+
+    .usrordrdet-hdr {
+        font-size: 15px;
+        width: 90vw;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    
+    .backtolist {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+    }
+
+    .usrordrdet-cntn {
+        width: 90vw;
+        padding: 20px 20px 30px 20px;
+        gap: 10px;
+    }
+    
+    .order-summary22 {
+        font-size: 14px;
+    }
+    
+    .ordersummary22-row {
+        font-size: 12px;
+        width: calc(90vw - 40px);
+    }
+
+    .download-btn22 {
+        width: 45vw;
+        font-size: 14px;
+    }
+
+    .file-link-cntr22 {
+        width: calc(90vw - 40px);
+    }
+    
+    .url-container22 {
+        width: calc((90vw - 40px) * 0.90);
+    }
+    
+    .revapprv-btn {
+        font-size: 13px;
+    }
+
+    .rev-btn {
+        padding: 10px 15px;
+    }
+    
+    .apprv-btn {
+        padding: 10px 15px;
+    }
+
+    .askrvsn-modal {
+        padding: 30px 20px;
+    }
+
+    .modal-title22 {
+        font-size: 20px;
+    }
+    
+    .modal-footer22 {
+        font-size: 14px;
+    }
+
+    .starrating-cntr {
+        font-size: 25px;
+    }
+}

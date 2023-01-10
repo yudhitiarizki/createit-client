@@ -18,6 +18,7 @@ import CreateOrder from "../pages/CreateOrder";
 import Register from "../pages/Register";
 import AdminApproveOrder from "../pages/AdminApproveOrder";
 import VerifyPayment from "../pages/VerifyPayment";
+import UserOrderDetail from "../pages/UserOrderDetail";
 
 const Router = () => {
 
@@ -39,6 +40,7 @@ const Router = () => {
         <Route exact path="/seller/order/progress" element={<SellerProgressOrder />} />
         <Route exact path="/seller/:id" element={<OtherSellerProfile />} />
         <Route exact path="/user/order" element={<UserOrder />} />
+        <Route exact path="/user/order/:id" element={<UserOrderDetail/>} />
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/createorder" element={<CreateOrder />} />
         <Route exact path="/verifypayment" element={<VerifyPayment />} />

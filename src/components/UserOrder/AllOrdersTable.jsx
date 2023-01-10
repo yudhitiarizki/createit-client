@@ -273,7 +273,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
         if (order.status === 'Waiting Payment') {
             navigate('/verifypayment')
         } else {
-            // dispatch disini untuk get order detail pakai order.orderId
+            navigate(`/user/order/${order.orderId}`)
         }
     }
 
