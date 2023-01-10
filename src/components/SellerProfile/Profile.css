@@ -3,7 +3,7 @@
 
 .banner {
     width: 100%;
-    background: url('../../asset/HomePage/Banner.png') bottom no-repeat;
+    background: url('../../asset/HomePage/top-Banner.svg') bottom no-repeat;
     background-size: cover;
 }
 

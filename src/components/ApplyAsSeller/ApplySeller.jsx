@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import Navbar from '../General/Navbar';
 import './ApplySeller.css';
-import Group12 from '../../asset/Seller/Group12.png';
+import Group12 from '../../asset/Seller/Group12.svg';
 import MoneyReceive from '../../asset/Seller/money-recive.png';
 import BagTimer from '../../asset/Seller/bag-timer.png';
 import Frame from '../../asset/Seller/frame.png';
