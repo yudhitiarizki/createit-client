@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 .searchhome-msg {
-    width: 82%;
+    width: 82vw;
     padding: 10px 20px;
     text-align: center;
     background: #FCE2D8;
@@ -175,7 +175,7 @@
 /* Surface Pro 7, iPad Mini, iPad Air */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .searchhome-msg {
-        width: 82%;
+        width: 82vw;
         padding: 10px 20px;
         font-size: 16px;
     }
@@ -229,6 +229,10 @@
     
     .service22-info4 i {
         font-size: 18px;
+    }
+
+    .toprated-ratebuy22 {
+        font-size: 14px;
     }
 }
 
@@ -294,5 +298,9 @@
     
     .service22-info4 i {
         font-size: 18px;
+    }
+
+    .toprated-ratebuy22 {
+        font-size: 12px;
     }
 }

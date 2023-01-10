@@ -16,7 +16,7 @@
 .text1-container11 {
     position: absolute;
     left: 10%;
-    top: 38%;
+    top: 33%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -38,22 +38,26 @@
 .searchbox-cntr1 {
     position: absolute;
     left: 10%;
-    top: 67%;
+    top: 63%;
+}
+
+.catlist-cntr11 {
+    margin-bottom: 56px;
+    padding: 0px 8vw;
 }
 
 .categorylist1 {
-    margin: 0px 10% 56px 0px;
-    width: 100%;
+    width: 84vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
 
 .categorybox1 {
-    width: 260px;
+    width: calc((84vw - 60px)/4);
     height: 88px;
     display: flex;
     justify-content: center;
@@ -65,6 +69,7 @@
     font-size: 20px;
     border: none;
     box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .catbox1 {
@@ -81,4 +86,140 @@
 .catbox2:hover {
     border: 2px solid #E8504B;
     transform: scale(95%);
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .nav-seller2 {
+        left: 10%;
+        top: 120px;
+        font-size: 18px;
+    }
+    
+    .text1-container11 {
+        left: 10%;
+        top: 32%;
+        gap: 20px;
+    }
+    
+    .text1-11 {
+        font-size: 38px;
+    }
+    
+    .text1-21 {
+        font-size: 25px;
+    }
+    
+    .searchbox-cntr1 {
+        left: 10%;
+        top: 63%;
+    }
+    
+    .catlist-cntr11 {
+        margin-bottom: 56px;
+        padding: 0px 8vw;
+    }
+    
+    .categorylist1 {
+        width: 84vw;
+        gap: 20px;
+    }
+    
+    .categorybox1 {
+        width: calc((84vw - 60px)/4);
+        height: 88px;
+        padding: 16px;
+        font-size: 18px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .nav-seller2 {
+        left: 10%;
+        top: 25%;
+        font-size: 18px;
+    }
+    
+    .text1-container11 {
+        left: 10%;
+        top: 36%;
+        gap: 15px;
+    }
+    
+    .text1-11 {
+        font-size: 25px;
+    }
+    
+    .text1-21 {
+        font-size: 18px;
+    }
+    
+    .searchbox-cntr1 {
+        left: 10%;
+        top: 63%;
+    }
+    
+    .catlist-cntr11 {
+        margin-bottom: 56px;
+        padding: 0px 8vw;
+    }
+    
+    .categorylist1 {
+        width: 84vw;
+        gap: 20px;
+    }
+    
+    .categorybox1 {
+        width: calc((84vw - 60px)/3);
+        height: 70px;
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .nav-seller2 {
+        left: 10%;
+        top: 25%;
+        font-size: 12px;
+    }
+    
+    .text1-container11 {
+        left: 10%;
+        top: 36%;
+        gap: 15px;
+    }
+    
+    .text1-11 {
+        font-size: 18px;
+    }
+    
+    .text1-21 {
+        font-size: 14px;
+    }
+    
+    .searchbox-cntr1 {
+        left: 10%;
+        top: 63%;
+    }
+    
+    .catlist-cntr11 {
+        margin-bottom: 56px;
+        padding: 0px 5vw;
+    }
+    
+    .categorylist1 {
+        width: 90vw;
+        gap: 20px;
+    }
+    
+    .categorybox1 {
+        width: calc((90vw - 40px)/2);
+        height: 70px;
+        padding: 16px;
+        font-size: 14px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    }
 }

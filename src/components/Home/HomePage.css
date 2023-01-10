@@ -601,6 +601,7 @@
     .search-container1 {
         width: 82vw;
         padding: 7px 7px 7px 15px;
+        border-radius: 10px;
     }
     
     .search-input1 {

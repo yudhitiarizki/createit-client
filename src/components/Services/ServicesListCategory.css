@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 .servicelists11 {
-    padding: 64px 8% 40px 8%;
-    width: 100%;
+    padding: 64px 9vw 40px 9vw;
     background: #e5e5e533;
 }
 
@@ -12,127 +11,8 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 15px;
     margin-bottom: 80px;
-}
-
-.serviceslist11-box {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-    gap: 24px;
-    width: 260px;
-    height: 408px;
-    border: 1px solid #CCCCCC;
-    border-radius: 8px;
-}
-
-.service1imgcntr1 {
-    position: relative;
-    width: 228px;
-    height: 228px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.servicelist11-img {
-    width: 228px;
-    height: 228px;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.toprated-ratebuy11 {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 228px;
-    height: 228px;
-    border-radius: 8px;
-    background: linear-gradient(0deg, #000000e3, #07070700);
-    color: white;
-    padding: 15px 20px;
-}
-
-.toprated-ratebuy11 div i {
-    margin-right: 5px;
-}
-
-.serviceslist11-box:hover .toprated-ratebuy1 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-.servicelist11-info {
-    width: 228px;
-    height: 124px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.service11-info1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    overflow: hidden;
-}
-
-.service11-info2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-weight: 400;
-    font-size: 14px;
-    color: #666666;
-    cursor: pointer;
-}
-
-.service11-info2:hover {
-    color: #E8504B;
-}
-
-.service11-info2 img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.service11-info3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    color: #333333;
-    width: 228px;
-    cursor: pointer;
-}
-
-.service11-info3:hover {
-    color: #E8504B;
-}
-
-.service11-info4 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #666666;
-}
-
-.service11-info4 i {
-    font-size: 18px;
 }
 
 .pagination1 {
@@ -180,4 +60,54 @@
 
 .pagination1 .page-active .page-active-font {
     color: #FFFFFF;
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .servicelists11 {
+        padding: 50px 8vw 40px 8vw;
+    }
+
+    .pagination1 {
+        gap: 25px;
+    }
+    
+    .pagination1 .page-num1 {
+        padding: 3px 6px;
+        font-size: 18px;
+    }
+    
+    .pagination1 .page-num {
+        font-size: 14px;
+    }
+    
+    .pagination1 .page-active {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .servicelists11 {
+        padding: 40px 3vw;
+    }
+
+    .pagination1 {
+        gap: 20px;
+    }
+    
+    .pagination1 .page-num1 {
+        padding: 2px 5px;
+        font-size: 16px;
+    }
+    
+    .pagination1 .page-num {
+        font-size: 13px;
+    }
+    
+    .pagination1 .page-active {
+        width: 40px;
+        height: 40px;
+    }
 }
