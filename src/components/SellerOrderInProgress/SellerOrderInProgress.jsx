@@ -19,38 +19,33 @@ const SellerOrderInProgress = () => {
         dispatch(getOrderProgress())
     }, [dispatch]);
 
-
     const workingOrder = order.filter(order => order.status === 'Working');
     const revisingOrder = order.filter(order => order.status === 'Revising');
+    const reviewingOrder = order.filter(order => order.status === 'Reviewing');
 
     const [sellerOrder, setSellerOrder] = useState(workingOrder);
+    const [activeTab, setActiveTab] = useState('workingtab');
 
     useEffect(() => {
         setSellerOrder(workingOrder)
     }, [order])
 
     const workingtab = () => {
-        const workingTab = document.getElementById('working-tab').classList;
-        const revisionTab = document.getElementById('revision-tab').classList;
-
-        if (!workingTab.contains('sllrorder-actvtab')) {
-            workingTab.add('sllrorder-actvtab');
-            revisionTab.remove('sllrorder-actvtab');
-        }
-
+        setActiveTab('workingtab');
         setSellerOrder(workingOrder);
         dispatch(hideOnProgressDetail());
+        document.getElementById('custom-inputtext2').innerHTML = '';
     };
 
+    const reviewingtab = () => {
+        setActiveTab('reviewingtab');
+        setSellerOrder(reviewingOrder);
+        dispatch(hideOnProgressDetail());
+        document.getElementById('custom-inputtext2').innerHTML = '';
+    }
+
     const revisiontab = () => {
-        const workingTab = document.getElementById('working-tab').classList;
-        const revisionTab = document.getElementById('revision-tab').classList;
-
-        if (!revisionTab.contains('sllrorder-actvtab')) {
-            revisionTab.add('sllrorder-actvtab');
-            workingTab.remove('sllrorder-actvtab');
-        }
-
+        setActiveTab('revisiontab');
         setSellerOrder(revisingOrder);
         dispatch(hideOnProgressDetail());
         document.getElementById('custom-inputtext2').innerHTML = '';
@@ -72,8 +67,9 @@ const SellerOrderInProgress = () => {
                 <div>Order In Progress</div>
             </div>
             <div className='sllr-inprgrsorder-tab'>
-                <div id='working-tab' className='sllrorder-actvtab' onClick={workingtab}>Working ({workingOrder.length})</div>
-                <div id='revision-tab' onClick={revisiontab}>Revision ({revisingOrder.length})</div>
+                <div className={(activeTab === 'workingtab') ? 'sllrorder-actvtab' : ''} onClick={workingtab}>Working ({workingOrder.length})</div>
+                <div className={(activeTab === 'reviewingtab') ? 'sllrorder-actvtab' : ''} onClick={reviewingtab}>Need Review ({reviewingOrder.length})</div>
+                <div className={(activeTab === 'revisiontab') ? 'sllrorder-actvtab' : ''} onClick={revisiontab}>Revision ({revisingOrder.length})</div>
             </div>
             <div className='incomingorder-cntr'>
                 <SellerInProgressDetail />

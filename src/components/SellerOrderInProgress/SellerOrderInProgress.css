@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 .sllr-inprgrsorder-tab {
-    margin: 0px 9% 30px 9%;
+    margin: 0px 9vw 30px 9vw;
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: calc(82vw/2.2 * 2 + 82vw/22);
+    width: 82vw;
 }
 
 .sllr-inprgrsorder-tab div {
-    width: calc(82vw/2.2 + 82vw/11);
+    width: calc(82vw/3);
     padding: 0px 0px 20px 0px;
     border-bottom: 1px solid #D9D9D9;
     color: #D9D9D9;
@@ -305,11 +305,11 @@
 /* Nest Hub */
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .sllr-inprgrsorder-tab {
-        width: calc(82vw/2.1 * 2 + 82vw/21);
+        width: 82vw;
     }
-    
+
     .sllr-inprgrsorder-tab div {
-        width: calc(82vw/2.1 + 82vw/10.5);
+        width: calc(82vw/3);
         padding: 0px 0px 15px 0px;
         font-size: 15px;
     }
@@ -389,12 +389,12 @@
 /* Surface Pro 7, iPad Mini, iPad Air */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .sllr-inprgrsorder-tab {
-        margin: 0px 5% 30px 5%;
-        width: calc(90vw/2.1 * 2 + 90vw/21);
+        margin: 0px 5vw 30px 5vw;
+        width: 90vw;
     }
 
     .sllr-inprgrsorder-tab div {
-        width: calc(90vw/2.1 + 90vw/10.5);
+        width: calc(90vw/3);
         padding: 0px 0px 15px 0px;
         font-size: 14px;
     }
@@ -476,11 +476,11 @@
 @media (max-width: 767.98px) {
     .sllr-inprgrsorder-tab {
         margin: 0px 4% 30px 4%;
-        width: calc(92vw/2.1 * 2 + 92vw/21);
+        width: 92vw;
     }
 
     .sllr-inprgrsorder-tab div {
-        width: calc(92vw/2.1 + 92vw/10.5);
+        width: calc(92vw/3);
         padding: 0px 0px 10px 0px;
         font-size: 13px;
     }

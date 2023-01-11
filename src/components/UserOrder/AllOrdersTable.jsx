@@ -123,7 +123,6 @@ const AllOrdersTable = ({ Order }) => {
 
     const handleShowDetail = (order) => {
         const data = JSON.parse(order.response)
-        console.log(data)
         if (order.status === 'Waiting payment') {
             dispatch(sendPayment(data)).then(() => {
                 navigate('/verifypayment');
@@ -176,7 +175,7 @@ const AllOrdersTable = ({ Order }) => {
                                         {(item.status === 'Approved' || item.status === 'Done') ? (
                                             <td><div className='completed-status'>Completed</div></td>
                                         ) : (
-                                            ((item.status === 'Working' || item.status === 'Revising') ? (
+                                            ((item.status === 'Working' || item.status === 'Revising' || item.status === 'Reviewing') ? (
                                                 <td><div className='ongoing-status'>Ongoing</div></td>
                                             ) : (
                                                 <td><div className='pending-status'>{item.status}</div></td>

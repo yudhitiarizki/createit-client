@@ -18,13 +18,12 @@ const OrderDetailUser = () => {
         title: 'Logo Design',
         type: 'Standard',
         note: 'Tulisan pada logo: CreateIT. Logo Berwarna Merah Putih.',
-        status: 'Working',
+        status: 'Reviewing',
         revisionLeft: 2,
         price: 49999,
         delivery: 2,
-        orderNotes: '',
         orderFiles: 'work.zip',
-        fileType: 2,
+        fileType: 1,
         createdAt: '02-01-2022',
         updatedAt: '02-01-2022',
         noOfConcept: 2,
@@ -45,6 +44,8 @@ const OrderDetailUser = () => {
         } else if (order.status === 'Revising') {
             const dueDate = addDays(order.updatedAt, order.delivery);
             setDeliveryTime(dueDate.toString().split('(')[0]);
+        } else {
+            setDeliveryTime(new Date(order.updatedAt).toString().split('(')[0]);
         }
     }, [order.status, order.createdAt, order.updatedAt, order.delivery])
 
@@ -128,17 +129,8 @@ const OrderDetailUser = () => {
                         <div className='ordersummary22-row2'>{deliveryTime}</div>
                     </div>
                     <div className='ordersummary22-row orange'>
-                        {(order.status === 'Working') ? (
-                            <>
-                                <div className='ordersummary22-row1'>Order Note</div>
-                                <div className='ordersummary22-row2'>{order.note}</div>
-                            </>
-                        ) : (
-                            <>
-                                <div className='ordersummary22-row1'>Revision Note</div>
-                                <div className='ordersummary22-row2'>{order.orderNotes}</div>
-                            </>
-                        )}
+                        <div className='ordersummary22-row1'>Order Note</div>
+                        <div className='ordersummary22-row2'>{order.note}</div>
                     </div>
                     {(order.noOfConcept) ? (
                         <div className='ordersummary22-row'>
@@ -159,7 +151,7 @@ const OrderDetailUser = () => {
                         </div>
                     ) : (null)}
 
-                    {(order.orderFiles.length === 0) ? (null) : (
+                    {(order.status === 'Reviewing' || order.status === 'Approved' || order.status === 'Done') ? (
                         <div>
                             <div className='order-summary22 order-file22'>ORDER FILE</div>
                             {(order.fileType === 1) ? (
@@ -188,10 +180,10 @@ const OrderDetailUser = () => {
                                 {(order.revisionLeft !== 0) ? (
                                     <AskRevision orderId={+id} />
                                 ) : (null)}
-                                <ApproveOrder orderId={+id}/>
+                                <ApproveOrder orderId={+id} />
                             </div>
                         </div>
-                    )}
+                    ) : (null)}
                 </div>
             </div>
         </div>
