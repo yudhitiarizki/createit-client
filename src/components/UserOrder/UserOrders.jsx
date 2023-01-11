@@ -17,7 +17,7 @@ const UserOrders = () => {
     }, [dispatch]);
 
     const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
-    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working'));
+    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working' || item.status === 'Reviewing'));
 
     const allOrderTab = () => {
         document.getElementById('user-all-order').style.display = 'flex';

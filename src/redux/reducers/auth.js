@@ -6,7 +6,8 @@ import {
     LOGOUT,
     APPLY_SELLER,
     SWITCH_TO_SELLER,
-    SWITCH_TO_BUYER
+    SWITCH_TO_BUYER,
+    VERIFY_EMAIL
 } from '../actions/types';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -99,6 +100,8 @@ const authReducer = (state = initialState, action) => {
                 isLoggedIn: true,
                 isSeller: false,
             }
+        case VERIFY_EMAIL:
+            return state;
         default:
             return state;
     }

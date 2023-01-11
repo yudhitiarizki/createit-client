@@ -1,18 +1,23 @@
 import './OrderDetailUser.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { orderRevising } from '../../redux/actions/order';
 
 const AskRevision = ({ orderId }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [note, setNote] = useState('');
 
     const submitRevision = () => {
-        // dispatch axios post, payload orderId dan note
-        setNote('');
-        navigate('/user/order');
+        dispatch(orderRevising(orderId, note)).then(() => {
+            setNote('');
+            navigate('/user/order');
+        })
+        
     }
 
     const handleCancel = () => {

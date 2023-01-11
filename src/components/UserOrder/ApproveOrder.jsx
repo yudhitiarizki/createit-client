@@ -3,9 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { orderApprove } from '../../redux/actions/order';
+import { createReview } from '../../redux/actions/review';
 
 const ApproveOrder = ({ orderId }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
@@ -18,11 +22,15 @@ const ApproveOrder = ({ orderId }) => {
     }
 
     const submitReview = () => {
-        // dispatch axios post. Payload orderId, review, rating
-        setRating(0);
-        setHover(0);
-        setReview('');
-        navigate('/user/order');
+        dispatch(createReview(orderId, review, rating)).then(() => {
+            dispatch(orderApprove(orderId)).then(() => {
+                setRating(0);
+                setHover(0);
+                setReview('');
+                navigate('/user/order');
+            })
+        })
+        
     }
 
     return (

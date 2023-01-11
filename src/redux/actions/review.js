@@ -1,10 +1,12 @@
 import {
     FETCH_REVIEW,
     FETCH_REVIEW_BYSLUG,
-    SET_MESSAGE,
+    CREATE_REVIEW,
 } from './types';
 
 import ReviewService from '../../services/review';
+
+import { sendMessage } from './message';
 
 export const getReview = (serviceId) => async dispatch => {
     return ReviewService.getReview(serviceId).then(
@@ -17,26 +19,14 @@ export const getReview = (serviceId) => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -53,25 +43,33 @@ export const getReviewBySlug = (slug) => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, error => {
             const message = error.response;
 
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const createReview = (orderId, review, rating) => async dispatch => {
+    return ReviewService.createReview(orderId, review, rating).then(
+        response => {
             dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
+                type: CREATE_REVIEW
             });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }

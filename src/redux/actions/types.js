@@ -4,6 +4,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const APPLY_SELLER = 'APPLY_SELLER';
+export const VERIFY_EMAIL = 'VERIFY_EMAIL';
 
 export const SET_MESSAGE = 'SET_MESSAGE';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
@@ -28,6 +29,7 @@ export const EDIT_PACKAGES = 'EDIT_PACKAGES';
 
 export const FETCH_REVIEW = 'FETCH_REVIEW';
 export const FETCH_REVIEW_BYSLUG = 'FETCH_REVIEW_BYSLUG';
+export const CREATE_REVIEW = 'CREATE_REVIEW';
 
 export const FETCH_ORDER_USER = 'FETCH_ORDER_USER';
 export const CREATE_ORDER = 'CREATE_ORDER';
@@ -39,6 +41,8 @@ export const ORDER_FILE_UPLOAD = 'ORDER_FILE_UPLOAD';
 export const SET_DETAIL_ORDER = 'SET_DETAIL_ORDER';
 export const DELETE_DETAIL_ORDER = 'DELETE_DETAIL_ORDER';
 export const PATCH_ORDER_DONE = 'PATCH_ORDER_DONE';
+export const REVISING_ORDER = 'REVISING_ORDER';
+export const APPROVE_ORDER = 'APPROVE_ORDER';
 
 export const FETCH_NOTIF = 'FETCH_NOTIF';
 

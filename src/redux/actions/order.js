@@ -8,7 +8,9 @@ import {
     FETCH_ORDER_APPROVE,
     SET_DETAIL_ORDER,
     DELETE_DETAIL_ORDER,
-    PATCH_ORDER_DONE
+    PATCH_ORDER_DONE,
+    REVISING_ORDER, 
+    APPROVE_ORDER
 } from './types';
 
 import OrderService from '../../services/order';
@@ -192,3 +194,44 @@ export const OrderUploadFile = (orderId, upldFileType, file) => async dispatch =
         }
     )
 }
+
+export const orderRevising = (orderId, note) => async dispatch => {
+    return OrderService.orderRevising(orderId, note).then(
+        response => {
+            dispatch({
+                type: REVISING_ORDER
+            })
+            
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const orderApprove = (orderId) => async dispatch => {
+    return OrderService.orderApprove(orderId).then(
+        response => {
+            dispatch({
+                type: APPROVE_ORDER
+            })
+            
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+

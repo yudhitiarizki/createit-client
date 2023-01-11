@@ -8,8 +8,12 @@ const getReviewBySlug = (slug) => {
     return Api.get(`/review/slug/${slug}`);
 };
 
+const createReview = (orderId, review, rating) => {
+    return Api.post('/review', {orderId, review, rating});
+}
+
 const ReviewService = {
-    getReview, getReviewBySlug
+    getReview, getReviewBySlug, createReview
 }
 
 export default ReviewService;
