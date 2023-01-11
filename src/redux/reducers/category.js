@@ -1,6 +1,7 @@
 import { 
     FETCH_CATEGORY,
-    FETCH_SERVICEBYCATEGORY
+    FETCH_SERVICEBYCATEGORY,
+    CREATE_CATEGORY
 } from "../actions/types";
 
 
@@ -12,6 +13,8 @@ const categoryReducer = (category = initialState, action) => {
     switch (type){
         case FETCH_CATEGORY:
             return category = payload.category;
+        case CREATE_CATEGORY:
+            return category;
         default: 
             return category;
     }
