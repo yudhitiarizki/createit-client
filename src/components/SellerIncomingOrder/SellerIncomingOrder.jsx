@@ -28,6 +28,8 @@ const SellerIncomingOrder = () => {
         })
     };
 
+    console.log(order)
+
     return (
         <div>
             <div className="detailservice-navbar">

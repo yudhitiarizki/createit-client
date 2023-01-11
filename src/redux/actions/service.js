@@ -2,12 +2,14 @@ import {
     FETCH_SERVICEBYCATEGORY,
     FETCH_SERVICE,
     FETCH_DETAILSERVICE,
-    SET_MESSAGE,
     FETCH_TOPSERVICE,
-    FETCH_SERVICE_BYSLUG
+    FETCH_SERVICE_BYSLUG,
+    CREATE_SERVICE,
+    FETCH_MY_SERVICE, 
+    DELETE_SERVICE
 } from './types';
 
-import { toast } from 'react-toastify';
+import { sendMessage } from './message';
 
 import Service from '../../services/service';
 
@@ -22,26 +24,14 @@ export const getServiceByCategory = (categoryId) => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -59,26 +49,14 @@ export const getService = () => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -94,25 +72,13 @@ export const getDetailService = (serviceId) => async dispatch => {
                 payload: response.data.data
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }
@@ -129,25 +95,13 @@ export const getTopService = () => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }
@@ -165,29 +119,85 @@ export const getServiceBySlug = (slug) => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    );
+};
+
+export const createService = (categoryId, title, description, image) => async dispatch => {
+    return Service.createService(categoryId, title, description, image).then(
+        response => {
+            dispatch({
+                type: CREATE_SERVICE
             });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    )
+}
+
+export const getMyService = () => async dispatch => {
+    return Service.getMyService().then(
+        response => {
+
+            dispatch({
+                type: FETCH_MY_SERVICE,
+                payload: {
+                    service: response.data.data
+                }
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    );
+};
+
+export const deleteService = (serviceId) => async dispatch => {
+    return Service.deleteService(serviceId).then(
+        response => {
+
+            dispatch({
+                type: DELETE_SERVICE,
+                payload: {
+                    service: response.data.data
+                }
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },

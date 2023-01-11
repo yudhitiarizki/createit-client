@@ -4,8 +4,9 @@ import 'bootstrap/dist/js/bootstrap.js';
 import './Modal.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../redux/actions/category";
+import { createService } from "../../redux/actions/service";
 
-const AddService = () => {
+const AddService = ({funct}) => {
     const dispatch = useDispatch();
 
     const category = useSelector(state => state.category);
@@ -49,8 +50,9 @@ const AddService = () => {
         const image = filter.map((image) => {
             return image.file
         })
-
-        console.log(image)
+        dispatch(createService(categoryId, title, description, image)).then(() => {
+            funct();
+        })
       }
 
     return (
@@ -68,11 +70,11 @@ const AddService = () => {
                                 <option selected>Category not Found</option>
                             </select>
                         ) : (
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" aria-label="Default select example" onChange={event => setcategory(event.target.value)}>
                                 <option selected>Select Category</option>
                                 {
-                                    category && category.map(category => {
-                                        <option value={category.categoryId}>{category.category}</option>
+                                    category.map(cat => {
+                                        return <option value={cat.categoryId}>{cat.category}</option>
                                     })
                                 }
                             </select>
@@ -81,12 +83,12 @@ const AddService = () => {
                     
                     <div className="form-input">
                         <label htmlFor="servicename">Service Name <span>*</span></label>
-                        <input type="text" id='servicename'/>
+                        <input type="text" id='servicename' value={title} onChange={event => settitle(event.target.value)}/>
                     </div>
 
                     <div className="form-input">
                         <label htmlFor="description">Descriptions <span>*</span></label>
-                        <textarea name="description" id="" cols="20" rows="3"></textarea>
+                        <textarea name="description" id="" cols="20" rows="3" value={description} onChange={event => setdescription(event.target.value)}></textarea>
                     </div>
                     <div className="form-input image">
                         <label htmlFor="file-input">Image </label>

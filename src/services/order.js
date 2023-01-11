@@ -16,6 +16,10 @@ const patchOrderWorking = (orderId) => {
     return Api.patch('/seller/order/new', {orderId});
 };
 
+const patchOrderDone = (orderId) => {
+    return Api.patch('/admin/order/done', {orderId});
+};
+
 const getOrderProgress = () => {
     return Api.get('/seller/order/onprogress');
 }
@@ -24,8 +28,12 @@ const uploadFile = (orderId, upldFileType, file) => {
     return Api.post('/file', {orderId, upldFileType, file})
 }
 
+const getOrderApprove = () => {
+    return Api.get('/admin/order/approve');
+}
+
 const OrderService = {
-    getOrderUser, createOrder, getOrderNew, patchOrderWorking, getOrderProgress, uploadFile
+    getOrderUser, createOrder, getOrderNew, patchOrderWorking, getOrderProgress, uploadFile, getOrderApprove, patchOrderDone
 }
 
 export default OrderService;

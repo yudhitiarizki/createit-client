@@ -4,7 +4,11 @@ import {
     FETCH_SELLER_ORDER_NEW,
     PATCH_SELLER_ORDER_NEW,
     FETCH_ORDER_PROGRESS,
-    ORDER_FILE_UPLOAD
+    ORDER_FILE_UPLOAD, 
+    FETCH_ORDER_APPROVE,
+    SET_DETAIL_ORDER,
+    DELETE_DETAIL_ORDER,
+    PATCH_ORDER_DONE
 } from './types';
 
 import OrderService from '../../services/order';
@@ -96,6 +100,26 @@ export const patchOrderWorking = (orderId) => async dispatch => {
     )
 }
 
+export const patchOrderDone = (orderId) => async dispatch => {
+    return OrderService.patchOrderDone(orderId).then(
+        response => {
+            dispatch({
+                type: PATCH_ORDER_DONE
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
 export const getOrderProgress = () => async dispatch => {
     return OrderService.getOrderProgress().then(
         response => {
@@ -114,6 +138,40 @@ export const getOrderProgress = () => async dispatch => {
         }
     )
 }
+export const getOrderApprove = () => async dispatch => {
+    return OrderService.getOrderApprove().then(
+        response => {
+            dispatch({
+                type: FETCH_ORDER_APPROVE,
+                payload: response.data.data
+            });
+
+            return Promise.resolve()
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const setDetailOrder = (orderId, order) => ({
+    type: SET_DETAIL_ORDER,
+    payload: {
+        orderId: orderId,
+        order: order
+    }
+})
+
+export const deleteDetailOrder = () => ({
+    type: DELETE_DETAIL_ORDER,
+    payload: {
+        orderId: '',
+        order: {}
+    }
+})
 
 export const OrderUploadFile = (orderId, upldFileType, file) => async dispatch => {
     return OrderService.uploadFile(orderId, upldFileType, file).then(

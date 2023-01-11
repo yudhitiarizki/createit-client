@@ -1,9 +1,11 @@
 import {
     FETCH_CATEGORY,
-    SET_MESSAGE,
+    CREATE_CATEGORY
 } from './types';
 
 import CategoryService from '../../services/category';
+
+import { sendMessage } from './message';
 
 export const getCategory = () => async dispatch => {
     return CategoryService.getCategory().then(
@@ -15,28 +17,37 @@ export const getCategory = () => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
     );
 };
+
+export const createCategory = (category, description, image) => async dispatch => {
+    return CategoryService.createCategory(category, description, image).then(
+        response => {
+            dispatch({
+                type: CREATE_CATEGORY
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    )
+}

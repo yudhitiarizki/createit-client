@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import '../Services/DetailService.css';
 import './NewCategory.css';
+import { useDispatch } from 'react-redux';
+import { createCategory, getCategory } from '../../redux/actions/category';
+import { ToastContainer } from 'react-toastify';
 
 const NewCategory = () => {
+    const dispatch = useDispatch();
+
     const [catImg, setCatImg] = useState('');
     const [category, setCategory] = useState('');
+    const [description, setdescription] = useState('');
 
     const uploadFile = () => {
         document.getElementById('real-inputfile3').click();
@@ -25,7 +31,13 @@ const NewCategory = () => {
     };
 
     const handleCreateCtgr = () => {
-        // dispatch disini, payload {category, image: catImg}
+        dispatch(createCategory(category, description, catImg)).then(() => {
+            dispatch(getCategory());
+            setCatImg('');
+            setCategory('');
+            setdescription('');
+            document.getElementById('custom-inputtext3').innerHTML = '';
+        });
     }
 
     return (
@@ -43,6 +55,10 @@ const NewCategory = () => {
                         <input value={category} onChange={(event) => {setCategory(event.target.value)}} />
                     </div>
                     <div className='newcatform-row'>
+                        <div className='newcatform-col1'><div>Description</div><span> *</span></div>
+                        <input value={description} onChange={(event) => {setdescription(event.target.value)}} />
+                    </div>
+                    <div className='newcatform-row'>
                         <div className='newcatform-col1'><div>Category Image</div><span> *</span></div>
                         <div className='newcatform-imginput'>
                             <input type='file' id='real-inputfile3' onChange={handleFileChange} accept="image/*"/>
@@ -58,6 +74,7 @@ const NewCategory = () => {
                     <div className='createcategory-btn' onClick={handleCreateCtgr}>CREATE</div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 };

@@ -1,9 +1,13 @@
 import {  
     FETCH_USER,
-    SET_MESSAGE
+    FETCH_SELLER,
+    APPROVE_SELLER,
+    REJECT_SELLER
 } from  './types';
 
 import UserServices from '../../services/user';
+
+import { sendMessage } from './message';
 
 export const getUser = () => async dispatch => {
     return UserServices.getUser().then(
@@ -15,27 +19,74 @@ export const getUser = () => async dispatch => {
                 }
             });
 
-            console.log(response.data, "ok")
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, error => {
             const message = error.response;
 
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const getSeller = () => async dispatch => {
+    return UserServices.getSeller().then(
+        response => {
             dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
+                type: FETCH_SELLER,
+                payload: response.data.data
+            })
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const sellerApprove = (userId) => async dispatch => {
+    return UserServices.sellerApprove(userId).then(
+        response => {
+            dispatch({
+                type: APPROVE_SELLER
             });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const sellerReject = (userId) => async dispatch => {
+    return UserServices.sellerReject(userId).then(
+        response => {
+            dispatch({
+                type: REJECT_SELLER
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }

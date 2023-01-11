@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import './SellerOrderInProgress.css';
-import { OrderUploadFile } from '../../redux/actions/order';
+import { OrderUploadFile, getOrderProgress } from '../../redux/actions/order';
 
 const SellerInProgressDetail = () => {
     const dispatch = useDispatch();
@@ -107,11 +107,17 @@ const SellerInProgressDetail = () => {
         if (upldFileType === 1) {
             if (!fileSizeMsg) {
                 const file = upldFile;
-                dispatch(OrderUploadFile(orderId, upldFileType, file));
+                dispatch(OrderUploadFile(orderId, upldFileType, file)).then(() => {
+                    dispatch(getOrderProgress());
+                    hideDetail()
+                });
             }
         } else {
             const file = urlinput;
-            dispatch(OrderUploadFile(orderId, upldFileType, file));
+            dispatch(OrderUploadFile(orderId, upldFileType, file)).then(() => {
+                dispatch(getOrderProgress());
+                hideDetail();
+            });
         }
     }
 

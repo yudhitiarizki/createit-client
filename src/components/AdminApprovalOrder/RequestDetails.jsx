@@ -1,50 +1,65 @@
 import React from "react";
-import IconDetail from '../../asset/Order/arrow-circle-right.svg'
-import Dummy from '../../asset/ImgDummy/Rectangle21.png'
+import { useDispatch, useSelector } from "react-redux";
+import { deleteDetailOrder } from "../../redux/actions/order";
+import './AdminApproveOrder.css';
 
 const RequestDetails = () => {
 
+    const dispatch = useDispatch();
+    const { detail } = useSelector((state) => state.order);
+    const orderId = detail.orderId;
+
+    const hideDetail = () => {
+        dispatch(deleteDetailOrder());
+    }
+
     return (
-        <div className="order-detail">
-            <div className="order-header">
-                <img src={IconDetail} className="header-icon"></img>
-                <h5>Request Details</h5>
+        <div className={orderId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
+            <div className="newordrlist-hdr">
+                <div className="back-arrow" onClick={hideDetail}><i className='bx bx-chevron-left'></i></div>
+                <div>Request Details</div>
             </div>
-            <div className="order-request-detail">
-                <div className="order-image">
-                    <img src={Dummy} alt="" />
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Buyers Name</div>
-                    <div className="data-detail">: Ahmad Na Jaemin</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Seller/Shop Name</div>
-                    <div className="data-detail">: Nana’s Shop</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Service Name</div>
-                    <div className="data-detail">: Educational Mobile Apps</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Package Type</div>
-                    <div className="data-detail">: Regular</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Amount</div>
-                    <div className="data-detail">: Rp 50.999,-</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Card Number</div>
-                    <div className="data-detail">: 645723547235475</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Bank Name</div>
-                    <div className="data-detail">: Bank Rakyat Indonesia (BRI)</div>
-                </div>
-                <div className="order-data-request">
-                    <div className="data-title">Card Holder</div>
-                    <div className="data-detail">: Ahmad Na jaemin</div>
+            <div className="newordrlist-cntr1">
+                <div className="newordrlist-inside1">
+                    <img src={detail.order.image} alt=''></img>
+                    { detail.order.User && (
+                        <div className="ordrdetail-row">
+                            <div className="ordrdetail-rowleft">Buyer's Name</div>
+                            <div className="ordrdetail-rowright">: {detail.order.User.firstName} {detail.order.User.lastName}</div>
+                        </div>
+                    )}
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Seller's Name</div>
+                        <div className="ordrdetail-rowright">: {detail.order.firstName} {detail.order.lastName}</div>
+                    </div>
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Service Name</div>
+                        <div className="ordrdetail-rowright">: {detail.order.title}</div>
+                    </div>
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Package Type</div>
+                        <div className="ordrdetail-rowright">: {detail.order.type}</div>
+                    </div>
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Price</div>
+                        {(detail.order.price % 1000 === 0) ? (
+                            <div className="ordrdetail-rowright">: Rp {detail.order.price / 1000}.000,-</div>
+                        ) : (
+                            <div className="ordrdetail-rowright">: Rp {detail.order.price / 1000},-</div>
+                        )}
+                    </div>
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Card Number</div>
+                        <div className="ordrdetail-rowright">: {detail.order.noRekening}</div>
+                    </div>
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Bank Name</div>
+                        <div className="ordrdetail-rowright">: {detail.order.bankName}</div>
+                    </div>
+                    <div className="ordrdetail-row">
+                        <div className="ordrdetail-rowleft">Card Holder</div>
+                        <div className="ordrdetail-rowright">: {detail.order.cardHolder}</div>
+                    </div>
                 </div>
             </div>
         </div>
