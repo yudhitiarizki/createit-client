@@ -4,6 +4,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    APPLY_SELLER
 } from '../actions/types';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -68,6 +69,14 @@ const authReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 user: null,
             };
+        case APPLY_SELLER:
+            return {
+                ...state,
+                isLoggedIn: true,
+                isVerified: payload.seller.isVerified,
+                role: payload.role,
+                user: payload,
+            }
         default:
             return state;
     }

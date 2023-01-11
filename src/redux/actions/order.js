@@ -1,12 +1,15 @@
 import {
     FETCH_ORDER_USER,
     CREATE_ORDER,
-    SET_MESSAGE,
+    FETCH_SELLER_ORDER_NEW,
+    PATCH_SELLER_ORDER_NEW,
+    FETCH_ORDER_PROGRESS,
+    ORDER_FILE_UPLOAD
 } from './types';
 
 import OrderService from '../../services/order';
 
-import { toast } from 'react-toastify';
+import { sendMessage } from './message';
 
 export const getOrderUser = () => async dispatch => {
     return OrderService.getOrderUser().then(
@@ -19,26 +22,12 @@ export const getOrderUser = () => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
-
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -54,32 +43,92 @@ export const createOrder = (packageId, note, paymentMethod, bankName) => async d
                 payload: response.data.data
             });
 
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const getOrderNew = () => async dispatch => {
+    return OrderService.getOrderNew().then(
+        response => {
+            dispatch({
+                type: FETCH_SELLER_ORDER_NEW,
+                payload: response.data.data
             });
+
+            return Promise.resolve()
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const patchOrderWorking = (orderId) => async dispatch => {
+    return OrderService.patchOrderWorking(orderId).then(
+        response => {
+            dispatch({
+                type: PATCH_SELLER_ORDER_NEW
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const getOrderProgress = () => async dispatch => {
+    return OrderService.getOrderProgress().then(
+        response => {
+            dispatch({
+                type: FETCH_ORDER_PROGRESS,
+                payload: response.data.data
+            });
+
+            return Promise.resolve()
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const OrderUploadFile = (orderId, upldFileType, file) => async dispatch => {
+    return OrderService.uploadFile(orderId, upldFileType, file).then(
+        response => {
+            dispatch({
+                type: ORDER_FILE_UPLOAD
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }

@@ -115,3 +115,7 @@ input[type=file]::file-selector-button {
     border-top: none;
     padding: 10px 30px;
   }
+
+.image input {
+    margin-bottom: 20px;
+}

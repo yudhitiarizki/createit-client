@@ -1,116 +1,20 @@
+import React, { useEffect } from 'react';
 import Navbar from "../General/Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './UserOrders.css';
 import AllOrdersTable from "./AllOrdersTable";
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrderUser } from '../../redux/actions/order';
 
 const UserOrders = () => {
-    // Data Dummy
-    const User = {
-        firstName: "Ahmad",
-        lastName: "Na Jaemin",
-        username: "admadNaJaemin",
-        email: "User1@gmail.com",
-        role: 3,
-        phoneNumber: "081972197028",
-        token: "xsh38hjddnwkdj82",
-        createdAt: "27/06/2022"
-    };
+    const dispatch = useDispatch();
 
-    //Data Dummy
-    const Order = [
-        {
-            orderId: 1,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Regular',
-            price: 50999,
-            note: 'logo name: CreateIT',
-            status: 'Waiting Payment',
-            revisionLeft: 1,
-            response: '',
-            createdAt: '02/01/2023'
-        },
-        {
-            orderId: 2,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Regular',
-            note: 'logo name: CreateIT',
-            price: 50999,
-            status: 'Pending',
-            revisionLeft: '1',
-            response: '',
-            createdAt: '02/01/2023'
-        },
-        {
-            orderId: 3,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Advanced',
-            price: 70999,
-            note: 'logo name: CreateIT',
-            status: 'Working',
-            revisionLeft: '2',
-            response: '',
-            createdAt: '02/01/2023'
-        },
-        {
-            orderId: 4,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Advanced',
-            price: 70999,
-            note: 'logo name: CreateIT',
-            status: 'Approved',
-            revisionLeft: '2',
-            response: '',
-            createdAt: '02/01/2023'
-        },
-        {
-            orderId: 5,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Business',
-            price: 199999,
-            note: 'logo name: CreateIT',
-            status: 'Revising',
-            revisionLeft: '2',
-            response: '',
-            createdAt: '02/01/2023'
-        },
-        {
-            orderId: 6,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Business',
-            price: 199999,
-            note: 'logo name: CreateIT',
-            status: 'Done',
-            revisionLeft: '1',
-            response: '',
-            createdAt: '02/01/2023'
-        },
-        {
-            orderId: 7,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'bus',
-            type: 'cek',
-            price: 199999,
-            note: 'logo name: CreateIT',
-            status: 'Done',
-            revisionLeft: '1',
-            response: '',
-            createdAt: '02/01/2023'
-        }
-    ];
+    const Order = useSelector(state => state.order.order);
+
+    useEffect(() => {
+        dispatch(getOrderUser());
+    }, [dispatch]);
 
     const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
     const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working'));
@@ -195,10 +99,6 @@ const UserOrders = () => {
                 <div className="userorder-gnrlinfo">
                     <div className="userorder-infotitle">General Information</div>
                     <div className="userorder-row">
-                        <div>User since</div>
-                        <span>{User.createdAt}</span>
-                    </div>
-                    <div className="userorder-row">
                         <div>Total order</div>
                         <span>{Order.length}</span>
                     </div>
@@ -218,13 +118,15 @@ const UserOrders = () => {
                         <div id="usercompletedtab" onClick={completedTab}>Order Completed ({orderCompleted.length})</div>
                     </div>
                     <div id="user-all-order">
-                        <AllOrdersTable allOrder={1} onGoing={0} completed={0}/>
+                        { Order && (
+                            <AllOrdersTable Order={Order} />
+                        ) }
                     </div>
                     <div id="user-order-ongoing" style={{ 'display': 'none' }}>
-                        <AllOrdersTable allOrder={0} onGoing={1} completed={0} />
+                        <AllOrdersTable Order={orderOngoing} />
                     </div>
                     <div id='user-order-completed' style={{ 'display': 'none' }}>
-                        <AllOrdersTable allOrder={0} onGoing={0} completed={1} />
+                        <AllOrdersTable Order={orderCompleted} />
                     </div>
                 </div>
             </div>
