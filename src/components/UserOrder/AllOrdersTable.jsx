@@ -4,107 +4,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendPayment } from '../../redux/actions/payment';
 
-const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
+const getTime = (data) => {
+    const date = new Date(data);
+    const options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'};
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
+const AllOrdersTable = ({ Order }) => {
     const navigate = useNavigate();
-
-    // Data dummy
-    const Order = [
-        {
-            orderId: 1,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Regular',
-            price: 50999,
-            note: 'logo name: CreateIT',
-            status: 'Waiting Payment',
-            revisionLeft: 1,
-            response: '',
-            createdAt: '2022-12-11'
-        },
-        {
-            orderId: 2,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Regular',
-            note: 'logo name: CreateIT',
-            price: 50999,
-            status: 'Pending',
-            revisionLeft: '1',
-            response: '',
-            createdAt: '2022-06-11'
-        },
-        {
-            orderId: 3,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Advanced',
-            price: 70999,
-            note: 'logo name: CreateIT',
-            status: 'Working',
-            revisionLeft: '2',
-            response: '',
-            createdAt: '2022-04-11'
-        },
-        {
-            orderId: 4,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Advanced',
-            price: 70999,
-            note: 'logo name: CreateIT',
-            status: 'Approved',
-            revisionLeft: '2',
-            response: '',
-            createdAt: '2022-05-11'
-        },
-        {
-            orderId: 5,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Business',
-            price: 199999,
-            note: 'logo name: CreateIT',
-            status: 'Revising',
-            revisionLeft: '2',
-            response: '',
-            createdAt: '2022-07-11'
-        },
-        {
-            orderId: 6,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'IOT',
-            type: 'Business',
-            price: 199999,
-            note: 'logo name: CreateIT',
-            status: 'Done',
-            revisionLeft: '1',
-            response: '',
-            createdAt: '2022-01-12'
-        },
-        {
-            orderId: 7,
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'bus',
-            type: 'cek',
-            price: 20000,
-            note: 'logo name: CreateIT',
-            status: 'Done',
-            revisionLeft: '1',
-            response: '',
-            createdAt: '2022-01-01'
-        }
-    ];
-
-    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working'));
-    const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
+    const dispatch = useDispatch();
 
     // search button
     const [services, setServices] = useState([]);
@@ -114,35 +26,15 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
 
     useEffect(() => {
         if (!searchkey) {
-            if (allOrder) {
-                setServices(Order);
-            } else if (onGoing) {
-                setServices(orderOngoing);
-            } else {
-                setServices(orderCompleted);
-            }
+            setServices(Order);
         } else {
-            if (allOrder) {
-                const filteredOrder1 = Order.filter(item => (
-                    regexSearch.exec(item.title.toUpperCase()) ||
-                    regexSearch.exec(item.type.toUpperCase())
-                ))
-                setServices(filteredOrder1);
-            } else if (onGoing) {
-                const filteredOrder2 = orderOngoing.filter(item => (
-                    regexSearch.exec(item.title.toUpperCase()) ||
-                    regexSearch.exec(item.type.toUpperCase())
-                ))
-                setServices(filteredOrder2);
-            } else {
-                const filteredOrder3 = orderCompleted.filter(item => (
-                    regexSearch.exec(item.title.toUpperCase()) ||
-                    regexSearch.exec(item.type.toUpperCase())
-                ))
-                setServices(filteredOrder3);
-            }
+            const filteredOrder1 = Order.filter(item => (
+                regexSearch.exec(item.title.toUpperCase()) ||
+                regexSearch.exec(item.type.toUpperCase())
+            ))
+            setServices(filteredOrder1);
         }
-    }, [searchkey, allOrder, onGoing]) // jangan dikasih dependencies Order, orderCompleted, dan orderOngoing => sort not working
+    }, [searchkey, Order]) 
 
     //sort
     const [dateSort, setDateSort] = useState(0);
@@ -155,19 +47,9 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                 ordered0.sort((a, b) => (a.price - b.price));
                 setServices(ordered0);
             } else {
-                if (allOrder) {
-                    const ordered1 = [...Order];
-                    ordered1.sort((a, b) => (a.price - b.price));
-                    setServices(ordered1);
-                } else if (onGoing) {
-                    const ordered2 = [...orderOngoing]
-                    ordered2.sort((a, b) => (a.price - b.price));
-                    setServices(ordered2);
-                } else {
-                    const ordered3 = [...orderCompleted]
-                    ordered3.sort((a, b) => (a.price - b.price));
-                    setServices(ordered3);
-                }
+                const ordered1 = [...Order];
+                ordered1.sort((a, b) => (a.price - b.price));
+                setServices(ordered1);
             }
             setPriceSort(0)
         } else {
@@ -176,19 +58,9 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                 ordered10.sort((a, b) => (b.price - a.price));
                 setServices(ordered10);
             } else {
-                if (allOrder) {
-                    const ordered11 = [...Order]
-                    ordered11.sort((a, b) => (b.price - a.price));
-                    setServices(ordered11);
-                } else if (onGoing) {
-                    const ordered12 = [...orderOngoing]
-                    ordered12.sort((a, b) => (b.price - a.price));
-                    setServices(ordered12);
-                } else {
-                    const ordered13 = [...orderCompleted]
-                    ordered13.sort((a, b) => (b.price - a.price));
-                    setServices(ordered13);
-                }
+                const ordered11 = [...Order]
+                ordered11.sort((a, b) => (b.price - a.price));
+                setServices(ordered11);
             }
             setPriceSort(1)
         }
@@ -201,19 +73,9 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                 ordered0.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
                 setServices(ordered0);
             } else {
-                if (allOrder) {
-                    const ordered1 = [...Order];
-                    ordered1.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                    setServices(ordered1);
-                } else if (onGoing) {
-                    const ordered2 = [...orderOngoing]
-                    ordered2.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                    setServices(ordered2);
-                } else {
-                    const ordered3 = [...orderCompleted]
-                    ordered3.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                    setServices(ordered3);
-                }
+                const ordered1 = [...Order];
+                ordered1.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
+                setServices(ordered1);
             }
             setDateSort(0)
         } else {
@@ -222,19 +84,9 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                 ordered10.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
                 setServices(ordered10);
             } else {
-                if (allOrder) {
-                    const ordered11 = [...Order]
-                    ordered11.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                    setServices(ordered11);
-                } else if (onGoing) {
-                    const ordered12 = [...orderOngoing]
-                    ordered12.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                    setServices(ordered12);
-                } else {
-                    const ordered13 = [...orderCompleted]
-                    ordered13.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                    setServices(ordered13);
-                }
+                const ordered11 = [...Order]
+                ordered11.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
+                setServices(ordered11);
             }
             setDateSort(1)
         }
@@ -270,8 +122,12 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
     }, [searchkey, services])
 
     const handleShowDetail = (order) => {
-        if (order.status === 'Waiting Payment') {
-            navigate('/verifypayment')
+        const data = JSON.parse(order.response)
+        console.log(data)
+        if (order.status === 'Waiting payment') {
+            dispatch(sendPayment(data)).then(() => {
+                navigate('/verifypayment');
+            })
         } else {
             // dispatch disini untuk get order detail pakai order.orderId
         }
@@ -308,7 +164,7 @@ const AllOrdersTable = ({ allOrder, onGoing, completed }) => {
                             <tbody>
                                 {currentItems.map((item) => (
                                     <tr key={`id-${item.orderId}`} className='test'>
-                                        <td>{item.createdAt}</td>
+                                        <td>{getTime(item.createdAt)}</td>
                                         <td>{item.title}</td>
                                         <td>{item.type}</td>
                                         <td>{(item.price % 1000 === 0) ? (

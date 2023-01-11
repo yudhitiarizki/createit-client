@@ -88,7 +88,7 @@ const PaymentMethod = ({func}) => {
                         <select onChange={onChangeBank} className="form-select" id="bank" aria-label="Default select example">
                             <option defaultValue>Select Options</option>
                             { filterData.map(bank => {
-                                return <option value={bank.id}>{bank.bank}</option>
+                                return <option value={bank.id}>{bank.bank.toUpperCase()}</option>
                             }) }
                         </select>
                     ) : (

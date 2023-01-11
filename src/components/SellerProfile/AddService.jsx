@@ -1,11 +1,57 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Modal.css';
+import { useDispatch, useSelector } from "react-redux";
+import { getCategory } from "../../redux/actions/category";
 
 const AddService = () => {
-    
+    const dispatch = useDispatch();
 
+    const category = useSelector(state => state.category);
+
+    useEffect(() => {
+        dispatch(getCategory());
+    }, [dispatch]);
+
+    const [title, settitle] = useState('');
+    const [description, setdescription] = useState('');
+    const [categoryId, setcategory] = useState('');
+    const [imagesSend, setImages] = useState([
+        { id: 1, file: null },
+        { id: 2, file: null },
+        { id: 3, file: null },
+        { id: 4, file: null },
+    ]);
+
+    const handleChange = (id) => (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.readAsDataURL(selectedFile);
+            reader.onload = () => {
+                const file = reader.result;
+                setImages(
+                    imagesSend.map((image) => {
+                    if (image.id === id) {
+                        return { ...image, file };
+                    }
+                    return image;
+                    })
+                );
+            }
+        }
+        
+    };
+
+      const submit = () => {
+        const filter = imagesSend.filter(img => img.file !== null)
+        const image = filter.map((image) => {
+            return image.file
+        })
+
+        console.log(image)
+      }
 
     return (
         <div class="modal fade" id="AddService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -17,12 +63,20 @@ const AddService = () => {
                     </div>
                     <div className="form-input">
                         <label htmlFor="Category">Category <span>*</span></label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        { category.length < 1 ? (
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Category not Found</option>
+                            </select>
+                        ) : (
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Select Category</option>
+                                {
+                                    category && category.map(category => {
+                                        <option value={category.categoryId}>{category.category}</option>
+                                    })
+                                }
+                            </select>
+                        )}
                     </div>
                     
                     <div className="form-input">
@@ -34,13 +88,19 @@ const AddService = () => {
                         <label htmlFor="description">Descriptions <span>*</span></label>
                         <textarea name="description" id="" cols="20" rows="3"></textarea>
                     </div>
-                    <div className="form-input">
+                    <div className="form-input image">
                         <label htmlFor="file-input">Image </label>
-                        <input type="file" id="file-input" className="form-file" />
+                        <input type="file" id="file-input" className="form-file" onChange={handleChange(1)}/>
+ 
+                        <input type="file" id="file-input" className="form-file" onChange={handleChange(2)}/>
+
+                        <input type="file" id="file-input" className="form-file" onChange={handleChange(3)}/>
+
+                        <input type="file" id="file-input" className="form-file" onChange={handleChange(4)}/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="create-service">Create</button>
+                        <button type="button" class="create-service" onClick={() => submit()}>Create</button>
                     </div>
                 </div>
                 </div>

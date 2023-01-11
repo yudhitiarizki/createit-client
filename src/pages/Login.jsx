@@ -18,7 +18,9 @@ const Login = () => {
     const onHandleLogin = () => {
         setLoading(true)
         dispatch(login(Username, Password)).then(() => {
-            navigate('/');
+            navigate('/').then(() => {
+                window.location.reload();
+            });
         }).catch(() => {
             setLoading(false)
         });
