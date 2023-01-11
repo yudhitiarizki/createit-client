@@ -27,6 +27,8 @@ const CreateOrder = () => {
 
     const payment = useSelector(state => state.payment);
 
+    console.log(payment)
+
     if ( !isLoggedIn ) {
         navigate('/login');
     };
@@ -42,7 +44,7 @@ const CreateOrder = () => {
 
     const handleOrder = () => {
         dispatch(createOrder(packageId, note, paymentMethod, bankName)).then(() => {
-            navigate('/test')
+            navigate('/verifypayment')
         });
     }
 

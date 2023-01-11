@@ -1,3 +1,5 @@
+
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import Navbar from '../General/Navbar';
@@ -15,25 +17,15 @@ import { Link } from 'react-router-dom';
 
 import RegSellerForm from './RegSellerForm';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 const ApplySeller = () => {
-    // ini nanti dari redux
-    const isLoggedIn = true;
-    const user = {
-        "username": "Ahmad Na Jaemin",
-        "email": "User1@gmail.com",
-        "role": 1,
-        "phoneNumber": "081972197028",
-        "token": "xsh38hjddnwkdj82"
-    };
+    const { isLoggedIn, user } = useSelector(state => state.auth);
 
     if(isLoggedIn) {
-        if (user.role !== 1) {
-            return <Navigate to='/' />
-        }
-    } else {
-        return <Navigate to='/' />
-    }
+        if (user.role !== 1) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     return (
         <div>
@@ -101,7 +93,7 @@ const ApplySeller = () => {
                     </div>
                 </div>
             </div>
-
+            <ToastContainer />
             <RegSellerForm />
         </div>
     )

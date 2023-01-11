@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import './SellerOrderInProgress.css';
+import { OrderUploadFile } from '../../redux/actions/order';
 
 const SellerInProgressDetail = () => {
     const dispatch = useDispatch();
@@ -102,15 +103,15 @@ const SellerInProgressDetail = () => {
         document.getElementById('custom-inputtext2').innerHTML = '';
     };
 
-    const handleSubmitFile = () => {
+    const handleSubmitFile = (orderId) => {
         if (upldFileType === 1) {
             if (!fileSizeMsg) {
                 const file = upldFile;
-                // dispatch pakai payload {file, fileType: upldFileType}
+                dispatch(OrderUploadFile(orderId, upldFileType, file));
             }
         } else {
             const file = urlinput;
-            // dispatch pakai payload {file, fileType: upldFileType}
+            dispatch(OrderUploadFile(orderId, upldFileType, file));
         }
     }
 
@@ -231,7 +232,7 @@ const SellerInProgressDetail = () => {
                         <div className='external-link' onClick={handleChangeUpload}>Switch to file upload</div>
                     </div>
 
-                    <div className='send-btn'><div onClick={handleSubmitFile}>SEND</div></div>
+                    <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId)}>SEND</div></div>
                 </div>
             </div>
         </div >

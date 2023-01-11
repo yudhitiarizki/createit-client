@@ -4,6 +4,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    APPLY_SELLER,
     SET_MESSAGE,
 } from './types';
 
@@ -139,3 +140,42 @@ export const logout = () => dispatch => {
         },
     );
 };
+
+export const ApplySeller = (photoProfile, description, noRekening, bankName, cardHolder) => async dispatch => {
+    return AuthService.ApplySeller(photoProfile, description, noRekening, bankName, cardHolder).then(
+        response => {
+            dispatch({
+                type: APPLY_SELLER,
+                payload: response.data.data
+            })
+
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            toast.error(message.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            return Promise.reject();
+        },
+    )
+}
