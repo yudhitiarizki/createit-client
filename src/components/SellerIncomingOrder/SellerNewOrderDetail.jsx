@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideNewOrderDetail } from "../../redux/actions/NewOrderDetailSeller";
 import './SellerIncomingOrder.css';
@@ -8,22 +7,12 @@ const SellerNewOrderDetail = () => {
     const orderDetail = useSelector((state) => state.neworderdetailseller);
     const orderId = orderDetail.orderId;
 
-    useEffect(() => {
-        const box = document.getElementById('neworderdetail').classList;
-
-        if (orderId) {
-            box.add('ordrdetail-trnstn');
-        } else {
-            box.remove('ordrdetail-trnstn');
-        }
-    }, [orderId]);
-
     const hideDetail = () => {
         dispatch(hideNewOrderDetail());
     }
 
     return (
-        <div className="newordersellerlist1" id="neworderdetail">
+        <div className={orderId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
             <div className="newordrlist-hdr">
                 <div className="back-arrow" onClick={hideDetail}><i className='bx bx-chevron-left'></i></div>
                 <div>Request Details</div>

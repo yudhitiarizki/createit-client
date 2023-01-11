@@ -14,16 +14,6 @@ const SellerInProgressDetail = () => {
     const [urlinput, setUrlInput] = useState('');
     const [fileSizeMsg, setFileSizeMsg] = useState('');
 
-    useEffect(() => {
-        const box = document.getElementById('neworderdetail').classList;
-
-        if (orderDetail.orderId) {
-            box.add('ordrdetail-trnstn');
-        } else {
-            box.remove('ordrdetail-trnstn');
-        }
-    }, [orderDetail.orderId]);
-
     const addDays = (date, days) => {
         const result = new Date(date);
         result.setDate(result.getDate() + days);
@@ -125,7 +115,7 @@ const SellerInProgressDetail = () => {
     }
 
     return (
-        <div className="newordersellerlist1" id="neworderdetail">
+        <div className={orderDetail.orderId ? "newordersellerlist1 ordrdetail-trnstn": "newordersellerlist1"}>
             <div className="newordrlist-hdr">
                 <div className="back-arrow" onClick={hideDetail}><i className='bx bx-chevron-left'></i></div>
                 <div>Request Details</div>
