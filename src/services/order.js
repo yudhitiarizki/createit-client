@@ -32,8 +32,18 @@ const getOrderApprove = () => {
     return Api.get('/admin/order/approve');
 }
 
+const orderRevising = (orderId, note) => {
+    return Api.post('/user/order/revision', {orderId, note})
+}
+
+const orderApprove = (orderId) => {
+    console.log(orderId, 'uu')
+    return Api.patch('/user/order/approve', {orderId});
+}
+
+
 const OrderService = {
-    getOrderUser, createOrder, getOrderNew, patchOrderWorking, getOrderProgress, uploadFile, getOrderApprove, patchOrderDone
+    getOrderUser, createOrder, getOrderNew, patchOrderWorking, getOrderProgress, uploadFile, getOrderApprove, patchOrderDone, orderRevising, orderApprove
 }
 
 export default OrderService;

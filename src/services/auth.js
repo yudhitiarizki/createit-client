@@ -45,11 +45,16 @@ const ApplySeller = (photoProfile, description, noRekening, bankName, cardHolder
     });
 };
 
+const VerifEmail = (token) => {
+    return Api.post('/verif', {token})
+}
+
 const AuthService = {
     register,
     login,
     logout,
-    ApplySeller
+    ApplySeller,
+    VerifEmail
 };
 
 export default AuthService;

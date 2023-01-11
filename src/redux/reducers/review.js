@@ -1,6 +1,7 @@
 import { 
     FETCH_REVIEW,
-    FETCH_REVIEW_BYSLUG
+    FETCH_REVIEW_BYSLUG,
+    CREATE_REVIEW
 } from "../actions/types";
 
 
@@ -14,6 +15,8 @@ const reviewReducer = (review = initialState, action) => {
             return review = payload.review;
         case FETCH_REVIEW_BYSLUG: 
             return review = payload.review;
+        case CREATE_REVIEW: 
+            return review;
         default: 
             return review;
     }

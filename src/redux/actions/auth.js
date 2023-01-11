@@ -7,10 +7,11 @@ import {
     APPLY_SELLER,
     SET_MESSAGE,
     SWITCH_TO_SELLER,
-    SWITCH_TO_BUYER
+    SWITCH_TO_BUYER,
+    VERIFY_EMAIL
 } from './types';
 
-import { toast } from 'react-toastify';
+import { sendMessage } from './message';
 
 import AuthService from '../../services/auth';
 
@@ -21,16 +22,7 @@ export const register = (firstName, lastName, email, username, password, repassw
                 type: REGISTER_SUCCESS,
             });
 
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
@@ -41,16 +33,7 @@ export const register = (firstName, lastName, email, username, password, repassw
                 type: REGISTER_FAIL,
             });
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -65,16 +48,7 @@ export const login = (username, password) => dispatch => {
                 payload: { user: data },
             });
 
-            toast.success('ok', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', data.data.message);
 
             return Promise.resolve();
         },
@@ -85,25 +59,8 @@ export const login = (username, password) => dispatch => {
 
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
+            
 
             return Promise.reject();
         },
@@ -117,26 +74,14 @@ export const logout = () => dispatch => {
                 type: LOGOUT
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -151,31 +96,13 @@ export const ApplySeller = (photoProfile, description, noRekening, bankName, car
                 payload: response.data.data
             })
 
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, error => {
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -192,4 +119,24 @@ export const switchtoBuyer = () => {
     return {
         type: SWITCH_TO_BUYER
     }
+}
+
+export const VerifEmail = (token) => async dispatch => {
+    return AuthService.VerifEmail(token).then(
+        response => {
+            dispatch({
+                type: VERIFY_EMAIL
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    )
 }

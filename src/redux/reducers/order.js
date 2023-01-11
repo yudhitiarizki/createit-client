@@ -8,7 +8,9 @@ import {
     FETCH_ORDER_APPROVE,
     SET_DETAIL_ORDER,
     DELETE_DETAIL_ORDER,
-    PATCH_ORDER_DONE
+    PATCH_ORDER_DONE,
+    REVISING_ORDER,
+    APPROVE_ORDER
 } from "../actions/types";
 
 
@@ -61,6 +63,10 @@ const orderReducer = (order = initialState, action) => {
                 detail: payload
             }
         case PATCH_ORDER_DONE:
+            return order;
+        case REVISING_ORDER:
+            return order;
+        case APPROVE_ORDER:
             return order;
         default: 
             return order;

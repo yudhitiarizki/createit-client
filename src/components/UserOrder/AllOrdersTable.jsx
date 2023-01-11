@@ -6,6 +6,7 @@ import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendPayment } from '../../redux/actions/payment';
+import { setDetailOrder } from '../../redux/actions/order';
 
 const getTime = (data) => {
     const date = new Date(data);
@@ -13,6 +14,10 @@ const getTime = (data) => {
 
     return date.toLocaleDateString('id-ID', options);
 }
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 const AllOrdersTable = ({ Order }) => {
     const navigate = useNavigate();
@@ -128,6 +133,7 @@ const AllOrdersTable = ({ Order }) => {
                 navigate('/verifypayment');
             })
         } else {
+            dispatch(setDetailOrder(order.orderId, order))
             navigate(`/user/order/${order.orderId}`)
         }
     }
@@ -176,9 +182,9 @@ const AllOrdersTable = ({ Order }) => {
                                             <td><div className='completed-status'>Completed</div></td>
                                         ) : (
                                             ((item.status === 'Working' || item.status === 'Revising' || item.status === 'Reviewing') ? (
-                                                <td><div className='ongoing-status'>Ongoing</div></td>
+                                                <td><div className='ongoing-status'>{item.status}</div></td>
                                             ) : (
-                                                <td><div className='pending-status'>{item.status}</div></td>
+                                                <td><div className='pending-status'>{capitalizeFirstLetter(item.status)}</div></td>
                                             ))
                                         )}
                                         <td className='usr-order-show'><i className='bx bx-show' onClick={() => {handleShowDetail(item)}}></i></td>

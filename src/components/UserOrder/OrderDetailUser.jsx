@@ -6,30 +6,18 @@ import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
 import './OrderDetailUser.css';
 import './UserOrders.css';
+import { useSelector, useDispatch } from "react-redux"; 
 
 const OrderDetailUser = () => {
+
     const [deliveryTime, setDeliveryTime] = useState('');
     const [copyMsg, setCopyMsg] = useState('');
     const { id } = useParams();
 
-    const order = {
-        firstName: 'Ahmad',
-        lastName: 'Na Jaemin',
-        title: 'Logo Design',
-        type: 'Standard',
-        note: 'Tulisan pada logo: CreateIT. Logo Berwarna Merah Putih.',
-        status: 'Reviewing',
-        revisionLeft: 2,
-        price: 49999,
-        delivery: 2,
-        orderFiles: 'work.zip',
-        fileType: 1,
-        createdAt: '02-01-2022',
-        updatedAt: '02-01-2022',
-        noOfConcept: 2,
-        noOfPages: null,
-        maxDuration: null
-    }
+    const { detail } = useSelector(state => state.order)
+
+    const order = detail.order
+
 
     const addDays = (date, days) => {
         const result = new Date(date);
@@ -49,8 +37,9 @@ const OrderDetailUser = () => {
         }
     }, [order.status, order.createdAt, order.updatedAt, order.delivery])
 
-    const handleDownload = () => {
-        // axios get downloadS
+    const handleDownload = (url) => {
+        const fileName = new URL(url).pathname.split("/").pop();
+        window.location.href = `http://localhost:3001/download/${fileName}`
     };
 
     const handleCopyUrl = () => {
@@ -152,37 +141,41 @@ const OrderDetailUser = () => {
                     ) : (null)}
 
                     {(order.status === 'Reviewing' || order.status === 'Approved' || order.status === 'Done') ? (
-                        <div>
-                            <div className='order-summary22 order-file22'>ORDER FILE</div>
-                            {(order.fileType === 1) ? (
-                                <div className='download-file22'>
-                                    <div className='upload-file-22'>Download latest uploaded file</div>
-                                    <div className='download-btn22'>
-                                        <div onClick={handleDownload}>Download</div>
-                                        <i className='bx bxs-download'></i>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className='download-file22'>
-                                    <div className='upload-file-22'>View latest uploaded file</div>
-                                    <div className='file-link-cntr22'>
-                                        <div className='url-container22' id='url-file'>{order.orderFiles}</div>
-                                        <div className='copy-cntr22' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
-                                    </div>
-                                    {(copyMsg) ? ((copyMsg === 'url copied') ? (
-                                        <div className='copy-msg22 green-msg'>{copyMsg}</div>
+                        order.OrderFiles && ( 
+                            order.OrderFiles.length && (
+                                <div>
+                                    <div className='order-summary22 order-file22'>ORDER FILE</div>
+                                    {(order.OrderFiles[0].upldFileType === 1) ? (
+                                        <div className='download-file22'>
+                                            <div className='upload-file-22'>Download latest uploaded file</div>
+                                            <div className='download-btn22'>
+                                                <div onClick={() => handleDownload(order.OrderFiles[0].file)}>Download</div>
+                                                <i className='bx bxs-download'></i>
+                                            </div>
+                                        </div>
                                     ) : (
-                                        <div className='copy-msg22 red-msg'>{copyMsg}</div>
-                                    )) : (null)}
+                                        <div className='download-file22'>
+                                            <div className='upload-file-22'>View latest uploaded file</div>
+                                            <div className='file-link-cntr22'>
+                                                <div className='url-container22' id='url-file'>{order.OrderFiles[0].file}</div>
+                                                <div className='copy-cntr22' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
+                                            </div>
+                                            {(copyMsg) ? ((copyMsg === 'url copied') ? (
+                                                <div className='copy-msg22 green-msg'>{copyMsg}</div>
+                                            ) : (
+                                                <div className='copy-msg22 red-msg'>{copyMsg}</div>
+                                            )) : (null)}
+                                        </div>
+                                    )}
+                                    <div className="revapprv-btn">
+                                        {(order.revisionLeft !== 0) ? (
+                                            <AskRevision orderId={+id} />
+                                        ) : (null)}
+                                        <ApproveOrder orderId={+id} />
+                                    </div>
                                 </div>
-                            )}
-                            <div className="revapprv-btn">
-                                {(order.revisionLeft !== 0) ? (
-                                    <AskRevision orderId={+id} />
-                                ) : (null)}
-                                <ApproveOrder orderId={+id} />
-                            </div>
-                        </div>
+                            )
+                        )
                     ) : (null)}
                 </div>
             </div>
