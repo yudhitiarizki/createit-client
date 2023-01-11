@@ -20,6 +20,7 @@ import AdminApproveOrder from "../pages/AdminApproveOrder";
 import VerifyPayment from "../pages/VerifyPayment";
 import UserOrderDetail from "../pages/UserOrderDetail";
 import NotFound from "../pages/NotFound";
+import About from "../pages/About";
 
 const Router = () => {
 
@@ -45,7 +46,8 @@ const Router = () => {
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/createorder" element={<CreateOrder />} />
         <Route exact path="/verifypayment" element={<VerifyPayment />} />
-        <Route exact path="*" element={<NotFound />}/>
+        <Route exact path="*" element={<NotFound />} />
+        <Route exact path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );

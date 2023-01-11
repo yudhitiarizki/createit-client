@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.aboutpage-bg {
+    width: 100%;
+    height: 600px;
+    position: relative;
+}
+
+.aboutpage-person {
+    width: 40vw;
+    object-fit: contain;
+    position: absolute;
+    left: 5%;
+    bottom: -15%;
+}
+
+.about-info {
+    position: absolute;
+    left: calc(40vw + 5%);
+    top: 20%;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.aboutinfo-title {
+    font-weight: 700;
+    font-size: 48px;
+    color: #333333;
+}
+
+.aboutinfo-title span {
+    color: #E8504B;
+}
+
+.aboutinfo-cntn {
+    font-weight: 400;
+    font-size: 24px;
+    color: #333333;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .aboutpage-bg {
+        height: 450px;
+    }
+    
+    .aboutpage-person {
+        bottom: -20%;
+    }
+    
+    .aboutinfo-title {
+        font-size: 38px;
+    }
+    
+    .aboutinfo-cntn {
+        font-size: 20px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .aboutpage-bg {
+        height: 500px;
+    }
+    
+    .aboutpage-person {
+        width: 40vw;
+        left: 5%;
+        bottom: -10%;
+    }
+    
+    .about-info {
+        left: calc(40vw + 5%);
+        top: 30%;
+        width: 45vw;
+    }
+    
+    .aboutinfo-title {
+        font-size: 32px;
+    }
+    
+    .aboutinfo-cntn {
+        font-size: 18px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .aboutpage-bg {
+        height: 500px;
+    }
+    
+    .aboutpage-person {
+        width: 70vw;
+        left: 5%;
+        bottom: -10%;
+    }
+    
+    .about-info {
+        left: 12%;
+        top: 10%;
+        width: 80vw;
+        gap: 20px;
+    }
+    
+    .aboutinfo-title {
+        font-size: 24px;
+    }
+    
+    .aboutinfo-cntn {
+        font-size: 15px;
+    }
+}
