@@ -1,129 +1,33 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../General/Navbar';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import '../Services/DetailService.css';
 import './SellerOrderInProgress.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getOnProgressDetail, hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
 import SellerInProgressDetail from './SellerInProgressDetail';
+import { getOrderProgress } from '../../redux/actions/order';
+import { ToastContainer } from 'react-toastify';
 
 const SellerOrderInProgress = () => {
     const dispatch = useDispatch();
 
-    // data dummy
-    const orderInProgress = [
-        {
-            orderId: 1,
-            userId: 1,
-            username: 'ahmadNaJae',
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'Educational Mobile Apps',
-            type: 'Regular',
-            delivery: 7,
-            revision: 3,
-            noOfConcept: null,
-            noOfPages: 5,
-            maxDuration: null,
-            note: '',
-            orderNotes: 'Revision note here',
-            createdAt: '2022-01-01',
-            updatedAt: '2022-01-08',
-            file: 'path file 1',
-            fileType: 1,
-            status: 'Revising'
-        },
-        {
-            orderId: 2,
-            userId: 2,
-            username: 'ahmadNaJae',
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'Educational Mobile Apps',
-            type: 'Regular',
-            delivery: 4,
-            revision: 3,
-            noOfConcept: null,
-            noOfPages: 5,
-            maxDuration: null,
-            note: '',
-            orderNotes: 'Revision note here',
-            createdAt: '2022-01-08',
-            updatedAt: '2022-01-12',
-            file: 'https://drive.google.com/file/d/1pHiqkEaaSdLPrXJ1E3UqeX6oS1T3kG5q/view?usp=drivesdk',
-            fileType: 2,
-            status: 'Revising'
-        },
-        {
-            orderId: 3,
-            userId: 3,
-            username: 'ahmadNaJae',
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'Educational Mobile Apps',
-            type: 'Regular',
-            delivery: 4,
-            revision: 3,
-            noOfConcept: null,
-            noOfPages: 3,
-            maxDuration: null,
-            note: 'Apps bertemakan tentang anak SD. Apps akan memuat materi pembelajaran dan latihan soal.',
-            orderNotes: '',
-            createdAt: '2022-01-12',
-            updatedAt: '2022-01-12',
-            file: '',
-            fileType: '',
-            status: 'Working'
-        },
-        {
-            orderId: 4,
-            userId: 4,
-            username: 'ahmadNaJae',
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'Educational Mobile Apps',
-            type: 'Regular',
-            delivery: 6,
-            revision: 2,
-            noOfConcept: null,
-            noOfPages: 6,
-            maxDuration: null,
-            note: 'Apps bertemakan tentang anak SD. Apps akan memuat materi pembelajaran dan latihan soal.',
-            orderNotes: '',
-            createdAt: '2022-01-15',
-            updatedAt: '2022-01-15',
-            file: '',
-            fileType: '',
-            status: 'Working'
-        },
-        {
-            orderId: 5,
-            userId: 5,
-            username: 'ahmadNaJae',
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            title: 'Educational Mobile Apps',
-            type: 'Regular',
-            delivery: 9,
-            revision: 7,
-            noOfConcept: null,
-            noOfPages: 5,
-            maxDuration: null,
-            note: '',
-            orderNotes: 'Revision note here',
-            createdAt: '2022-01-13',
-            updatedAt: '2022-01-21',
-            file: 'https://drive.google.com/file/d/1pHiqkEaaSdLPrXJ1E3UqeX6oS1T3kG5q/view?usp=drivesdk',
-            fileType: 2,
-            status: 'Revising'
-        }
-    ];
+    const { order } = useSelector(state => state.order);
 
-    const workingOrder = orderInProgress.filter(order => order.status === 'Working');
-    const revisingOrder = orderInProgress.filter(order => order.status === 'Revising');
+    useEffect(() => {
+        dispatch(getOrderProgress())
+    }, [dispatch]);
+
+
+    const workingOrder = order.filter(order => order.status === 'Working');
+    const revisingOrder = order.filter(order => order.status === 'Revising');
 
     const [sellerOrder, setSellerOrder] = useState(workingOrder);
+
+    useEffect(() => {
+        setSellerOrder(workingOrder)
+    }, [order])
 
     const workingtab = () => {
         const workingTab = document.getElementById('working-tab').classList;
@@ -203,6 +107,7 @@ const SellerOrderInProgress = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 };

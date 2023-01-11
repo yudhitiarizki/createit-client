@@ -1,16 +1,14 @@
 import './ApplySeller.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import link from '../../asset/Seller/link.png';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { ApplySeller } from '../../redux/actions/auth';
+import { sendMessage } from '../../redux/actions/message';
 
 const RegSellerForm = () => {
-    // const { user } = useSelector(state => state.auth);
-    // const token = user.token;
+    const dispatch = useDispatch();
 
     const [photoProfile, setPhotoProfile] = useState();
     const [description, setDescription] = useState('');
@@ -37,45 +35,7 @@ const RegSellerForm = () => {
     };
 
     const handleSubmit = () => {
-        // axios.post(
-        //     "https://coal-jolly-single.glitch.me/regseller",
-        //     { 
-        //         userId: user.userId,
-        //         photoProfile,
-        //         description,
-        //         noRekening,
-        //         bankName,
-        //         cardHolder
-        //     },
-        //     { headers: { Authorization: `Bearer ${token}` } }
-        // ).then((response) => {
-        //     toast.success(response.data.message, {
-        //         position: "top-right",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //     });
-        //     setPhotoProfile();
-        //     setDescription('');
-        //     setNoRekening('');
-        //     setBankName('');
-        //     setCardHolder('');
-        // }).catch((error) => {
-        //     toast.error(error.response.data.message, {
-        //         position: "top-right",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //     });
-        // })
+        dispatch(ApplySeller(photoProfile, description, noRekening, bankName, cardHolder))
     };
 
     return (
@@ -114,7 +74,6 @@ const RegSellerForm = () => {
                 </div>
                 <button className='submit-btn1' onClick={handleSubmit}>Submit</button>
             </div>
-            <ToastContainer />
         </div>
     )
 };
