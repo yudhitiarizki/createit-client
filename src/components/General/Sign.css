@@ -1,25 +1,37 @@
 .section-container {
-    height: 100vh;
     display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .figure {
-    min-height: 100%;
+    min-height: 100vh;
     margin: 0%;
-    width: 50%;
+    width: 40vw;
+    background-color: #FAF3CC;
     background-image: url('../../asset/Login/Login.svg');
-    background-size: cover;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.figure2 {
+    min-height: 130vh;
+    margin: 0%;
+    width: 50vw;
+    background-color: #FAF3CC;
+    background-image: url('../../asset/Login/Login.svg');
+    background-position: center;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
 .container-login {
-    width: 50%;
-    height: 100%;
+    width: 60vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 .form-login {
     display: flex;
@@ -27,8 +39,19 @@
     align-items: center;
     flex-direction: column;
     background-color:#ffffff;
-    width:80%;
+    width:70%;
     padding: 75px 50px;
+    filter:drop-shadow(0px 2px 18px rgba(0,0,0,0.10000000149011612));
+}
+
+.form-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color:#ffffff;
+    width: 40vw;
+    padding: 40px 50px;
     filter:drop-shadow(0px 2px 18px rgba(0,0,0,0.10000000149011612));
 }
 
@@ -53,11 +76,32 @@
     -moz-text-fill-color: transparent;
 }
 
-.form-input-name {
-    display: flex;
+.form-title2 {
     width: 100%;
-    gap: 10px;
-    margin-top: 20px;
+    text-align: center;
+    font-size:25px;
+    font-family:'Poppins';
+    font-weight: 700;
+    color: #E8504B;
+    background-color: #E8504B;
+    background-image: linear-gradient(to right, #E8504B 0%, #F2703C 100%);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.form-input-name2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(40vw - 100px);
+    gap: 20px;
 }
 
 .form-input {
@@ -87,6 +131,37 @@
     outline: #E8504B;
 }
 
+.form-input2 {
+    width: calc(40vw - 100px);
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.width2 {
+    width: calc((40vw - 120px)/2);
+}
+
+.form-input2 label {
+    margin-bottom: 5px;
+}
+
+.form-input2 label span {
+    color: red;
+}
+
+.form-input2 input {
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.form-input2 input:focus {
+    outline: #E8504B;
+}
+
 .form-footer {
     display: flex;
     justify-content: center;
@@ -113,29 +188,178 @@
     margin-top: -20px
 }
 
-@media (max-width: 1500px) {
-    .form-input-name {
-        flex-direction: column;
-        gap: 0px;
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .form-login {
+        width:70%;
+        padding: 50px;
+    }
+
+    .form-register {
+        width: 45vw;
+        padding: 40px;
+    }
+
+    .form-title2 {
+        font-size:20px;
+        margin-bottom: 15px;
+    }
+    
+    .form-input-name2 {
+        width: calc(45vw - 80px);
+        gap: 15px;
+    }
+    
+    .form-input {
+        margin-top: 15px;
+    }
+    
+    .form-input2 {
+        width: calc(45vw - 80px);
+        margin-top: 15px;
+    }
+    
+    .width2 {
+        width: calc((45vw - 95px)/2);
+    }
+    
+    .form-input2 input {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .form-footer {
+        margin-top: 25px;
+    }
+    
+    .form-footer button {
+        padding: 8px 40px;
     }
 }
 
-@media (max-width: 767.98px) {
-    .form-input-name {
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .form-login {
+        width:85%;
+        padding: 40px 30px;
+    }
+
+    .form-register {
+        width: 45vw;
+        padding: 40px;
+    }
+
+    .form-title h4 {
+        font-size:24px;
+    }
+
+    .form-title2 {
+        font-size:20px;
+        margin-bottom: 15px;
+    }
+    
+    .form-input-name2 {
+        width: calc(45vw - 80px);
         flex-direction: column;
-        gap: 0px;
+        gap: 0;
+    }
+    
+    .form-input {
+        margin-top: 15px;
+    }
+    
+    .form-input2 {
+        width: calc(45vw - 80px);
+        margin-top: 15px;
+    }
+    
+    .width2 {
+        width: calc(45vw - 80px);
+    }
+    
+    .form-input2 input {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .form-footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .form-footer button {
+        padding: 8px 40px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .figure {
+        display: none;
+    }
+
+    .figure2 {
+        display: none;
     }
 
     .container-login {
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
     }
 
     .form-login {
-        width: 90%;
-        padding: 50px 20px;
+        width:85%;
+        padding: 40px 30px;
+        font-size: 14px;
     }
 
-    .figure {
-        display: none;
+    .form-register {
+        width: 85%;
+        padding: 20px 30px;
+        font-size: 12px;
+    }
+
+    .form-title h4 {
+        font-size:18px;
+    }
+
+    .form-title2 {
+        font-size:20px;
+        margin-bottom: 10px;
+    }
+    
+    .form-input-name2 {
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-input {
+        margin-top: 15px;
+    }
+    
+    .form-input2 {
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+    .width2 {
+        width: 100%;
+    }
+    
+    .form-input2 input {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .form-footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 13px;
+    }
+    
+    .form-footer button {
+        padding: 8px 40px;
     }
 }

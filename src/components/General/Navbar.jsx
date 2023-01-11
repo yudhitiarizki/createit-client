@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Navbar.css';
-import logo from '../../asset/Navbar/logo.png';
+import logo from '../../asset/Navbar/logo.svg';
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import { Link, useNavigate } from 'react-router-dom';
