@@ -6,7 +6,7 @@
 
 .Banner1 {
     height: 638px;
-    background: url('../../asset/HomePage/Banner.png') bottom no-repeat;
+    background: url('../../asset/HomePage/top-Banner.svg') bottom no-repeat;
     background-size: cover;
 }
 
@@ -16,7 +16,7 @@
     right: 0%;
     top: 36.3%;
     bottom: 0%;
-    background: url('../../asset/HomePage/Ellipse3.png') no-repeat;
+    background: url('../../asset/HomePage/Ellipse3.svg') left no-repeat;
     background-size: cover;
 }
 
@@ -24,6 +24,8 @@
     position: absolute;
     left: 0%;
     top: -22%;
+    height: 520px;
+    object-fit: contain;
 }
 
 .text1-container {
@@ -68,6 +70,7 @@
 .textcategory-container {
     margin-top: 70px;
     margin-bottom: 88px;
+    padding: 0px 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,7 +95,7 @@
     width: 100%;
     height: 395px;
     border-radius: 16px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../../asset/HomePage/Rectangle16.png');
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../../asset/HomePage/Rectangle16.svg');
     background-size: cover;
     color: white;
     padding: 47px 71px;
@@ -150,7 +153,7 @@
 }
 
 .text5-1-cntr {
-    width: 490px;
+    width: 483px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -188,36 +191,430 @@
     color: white;
 }
 
-@media (max-width: 991.98px) {
+.search-container1 {
+    width: 650px;
+    background-color: white;
+    border-radius: 16px;
+    padding: 10px 10px 10px 30px;
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.15));
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-input1 {
+    width: 68%;
+    font-weight: 400;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+.search-button1 {
+    padding: 16px 48px;
+    border-radius: 8px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    transition: all 0.5s ease;
+}
+
+.search-button1:hover {
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+.srchresult-cntr {
+    margin: 100px 9vw 80px 9vw;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
     .Banner1 {
-        height: 38vh;
+        height: 550px;
+    }
+    
+    .ellipse1 {
+        height: 355px;
+        top: 36.5%;
+    }
+    
+    .pose1 {
+        top: -18%;
+        height: 425px;
+    }
+    
+    .text1-container {
+        left: 9%;
+        top: 28%;
+    }
+    
+    .text1-1 {
+        font-size: 40px;
+    }
+    
+    .text1-2 {
+        font-size: 26px;
+    }
+    
+    .text2-1 {
+        font-size: 38px;
+    }
+    
+    .text2-2 {
+        font-size: 24px;
+    }
+    
+    .searchbox-cntr {
+        left: 9%;
+        top: 60%;
+    }
+    
+    .homepage-center {
+        margin-top: 60px;
+        padding: 70px 100px;
+    }
+    
+    .applyasseller-homepage {
+        height: 370px;
+        padding: 40px 50px;
+    }
+    
+    .gettingstartedasseller {
+        font-size: 16px;
+    }
+    
+    .text-applyseller {
+        gap: 16px;
+    }
+    
+    .text-applyseller2 {
+        font-size: 34px;
+    }
+    
+    .text4container {
+        margin: 80px 9% 0px 9%;
     }
 
-    .pose1 {
-        top: -15%;
-        width: 95%;
+    .text4container img {
+        width: 60vw;
+        object-fit: contain;
+    }
+    
+    .text5-container {
+        top: 8%;
+    }
+    
+    .text5-1-cntr {
+        width: 40vw;
+    }
+    
+    .text5-1 {
+        font-size: 40px;
+    }
+    
+    .text5-2 {
+        font-size: 20px;
+    }
+    
+    .getservice-btn {
+        width: 200px;
+        margin-top: 45px;
+        padding: 15px 45px;
+        font-size: 18px;
+    }
+    
+    .search-container1 {
+        width: 50vw;
+        padding: 10px 10px 10px 30px;
+    }
+    
+    .search-input1 {
+        width: 60%;
+        font-size: 16px;
+    }
+    
+    .search-button1 {
+        padding: 16px 40px;
+        font-size: 18px;
+    }
+    
+    .srchresult-cntr {
+        margin: 100px 9vw 80px 9vw;
     }
 }
 
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .Banner1 {
+        height: 400px;
+    }
+    
+    .ellipse1 {
+        height: 300px;
+        top: 36.5%;
+    }
+    
+    .pose1 {
+        top: -10%;
+        height: 300px;
+    }
+    
+    .text1-container {
+        gap: 20px;
+        left: 8%;
+        top: 29%;
+    }
+    
+    .text1-1 {
+        font-size: 30px;
+    }
+    
+    .text1-2 {
+        font-size: 20px;
+    }
+
+    .textcontainer-2 {
+        gap: 20px;
+    }
+    
+    .text2-1 {
+        font-size: 30px;
+    }
+    
+    .text2-2 {
+        font-size: 20px;
+    }
+
+    .textcategory-container {
+        margin-top: 60px;
+        margin-bottom: 50px;
+    }
+    
+    .searchbox-cntr {
+        left: 8%;
+        top: 60%;
+    }
+    
+    .homepage-center {
+        margin-top: 50px;
+        padding: 50px 8%;
+    }
+    
+    .applyasseller-homepage {
+        height: 280px;
+        padding: 30px 40px;
+    }
+    
+    .gettingstartedasseller {
+        font-size: 14px;
+    }
+    
+    .text-applyseller {
+        gap: 14px;
+    }
+    
+    .text-applyseller2 {
+        font-size: 20px;
+    }
+
+    .applyseller-btn {
+        width: 150px;
+        padding: 15px 30px;
+        font-size: 16px;
+    }
+    
+    .text4container {
+        margin: 80px 9% 0px 9%;
+    }
+
+    .text4container img {
+        width: 60vw;
+        object-fit: contain;
+    }
+    
+    .text5-container {
+        top: 8%;
+    }
+    
+    .text5-1-cntr {
+        width: 40vw;
+        gap: 30px;
+    }
+    
+    .text5-1 {
+        font-size: 30px;
+    }
+    
+    .text5-2 {
+        font-size: 16px;
+    }
+    
+    .getservice-btn {
+        width: 150px;
+        margin-top: 30px;
+        padding: 15px 20px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .searchbox-cntr {
+        top: 62%;
+    }
+    
+    .search-container1 {
+        width: 50vw;
+        padding: 8px 8px 8px 20px;
+    }
+    
+    .search-input1 {
+        width: 60%;
+        font-size: 14px;
+    }
+    
+    .search-button1 {
+        padding: 10px 40px;
+        font-size: 15px;
+    }
+    
+    .srchresult-cntr {
+        margin: 100px 8vw 80px 8vw;
+    }
+}
+
+/* Small devices */
 @media (max-width: 767.98px) {
     .Banner1 {
-        height: 350px;
+        height: 300px;
     }
 
     .ellipse1,
     .pose1 {
         display: none;
     }
-}
-
-@media (max-width: 575.98px) {
-    .Banner1 {
-        height: 30vh;
-        background-size: cover;
+    
+    .text1-container {
+        gap: 15px;
+        left: 8%;
+        top: 28%;
+    }
+    
+    .text1-1 {
+        font-size: 22px;
+    }
+    
+    .text1-2 {
+        font-size: 15px;
     }
 
-    .ellipse1,
-    .pose1 {
-        display: none;
+    .textcontainer-2 {
+        gap: 15px;
+    }
+    
+    .text2-1 {
+        font-size: 20px;
+    }
+    
+    .text2-2 {
+        font-size: 16px;
+    }
+
+    .textcategory-container {
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+    
+    .searchbox-cntr {
+        left: 8%;
+        top: 50%;
+    }
+    
+    .homepage-center {
+        margin-top: 50px;
+        padding: 40px 8%;
+    }
+    
+    .applyasseller-homepage {
+        height: 200px;
+        padding: 15px 20px;
+    }
+    
+    .gettingstartedasseller {
+        font-size: 12px;
+    }
+    
+    .text-applyseller {
+        gap: 12px;
+    }
+    
+    .text-applyseller2 {
+        font-size: 15px;
+    }
+
+    .applyseller-btn {
+        width: 120px;
+        padding: 8px 20px;
+        font-size: 13px;
+        text-align: center;
+    }
+    
+    .text4container {
+        margin: 40px 5% 40px 5%;
+    }
+
+    .text4container img {
+        width: 50vw;
+        object-fit: contain;
+    }
+    
+    .text5-container {
+        top: -10%;
+    }
+    
+    .text5-1-cntr {
+        width: 50vw;
+        gap: 12px;
+    }
+    
+    .text5-1 {
+        font-size: 18px;
+    }
+    
+    .text5-2 {
+        font-size: 12px;
+    }
+    
+    .getservice-btn {
+        width: 120px;
+        margin-top: 20px;
+        padding: 10px 15px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .searchbox-cntr {
+        top: 60%;
+    }
+    
+    .search-container1 {
+        width: 82vw;
+        padding: 7px 7px 7px 15px;
+        border-radius: 10px;
+    }
+    
+    .search-input1 {
+        width: 60%;
+        font-size: 12px;
+    }
+    
+    .search-button1 {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+    
+    .srchresult-cntr {
+        margin: 50px 3vw 60px 3vw;
     }
 }

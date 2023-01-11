@@ -129,7 +129,7 @@ const AllOrdersTable = ({ Order }) => {
                 navigate('/verifypayment');
             })
         } else {
-            // dispatch disini untuk get order detail pakai order.orderId
+            navigate(`/user/order/${order.orderId}`)
         }
     }
 

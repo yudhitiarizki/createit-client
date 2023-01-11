@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 .toprated-container {
-    width: 100%;
+    width: 82vw;
     margin-top: 70px;
     margin-bottom: 88px;
     display: flex;
@@ -11,7 +11,7 @@
 }
 
 .topratedservc-cntr {
-    width: 523px;
+    width: calc((82vw - 24px)/2);
     height: 160px;
     border-radius: 16px;
     filter: drop-shadow(4px 4px 40px rgba(0, 0, 0, 0.1));
@@ -50,15 +50,8 @@
     margin-right: 5px;
 }
 
-.topratedservc-cntr:hover .toprated-ratebuy {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
 .toprated-info {
-    width: 380px;
+    width: calc((82vw - 24px)/2 - 143px);
     height: 160px;
     border-radius: 0px 16px 16px 0px;
     background-color: white;
@@ -91,10 +84,6 @@
     height: 20px;
     border-radius: 50%;
     object-fit: cover;
-}
-
-.link2:hover {
-    color: #E8504B;
 }
 
 .link3 {
@@ -130,4 +119,177 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
+}
+
+@media (hover: hover) {
+    .topratedservc-cntr:hover .toprated-ratebuy {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .link2:hover {
+        color: #E8504B;
+    }
+}
+
+@media (hover: none) {
+    .topratedservc-cntr .toprated-ratebuy {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .toprated-container {
+        width: 82vw;
+    }
+    
+    .topratedservc-cntr {
+        width: calc((82vw - 20px)/2);
+    }
+    
+    .toprated-ratebuy {
+        font-size: 14px;
+    }
+    
+    .toprated-info {
+        width: calc((82vw - 20px)/2 - 143px);
+    }
+    
+    .topratedinfotop-profile {
+        font-size: 12px;
+    }
+    
+    .link3 {
+        font-size: 18px;
+    }
+    
+    .toprated-infobot div {
+        font-size: 13px;
+    }
+    
+    .toprated-infobot div i {
+        font-size: 18px;
+    }
+    
+    .toprated-rightarrow {
+        font-size: 18px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .toprated-container {
+        width: 82vw;
+        margin-top: 50px;
+        margin-bottom: 88px;
+    }
+    
+    .topratedservc-cntr {
+        width: calc(60vw - 20px);
+        height: 150px;
+    }
+    
+    .toprated-imgcntr {
+        width: 143px;
+        height: 150px;
+    }
+    
+    .toprated-img {
+        width: 143px;
+        height: 150px;
+    }
+    
+    .toprated-ratebuy {
+        width: 143px;
+        height: 150px;
+        padding: 15px;
+        font-size: 14px;
+    }
+    
+    .toprated-info {
+        width: calc((60vw - 20px) - 143px);
+        height: 150px;
+    }
+    
+    .topratedinfotop-profile {
+        font-size: 12px;
+    }
+    
+    .link3 {
+        font-size: 16px;
+    }
+    
+    .toprated-infobot div {
+        font-size: 13px;
+    }
+    
+    .toprated-infobot div i {
+        font-size: 18px;
+    }
+    
+    .toprated-rightarrow {
+        font-size: 18px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .toprated-container {
+        width: 84vw;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+    
+    .topratedservc-cntr {
+        width: 84vw;
+        height: 140px;
+    }
+    
+    .toprated-imgcntr {
+        width: 120px;
+        height: 140px;
+    }
+    
+    .toprated-img {
+        width: 120px;
+        height: 140px;
+    }
+    
+    .toprated-ratebuy {
+        width: 120px;
+        height: 140px;
+        padding: 15px;
+        font-size: 12px;
+    }
+    
+    .toprated-info {
+        width: calc(84vw - 120px);
+        height: 140px;
+    }
+    
+    .topratedinfotop-profile {
+        font-size: 12px;
+    }
+    
+    .link3 {
+        font-size: 13px;
+    }
+    
+    .toprated-infobot div {
+        font-size: 12px;
+    }
+    
+    .toprated-infobot div i {
+        font-size: 16px;
+    }
+    
+    .toprated-rightarrow {
+        font-size: 18px;
+    }
 }

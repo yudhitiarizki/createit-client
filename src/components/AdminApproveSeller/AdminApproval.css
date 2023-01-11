@@ -1,17 +1,136 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-.nav-admin-approval {
-    margin: 40px 9% 50px 9%;
+.newordr-item-left22 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 15px;
+    width: 65%;
+}
+
+.newordr-item-left22 img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.apprvdeny-btnrow {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-end;
     gap: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    color: #333333;
 }
 
-.nav-admin-approval i {
-    font-size: 24px;
+.denyseller-btn {
+    background: #F5222D;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.denyseller-btn:hover {
+    background: #ff3b44;
+}
+
+.newordrlist-cntr33 {
+    width: calc(82vw/2.2);
+    background: #FFFFFF;
+    border-radius: 0px 0px 8px 8px;
+    padding: 25px;
+    height: calc(700px - 50px);
+    border: 1px solid #E8504B;
+}
+
+.newordrlist-cntr33 img {
+    width: calc(82vw/2.2 * 0.5);
+    height: calc(82vw/2.2 * 0.5 * 1.2);
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 16px;
+}
+
+.photoprofile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newseller-rowleft {
+    font-weight: 500;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) { 
+    .newordrlist-cntr33 {
+        width: calc(82vw/2.1);
+        height: calc(640px - 47px);
+    }
+    
+    .newordrlist-cntr33 img {
+        width: calc(82vw/2.1 * 0.5);
+        height: calc(82vw/2.1 * 0.5 * 1.2);
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .newordr-item-left22 {
+        width: 70%;
+    }
+
+    .apprvdeny-btnrow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .denyseller-btn {
+        font-size: 12px;
+    }
+    
+    .newordrlist-cntr33 {
+        width: calc(90vw/2.1);
+        height: calc(640px - 46px);
+    }
+    
+    .newordrlist-cntr33 img {
+        width: calc(90vw/2.1 * 0.5);
+        height: calc(90vw/2.1 * 0.5 * 1.2);
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .newordr-item-left22 {
+        width: 75%;
+    }
+
+    .apprvdeny-btnrow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .denyseller-btn {
+        font-size: 11px;
+    }
+    
+    .newordrlist-cntr33 {
+        width: calc(92vw);
+        height: calc(550px - 35px);
+    }
+    
+    .newordrlist-cntr33 img {
+        width: calc(92vw * 0.5);
+        height: calc(92vw * 0.5 * 1.2);
+    }
 }

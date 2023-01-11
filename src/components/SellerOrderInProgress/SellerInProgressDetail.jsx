@@ -15,31 +15,19 @@ const SellerInProgressDetail = () => {
     const [urlinput, setUrlInput] = useState('');
     const [fileSizeMsg, setFileSizeMsg] = useState('');
 
-    useEffect(() => {
-        const box = document.getElementById('neworderdetail').classList;
-
-        if (orderDetail.orderId) {
-            box.add('ordrdetail-trnstn');
-        } else {
-            box.remove('ordrdetail-trnstn');
-        }
-    }, [orderDetail.orderId]);
-
-    Date.prototype.addDays = function (days) {
-        const date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days)
-        return date
+    const addDays = (date, days) => {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result
     }
 
     useEffect(() => {
         if (orderDetail.status === 'Working') {
-            const date = new Date(orderDetail.createdAt);
-            const dueDate = date.addDays(orderDetail.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0])
+            const dueDate = addDays(orderDetail.createdAt, orderDetail.delivery);
+            setDeliveryTime(dueDate.toString().split('(')[0]);
         } else if (orderDetail.status === 'Revising') {
-            const date = new Date(orderDetail.updatedAt);
-            const dueDate = date.addDays(orderDetail.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0])
+            const dueDate = addDays(orderDetail.updatedAt, orderDetail.delivery);
+            setDeliveryTime(dueDate.toString().split('(')[0]);
         }
     }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 
@@ -128,7 +116,7 @@ const SellerInProgressDetail = () => {
     }
 
     return (
-        <div className="newordersellerlist1" id="neworderdetail">
+        <div className={orderDetail.orderId ? "newordersellerlist1 ordrdetail-trnstn": "newordersellerlist1"}>
             <div className="newordrlist-hdr">
                 <div className="back-arrow" onClick={hideDetail}><i className='bx bx-chevron-left'></i></div>
                 <div>Request Details</div>

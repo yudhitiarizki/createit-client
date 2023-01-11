@@ -163,7 +163,7 @@ const Navbar = () => {
                         <></>
                     )}
 
-                    <li type="button" className='navbarright-item'>About</li>
+                    <li type="button" className='navbarright-item'><Link to='/about' className="nav-link">About</Link></li>
 
                     {(isLoggedIn) ? (
                         <li className='dropdown me-1'>
