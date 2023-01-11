@@ -6,6 +6,8 @@ import {
     LOGOUT,
     APPLY_SELLER,
     SET_MESSAGE,
+    SWITCH_TO_SELLER,
+    SWITCH_TO_BUYER
 } from './types';
 
 import { toast } from 'react-toastify';
@@ -178,4 +180,16 @@ export const ApplySeller = (photoProfile, description, noRekening, bankName, car
             return Promise.reject();
         },
     )
+}
+
+export const switchtoSeller = () => {
+    return {
+        type: SWITCH_TO_SELLER
+    }
+}
+
+export const switchtoBuyer = () => {
+    return {
+        type: SWITCH_TO_BUYER
+    }
 }

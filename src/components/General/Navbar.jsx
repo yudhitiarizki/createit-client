@@ -4,69 +4,33 @@ import './Navbar.css';
 import logo from '../../asset/Navbar/logo.png';
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { clearMessage } from "../../redux/actions/message";
-import { logout } from '../../redux/actions/auth';
+import { logout, switchtoBuyer, switchtoSeller } from '../../redux/actions/auth';
 import { getCategory } from '../../redux/actions/category';
+import { getNotification } from '../../redux/actions/notification';
 
 const Navbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const location = useLocation();
 
     const category = useSelector(state => state.category);
+    const notification = useSelector(state => state.notification);
 
     useEffect(() => {
-        dispatch(getCategory())
-        if (['/login', '/register'].includes(location.pathname)) {
-            dispatch(clearMessage());
-        }
-    }, [dispatch, location]);
+        dispatch(getCategory());
+        dispatch(getNotification())
+    }, [dispatch]);
 
-    const { isLoggedIn, user } = useSelector(state => state.auth);
-    const isSeller = true;
+    const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
 
-    // nanti ambil dari redux atau pakai axios langsung
-    const notifMessages = [
-        {
-            "notifId": 5,
-            "type": 3,
-            "message": "There is new order. Check the payment.",
-            "createdAt": "27-Dec-2022"
-        },
-        {
-            "notifId": 4,
-            "type": 3,
-            "message": "There is new order. Check the payment.",
-            "createdAt": "27-Dec-2022"
-        },
-        {
-            "notifId": 3,
-            "type": 3,
-            "message": "Buyer finished it's order. Please transfer the money to seller.",
-            "createdAt": "27-Dec-2022"
-        },
-        {
-            "notifId": 2,
-            "type": 2,
-            "message": "New Order",
-            "createdAt": "21-Dec-2022"
-        },
-        {
-            "notifId": 1,
-            "type": 1,
-            "message": "Your seller account is verified.",
-            "createdAt": "12-Jan-2022"
-        }
-    ];
-    const adminNotif = notifMessages.filter((notif) => (notif.type === 3));
-    const sellerNotif = notifMessages.filter((notif) => (notif.type === 2));
-    const userNotif = notifMessages.filter((notif) => (notif.type === 1));
+    const adminNotif = notification.filter((notif) => (notif.type === 3));
+    const sellerNotif = notification.filter((notif) => (notif.type === 2));
+    const userNotif = notification.filter((notif) => (notif.type === 1));
 
     const handleRead = (notifId) => {
-        // axios patch '/notif' disini atau di redux
+        // axios patch '/notif' payload notifId dan isRead: true
     }
 
     const handleLogout = () => {
@@ -76,7 +40,17 @@ const Navbar = () => {
 
     const showNavMenu = () => {
         document.querySelector('.nav-toggle').classList.toggle("show-active");
-    }
+    };
+
+    const handleSwitch2User = () => {
+        dispatch(switchtoBuyer());
+        navigate('/');
+    };
+
+    const handleSwitch2Seller = () => {
+        dispatch(switchtoSeller());
+        navigate('/seller/profile');
+    };
 
     return (
         <div className='navbar-cntr container-fluid'>
@@ -235,7 +209,7 @@ const Navbar = () => {
                                                     <i className='bx bx-chevron-right'></i>
                                                 </li>
                                                 <li>
-                                                    <Link to="/" className="nav-link">Switch to User</Link>
+                                                    <div onClick={handleSwitch2User} className="nav-link">Switch to User</div>
                                                     <i className='bx bx-chevron-right'></i>
                                                 </li>
                                                 <div type="button" className='logout-btn' onClick={handleLogout}>Logout</div>
@@ -252,7 +226,7 @@ const Navbar = () => {
                                                     <i className='bx bx-chevron-right'></i>
                                                 </li>
                                                 <li>
-                                                    <Link to="/seller/profile" className="nav-link">Switch to Seller</Link>
+                                                    <div onClick={handleSwitch2Seller} className="nav-link">Switch to Seller</div>
                                                     <i className='bx bx-chevron-right'></i>
                                                 </li>
                                                 <div type="button" className='logout-btn' onClick={handleLogout}>Logout</div>

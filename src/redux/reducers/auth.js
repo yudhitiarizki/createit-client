@@ -4,7 +4,9 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    APPLY_SELLER
+    APPLY_SELLER,
+    SWITCH_TO_SELLER,
+    SWITCH_TO_BUYER
 } from '../actions/types';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -13,17 +15,21 @@ const initialState = user
     ? user.role === 2 ?  { 
         isLoggedIn: true,
         isVerified: user.seller.isVerified,
+        isSeller: false,
         role: user.role,
         user: user,
+
      } : {
         isLoggedIn: true,
         isVerified: 0,
+        isSeller: false,
         role: user.role,
         user: user,
      }
     : {
         isLoggedIn: false,
         isVerified: 0,
+        isSeller: false,
         role: 0,
         user: null,
     };
@@ -44,6 +50,7 @@ const authReducer = (state = initialState, action) => {
                     ...state,
                     isLoggedIn: true,
                     isVerified: payload.user.seller.isVerified,
+                    isSeller: false,
                     role: payload.user.role,
                     user: payload.user,
                 };
@@ -52,6 +59,7 @@ const authReducer = (state = initialState, action) => {
                     ...state,
                     isLoggedIn: true,
                     isVerified: 0,
+                    isSeller: false,
                     role: payload.user.role,
                     user: payload.user,
                 };
@@ -67,6 +75,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: false,
+                isSeller: false,
                 user: null,
             };
         case APPLY_SELLER:
@@ -74,8 +83,21 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: true,
                 isVerified: payload.seller.isVerified,
+                isSeller: false,
                 role: payload.role,
                 user: payload,
+            };
+        case SWITCH_TO_SELLER:
+            return {
+                ...state,
+                isLoggedIn: true,
+                isSeller: true,
+            }
+        case SWITCH_TO_BUYER:
+            return {
+                ...state,
+                isLoggedIn: true,
+                isSeller: false,
             }
         default:
             return state;
