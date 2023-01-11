@@ -3,15 +3,16 @@ import 'bootstrap/dist/js/bootstrap.js';
 import Navbar from '../General/Navbar';
 import './ApplySeller.css';
 import Group12 from '../../asset/Seller/Group12.svg';
-import MoneyReceive from '../../asset/Seller/money-recive.png';
-import BagTimer from '../../asset/Seller/bag-timer.png';
-import Frame from '../../asset/Seller/frame.png';
-import Building3 from '../../asset/Seller/building-3.png';
-import FolderFavorite from '../../asset/Seller/folder-favorite.png';
-import book from '../../asset/Seller/book.png';
-import codecircle from '../../asset/Seller/code-circle.png';
-import calendar from '../../asset/Seller/calendar.png';
+import MoneyReceive from '../../asset/Seller/money-recive.svg';
+import BagTimer from '../../asset/Seller/bag-timer.svg';
+import Frame from '../../asset/Seller/frame.svg';
+import Building3 from '../../asset/Seller/building-3.svg';
+import FolderFavorite from '../../asset/Seller/folder-favorite.svg';
+import book from '../../asset/Seller/book.svg';
+import codecircle from '../../asset/Seller/code-circle.svg';
+import calendar from '../../asset/Seller/calendar.svg';
 import { Link } from 'react-router-dom';
+
 import RegSellerForm from './RegSellerForm';
 import { Navigate } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ const ApplySeller = () => {
     const user = {
         "username": "Ahmad Na Jaemin",
         "email": "User1@gmail.com",
-        "role": 2,
+        "role": 1,
         "phoneNumber": "081972197028",
         "token": "xsh38hjddnwkdj82"
     };

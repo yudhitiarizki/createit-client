@@ -31,7 +31,7 @@
 .applyseller-cntrmid {
     background: rgba(229, 229, 229, 0.2);
     margin-top: 300px;
-    padding: 70px 9% 100px 9%;
+    padding: 70px 9vw 100px 9vw;
 }
 
 .nav-seller1 {
@@ -106,8 +106,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 1120px;
-    gap: 27px;
+    width: 82vw;
+    gap: 80px;
 }
 
 .midbenefit-row2 {
@@ -115,7 +115,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 1120px;
+    width: 82vw;
     gap: 168px;
 }
 
@@ -125,8 +125,8 @@
     align-items: center;
     padding: 32px;
     gap: 40px;
-    width: 260px;
-    height: 240px;
+    width: calc((82vw - 160px)/3);
+    height: calc((82vw - 160px)/3 * 0.93);
     background: #FFFFFF;
     box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -156,7 +156,7 @@
     padding-bottom: 220px;
     width: 100%;
     height: 1500px;
-    background: url('../../asset/Seller/jamur.png') no-repeat;
+    background: url('../../asset/Seller/jamur.png') center no-repeat;
     background-size: cover;
 }
 
@@ -173,7 +173,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 834px;
+    width: 70vw;
     padding: 80px 100px;
     margin: 0px auto;
     gap: 28px;
@@ -245,19 +245,24 @@
 }
 
 .custominputfile1-thumb {
-    width: calc(100% - 172px);
+    width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 15px 25px;
     background: #F4F4F4;
     border-radius: 10px 0px 0px 10px;
 }
 
 .custominputfil1-btn {
+    width: 30%;
     background: #E5E5E5;
     border-radius: 0px 10px 10px 0px;
     padding: 15px 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     font-size: 18px;
 }
@@ -288,4 +293,454 @@
 
 .submit-btn1:hover {
     background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .Banner1-1 {
+        height: 650px;
+    }
+
+    .ellipse1-1 {
+        left: 43%;
+        right: 0%;
+        top: 33%;
+        bottom: 0%;
+    }
+
+    .group12 {
+        right: 0;
+        top: -10%;
+        height: 620px;
+    }
+
+    .applyseller-cntrmid {
+        margin-top: 150px;
+        padding: 70px 9vw 100px 9vw;
+    }
+
+    .nav-seller1 {
+        left: 9%;
+        top: 20%;
+        font-size: 18px;
+    }
+
+    .nav-seller1 i {
+        font-size: 24px;
+    }
+
+    .text6 {
+        left: 9%;
+        top: 35%;
+        gap: 50px;
+        width: 40vw;
+    }
+
+    .text6-1 {
+        font-size: 25px;
+    }
+
+    .text6-2 {
+        font-size: 40px;
+    }
+
+    .cntrmid-moto {
+        margin-bottom: 80px;
+    }
+
+    .text6-3 {
+        font-size: 40px;
+    }
+
+    .text6-4 {
+        font-size: 25px;
+    }
+
+    .cntrmid-benefit {
+        gap: 60px;
+    }
+
+    .midbenefit-row1 {
+        width: 82vw;
+        gap: 70px;
+    }
+
+    .midbenefit-row2 {
+        width: 82vw;
+        gap: 140px;
+    }
+
+    .midbenefit-box {
+        padding: 25px;
+        gap: 25px;
+        width: calc((82vw - 140px)/3);
+        height: calc((82vw - 140px)/3 * 0.93);
+    }
+
+    .midbenefit-box img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .midbenefit-box div {
+        font-size: 18px;
+    }
+
+    .applyseller-formcntr {
+        padding-top: 80px;
+        padding-bottom: 200px;
+        height: 1350px;
+    }
+
+    .text6-5 {
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+
+    .applyseller-formcntr2 {
+        width: 70vw;
+        padding: 50px 70px;
+        gap: 25px;
+        box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .text6-6 {
+        margin-bottom: 30px;
+        font-size: 25px;
+    }
+
+    .sellerreg-inputcntr label {
+        font-size: 18px;
+    }
+
+    .inputfield-1 {
+        padding: 15px 25px;
+        font-size: 14px;
+    }
+
+    .inputphotoseller input {
+        padding: 15px 25px;
+    }
+
+    .custominputfile1-thumb {
+        width: 70%;
+        padding: 15px 25px;
+    }
+
+    .custominputfil1-btn {
+        width: 30%;
+        padding: 15px 25px;
+        font-size: 16px;
+    }
+
+    .custominputfil1-btn img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .submit-btn1 {
+        padding: 16px 48px;
+        width: 170px;
+        font-size: 18px;
+        margin-top: 80px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .Banner1-1 {
+        height: 500px;
+    }
+
+    .ellipse1-1 {
+        left: 43%;
+        right: 0%;
+        top: 33%;
+        bottom: 0%;
+    }
+
+    .group12 {
+        right: 0;
+        top: -10%;
+        height: 480px;
+    }
+
+    .applyseller-cntrmid {
+        margin-top: 150px;
+        padding: 70px 8vw 100px 8vw;
+    }
+
+    .nav-seller1 {
+        left: 8vw;
+        top: 20%;
+        font-size: 16px;
+    }
+
+    .nav-seller1 i {
+        font-size: 20px;
+    }
+
+    .text6 {
+        left: 8vw;
+        top: 35%;
+        gap: 40px;
+        width: 40vw;
+    }
+
+    .text6-1 {
+        font-size: 20px;
+    }
+
+    .text6-2 {
+        font-size: 30px;
+    }
+
+    .cntrmid-moto {
+        margin-bottom: 50px;
+    }
+
+    .text6-3 {
+        font-size: 30px;
+    }
+
+    .text6-4 {
+        font-size: 20px;
+    }
+
+    .cntrmid-benefit {
+        gap: 50px;
+    }
+
+    .midbenefit-row1 {
+        width: 84vw;
+        gap: 50px;
+    }
+
+    .midbenefit-row2 {
+        width: 84vw;
+        gap: 100px;
+    }
+
+    .midbenefit-box {
+        padding: 25px 20px;
+        gap: 20px;
+        width: calc((84vw - 100px)/3);
+        height: calc((84vw - 100px)/3 * 0.93);
+        justify-content: center;
+    }
+
+    .midbenefit-box img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .midbenefit-box div {
+        font-size: 16px;
+    }
+
+    .applyseller-formcntr {
+        padding-top: 50px;
+        padding-bottom: 100px;
+        height: 1100px;
+    }
+
+    .text6-5 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .applyseller-formcntr2 {
+        width: 75vw;
+        padding: 40px 50px;
+        gap: 20px;
+        box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .text6-6 {
+        margin-bottom: 30px;
+        font-size: 20px;
+    }
+
+    .sellerreg-inputcntr label {
+        font-size: 16px;
+    }
+
+    .inputfield-1 {
+        padding: 15px 20px;
+        font-size: 13px;
+    }
+
+    .inputphotoseller input {
+        padding: 15px 20px;
+    }
+
+    .custominputfile1-thumb {
+        width: 65%;
+        padding: 15px 20px;
+    }
+
+    .custominputfil1-btn {
+        width: 35%;
+        padding: 15px 20px;
+        font-size: 13px;
+    }
+
+    .custominputfil1-btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .submit-btn1 {
+        padding: 15px 40px;
+        width: 170px;
+        font-size: 16px;
+        margin-top: 80px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .Banner1-1 {
+        height: 300px;
+    }
+
+    .ellipse1-1 {
+        display: none;
+    }
+
+    .group12 {
+        display: none;
+    }
+
+    .nav-seller1 {
+        left: 8vw;
+        top: 25%;
+        font-size: 14px;
+    }
+
+    .nav-seller1 i {
+        font-size: 20px;
+    }
+
+    .text6 {
+        left: 8vw;
+        top: 40%;
+        gap: 30px;
+        width: 80vw;
+    }
+
+    .text6-1 {
+        font-size: 15px;
+    }
+
+    .text6-2 {
+        font-size: 20px;
+    }
+
+    .applyseller-cntrmid {
+        margin-top: 30px;
+        padding: 30px 5vw 50px 5vw;
+    }
+
+    .cntrmid-moto {
+        margin-bottom: 30px;
+    }
+
+    .text6-3 {
+        font-size: 20px;
+    }
+
+    .text6-4 {
+        font-size: 16px;
+    }
+
+    .cntrmid-benefit {
+        gap: 20px;
+    }
+
+    .midbenefit-row1 {
+        width: 90vw;
+        gap: 10px;
+    }
+
+    .midbenefit-row2 {
+        width: 90vw;
+        gap: 20px;
+    }
+
+    .midbenefit-box {
+        padding: 10px 5px;
+        gap: 10px;
+        width: calc((90vw - 20px)/3);
+        height: calc((90vw - 20px)/3 * 0.95);
+        justify-content: center;
+    }
+
+    .midbenefit-box img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .midbenefit-box div {
+        font-size: 12px;
+    }
+
+    .applyseller-formcntr {
+        padding-top: 30px;
+        padding-bottom: 100px;
+        height: 900px;
+    }
+
+    .text6-5 {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .applyseller-formcntr2 {
+        width: 85vw;
+        padding: 30px 20px;
+        gap: 20px;
+        box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .text6-6 {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .sellerreg-inputcntr label {
+        font-size: 14px;
+    }
+
+    .inputfield-1 {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+
+    .inputphotoseller input {
+        padding: 10px 20px;
+    }
+
+    .custominputfile1-thumb {
+        width: 60%;
+        padding: 10px 20px;
+    }
+
+    .custominputfil1-btn {
+        width: 40%;
+        padding: 10px 10px;
+        font-size: 12px;
+    }
+
+    .custominputfil1-btn img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .submit-btn1 {
+        padding: 15px 40px;
+        width: 150px;
+        font-size: 15px;
+        margin-top: 50px;
+    }
 }
