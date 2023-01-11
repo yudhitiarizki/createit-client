@@ -27,9 +27,8 @@ const Login = () => {
     }
 
     return (
-        <div className='section-container row'>
-            <div className="figure">
-            </div>
+        <div className='section-container'>
+            <div className="figure"></div>
             <div className="container-login">
                 <div className="form-login">
                     <div className="form-title">

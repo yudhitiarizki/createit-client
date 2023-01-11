@@ -30,55 +30,53 @@ const Register = () => {
             setPhoneNumber('');
             setPassword('');
             setrePassword('');
-        }).catch(()=> {
+        }).catch(() => {
             setLoading(false);
         })
     };
 
     return (
-        <div className='section-container row'>
-            <div className="figure"></div>
+        <div className='section-container'>
+            <div className="figure2"></div>
             <div className="container-login">
-                <div className="form-login register">
-                    <div className="form-title">
-                        <h4>Create Your Account!</h4>
-                    </div>
-                    <div className="form-input-name">
-                        <div className="form-input">
+                <div className="form-register">
+                    <div className="form-title2">Create Your Account!</div>
+                    <div className="form-input-name2">
+                        <div className="form-input2 width2">
                             <label htmlFor="First">First Name<span>*</span></label>
-                            <input type="Text" id='First' value={firstName} onChange={(event) => setFirstName(event.target.value)}/>
+                            <input type="Text" id='First' value={firstName} onChange={(event) => setFirstName(event.target.value)} />
                         </div>
-                        <div className="form-input">
+                        <div className="form-input2 width2">
                             <label htmlFor="Last">Last Name <span>*</span></label>
-                            <input type="Text" id='Last' value={lastName} onChange={(event) => setLastName(event.target.value)}/>
+                            <input type="Text" id='Last' value={lastName} onChange={(event) => setLastName(event.target.value)} />
                         </div>
                     </div>
-                    <div className="form-input">
-                        <label htmlFor="email">Email <span>*</span></label>
-                        <input type="email" id='email' value={email} onChange={(event) => setEmail(event.target.value)}/>
-                    </div>
-                    <div className="form-input">
+                    <div className="form-input2">
                         <label htmlFor="username">Username <span>*</span></label>
-                        <input type="Text" id='username' value={username} onChange={(event) => setUsername(event.target.value)}/>
+                        <input type="Text" id='username' value={username} onChange={(event) => setUsername(event.target.value)} />
                     </div>
-                    <div className="form-input">
+                    <div className="form-input2">
+                        <label htmlFor="email">Email <span>*</span></label>
+                        <input type="email" id='email' value={email} onChange={(event) => setEmail(event.target.value)} />
+                    </div>
+                    <div className="form-input2">
                         <label htmlFor="phonenumber">Phone Number <span>*</span></label>
-                        <input type="Text" id='phonenumber' value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)}/>
+                        <input type="Text" id='phonenumber' value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
                     </div>
-                    <div className="form-input">
+                    <div className="form-input2">
                         <label htmlFor="Password">Password <span>*</span></label>
-                        <input type="password" id='Password' value={password} onChange={(event) => setPassword(event.target.value)}/>
+                        <input type="password" id='Password' value={password} onChange={(event) => setPassword(event.target.value)} />
                     </div>
-                    <div className="form-input">
+                    <div className="form-input2">
                         <label htmlFor="rePassword">Confirm Password <span>*</span></label>
-                        <input type="password" id='rePassword' value={repassword} onChange={(event) => setrePassword(event.target.value)}/>
+                        <input type="password" id='rePassword' value={repassword} onChange={(event) => setrePassword(event.target.value)} />
                     </div>
                     <div className="form-footer">
                         <p>Already have an Account? <Link style={{ textDecoration: 'none' }} to={'/login'} className="link">Sign in</Link></p>
-                        { !Loading ? (
-                            <button onClick={() => {onHandleRegister()}}>Login</button>
+                        {!Loading ? (
+                            <button onClick={() => { onHandleRegister() }}>Sign Up</button>
                         ) : (
-                            <img  src={Gif} alt="" className='Loading' />
+                            <img src={Gif} alt="" className='Loading' />
                         )}
                     </div>
                     <ToastContainer />
