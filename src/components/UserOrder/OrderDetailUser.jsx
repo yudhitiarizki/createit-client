@@ -22,7 +22,6 @@ const OrderDetailUser = () => {
         revisionLeft: 2,
         price: 49999,
         delivery: 2,
-        orderNotes: '',
         orderFiles: 'work.zip',
         fileType: 1,
         createdAt: '02-01-2022',
@@ -130,17 +129,8 @@ const OrderDetailUser = () => {
                         <div className='ordersummary22-row2'>{deliveryTime}</div>
                     </div>
                     <div className='ordersummary22-row orange'>
-                        {(order.status === 'Working') ? (
-                            <>
-                                <div className='ordersummary22-row1'>Order Note</div>
-                                <div className='ordersummary22-row2'>{order.note}</div>
-                            </>
-                        ) : (
-                            <>
-                                <div className='ordersummary22-row1'>Revision Note</div>
-                                <div className='ordersummary22-row2'>{order.orderNotes}</div>
-                            </>
-                        )}
+                        <div className='ordersummary22-row1'>Order Note</div>
+                        <div className='ordersummary22-row2'>{order.note}</div>
                     </div>
                     {(order.noOfConcept) ? (
                         <div className='ordersummary22-row'>
@@ -190,7 +180,7 @@ const OrderDetailUser = () => {
                                 {(order.revisionLeft !== 0) ? (
                                     <AskRevision orderId={+id} />
                                 ) : (null)}
-                                <ApproveOrder orderId={+id}/>
+                                <ApproveOrder orderId={+id} />
                             </div>
                         </div>
                     ) : (null)}

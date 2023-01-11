@@ -28,6 +28,8 @@ const SellerInProgressDetail = () => {
         } else if (orderDetail.status === 'Revising') {
             const dueDate = addDays(orderDetail.updatedAt, orderDetail.delivery);
             setDeliveryTime(dueDate.toString().split('(')[0]);
+        } else {
+            setDeliveryTime(new Date(orderDetail.updatedAt).toString().split('(')[0]);
         }
     }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 
@@ -116,7 +118,7 @@ const SellerInProgressDetail = () => {
     }
 
     return (
-        <div className={orderDetail.orderId ? "newordersellerlist1 ordrdetail-trnstn": "newordersellerlist1"}>
+        <div className={orderDetail.orderId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
             <div className="newordrlist-hdr">
                 <div className="back-arrow" onClick={hideDetail}><i className='bx bx-chevron-left'></i></div>
                 <div>Request Details</div>
@@ -138,43 +140,35 @@ const SellerInProgressDetail = () => {
                     </div>
                     <div className='ordersummary-row'>
                         <div className='ordersummary-row1'>Created At</div>
-                        {(orderDetail.status === 'Working') ? (
-                            <div className='ordersummary-row2'>{new Date(orderDetail.createdAt).toString().split('(')[0]}</div>
-                        ) : (
-                            <div className='ordersummary-row2'>{new Date(orderDetail.updatedAt).toString().split('(')[0]}</div>
-                        )}
+                        <div className='ordersummary-row2'>{new Date(orderDetail.createdAt).toString().split('(')[0]}</div>
                     </div>
                     <div className='ordersummary-row orange'>
+                        <div className='ordersummary-row1'>Updated At</div>
+                        <div className='ordersummary-row2'>{new Date(orderDetail.updatedAt).toString().split('(')[0]}</div>
+                    </div>
+                    <div className='ordersummary-row'>
                         <div className='ordersummary-row1'>Delivery Time</div>
                         <div className='ordersummary-row2'>{deliveryTime}</div>
                     </div>
-                    <div className='ordersummary-row'>
-                        {(orderDetail.status === 'Working') ? (
-                            <>
-                                <div className='ordersummary-row1'>Order Note</div>
-                                <div className='ordersummary-row2'>{orderDetail.note}</div>
-                            </>
-                        ) : (
-                            <>
-                                <div className='ordersummary-row1'>Revision Note</div>
-                                <div className='ordersummary-row2'>{orderDetail.orderNotes}</div>
-                            </>
-                        )}
+
+                    <div className='ordersummary-row orange'>
+                        <div className='ordersummary-row1'>Order Note</div>
+                        <div className='ordersummary-row2'>{orderDetail.note}</div>
                     </div>
                     {(orderDetail.noOfConcept) ? (
-                        <div className='ordersummary-row orange'>
+                        <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Concepts</div>
                             <div className='ordersummary-row2'>{orderDetail.noOfConcept}</div>
                         </div>
                     ) : (null)}
                     {(orderDetail.noOfPages) ? (
-                        <div className='ordersummary-row orange'>
+                        <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Pages</div>
                             <div className='ordersummary-row2'>{orderDetail.noOfPages}</div>
                         </div>
                     ) : (null)}
                     {(orderDetail.maxDuration) ? (
-                        <div className='ordersummary-row orange'>
+                        <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Maximum Duration</div>
                             <div className='ordersummary-row2'>{orderDetail.maxDuration} minutes</div>
                         </div>
@@ -206,33 +200,37 @@ const SellerInProgressDetail = () => {
                         )
                     )}
 
-                    <div className='upload-file-2'>Upload Order File <span>*</span></div>
-                    {(fileSizeMsg) ? (
-                            <div className='filesize-msg'>{fileSizeMsg}</div>
-                        ) : (null)}
-                    <div id='upload-file-field'>
-                        <div className='text-99'>(maximum file size: 50MB)</div>
-                        <div className='inputFile'>
-                            <input type='file' id='real-inputfile2' onChange={handleFileChange} />
-                            <div className='custom-fileinput2'>
-                                <div id='custom-inputtext2' className='thumb1'></div>
-                                <div id='custom-inputfile2' className='custominputfile2-btn' onClick={uploadFile}>
-                                    <div className='link-img'></div>
-                                    <div>Upload File</div>
+                    {(orderDetail.status !== 'Reviewing') ? (
+                        <>
+                            <div className='upload-file-2'>Upload Order File <span>*</span></div>
+                            {(fileSizeMsg) ? (
+                                <div className='filesize-msg'>{fileSizeMsg}</div>
+                            ) : (null)}
+                            <div id='upload-file-field'>
+                                <div className='text-99'>(maximum file size: 50MB)</div>
+                                <div className='inputFile'>
+                                    <input type='file' id='real-inputfile2' onChange={handleFileChange} />
+                                    <div className='custom-fileinput2'>
+                                        <div id='custom-inputtext2' className='thumb1'></div>
+                                        <div id='custom-inputfile2' className='custominputfile2-btn' onClick={uploadFile}>
+                                            <div className='link-img'></div>
+                                            <div>Upload File</div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p className='upload-message'>(If you want to upload more than 1 file, please upload an archive file with zip/rar/7z format)</p>
+                                <div className='upload-file-2'>Need to upload file more than 50MB?</div>
+                                <div className='external-link' onClick={handleChangeUrl}>Use external link instead...</div>
                             </div>
-                        </div>
-                        <p className='upload-message'>(If you want to upload more than 1 file, please upload an archive file with zip/rar/7z format)</p>
-                        <div className='upload-file-2'>Need to upload file more than 50MB?</div>
-                        <div className='external-link' onClick={handleChangeUrl}>Use external link instead...</div>
-                    </div>
 
-                    <div id='urlfile-input' style={{ 'display': 'none' }}>
-                        <input value={urlinput} onChange={(event) => { setUrlInput(event.target.value) }} className='urlfile-input' placeholder='Put the file url here...' />
-                        <div className='external-link' onClick={handleChangeUpload}>Switch to file upload</div>
-                    </div>
+                            <div id='urlfile-input' style={{ 'display': 'none' }}>
+                                <input value={urlinput} onChange={(event) => { setUrlInput(event.target.value) }} className='urlfile-input' placeholder='Put the file url here...' />
+                                <div className='external-link' onClick={handleChangeUpload}>Switch to file upload</div>
+                            </div>
 
-                    <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId)}>SEND</div></div>
+                            <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId)}>SEND</div></div>
+                        </>
+                    ) : (null)}
                 </div>
             </div>
         </div >
