@@ -39,7 +39,7 @@ const ApplySeller = (photoProfile, description, noRekening, bankName, cardHolder
     }, { header: authHeader() }).then(response => {
         if (response.data.data.accessToken) {
             localStorage.removeItem('user');
-            localStorage.setItem('user', JSON.stringify(response.data));
+            localStorage.setItem('user', JSON.stringify(response.data.data));
         } 
         return response.data;
     });

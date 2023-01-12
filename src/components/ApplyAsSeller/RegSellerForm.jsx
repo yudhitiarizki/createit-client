@@ -5,10 +5,11 @@ import React, { useState } from 'react';
 import link from '../../asset/Seller/link.png';
 import { useDispatch } from 'react-redux';
 import { ApplySeller } from '../../redux/actions/auth';
-import { sendMessage } from '../../redux/actions/message';
+import { useNavigate } from 'react-router-dom';
 
 const RegSellerForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [photoProfile, setPhotoProfile] = useState();
     const [description, setDescription] = useState('');
@@ -35,7 +36,16 @@ const RegSellerForm = () => {
     };
 
     const handleSubmit = () => {
-        dispatch(ApplySeller(photoProfile, description, noRekening, bankName, cardHolder))
+        dispatch(ApplySeller(photoProfile, description, noRekening, bankName, cardHolder)).then(() => {
+            console.log('asd')
+            setPhotoProfile('');
+            setDescription('');
+            setNoRekening('');
+            setBankName('');
+            setCardHolder('');
+            document.getElementById('custom-inputtext1').innerHTML = '';
+            navigate('/')
+        })
     };
 
     return (
@@ -45,19 +55,19 @@ const RegSellerForm = () => {
                 <div className='text6-6'>Sign up as a seller here</div>
                 <div className='sellerreg-inputcntr'>
                     <label>Description <span>*</span></label>
-                    <textarea rows={5} className='inputfield-1' onChange={(event) => { setDescription(event.target.value) }} placeholder='Describe the skills you have here...'/>
+                    <textarea rows={5} value={description} className='inputfield-1' onChange={(event) => { setDescription(event.target.value) }} placeholder='Describe the skills you have here...'/>
                 </div>
                 <div className='sellerreg-inputcntr'>
                     <label>Card Holder <span>*</span></label>
-                    <input type='text' className='inputfield-1' onChange={(event) => { setCardHolder(event.target.value) }} />
+                    <input type='text' value={cardHolder} className='inputfield-1' onChange={(event) => { setCardHolder(event.target.value) }} />
                 </div>
                 <div className='sellerreg-inputcntr'>
                     <label>Bank Name <span>*</span></label>
-                    <input type='text' className='inputfield-1' onChange={(event) => { setBankName(event.target.value) }} />
+                    <input type='text' value={bankName} className='inputfield-1' onChange={(event) => { setBankName(event.target.value) }} />
                 </div>
                 <div className='sellerreg-inputcntr'>
                     <label>Bank Account Number <span>*</span></label>
-                    <input type='text' className='inputfield-1' onChange={(event) => { setNoRekening(event.target.value) }} />
+                    <input type='text' value={noRekening} className='inputfield-1' onChange={(event) => { setNoRekening(event.target.value) }} />
                 </div>
                 <div className='sellerreg-inputcntr'>
                     <label>Photo Profile <span>*</span></label>

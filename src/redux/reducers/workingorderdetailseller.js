@@ -29,6 +29,7 @@ const sllrOnPrgrssOrderDetailReducer = (state = initialState, action) => {
 
     switch (type) {
         case GET_ONPROGRESS_ORDER_DETAIL_SELLER:
+            console.log('payload', payload)
             return {
                 ...state,
                 orderId: payload.orderId,
@@ -43,11 +44,11 @@ const sllrOnPrgrssOrderDetailReducer = (state = initialState, action) => {
                 noOfConcept: payload.noOfConcept,
                 noOfPages: payload.noOfPages,
                 maxDuration: payload.maxDuration,
-                note: payload.note,
+                note: payload.OrderNotes,
                 createdAt: payload.createdAt,
                 updatedAt: payload.updatedAt,
-                file: payload.file,
-                fileType: payload.fileType,
+                file: payload.OrderFiles,
+                fileType: '',
                 status: payload.status
             }
         case HIDE_ONPROGRESS_ORDER_DETAIL_SELLER:

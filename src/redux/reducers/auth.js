@@ -83,9 +83,9 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                isVerified: payload.seller.isVerified,
+                isVerified: 0,
                 isSeller: false,
-                role: payload.role,
+                role: 2,
                 user: payload,
             };
         case SWITCH_TO_SELLER:

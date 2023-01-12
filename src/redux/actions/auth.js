@@ -41,7 +41,6 @@ export const register = (firstName, lastName, email, username, password, repassw
 };
 
 export const login = (username, password) => dispatch => {
-    console.log('ok')
     return AuthService.login(username, password).then(
         data => {
             dispatch({
