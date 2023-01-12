@@ -18,11 +18,10 @@ const OrderDetailUser = () => {
 
     const order = detail.order
 
-
     const addDays = (date, days) => {
         const result = new Date(date);
         result.setDate(result.getDate() + days);
-        return result
+        return result;
     }
 
     useEffect(() => {

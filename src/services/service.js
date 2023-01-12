@@ -29,7 +29,6 @@ const getMyService = () => {
 }
 
 const deleteService = (serviceId) => {
-    console.log(serviceId, 'y')
     return Api.delete(`/service/${serviceId}`)
 }
 
