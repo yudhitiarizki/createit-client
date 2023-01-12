@@ -35,7 +35,7 @@ const SellerInProgressDetail = () => {
 
     const handleDownload = (url) => {
         const fileName = new URL(url).pathname.split("/").pop();
-        window.location.href = `http://localhost:3001/download/${fileName}`
+        window.location.href = `https://knotty-garnet-surgeon.glitch.me/download/${fileName}`
     }
 
     const handleCopyUrl = () => {
