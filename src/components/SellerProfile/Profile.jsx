@@ -8,8 +8,10 @@ import Edit from '../../asset/Seller/edit.png'
 import Avatar from '../../asset/Seller/Hero-section.png'
 import Star from './Star';
 import EditProfile from './EditProfile';
+import { useSelector } from 'react-redux';
 
 const Profile = ({ seller }) => {
+    const { user } = useSelector(state => state.auth);
 
     return (
             <div className='section-container'>
@@ -38,7 +40,8 @@ const Profile = ({ seller }) => {
                         </div>
                     </div>
                 </div>
-                <EditProfile seller={seller}/>
+
+                {(seller.userId === user.userId) ? <EditProfile seller={seller}/> : null}
             </div>
     )
 }

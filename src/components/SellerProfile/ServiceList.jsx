@@ -16,6 +16,7 @@ import { getMyService, deleteService } from "../../redux/actions/service";
 const ServiceList = ({ seller }) => {
     const dispatch = useDispatch();
     const { service } = useSelector(state => state.service);
+    const { user } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getMyService());
@@ -36,10 +37,10 @@ const ServiceList = ({ seller }) => {
             <div className="my-service">
                 <div className="service-header">
                     <h4>My Service</h4>
-                    <button  className="service-create" type="button" data-bs-toggle="modal" data-bs-target="#AddService">Create New</button>
+                    <button className="service-create" type="button" data-bs-toggle="modal" data-bs-target="#AddService">Create New</button>
                 </div>
                 <div className="servicelist">
-                    { service.map(service => {
+                    {service.map(service => {
                         return (
                             <div className="serviceslist1-box" key={service.serviceId}>
                                 <Link className="service1imgcntr" to={`/service/${service.slug}`}>
@@ -67,7 +68,7 @@ const ServiceList = ({ seller }) => {
                                                 <img className="icon-edit" src={Edit} alt="" />
                                             </Link>
                                             <Link>
-                                                <img className="icon-delete" onClick={() => onDelete(service.serviceId) } src={Trash} alt="" />
+                                                <img className="icon-delete" onClick={() => onDelete(service.serviceId)} src={Trash} alt="" />
                                             </Link>
                                         </div>
                                     </div>
@@ -75,10 +76,14 @@ const ServiceList = ({ seller }) => {
                             </div>
 
                         )
-                    }) }
-                    
-                    <AddService funct={() => dispatch(getMyService())}/>
-                    <EditService />
+                    })}
+
+                    {(seller.userId === user.userId) ? (
+                        <>
+                            <AddService funct={() => dispatch(getMyService())} />
+                            <EditService />
+                        </>
+                    ) : null}
                 </div>
             </div>
         </div>

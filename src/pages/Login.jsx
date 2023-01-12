@@ -30,6 +30,8 @@ const Login = () => {
     const onHandleLogin = () => {
         setLoading(true)
         dispatch(login(Username, Password)).then(() => {
+            setEyeclass('bx bxs-hide');
+            setType('password');
             navigate('/').then(() => {
                 window.location.reload();
             });

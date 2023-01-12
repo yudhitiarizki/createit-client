@@ -34,6 +34,10 @@ const Register = () => {
             setPhoneNumber('');
             setPassword('');
             setrePassword('');
+            setEyeclass1('bx bxs-hide');
+            setType1('password');
+            setEyeclass2('bx bxs-hide');
+            setType2('password');
         }).catch(() => {
             setLoading(false);
         })
