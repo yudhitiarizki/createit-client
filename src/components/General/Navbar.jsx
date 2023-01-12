@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, switchtoBuyer, switchtoSeller } from '../../redux/actions/auth';
 import { getCategory } from '../../redux/actions/category';
-import { getNotification } from '../../redux/actions/notification';
+import { getNotification, patchReadNotif } from '../../redux/actions/notification';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -23,14 +23,16 @@ const Navbar = () => {
         dispatch(getNotification())
     }, [dispatch]);
 
-    const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
+    const { isLoggedIn, user, isSeller, isVerified } = useSelector(state => state.auth);
 
     const adminNotif = notification.filter((notif) => (notif.type === 3));
     const sellerNotif = notification.filter((notif) => (notif.type === 2));
     const userNotif = notification.filter((notif) => (notif.type === 1));
 
     const handleRead = (notifId) => {
-        // axios patch '/notif' payload notifId dan isRead: true
+        dispatch(patchReadNotif(notifId)).then(() => {
+            dispatch(getNotification());
+        })
     }
 
     const handleLogout = () => {
@@ -100,7 +102,7 @@ const Navbar = () => {
                                             ))
                                         )
                                     ) : (
-                                        (user.role === 2 && isSeller) ? (
+                                        (user.role === 2 && isSeller && isVerified) ? (
                                             (sellerNotif.length === 0) ? (
                                                 <div className='no-notif'>There is no new notifications</div>
                                             ) : (
@@ -142,7 +144,7 @@ const Navbar = () => {
                     {(isLoggedIn) ? (
                         <li className='dropdown me-1'>
                             <div type="button" id="dropdownMenuOffset3" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="0,20">
-                                { user.role === 2 ? (
+                                {user.role === 2 ? (
                                     <img src={user.seller.photoProfile} alt='' className='profilpic-navbar'></img>
                                 ) : (
                                     <img src={Ellipse2} alt='' className='profilpic-navbar'></img>
@@ -225,10 +227,13 @@ const Navbar = () => {
                                                     <Link to="/user/order" className="nav-link">Order</Link>
                                                     <i className='bx bx-chevron-right'></i>
                                                 </li>
-                                                <li>
-                                                    <div onClick={handleSwitch2Seller} className="nav-link">Switch to Seller</div>
-                                                    <i className='bx bx-chevron-right'></i>
-                                                </li>
+                                                {isVerified ?
+                                                    <li>
+                                                        <div onClick={handleSwitch2Seller} className="nav-link">Switch to Seller</div>
+                                                        <i className='bx bx-chevron-right'></i>
+                                                    </li>
+                                                    : null
+                                                }
                                                 <div type="button" className='logout-btn' onClick={handleLogout}>Logout</div>
                                             </>
                                         )

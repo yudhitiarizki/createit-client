@@ -9,11 +9,13 @@ import { getOnProgressDetail, hideOnProgressDetail } from '../../redux/actions/D
 import SellerInProgressDetail from './SellerInProgressDetail';
 import { getOrderProgress } from '../../redux/actions/order';
 import { ToastContainer } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
 
 const SellerOrderInProgress = () => {
     const dispatch = useDispatch();
 
     const { order } = useSelector(state => state.order);
+    const { role, isLoggedIn, isSeller, isVerified } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getOrderProgress())
@@ -29,6 +31,10 @@ const SellerOrderInProgress = () => {
     useEffect(() => {
         setSellerOrder(workingOrder)
     }, [order])
+
+    if(isLoggedIn) {
+        if (!(role === 2 && isVerified && isSeller)) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const workingtab = () => {
         setActiveTab('workingtab');

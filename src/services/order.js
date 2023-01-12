@@ -37,7 +37,6 @@ const orderRevising = (orderId, note) => {
 }
 
 const orderApprove = (orderId) => {
-    console.log(orderId, 'uu')
     return Api.patch('/user/order/approve', {orderId});
 }
 

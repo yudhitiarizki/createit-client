@@ -15,9 +15,8 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
 
     const packages = data;
     
-    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
 
-    const [isSeller, setIsSeller] = useState(false);
     const [packageId, setPackageId] = useState('');
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
@@ -36,13 +35,7 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
             document.getElementById('pckg-list').classList.add('package-list');
             document.getElementById('pckg-list').classList.remove('package-list1');
         }
-
-        if (user) {
-            if(user.userId == userId) {
-                setIsSeller(true)
-            };
-        }
-    }, [packages.length, user]);
+    }, [packages.length]);
 
     const EditPckg = (item) => {
         setPackageId(item.packageId);

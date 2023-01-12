@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import '../Services/DetailService.css';
 import './NewCategory.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createCategory, getCategory } from '../../redux/actions/category';
 import { ToastContainer } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
 
 const NewCategory = () => {
     const dispatch = useDispatch();
 
+    const { role, isLoggedIn } = useSelector(state => state.auth);
+
     const [catImg, setCatImg] = useState('');
     const [category, setCategory] = useState('');
     const [description, setdescription] = useState('');
+
+    if(isLoggedIn) {
+        if (role !== 3) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const uploadFile = () => {
         document.getElementById('real-inputfile3').click();

@@ -7,15 +7,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import RequestDetail from './RequestDetails';
 import { getOrderApprove, patchOrderDone, setDetailOrder } from '../../redux/actions/order';
 import { ToastContainer } from 'react-toastify';
+import { Navigate } from "react-router-dom";
 
 const ManageRequestOrder = () => {
     const dispatch = useDispatch();
 
     const { order } = useSelector(state => state.order);
+    const { role, isLoggedIn } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getOrderApprove())
     }, [dispatch]);
+
+    if(isLoggedIn) {
+        if (role !== 3) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const handleDetail = (orderId, order) => {
         dispatch(setDetailOrder(orderId, order))
