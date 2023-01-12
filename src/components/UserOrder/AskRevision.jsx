@@ -17,7 +17,6 @@ const AskRevision = ({ orderId }) => {
             setNote('');
             navigate('/user/order');
         })
-        
     }
 
     const handleCancel = () => {
