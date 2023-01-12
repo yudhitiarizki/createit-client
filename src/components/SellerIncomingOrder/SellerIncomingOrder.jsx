@@ -8,15 +8,21 @@ import { getNewOrderDetail } from '../../redux/actions/NewOrderDetailSeller';
 import SellerNewOrderDetail from './SellerNewOrderDetail';
 import { getOrderNew, patchOrderWorking } from '../../redux/actions/order';
 import { ToastContainer } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
 
 const SellerIncomingOrder = () => {
     const dispatch = useDispatch();
 
     const { order } = useSelector(state => state.order);
+    const { role, isLoggedIn, isSeller, isVerified } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getOrderNew())
     }, [dispatch]);
+
+    if(isLoggedIn) {
+        if (!(role === 2 && isVerified && isSeller)) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const handleDetail = (order) => {
         dispatch(getNewOrderDetail(order))

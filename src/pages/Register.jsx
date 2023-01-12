@@ -18,6 +18,10 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [repassword, setrePassword] = useState('');
     const [Loading, setLoading] = useState(false);
+    const [type1, setType1] = useState('password');
+    const [eyeclass1, setEyeclass1] = useState('bx bxs-hide');
+    const [type2, setType2] = useState('password');
+    const [eyeclass2, setEyeclass2] = useState('bx bxs-hide');
 
     const onHandleRegister = () => {
         setLoading(true);
@@ -33,6 +37,26 @@ const Register = () => {
         }).catch(() => {
             setLoading(false);
         })
+    };
+    
+    const changePWDisplay1 = () => {
+        if (type1 === 'password') {
+            setEyeclass1('bx bxs-show');
+            setType1('text');
+        } else {
+            setEyeclass1('bx bxs-hide');
+            setType1('password');
+        }
+    };
+
+    const changePWDisplay2 = () => {
+        if (type2 === 'password') {
+            setEyeclass2('bx bxs-show');
+            setType2('text');
+        } else {
+            setEyeclass2('bx bxs-hide');
+            setType2('password');
+        }
     };
 
     return (
@@ -63,13 +87,19 @@ const Register = () => {
                         <label htmlFor="phonenumber">Phone Number <span>*</span></label>
                         <input type="Text" id='phonenumber' value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
                     </div>
-                    <div className="form-input2">
+                    <div className="form-input4">
                         <label htmlFor="Password">Password <span>*</span></label>
-                        <input type="password" id='Password' value={password} onChange={(event) => setPassword(event.target.value)} />
+                        <div className='pwfield2'>
+                            <input type={type1} id='Password' value={password} onChange={(event) => setPassword(event.target.value)} />
+                            <div><i className={eyeclass1} onClick={changePWDisplay1}></i></div>
+                        </div>
                     </div>
-                    <div className="form-input2">
+                    <div className="form-input4">
                         <label htmlFor="rePassword">Confirm Password <span>*</span></label>
-                        <input type="password" id='rePassword' value={repassword} onChange={(event) => setrePassword(event.target.value)} />
+                        <div className='pwfield2'>
+                            <input type={type2} id='rePassword' value={repassword} onChange={(event) => setrePassword(event.target.value)} />
+                            <div><i className={eyeclass2} onClick={changePWDisplay2}></i></div>
+                        </div>
                     </div>
                     <div className="form-footer">
                         <p>Already have an Account? <Link style={{ textDecoration: 'none' }} to={'/login'} className="link">Sign in</Link></p>

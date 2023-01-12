@@ -131,6 +131,54 @@
     outline: #E8504B;
 }
 
+.form-input3 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-input3 label {
+    margin-bottom: 10px;
+}
+
+.form-input3 label span {
+    color: red;
+}
+
+.pwfield {
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    min-height: 40px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px 5px 20px;
+}
+
+.pwfield:focus {
+    outline: #E8504B;
+}
+
+.pwfield input {
+    width: calc((100% - 30px) * 0.95);
+    background-color: #F4F4F4;
+    min-height: 40px;
+    border-width: 0;
+    outline: none;
+}
+
+.pwfield div {
+    width: calc((100% - 30px) * 0.05);;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 40px;
+    cursor: pointer;
+}
+
 .form-input2 {
     width: calc(40vw - 100px);
     display: flex;
@@ -160,6 +208,52 @@
 
 .form-input2 input:focus {
     outline: #E8504B;
+}
+
+.form-input4 {
+    width: calc(40vw - 100px);
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-input4 label {
+    margin-bottom: 5px;
+}
+
+.form-input4 label span {
+    color: red;
+}
+
+.pwfield2 {
+    background-color: #F4F4F4;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 10px 10px 20px;
+    font-size: 14px;
+}
+
+.pwfield2:focus {
+    outline: #E8504B;
+}
+
+.pwfield2 input {
+    width: calc((100% - 30px) * 0.95);
+    background-color: #F4F4F4;
+    border-width: 0;
+    outline: none;
+}
+
+.pwfield div {
+    width: calc((100% - 30px) * 0.05);;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
 }
 
 .form-footer {
@@ -213,6 +307,10 @@
     .form-input {
         margin-top: 15px;
     }
+
+    .form-input3 {
+        margin-top: 15px;
+    }
     
     .form-input2 {
         width: calc(45vw - 80px);
@@ -227,7 +325,12 @@
         padding: 10px 20px;
         font-size: 14px;
     }
-    
+
+    .form-input4 {
+        width: calc(45vw - 80px);
+        margin-top: 15px;
+    }
+
     .form-footer {
         margin-top: 25px;
     }
@@ -267,8 +370,17 @@
     .form-input {
         margin-top: 15px;
     }
-    
+
+    .form-input3 {
+        margin-top: 15px;
+    }
+
     .form-input2 {
+        width: calc(45vw - 80px);
+        margin-top: 15px;
+    }
+
+    .form-input4 {
         width: calc(45vw - 80px);
         margin-top: 15px;
     }
@@ -338,10 +450,24 @@
     .form-input {
         margin-top: 15px;
     }
+
+    .form-input3 {
+        margin-top: 15px;
+    }
     
     .form-input2 {
         width: 100%;
         margin-top: 8px;
+    }
+
+    .form-input4 {
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+    .pwfield2 {
+        padding: 8px 10px 8px 15px;
+        font-size: 12px;
     }
     
     .width2 {

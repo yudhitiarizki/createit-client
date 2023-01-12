@@ -45,6 +45,7 @@ export const REVISING_ORDER = 'REVISING_ORDER';
 export const APPROVE_ORDER = 'APPROVE_ORDER';
 
 export const FETCH_NOTIF = 'FETCH_NOTIF';
+export const READ_NOTIF = 'READ_NOTIF';
 
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_SELLER = 'FETCH_SELLER';

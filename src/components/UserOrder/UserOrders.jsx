@@ -6,15 +6,21 @@ import './UserOrders.css';
 import AllOrdersTable from "./AllOrdersTable";
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderUser } from '../../redux/actions/order';
+import { Navigate } from 'react-router-dom';
 
 const UserOrders = () => {
     const dispatch = useDispatch();
 
     const Order = useSelector(state => state.order.order);
+    const { role, isLoggedIn, isSeller } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getOrderUser());
     }, [dispatch]);
+
+    if(isLoggedIn) {
+        if (role === 3 || (role === 2 && isSeller === true)) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
     const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working' || item.status === 'Reviewing'));

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSeller, sellerApprove, sellerReject } from "../../redux/actions/user";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Navbar from "../General/Navbar";
 import '../Services/DetailService.css';
 import './AdminApproval.css';
@@ -16,10 +16,15 @@ const AdminApproval = () => {
     const dispatch = useDispatch();
 
     const seller = useSelector(state => state.user);
+    const { role, isLoggedIn } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getSeller());
     }, [dispatch]);
+
+    if(isLoggedIn) {
+        if (role !== 3) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const showdetail = (item) => {
         dispatch(getNewSellerDetail(item))

@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import Navbar from "../General/Navbar";
 import '../Services/DetailService.css';
 import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
 import './OrderDetailUser.css';
 import './UserOrders.css';
-import { useSelector, useDispatch } from "react-redux"; 
+import { useSelector } from "react-redux"; 
 
 const OrderDetailUser = () => {
-
     const [deliveryTime, setDeliveryTime] = useState('');
     const [copyMsg, setCopyMsg] = useState('');
     const { id } = useParams();
 
-    const { detail } = useSelector(state => state.order)
+    const { detail } = useSelector(state => state.order);
+    const { role, isLoggedIn, isSeller } = useSelector(state => state.auth);
 
     const order = detail.order
 
@@ -34,7 +34,11 @@ const OrderDetailUser = () => {
         } else {
             setDeliveryTime(new Date(order.updatedAt).toString().split('(')[0]);
         }
-    }, [order.status, order.createdAt, order.updatedAt, order.delivery])
+    }, [order.status, order.createdAt, order.updatedAt, order.delivery]);
+
+    if(isLoggedIn) {
+        if (role === 3 || (role === 2 && isSeller === true)) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     const handleDownload = (url) => {
         const fileName = new URL(url).pathname.split("/").pop();

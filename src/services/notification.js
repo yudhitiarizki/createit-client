@@ -4,8 +4,13 @@ const getNotification = () => {
     return Api.get('/notif');
 }
 
+const patchNotification = (notifId) => {
+    return Api.patch('/notif', {notifId})
+}
+
 const NotificationService = {
-    getNotification
+    getNotification,
+    patchNotification
 }
 
 export default NotificationService;

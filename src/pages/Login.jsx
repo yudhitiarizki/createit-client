@@ -14,6 +14,18 @@ const Login = () => {
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
     const [Loading, setLoading] = useState(false);
+    const [type, setType] = useState('password');
+    const [eyeclass, setEyeclass] = useState('bx bxs-hide');
+
+    const changePWDisplay = () => {
+        if (type === 'password') {
+            setEyeclass('bx bxs-show');
+            setType('text');
+        } else {
+            setEyeclass('bx bxs-hide');
+            setType('password');
+        }
+    };
 
     const onHandleLogin = () => {
         setLoading(true)
@@ -37,20 +49,23 @@ const Login = () => {
                     </div>
                     <div className="form-input">
                         <label htmlFor="username">Username <span>*</span></label>
-                        <input type="text" id='username' onChange={(event) => setUsername(event.target.value)}/>
+                        <input type="text" id='username' onChange={(event) => setUsername(event.target.value)} />
                     </div>
-                    <div className="form-input">
+                    <div className="form-input3">
                         <label htmlFor="Password">Password <span>*</span></label>
-                        <input type="password" id='Password' onChange={(event) => setPassword(event.target.value)}/>
+                        <div className='pwfield'>
+                            <input type={type} id='Password' onChange={(event) => setPassword(event.target.value)} />
+                            <div><i className={eyeclass} onClick={changePWDisplay}></i></div>
+                        </div>
                     </div>
                     <div className="form-footer">
                         <p>Don’t have account ? <Link style={{ textDecoration: 'none' }} className="link" to={'/register'}>Create Now</Link></p>
-                        { !Loading ? (
-                            <button onClick={() => {onHandleLogin()}}>Login</button>
+                        {!Loading ? (
+                            <button onClick={() => { onHandleLogin() }}>Login</button>
                         ) : (
-                            <img  src={Gif} alt="" className='Loading' />
+                            <img src={Gif} alt="" className='Loading' />
                         )}
-                        
+
                     </div>
                     <ToastContainer />
                 </div>
