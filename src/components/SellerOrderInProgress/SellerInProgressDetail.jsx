@@ -33,8 +33,9 @@ const SellerInProgressDetail = () => {
         }
     }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 
-    const handleDownload = () => {
-        // axios get downloadS
+    const handleDownload = (url) => {
+        const fileName = new URL(url).pathname.split("/").pop();
+        window.location.href = `http://localhost:3001/download/${fileName}`
     }
 
     const handleCopyUrl = () => {
@@ -157,10 +158,14 @@ const SellerInProgressDetail = () => {
                         <div className='ordersummary-row2'>{deliveryTime}</div>
                     </div>
 
-                    <div className='ordersummary-row orange'>
-                        <div className='ordersummary-row1'>Order Note</div>
-                        <div className='ordersummary-row2'>{orderDetail.note}</div>
-                    </div>
+                    { orderDetail.note && (
+                        orderDetail.note.length && (
+                        <div className='ordersummary-row orange'>
+                            <div className='ordersummary-row1'>Order Note</div>
+                            <div className='ordersummary-row2'>{orderDetail.note[0].note}</div>
+                        </div>
+                        )
+                    )}
                     {(orderDetail.noOfConcept) ? (
                         <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Concepts</div>
@@ -182,27 +187,31 @@ const SellerInProgressDetail = () => {
 
                     <div className='order-summary11 order-file1'>ORDER FILE</div>
                     {(orderDetail.status !== 'Revising') ? (null) : (
-                        (orderDetail.fileType === 1) ? (
-                            <div className='download-file'>
-                                <div className='upload-file-2'>Download latest uploaded file</div>
-                                <div className='download-btn1'>
-                                    <div onClick={handleDownload}>Download</div>
-                                    <i className='bx bxs-download'></i>
+                        (orderDetail.file.length) ? (
+                            (orderDetail.file[0].upldFileType === 1) ? (
+                                <div className='download-file'>
+                                    <div className='upload-file-2'>Download latest uploaded file</div>
+                                    <div className='download-btn1'>
+                                        <div onClick={() => handleDownload(orderDetail.file[0].file)}>Download</div>
+                                        <i className='bx bxs-download'></i>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className='download-file'>
+                                    <div className='upload-file-2'>View latest uploaded file</div>
+                                    <div className='file-link-cntr'>
+                                        <div className='url-container' id='url-file'>{orderDetail.file[0].file}</div>
+                                        <div className='copy-cntr' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
+                                    </div>
+                                    {(copyMsg) ? ((copyMsg === 'url copied') ? (
+                                        <div className='copy-msg green-msg'>{copyMsg}</div>
+                                    ) : (
+                                        <div className='copy-msg red-msg'>{copyMsg}</div>
+                                    )) : (null)}
+                                </div>
+                            )
                         ) : (
-                            <div className='download-file'>
-                                <div className='upload-file-2'>View latest uploaded file</div>
-                                <div className='file-link-cntr'>
-                                    <div className='url-container' id='url-file'>{orderDetail.file}</div>
-                                    <div className='copy-cntr' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
-                                </div>
-                                {(copyMsg) ? ((copyMsg === 'url copied') ? (
-                                    <div className='copy-msg green-msg'>{copyMsg}</div>
-                                ) : (
-                                    <div className='copy-msg red-msg'>{copyMsg}</div>
-                                )) : (null)}
-                            </div>
+                            <></>
                         )
                     )}
 
