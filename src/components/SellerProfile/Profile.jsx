@@ -25,11 +25,14 @@ const Profile = ({ seller }) => {
                                 <div className="name">
                                     <h1>{seller.firstName} {seller.lastName}</h1>
                                 </div>
+
+                                {(seller.userId === user.userId) ? 
                                 <div className='edit-name col-1'>
                                     <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
                                         <img className="edit-icon" src={Edit} alt="" />
                                     </Link>
                                 </div>
+                                : null }
                             </div>
                             <div className="profile-rating row">
                                 <Star star={seller.rating}/>
@@ -41,7 +44,7 @@ const Profile = ({ seller }) => {
                     </div>
                 </div>
 
-                {(seller.userId === user.userId) ? <EditProfile seller={seller}/> : null}
+                <EditProfile seller={seller}/>
             </div>
     )
 }

@@ -37,7 +37,9 @@ const ServiceList = ({ seller }) => {
             <div className="my-service">
                 <div className="service-header">
                     <h4>My Service</h4>
-                    <button className="service-create" type="button" data-bs-toggle="modal" data-bs-target="#AddService">Create New</button>
+                    {(seller.userId === user.userId) ?
+                        <button className="service-create" type="button" data-bs-toggle="modal" data-bs-target="#AddService">Create New</button>
+                    : null}
                 </div>
                 <div className="servicelist">
                     {service.map(service => {
@@ -63,27 +65,24 @@ const ServiceList = ({ seller }) => {
                                             <i className='bx bx-dollar-circle'></i>
                                             <span>Start from Rp {service.startingPrice}</span>
                                         </div>
-                                        <div className="service-edit">
-                                            <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
-                                                <img className="icon-edit" src={Edit} alt="" />
-                                            </Link>
-                                            <Link>
-                                                <img className="icon-delete" onClick={() => onDelete(service.serviceId)} src={Trash} alt="" />
-                                            </Link>
-                                        </div>
+                                        {(seller.userId === user.userId) ?
+                                            <div className="service-edit">
+                                                <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
+                                                    <img className="icon-edit" src={Edit} alt="" />
+                                                </Link>
+                                                <Link>
+                                                    <img className="icon-delete" onClick={() => onDelete(service.serviceId)} src={Trash} alt="" />
+                                                </Link>
+                                            </div>
+                                            : null}
                                     </div>
                                 </div>
                             </div>
-
                         )
                     })}
 
-                    {(seller.userId === user.userId) ? (
-                        <>
-                            <AddService funct={() => dispatch(getMyService())} />
-                            <EditService />
-                        </>
-                    ) : null}
+                    <AddService funct={() => dispatch(getMyService())} />
+                    <EditService />
                 </div>
             </div>
         </div>

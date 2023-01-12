@@ -9,18 +9,10 @@ import { getMySeller } from '../redux/actions/seller';
 
 const OtherSellerProfile = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { id } = useParams();
     const sellerId = +id;
 
     const seller = useSelector(state => state.seller);
-    const { isLoggedIn } = useSelector(state => state.auth);
-
-    useEffect(() => {
-        if (!isLoggedIn) {
-            navigate('/')
-        }
-    }, [isLoggedIn]);
 
     useEffect(() => {
         dispatch(getMySeller(sellerId));
