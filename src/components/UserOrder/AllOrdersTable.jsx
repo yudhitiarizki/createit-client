@@ -128,7 +128,7 @@ const AllOrdersTable = ({ Order }) => {
 
     const handleShowDetail = (order) => {
         const data = JSON.parse(order.response)
-        if (order.status === 'Waiting payment') {
+        if (order.status === 'pending') {
             dispatch(sendPayment(data)).then(() => {
                 navigate('/verifypayment');
             })
