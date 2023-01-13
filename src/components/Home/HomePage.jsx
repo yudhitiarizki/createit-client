@@ -12,21 +12,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeSearchResult from './HomeSearchResult';
-import { getService } from '../../redux/actions/service';
 
 const HomePage = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const { isLoggedIn, user } = useSelector(state => state.auth);
     const { allservice } = useSelector(state => state.service);
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
-
-    useEffect(() => {
-        dispatch(getService());
-    }, [dispatch]);
 
     const toApplySellerPage = () => {
         if (isLoggedIn) {

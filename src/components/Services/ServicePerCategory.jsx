@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './ServicePerCategory.css';
 import '../Home/HomePage.css';
 import Navbar from '../General/Navbar';
@@ -7,10 +7,8 @@ import Pose10 from '../../asset/HomePage/Pose10.svg';
 import { Link, useParams } from 'react-router-dom';
 import ServiceListCategory from './ServicesListCategory';
 import ServiceSearchResult from './ServiceSearchResult';
-import { getServiceByCategory } from '../../redux/actions/service';
 
 const ServicePerCategory = () => {
-    const dispatch = useDispatch();
     const { id } = useParams();
 
     const category = useSelector(state => state.category);
@@ -18,10 +16,6 @@ const ServicePerCategory = () => {
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
-
-    useEffect(() => {
-        dispatch(getServiceByCategory(id));
-    }, [id, dispatch]);
 
     useEffect(() => {
         if (!searchkey) {
