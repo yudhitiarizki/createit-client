@@ -45,6 +45,7 @@ export const getNotification = () => async dispatch => {
 };
 
 export const patchReadNotif = (notifId) => async dispatch => {
+    console.log(notifId)
     return NotificationService.patchNotification(notifId).then(
         response => {
             dispatch({

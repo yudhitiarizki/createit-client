@@ -11,41 +11,43 @@ import EditProfile from './EditProfile';
 import { useSelector } from 'react-redux';
 
 const Profile = ({ seller }) => {
-    const { user } = useSelector(state => state.auth);
+    const { user, isLoggedIn } = useSelector(state => state.auth);
 
     return (
-            <div className='section-container'>
-                <div className='banner'>
-                    <Navbar />
-                    <div className="profile">
-                        <img src={seller.photoProfile} className="photo-profile">
-                        </img>
-                        <div className="detail-profile">
-                            <div className="name-profile">
-                                <div className="name">
-                                    <h1>{seller.firstName} {seller.lastName}</h1>
-                                </div>
+        <div className='section-container'>
+            <div className='banner'>
+                <Navbar />
+                <div className="profile">
+                    <img src={seller.photoProfile} className="photo-profile">
+                    </img>
+                    <div className="detail-profile">
+                        <div className="name-profile">
+                            <div className="name">
+                                <h1>{seller.firstName} {seller.lastName}</h1>
+                            </div>
 
-                                {(seller.userId === user.userId) ? 
+                            {isLoggedIn ? (seller.userId === user.userId) ?
                                 <div className='edit-name col-1'>
                                     <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
                                         <img className="edit-icon" src={Edit} alt="" />
                                     </Link>
                                 </div>
-                                : null }
-                            </div>
-                            <div className="profile-rating row">
-                                <Star star={seller.rating}/>
-                            </div>
-                            <div className="profile-description">
-                                <p>{seller.description}</p>
-                            </div>
+                                : null
+                            : null}
+
+                        </div>
+                        <div className="profile-rating row">
+                            <Star star={seller.rating} />
+                        </div>
+                        <div className="profile-description">
+                            <p>{seller.description}</p>
                         </div>
                     </div>
                 </div>
-
-                <EditProfile seller={seller}/>
             </div>
+
+            <EditProfile seller={seller} />
+        </div>
     )
 }
 
