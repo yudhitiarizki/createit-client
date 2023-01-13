@@ -25,9 +25,9 @@ const Navbar = () => {
 
     const { isLoggedIn, user, isSeller, isVerified } = useSelector(state => state.auth);
 
-    const adminNotif = notification.filter((notif) => (notif.type === 3));
-    const sellerNotif = notification.filter((notif) => (notif.type === 2));
-    const userNotif = notification.filter((notif) => (notif.type === 1));
+    const adminNotif = notification.filter((notif) => (notif.type === '3'));
+    const sellerNotif = notification.filter((notif) => (notif.type === '2'));
+    const userNotif = notification.filter((notif) => (notif.type === '1'));
 
     const handleRead = (notifId) => {
         dispatch(patchReadNotif(notifId)).then(() => {
@@ -53,6 +53,8 @@ const Navbar = () => {
         dispatch(switchtoSeller());
         navigate('/seller/profile');
     };
+
+    console.log(notification)
 
     return (
         <div className='navbar-cntr container-fluid'>
