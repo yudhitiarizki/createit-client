@@ -26,7 +26,7 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(getService());
-    }, []); // fetching data 1x aja diawal setiap buka page home buat keperluan search
+    }, [dispatch]);
 
     const toApplySellerPage = () => {
         if (isLoggedIn) {

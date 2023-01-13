@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Profile.css';
 import Navbar from '../General/Navbar';
 import { Link } from 'react-router-dom';
 import Edit from '../../asset/Seller/edit.png'
-import Avatar from '../../asset/Seller/Hero-section.png'
 import Star from './Star';
 import EditProfile from './EditProfile';
 import { useSelector } from 'react-redux';
@@ -18,7 +17,7 @@ const Profile = ({ seller }) => {
             <div className='banner'>
                 <Navbar />
                 <div className="profile">
-                    <img src={seller.photoProfile} className="photo-profile">
+                    <img src={seller.photoProfile} alt='' className="photo-profile">
                     </img>
                     <div className="detail-profile">
                         <div className="name-profile">

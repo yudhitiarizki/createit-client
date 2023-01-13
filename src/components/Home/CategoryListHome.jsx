@@ -1,6 +1,6 @@
 import "./CategoryListHome.css";
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';

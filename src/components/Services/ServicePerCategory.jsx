@@ -21,7 +21,7 @@ const ServicePerCategory = () => {
 
     useEffect(() => {
         dispatch(getServiceByCategory(id));
-    }, [id]);
+    }, [id, dispatch]);
 
     useEffect(() => {
         if (!searchkey) {
