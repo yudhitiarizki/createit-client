@@ -11,6 +11,7 @@ import {
 
 
 const initialState = {
+    allservice: [],
     service: [],
     detail: {}
 };
@@ -35,7 +36,7 @@ const serviceReducer = (service = initialState, action) => {
         case FETCH_SERVICE:
             return service = {
                 ...service,
-                service: payload.service
+                allservice: payload.service
             };
         case FETCH_DETAILSERVICE:
             return service = {

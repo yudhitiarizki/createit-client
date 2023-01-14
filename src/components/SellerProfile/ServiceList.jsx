@@ -5,8 +5,6 @@ import 'bootstrap/dist/js/bootstrap.js';
 import './Service.css';
 import GeneralInfo from "./GeneralInfo";
 import { Link } from "react-router-dom";
-import Rectangle21 from '../../asset/ImgDummy/Rectangle21.png';
-import Ellipse107 from '../../asset/ImgDummy/Ellipse107.png';
 import Edit from '../../asset/Seller/edit.png';
 import Trash from '../../asset/Seller/trash.png';
 import AddService from './AddService';
@@ -16,7 +14,7 @@ import { getMyService, deleteService } from "../../redux/actions/service";
 const ServiceList = ({ seller }) => {
     const dispatch = useDispatch();
     const { service } = useSelector(state => state.service);
-    const { user } = useSelector(state => state.auth);
+    const { user, isLoggedIn } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(getMyService());
@@ -28,8 +26,6 @@ const ServiceList = ({ seller }) => {
         })
     }
 
-    console.log(service)
-
     return (
         <div className="service-section">
             <GeneralInfo since={seller.createdAt} total={seller.serviceSold} sold={seller.noOfBuyer} rating={seller.rating} />
@@ -37,9 +33,10 @@ const ServiceList = ({ seller }) => {
             <div className="my-service">
                 <div className="service-header">
                     <h4>My Service</h4>
-                    {(seller.userId === user.userId) ?
+                    {isLoggedIn ? (seller.userId === user.userId) ?
                         <button className="service-create" type="button" data-bs-toggle="modal" data-bs-target="#AddService">Create New</button>
-                    : null}
+                        : null
+                        : null}
                 </div>
                 <div className="servicelist">
                     {service.map(service => {
@@ -65,7 +62,7 @@ const ServiceList = ({ seller }) => {
                                             <i className='bx bx-dollar-circle'></i>
                                             <span>Start from Rp {service.startingPrice}</span>
                                         </div>
-                                        {(seller.userId === user.userId) ?
+                                        {isLoggedIn ? (seller.userId === user.userId) ?
                                             <div className="service-edit">
                                                 <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
                                                     <img className="icon-edit" src={Edit} alt="" />
@@ -74,7 +71,8 @@ const ServiceList = ({ seller }) => {
                                                     <img className="icon-delete" onClick={() => onDelete(service.serviceId)} src={Trash} alt="" />
                                                 </Link>
                                             </div>
-                                            : null}
+                                            : null
+                                        : null}
                                     </div>
                                 </div>
                             </div>
