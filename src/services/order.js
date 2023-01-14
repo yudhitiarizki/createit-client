@@ -1,43 +1,44 @@
 import Api from '../Api';
+import AuthHeader from './Auth-header';
 
 const getOrderUser = () => {
-    return Api.get('/user/order');
+    return Api.get('/user/order', {headers: AuthHeader()});
 };
 
 const createOrder = (packageId, note, paymentMethod, bankName) => {
-    return Api.post('/user/order', {packageId, note, paymentMethod, bankName});
+    return Api.post('/user/order', {packageId, note, paymentMethod, bankName}, {headers: AuthHeader()});
 }
 
 const getOrderNew = () => {
-    return Api.get('/seller/order/new');
+    return Api.get('/seller/order/new', {headers: AuthHeader()});
 }
 
 const patchOrderWorking = (orderId) => {
-    return Api.patch('/seller/order/new', {orderId});
+    return Api.patch('/seller/order/new', {orderId}, {headers: AuthHeader()});
 };
 
 const patchOrderDone = (orderId) => {
-    return Api.patch('/admin/order/done', {orderId});
+    return Api.patch('/admin/order/done', {orderId}, {headers: AuthHeader()});
 };
 
 const getOrderProgress = () => {
-    return Api.get('/seller/order/onprogress');
+    return Api.get('/seller/order/onprogress', {headers: AuthHeader()});
 }
 
 const uploadFile = (orderId, upldFileType, file) => {
-    return Api.post('/file', {orderId, upldFileType, file})
+    return Api.post('/file', {orderId, upldFileType, file}, {headers: AuthHeader()})
 }
 
 const getOrderApprove = () => {
-    return Api.get('/admin/order/approve');
+    return Api.get('/admin/order/approve', {headers: AuthHeader()});
 }
 
 const orderRevising = (orderId, note) => {
-    return Api.post('/user/order/revision', {orderId, note})
+    return Api.post('/user/order/revision', {orderId, note}, {headers: AuthHeader()})
 }
 
 const orderApprove = (orderId) => {
-    return Api.patch('/user/order/approve', {orderId});
+    return Api.patch('/user/order/approve', {orderId}, {headers: AuthHeader()});
 }
 
 

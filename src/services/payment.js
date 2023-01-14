@@ -1,8 +1,8 @@
 import Api from '../Api';
+import AuthHeader from './Auth-header';
 
 const getPayment = (req, res) => {
     try {
-        console.log('ok')
         return res.json({
             message: 'Success'
         })

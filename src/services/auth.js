@@ -1,5 +1,5 @@
 import Api from '../Api';
-import authHeader from './Auth-header';
+import AuthHeader from './Auth-header';
 
 const register = (firstName, lastName, email, username, password, repassword, phoneNumber) => {
     return Api.post('/register', {
@@ -36,7 +36,7 @@ const logout = (req, res) => {
 const ApplySeller = (photoProfile, description, noRekening, bankName, cardHolder) => {
     return Api.post('/regseller', {
         photoProfile, description, noRekening, bankName, cardHolder
-    }, { header: authHeader() }).then(response => {
+    }, {headers: AuthHeader()}).then(response => {
         if (response.data.data.accessToken) {
             localStorage.removeItem('user');
             localStorage.setItem('user', JSON.stringify(response.data.data));

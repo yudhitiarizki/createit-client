@@ -1,19 +1,20 @@
 import Api from '../Api';
+import AuthHeader from './Auth-header';
 
 const getUser = () => {
-    return Api.get('/users');
+    return Api.get('/users', {headers: AuthHeader()});
 };
 
 const getSeller = () => {
-    return Api.get('/regseller');
+    return Api.get('/regseller', {headers: AuthHeader()});
 }
 
 const sellerApprove = (userId) => {
-    return Api.patch('/regseller/approve', {userId});
+    return Api.patch('/regseller/approve', {userId}, {headers: AuthHeader()});
 }
 
 const sellerReject = (userId) => {
-    return Api.patch('/regseller/reject', {userId});
+    return Api.patch('/regseller/reject', {userId}, {headers: AuthHeader()});
 }
 
 const UserServices = {

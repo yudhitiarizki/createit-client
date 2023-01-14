@@ -25,10 +25,6 @@ const CreateOrder = () => {
     const [bankName, setbankName] = useState('');
     const [note, setNote] = useState('');
 
-    const payment = useSelector(state => state.payment);
-
-    console.log(payment)
-
     if ( !isLoggedIn ) {
         navigate('/login');
     };
@@ -50,9 +46,6 @@ const CreateOrder = () => {
 
     return (
         <div className='order-create-container'>
-            <div className="order-create-header">
-                <Navbar />
-            </div>
             <div className="order-create-path">
                 <div className="path">
                     <Link to='/' className="nav-link">Home</Link>

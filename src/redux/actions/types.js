@@ -66,3 +66,6 @@ export const SEND_PAYMENT = 'SEND_PAYMENT';
 
 export const SWITCH_TO_SELLER = 'SWITCH_TO_SELLER';
 export const SWITCH_TO_BUYER = 'SWITCH_TO_BUYER';
+
+export const SET_TO_LOADING = 'SET_TO_LOADING';
+export const SET_TO_NOT_LOADING = 'SET_TO_NOT_LOADING';
