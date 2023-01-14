@@ -1,43 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './AdminApproveOrder.css';
 import '../Services/DetailService.css';
-import Navbar from '../General/Navbar';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import RequestDetail from './RequestDetails';
-import { getOrderApprove, patchOrderDone, setDetailOrder } from '../../redux/actions/order';
-import { ToastContainer } from 'react-toastify';
-import { Navigate } from "react-router-dom";
 
-const ManageRequestOrder = () => {
-    const dispatch = useDispatch();
-
-    const { order } = useSelector(state => state.order);
-    const { role, isLoggedIn } = useSelector(state => state.auth);
-
-    useEffect(() => {
-        dispatch(getOrderApprove())
-    }, [dispatch]);
-
-    if(isLoggedIn) {
-        if (role !== 3) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
-
-    const handleDetail = (orderId, order) => {
-        dispatch(setDetailOrder(orderId, order))
-    };
-
-    const handleDone = (orderId) => {
-        dispatch(patchOrderDone(orderId)).then( () => {
-            dispatch(getOrderApprove())
-        })
-    };
+const ManageRequestOrder = ({order, handleDetail, handleDone}) => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <div className="nav-link">Home</div>
                 <i className='bx bx-chevron-right'></i>
@@ -69,7 +39,6 @@ const ManageRequestOrder = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 }

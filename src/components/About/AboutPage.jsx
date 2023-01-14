@@ -1,14 +1,10 @@
 import './AboutPage.css';
 import '../Services/DetailService.css';
-import Navbar from '../General/Navbar';
 import Pose13 from '../../asset/About/Pose13.svg';
 
 const AboutPage = () => {
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className='aboutpage-bg'>
                 <img src={Pose13} alt='' className='aboutpage-person'/>
                 <div className='about-info'>

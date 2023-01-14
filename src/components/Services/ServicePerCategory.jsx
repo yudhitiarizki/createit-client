@@ -18,10 +18,6 @@ const ServicePerCategory = () => {
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
 
-    useEffect(() => {
-        dispatch(getCategory());
-    }, [dispatch]);
-
     const service = [
         {
             "serviceId": 2,
