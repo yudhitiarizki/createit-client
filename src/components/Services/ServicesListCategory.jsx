@@ -1,21 +1,10 @@
 import { React, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './ServicesListCategory.css';
 import '../Home/HomeSearchResult.css';
-import { useSelector, useDispatch } from "react-redux";
-import { getServiceByCategory } from "../../redux/actions/service";
 
-const ServiceListCategory = () => {
-    const dispatch = useDispatch();
-    const { id } = useParams();
-
-    const { service } = useSelector(state => state.service);
-
-    useEffect(() => {
-        dispatch(getServiceByCategory(id));
-    }, [id]);
-
+const ServiceListCategory = ({ service }) => {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);

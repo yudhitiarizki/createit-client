@@ -1,81 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './ServicePerCategory.css';
 import '../Home/HomePage.css';
 import Navbar from '../General/Navbar';
 import Pose10 from '../../asset/HomePage/Pose10.svg';
 import { Link, useParams } from 'react-router-dom';
 import ServiceListCategory from './ServicesListCategory';
-import { getCategory } from '../../redux/actions/category';
 import ServiceSearchResult from './ServiceSearchResult';
 
 const ServicePerCategory = () => {
-    const dispatch = useDispatch();
     const { id } = useParams();
 
     const category = useSelector(state => state.category);
+    const { service } = useSelector(state => state.service);
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
-
-    useEffect(() => {
-        dispatch(getCategory());
-    }, [dispatch]);
-
-    const service = [
-        {
-            "serviceId": 2,
-            "sellerId": 2,
-            "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png",
-            "firstName": "Yudhit",
-            "lastName": "Rizki",
-            "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-            "title": "Logo Design",
-            "rating": 4.9,
-            "noOfBuyer": 0,
-            "startingPrice": 40000,
-            "slug": "desain-art-1672662557514"
-        },
-        {
-            "serviceId": 3,
-            "sellerId": 2,
-            "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png",
-            "firstName": "Yudhit",
-            "lastName": "Rizki",
-            "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-            "title": "Book Cover Design",
-            "rating": 4.9,
-            "noOfBuyer": 0,
-            "startingPrice": 49999,
-            "slug": "desain-art-1672662557514"
-        },
-        {
-            "serviceId": 5,
-            "sellerId": 2,
-            "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png",
-            "firstName": "Yudhit",
-            "lastName": "Rizki",
-            "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-            "title": "Poster design",
-            "rating": 4.9,
-            "noOfBuyer": 0,
-            "startingPrice": 70000,
-            "slug": "desain-art-1672662557514"
-        },
-        {
-            "serviceId": 4,
-            "sellerId": 2,
-            "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png",
-            "firstName": "Yudhit",
-            "lastName": "Rizki",
-            "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-            "title": "Logo Design",
-            "rating": 4.9,
-            "noOfBuyer": 0,
-            "startingPrice": 73582,
-            "slug": "desain-art-1672662557514"
-        }
-    ]
 
     useEffect(() => {
         if (!searchkey) {
@@ -153,7 +93,7 @@ const ServicePerCategory = () => {
                     ))}
                 </div>
             </div>
-            <ServiceListCategory />
+            <ServiceListCategory service={service} />
         </div>
     )
 };

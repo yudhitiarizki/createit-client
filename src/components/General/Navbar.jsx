@@ -54,8 +54,6 @@ const Navbar = () => {
         navigate('/seller/profile');
     };
 
-    console.log(notification)
-
     return (
         <div className='navbar-cntr container-fluid'>
             <div>

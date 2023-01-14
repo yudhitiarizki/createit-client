@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './HomePage.css';
@@ -16,7 +15,9 @@ import HomeSearchResult from './HomeSearchResult';
 
 const HomePage = () => {
     const navigate = useNavigate();
+
     const { isLoggedIn, user } = useSelector(state => state.auth);
+    const { allservice } = useSelector(state => state.service);
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
@@ -62,201 +63,6 @@ const HomePage = () => {
         }
     }
 
-    const service = [
-        {
-            "serviceId": 2,
-            "sellerId": 2,
-            "categoryId": 2,
-            "title": "Web Application",
-            "description": "Desain mantap harga Top",
-            "slug": "desain-art-1672662557514",
-            "createdAt": "2023-01-02T12:29:17.514Z",
-            "updatedAt": "2023-01-02T12:29:17.514Z",
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            rating: 4.9,
-            noOfBuyer: 79,
-            startingPrice: 59999,
-            "ServiceImages": [
-                {
-                    "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png"
-                }
-            ],
-            "Seller": {
-                "sellerId": 2,
-                "userId": 2,
-                "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-                "description": "Penyedia desain Website untuk para UMKM",
-                "noRekening": "0123123123",
-                "bankName": "BCA",
-                "cardHolder": "Yudhitia",
-                "isVerified": 1,
-                "createdAt": "2023-01-02T12:29:03.916Z",
-                "updatedAt": "2023-01-08T17:48:25.506Z"
-            }
-        },
-        {
-            "serviceId": 1,
-            "sellerId": 2,
-            "categoryId": 2,
-            "title": "Mobile application",
-            "description": "Desain mantap harga Top",
-            "slug": "desain-art-1672662557514",
-            "createdAt": "2023-01-02T12:29:17.514Z",
-            "updatedAt": "2023-01-02T12:29:17.514Z",
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            rating: 4.9,
-            noOfBuyer: 79,
-            startingPrice: 60000,
-            "ServiceImages": [
-                {
-                    "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png"
-                }
-            ],
-            "Seller": {
-                "sellerId": 2,
-                "userId": 2,
-                "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-                "description": "Penyedia desain Website untuk para UMKM",
-                "noRekening": "0123123123",
-                "bankName": "BCA",
-                "cardHolder": "Yudhitia",
-                "isVerified": 1,
-                "createdAt": "2023-01-02T12:29:03.916Z",
-                "updatedAt": "2023-01-08T17:48:25.506Z"
-            }
-        },
-        {
-            "serviceId": 5,
-            "sellerId": 2,
-            "categoryId": 2,
-            "title": "Book Cover Design",
-            "description": "Desain mantap harga Top",
-            "slug": "desain-art-1672662557514",
-            "createdAt": "2023-01-02T12:29:17.514Z",
-            "updatedAt": "2023-01-02T12:29:17.514Z",
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            rating: 4.9,
-            noOfBuyer: 79,
-            startingPrice: 79999,
-            "ServiceImages": [
-                {
-                    "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png"
-                }
-            ],
-            "Seller": {
-                "sellerId": 2,
-                "userId": 2,
-                "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-                "description": "Penyedia desain Website untuk para UMKM",
-                "noRekening": "0123123123",
-                "bankName": "BCA",
-                "cardHolder": "Yudhitia",
-                "isVerified": 1,
-                "createdAt": "2023-01-02T12:29:03.916Z",
-                "updatedAt": "2023-01-08T17:48:25.506Z"
-            }
-        },
-        {
-            "serviceId": 3,
-            "sellerId": 2,
-            "categoryId": 2,
-            "title": "Logo Design",
-            "description": "Desain mantap harga Top",
-            "slug": "desain-art-1672662557514",
-            "createdAt": "2023-01-02T12:29:17.514Z",
-            "updatedAt": "2023-01-02T12:29:17.514Z",
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            rating: 5,
-            noOfBuyer: 93,
-            startingPrice: 80000,
-            "ServiceImages": [
-                {
-                    "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png"
-                }
-            ],
-            "Seller": {
-                "sellerId": 2,
-                "userId": 2,
-                "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-                "description": "Penyedia desain Website untuk para UMKM",
-                "noRekening": "0123123123",
-                "bankName": "BCA",
-                "cardHolder": "Yudhitia",
-                "isVerified": 1,
-                "createdAt": "2023-01-02T12:29:03.916Z",
-                "updatedAt": "2023-01-08T17:48:25.506Z"
-            }
-        },
-        {
-            "serviceId": 9,
-            "sellerId": 2,
-            "categoryId": 2,
-            "title": "Brocure Design",
-            "description": "Desain mantap harga Top",
-            "slug": "desain-art-1672662557514",
-            "createdAt": "2023-01-02T12:29:17.514Z",
-            "updatedAt": "2023-01-02T12:29:17.514Z",
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            rating: 4.9,
-            noOfBuyer: 38,
-            startingPrice: 80000,
-            "ServiceImages": [
-                {
-                    "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png"
-                }
-            ],
-            "Seller": {
-                "sellerId": 2,
-                "userId": 2,
-                "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-                "description": "Penyedia desain Website untuk para UMKM",
-                "noRekening": "0123123123",
-                "bankName": "BCA",
-                "cardHolder": "Yudhitia",
-                "isVerified": 1,
-                "createdAt": "2023-01-02T12:29:03.916Z",
-                "updatedAt": "2023-01-08T17:48:25.506Z"
-            }
-        },
-        {
-            "serviceId": 8,
-            "sellerId": 2,
-            "categoryId": 2,
-            "title": "UI/UX Design",
-            "description": "Desain mantap harga Top",
-            "slug": "desain-art-1672662557514",
-            "createdAt": "2023-01-02T12:29:17.514Z",
-            "updatedAt": "2023-01-02T12:29:17.514Z",
-            firstName: 'Ahmad',
-            lastName: 'Na Jaemin',
-            rating: 4.8,
-            noOfBuyer: 37,
-            startingPrice: 80000,
-            "ServiceImages": [
-                {
-                    "image": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662557528.png"
-                }
-            ],
-            "Seller": {
-                "sellerId": 2,
-                "userId": 2,
-                "photoProfile": "http://coal-jolly-single.glitch.me/public/uploads/images/images-1672662543893.png",
-                "description": "Penyedia desain Website untuk para UMKM",
-                "noRekening": "0123123123",
-                "bankName": "BCA",
-                "cardHolder": "Yudhitia",
-                "isVerified": 1,
-                "createdAt": "2023-01-02T12:29:03.916Z",
-                "updatedAt": "2023-01-08T17:48:25.506Z"
-            }
-        }
-    ]
-
     useEffect(() => {
         if(!searchkey) {
             setSrchResult([]);
@@ -269,7 +75,7 @@ const HomePage = () => {
     
     const handleSearch = () => {
         if(searchkey) {
-            const filtered = service.filter(item => regexSearch.exec(item.title.toUpperCase()));
+            const filtered = allservice.filter(item => regexSearch.exec(item.title.toUpperCase()));
             setSrchResult(filtered);
             
             if (filtered.length === 0) {
