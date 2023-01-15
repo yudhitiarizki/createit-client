@@ -12,6 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeSearchResult from './HomeSearchResult';
+import NewNavbar from '../Navbar/NewNavbar';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -94,9 +95,9 @@ const HomePage = () => {
 
     return (
         <div>
+            <NewNavbar />
             <div className='top-container'>
                 <div className='Banner1'>
-                    <Navbar />
                     <div className='ellipse1'>
                         <img src={Pose10} alt='' className='pose1'></img>
                     </div>
