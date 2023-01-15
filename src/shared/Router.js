@@ -43,7 +43,7 @@ const Router = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
-        { role == '3' && <Route exact path="/newcategory" element={<CreateCategory />} /> }
+        <Route exact path="/newcategory" element={<CreateCategory />} />
         <Route exact path="/category/:id" element={<CategoryDetail />} />
         <Route exact path="/service/:slug" element={<ServiceDetail />} />
         <Route exact path="/manageseller" element={<ManageSeller />} />

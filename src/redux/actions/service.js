@@ -6,7 +6,8 @@ import {
     FETCH_SERVICE_BYSLUG,
     CREATE_SERVICE,
     FETCH_MY_SERVICE, 
-    DELETE_SERVICE
+    DELETE_SERVICE,
+    FETCH_SERVICE_BYUSER
 } from './types';
 
 import { sendMessage } from './message';
@@ -160,6 +161,30 @@ export const getMyService = () => async dispatch => {
 
             dispatch({
                 type: FETCH_MY_SERVICE,
+                payload: {
+                    service: response.data.data
+                }
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    );
+};
+
+export const getServiceByUser = (sellerId) => async dispatch => {
+    return Service.getServiceByUser(sellerId).then(
+        response => {
+            dispatch({
+                type: FETCH_SERVICE_BYUSER,
                 payload: {
                     service: response.data.data
                 }

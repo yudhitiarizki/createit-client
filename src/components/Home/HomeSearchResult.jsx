@@ -20,7 +20,7 @@ const HomeSearchResult = ({ data, message }) => {
                             <div className="servicelist22-info">
                                 <div className="service22-info1">
                                     <div className="service22-info2">
-                                        <img src={item.Seller.photoProfile} alt=''></img>
+                                        <img src={item.photoProfile} alt=''></img>
                                         <Link to={`/seller/${item.sellerId}`} className='nav-link'>{item.firstName} {item.lastName}</Link>
                                     </div>
                                     <Link to={`/service/${item.slug}`} className="service22-info3 nav-link">{item.title}</Link>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Service.css';
@@ -9,22 +9,10 @@ import Edit from '../../asset/Seller/edit.png';
 import Trash from '../../asset/Seller/trash.png';
 import AddService from './AddService';
 import EditService from "./EditService";
-import { getMyService, deleteService } from "../../redux/actions/service";
 
-const ServiceList = ({ seller }) => {
-    const dispatch = useDispatch();
+const ServiceList = ({ seller, onDelete, getServiceButton }) => {
     const { service } = useSelector(state => state.service);
     const { user, isLoggedIn } = useSelector(state => state.auth);
-
-    useEffect(() => {
-        dispatch(getMyService());
-    }, [dispatch]);
-
-    const onDelete = (serviceId) => {
-        dispatch(deleteService(serviceId)).then(() => {
-            dispatch(getMyService());
-        })
-    }
 
     return (
         <div className="service-section">
@@ -79,7 +67,7 @@ const ServiceList = ({ seller }) => {
                         )
                     })}
 
-                    <AddService funct={() => dispatch(getMyService())} />
+                    <AddService funct={getServiceButton} />
                     <EditService />
                 </div>
             </div>

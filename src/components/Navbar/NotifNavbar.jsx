@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
-import { getNotification, patchReadNotif } from '../../redux/actions/notification';
+import { getNotification, patchReadNotif, deleteNotification } from '../../redux/actions/notification';
 
 const NotifNavbar = () => {
     const dispatch = useDispatch();
@@ -45,7 +45,9 @@ const NotifNavbar = () => {
     };
 
     const handleDelNotif = (notifId) => {
-        // dispatch disini buat del notif kalau endpoint API nya udah dibuat
+        dispatch(deleteNotification(notifId)).then(() => {
+            dispatch(getNotification());
+        })
     }
 
     return (

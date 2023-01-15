@@ -1,6 +1,7 @@
 import {
     FETCH_NOTIF,
     READ_NOTIF,
+    DELETE_NOTIF,
     SET_MESSAGE,
 } from './types';
 
@@ -16,14 +17,6 @@ export const getNotification = () => async dispatch => {
                 payload: {
                     notification: response.data.data
                 }
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
             });
 
             return Promise.resolve();
@@ -63,3 +56,24 @@ export const patchReadNotif = (notifId) => async dispatch => {
         }
     )
 }; 
+
+export const deleteNotification = (notifId) => async dispatch => {
+    return NotificationService.deleteNotification(notifId).then(
+        response => {
+            dispatch({
+                type: DELETE_NOTIF
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    )
+}
