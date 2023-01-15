@@ -4,7 +4,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    isLoading: true
+    isLoading: false
 };
 
 const setLoading = (state = initialState, action) => {

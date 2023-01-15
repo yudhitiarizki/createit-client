@@ -3,7 +3,7 @@ import './NewNavbar.css';
 import './NotifNavbar.css';
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { logout, switchtoBuyer, switchtoSeller } from '../../redux/actions/auth';
 import { useEffect, useRef, useState } from 'react';
 
@@ -25,7 +25,7 @@ const ProfileNavbar = () => {
 
         document.addEventListener('mousedown', closeMenus);
         return () => document.removeEventListener('mousedown', closeMenus);
-    }, [prflOpen])
+    }, [prflOpen]);
 
     const handleSwitch2User = () => {
         dispatch(switchtoBuyer());
@@ -37,9 +37,9 @@ const ProfileNavbar = () => {
         navigate('/seller/profile');
     };
 
-    const handleLogout = () => {
+    const handleLogout2 = () => {
         dispatch(logout());
-        navigate("/");
+        navigate('/');
     };
 
     return (
@@ -69,18 +69,18 @@ const ProfileNavbar = () => {
                             </div>
 
                             <li>
-                                <NavLink to="/newcategory" className="nav-link">Create Category</NavLink>
+                                <Link to="/newcategory" className="nav-link">Create Category</Link>
                                 <i className='bx bx-chevron-right'></i>
                             </li>
                             <li>
-                                <NavLink to="/manageseller" className="nav-link">Manage Seller</NavLink>
+                                <Link to="/manageseller" className="nav-link">Manage Seller</Link>
                                 <i className='bx bx-chevron-right'></i>
                             </li>
                             <li>
-                                <NavLink to="/admin/order" className="nav-link">Finished Order</NavLink>
+                                <Link to="/admin/order" className="nav-link">Finished Order</Link>
                                 <i className='bx bx-chevron-right'></i>
                             </li>
-                            <div type="button" className='prfl-logout' onClick={handleLogout}>Logout</div>
+                            <div type="button" className='prfl-logout' onClick={handleLogout2}>Logout</div>
                         </>
                     ) : (
                         (user.role === 1) ? (
@@ -94,14 +94,14 @@ const ProfileNavbar = () => {
                                 </div>
 
                                 <li>
-                                    <NavLink to="/user/order" className="nav-link">Order</NavLink>
+                                    <Link to="/user/order" className="nav-link">Order</Link>
                                     <i className='bx bx-chevron-right'></i>
                                 </li>
                                 <li>
-                                    <NavLink to="/applyseller" className="nav-link">Apply as a seller</NavLink>
+                                    <Link to="/applyseller" className="nav-link">Apply as a seller</Link>
                                     <i className='bx bx-chevron-right'></i>
                                 </li>
-                                <div type="button" className='prfl-logout' onClick={handleLogout}>Logout</div>
+                                <div type="button" className='prfl-logout' onClick={handleLogout2}>Logout</div>
                             </>
                         ) : (
                             (isSeller) ? (
@@ -115,22 +115,22 @@ const ProfileNavbar = () => {
                                     </div>
 
                                     <li>
-                                        <NavLink to="/seller/profile" className="nav-link">Profile</NavLink>
+                                        <Link to="/seller/profile" className="nav-link">Profile</Link>
                                         <i className='bx bx-chevron-right'></i>
                                     </li>
                                     <li>
-                                        <NavLink to="/seller/order/new" className="nav-link">Incoming Order</NavLink>
+                                        <Link to="/seller/order/new" className="nav-link">Incoming Order</Link>
                                         <i className='bx bx-chevron-right'></i>
                                     </li>
                                     <li>
-                                        <NavLink to="/seller/order/progress" className="nav-link">Order in Progress</NavLink>
+                                        <Link to="/seller/order/progress" className="nav-link">Order in Progress</Link>
                                         <i className='bx bx-chevron-right'></i>
                                     </li>
                                     <li>
                                         <div onClick={handleSwitch2User} className="nav-link" type='button'>Switch to User</div>
                                         <i className='bx bx-chevron-right'></i>
                                     </li>
-                                    <div type="button" className='prfl-logout' onClick={handleLogout}>Logout</div>
+                                    <div type="button" className='prfl-logout' onClick={handleLogout2}>Logout</div>
                                 </>
                             ) : (
                                 <>
@@ -143,7 +143,7 @@ const ProfileNavbar = () => {
                                     </div>
 
                                     <li>
-                                        <NavLink to="/user/order" className="nav-link">Order</NavLink>
+                                        <Link to="/user/order" className="nav-link">Order</Link>
                                         <i className='bx bx-chevron-right'></i>
                                     </li>
                                     {isVerified ?
@@ -153,7 +153,7 @@ const ProfileNavbar = () => {
                                         </li>
                                         : null
                                     }
-                                    <div type="button" className='prfl-logout' onClick={handleLogout}>Logout</div>
+                                    <div type="button" className='prfl-logout' onClick={handleLogout2}>Logout</div>
                                 </>
                             )
                         )

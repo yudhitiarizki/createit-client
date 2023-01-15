@@ -22,22 +22,20 @@ import UserOrderDetail from "../pages/UserOrderDetail";
 import NotFound from "../pages/NotFound";
 import About from "../pages/About";
 import EmailVerif from '../pages/EmailVerify';
-import Navbar from "../components/General/Navbar";
-import '../components/General/Navbar.css';
-
+import NewNavbar from "../components/Navbar/NewNavbar";
 
 const Router = () => {
   const location = useLocation();
   const [nav, setNav] = useState(true);
 
   useEffect(() => {
-    ['/login', '/register'].includes(location.pathname) ? setNav(false) : setNav(true);
+    ['/login', '/register', '*'].includes(location.pathname) ? setNav(false) : setNav(true);
   }, [location]);
 
   return (
     <>
       <ScrollToTop />
-      { nav && <Navbar /> }
+      { nav && <NewNavbar /> }
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
@@ -57,9 +55,9 @@ const Router = () => {
         <Route exact path="/test" element={<Test />} />
         <Route exact path="/createorder" element={<CreateOrder />} />
         <Route exact path="/verifypayment" element={<VerifyPayment />} />
-        <Route exact path="*" element={<NotFound />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/verif/:token" element={<EmailVerif />} />
+        <Route exact path="*" element={<NotFound />} />
       </Routes>
     </>
   );
