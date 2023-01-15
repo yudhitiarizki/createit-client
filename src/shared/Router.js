@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "../Helpers/ScrollToTop";
 import ApplyAsSeller from "../pages/ApplyAsSeller";
 import CategoryDetail from "../pages/CategoryDetail";
@@ -22,12 +22,22 @@ import UserOrderDetail from "../pages/UserOrderDetail";
 import NotFound from "../pages/NotFound";
 import About from "../pages/About";
 import EmailVerif from '../pages/EmailVerify';
+import Navbar from "../components/General/Navbar";
+import '../components/General/Navbar.css';
+
 
 const Router = () => {
+  const location = useLocation();
+  const [nav, setNav] = useState(true);
+
+  useEffect(() => {
+    ['/login', '/register'].includes(location.pathname) ? setNav(false) : setNav(true);
+  }, [location]);
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
+      { nav && <Navbar /> }
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
@@ -51,7 +61,7 @@ const Router = () => {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/verif/:token" element={<EmailVerif />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
 

@@ -12,6 +12,8 @@ const CategoryDetail = () => {
   const { id } = useParams();
 
   const { isLoading } = useSelector(state => state.Loading);
+  
+  const { service } = useSelector(state => state.service);
 
   useEffect(() => {
     dispatch(setToLoad());
@@ -26,7 +28,7 @@ const CategoryDetail = () => {
         <Loader />
         :
         <>
-          <ServicePerCategory />
+          <ServicePerCategory service={service}/>
           <div style={{ 'width': '100%', 'background': '#e5e5e533' }}>
             <Footer />
           </div>

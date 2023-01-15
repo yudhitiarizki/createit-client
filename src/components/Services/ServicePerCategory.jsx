@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './ServicePerCategory.css';
 import '../Home/HomePage.css';
-import Navbar from '../General/Navbar';
 import Pose10 from '../../asset/HomePage/Pose10.svg';
 import { Link, useParams } from 'react-router-dom';
 import ServiceListCategory from './ServicesListCategory';
 import ServiceSearchResult from './ServiceSearchResult';
 
-const ServicePerCategory = () => {
+const ServicePerCategory = ({service}) => {
     const { id } = useParams();
 
     const category = useSelector(state => state.category);
-    const { service } = useSelector(state => state.service);
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
@@ -50,7 +48,6 @@ const ServicePerCategory = () => {
         <div>
             <div className='top-container'>
                 <div className='Banner1'>
-                    <Navbar />
                     <div className='ellipse1'>
                         <img src={Pose10} alt='' className='pose1'></img>
                     </div>
