@@ -4,6 +4,7 @@
     padding: 0;
 }
 
+
 .navbar-cntr {
     width: 100%;
     display: flex;
@@ -12,6 +13,7 @@
     align-items: center;
     padding: 0px 9%;
     height: 130px;
+    background-color: rgb(250,243,204);
 }
 
 .navbar-logo {

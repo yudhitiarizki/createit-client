@@ -5,7 +5,7 @@
 }
 
 .Banner1 {
-    height: 638px;
+    height: 540px;
     background: url('../../asset/HomePage/top-Banner.svg') bottom no-repeat;
     background-size: cover;
 }
@@ -14,7 +14,7 @@
     position: absolute;
     left: 43%;
     right: 0%;
-    top: 36.3%;
+    top: 25%;
     bottom: 0%;
     background: url('../../asset/HomePage/Ellipse3.svg') left top no-repeat;
     background-size: cover;
@@ -31,7 +31,8 @@
 .text1-container {
     position: absolute;
     left: 10%;
-    top: 30%;
+    top: 15%;
+    top: 15%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -64,7 +65,7 @@
 .searchbox-cntr {
     position: absolute;
     left: 10%;
-    top: 60%;
+    top: 55%;
 }
 
 .textcategory-container {
@@ -233,22 +234,22 @@
 /* Nest Hub */
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .Banner1 {
-        height: 550px;
+        height: 430px;
     }
     
     .ellipse1 {
         height: 355px;
-        top: 36.5%;
+        top: 25%;
     }
     
     .pose1 {
-        top: -18%;
+        top: -20%;
         height: 425px;
     }
     
     .text1-container {
         left: 9%;
-        top: 28%;
+        top: 15%;
     }
     
     .text1-1 {
@@ -269,7 +270,7 @@
     
     .searchbox-cntr {
         left: 9%;
-        top: 60%;
+        top: 55%;
     }
     
     .homepage-center {
@@ -349,12 +350,12 @@
 /* Surface Pro 7, iPad Mini, iPad Air */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .Banner1 {
-        height: 400px;
+        height: 320px;
     }
     
     .ellipse1 {
         height: 300px;
-        top: 36.5%;
+        top: 20%;
     }
     
     .pose1 {
@@ -365,7 +366,7 @@
     .text1-container {
         gap: 20px;
         left: 8%;
-        top: 29%;
+        top: 15%;
     }
     
     .text1-1 {
@@ -391,11 +392,6 @@
     .textcategory-container {
         margin-top: 60px;
         margin-bottom: 50px;
-    }
-    
-    .searchbox-cntr {
-        left: 8%;
-        top: 60%;
     }
     
     .homepage-center {
@@ -461,7 +457,8 @@
     }
 
     .searchbox-cntr {
-        top: 62%;
+        left: 8vw;
+        top: 55%;
     }
     
     .search-container1 {
@@ -487,7 +484,7 @@
 /* Small devices */
 @media (max-width: 767.98px) {
     .Banner1 {
-        height: 300px;
+        height: 230px;
     }
 
     .ellipse1,
@@ -498,7 +495,7 @@
     .text1-container {
         gap: 15px;
         left: 8%;
-        top: 28%;
+        top: 10%;
     }
     
     .text1-1 {
@@ -524,11 +521,6 @@
     .textcategory-container {
         margin-top: 50px;
         margin-bottom: 40px;
-    }
-    
-    .searchbox-cntr {
-        left: 8%;
-        top: 50%;
     }
     
     .homepage-center {
@@ -595,7 +587,8 @@
     }
 
     .searchbox-cntr {
-        top: 60%;
+        left: 8%;
+        top: 55%;
     }
     
     .search-container1 {

@@ -3,13 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import React, { useState } from 'react';
 import link from '../../asset/Seller/link.png';
-import { useDispatch } from 'react-redux';
-import { ApplySeller } from '../../redux/actions/auth';
-import { useNavigate } from 'react-router-dom';
 
-const RegSellerForm = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+const RegSellerForm = ({handleSubmit}) => {
 
     const [photoProfile, setPhotoProfile] = useState();
     const [description, setDescription] = useState('');
@@ -35,17 +30,8 @@ const RegSellerForm = () => {
         }
     };
 
-    const handleSubmit = () => {
-        dispatch(ApplySeller(photoProfile, description, noRekening, bankName, cardHolder)).then(() => {
-            console.log('asd')
-            setPhotoProfile('');
-            setDescription('');
-            setNoRekening('');
-            setBankName('');
-            setCardHolder('');
-            document.getElementById('custom-inputtext1').innerHTML = '';
-            navigate('/')
-        })
+    const handleSubmitSeller = () => {
+        handleSubmit(photoProfile, description, noRekening, bankName, cardHolder);
     };
 
     return (
@@ -82,7 +68,7 @@ const RegSellerForm = () => {
                         </div>
                     </div>
                 </div>
-                <button className='submit-btn1' onClick={handleSubmit}>Submit</button>
+                <button className='submit-btn1' onClick={handleSubmitSeller}>Submit</button>
             </div>
         </div>
     )

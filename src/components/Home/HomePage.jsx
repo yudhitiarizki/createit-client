@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './HomePage.css';
 import Pose10 from '../../asset/HomePage/Pose10.svg';
-import Navbar from '../General/Navbar';
 import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
 import Feature from '../../asset/HomePage/Feature.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeSearchResult from './HomeSearchResult';
+import { sendMessage } from '../../redux/actions/message';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -27,39 +27,12 @@ const HomePage = () => {
             if (user.role === 1) {
                 navigate('/applyseller');
             } else if (user.role === 3) {
-                toast.error("Admin can't access this page.", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
+                sendMessage('error', "Admin can't access this page.");
             } else {
-                toast.error('You already become a seller.', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
+                sendMessage('error', 'You already become a seller.');
             }
         } else {
-            toast.error('Login is needed.', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', 'Login is needed.');
         }
     }
 
@@ -96,7 +69,6 @@ const HomePage = () => {
         <div>
             <div className='top-container'>
                 <div className='Banner1'>
-                    <Navbar />
                     <div className='ellipse1'>
                         <img src={Pose10} alt='' className='pose1'></img>
                     </div>

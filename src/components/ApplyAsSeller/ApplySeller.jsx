@@ -19,18 +19,13 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
-const ApplySeller = () => {
-    const { isLoggedIn, user } = useSelector(state => state.auth);
-
-    if(isLoggedIn) {
-        if (user.role !== 1) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
+const ApplySeller = ({ handleSubmit }) => {
+    
 
     return (
         <div>
             <div className='top-container1'>
                 <div className='Banner1-1'>
-                    <Navbar />
                     <div className='ellipse1-1'>
                         <img src={Group12} alt='' className='group12'></img>
                     </div>
@@ -93,7 +88,7 @@ const ApplySeller = () => {
                 </div>
             </div>
             <ToastContainer />
-            <RegSellerForm />
+            <RegSellerForm handleSubmit={handleSubmit} />
         </div>
     )
 };
