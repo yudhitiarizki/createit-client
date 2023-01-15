@@ -23,10 +23,13 @@ import NotFound from "../pages/NotFound";
 import About from "../pages/About";
 import EmailVerif from '../pages/EmailVerify';
 import NewNavbar from "../components/Navbar/NewNavbar";
+import { useSelector } from "react-redux";
 
 const Router = () => {
   const location = useLocation();
   const [nav, setNav] = useState(true);
+
+  const { role } = useSelector(state => state.auth);
 
   useEffect(() => {
     ['/login', '/register', '*'].includes(location.pathname) ? setNav(false) : setNav(true);
@@ -40,7 +43,7 @@ const Router = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/newcategory" element={<CreateCategory />} />
+        { role == '3' && <Route exact path="/newcategory" element={<CreateCategory />} /> }
         <Route exact path="/category/:id" element={<CategoryDetail />} />
         <Route exact path="/service/:slug" element={<ServiceDetail />} />
         <Route exact path="/manageseller" element={<ManageSeller />} />
