@@ -1,7 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import Navbar from '../General/Navbar';
 import './ApplySeller.css';
 import Group12 from '../../asset/Seller/Group12.svg';
 import MoneyReceive from '../../asset/Seller/money-recive.svg';
@@ -15,13 +14,9 @@ import calendar from '../../asset/Seller/calendar.svg';
 import { Link } from 'react-router-dom';
 
 import RegSellerForm from './RegSellerForm';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 const ApplySeller = ({ handleSubmit }) => {
-    
-
     return (
         <div>
             <div className='top-container1'>

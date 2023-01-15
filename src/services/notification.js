@@ -2,7 +2,7 @@ import Api from '../Api';
 import AuthHeader from './Auth-header';
 
 const getNotification = () => {
-    return Api.get('/notif');
+    return Api.get('/notif', {headers: AuthHeader()});
 }
 
 const patchNotification = (notifId) => {

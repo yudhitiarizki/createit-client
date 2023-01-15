@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Profile.css';
-import Navbar from '../General/Navbar';
 import { Link } from 'react-router-dom';
 import Edit from '../../asset/Seller/edit.png'
 import Star from './Star';
@@ -15,7 +14,6 @@ const Profile = ({ seller }) => {
     return (
         <div className='section-container'>
             <div className='banner'>
-                <Navbar />
                 <div className="profile">
                     <img src={seller.photoProfile} alt='' className="photo-profile">
                     </img>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Navbar from "../General/Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './UserOrders.css';
@@ -93,9 +92,6 @@ const UserOrders = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <div>User</div>
                 <i className='bx bx-chevron-right'></i>

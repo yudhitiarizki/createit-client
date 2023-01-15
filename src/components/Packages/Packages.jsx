@@ -26,17 +26,6 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
-
-    useEffect(() => {
-        if (packages.length !== 3) {
-            document.getElementById('pckg-list').classList.remove('package-list');
-            document.getElementById('pckg-list').classList.add('package-list1');
-        } else {
-            document.getElementById('pckg-list').classList.add('package-list');
-            document.getElementById('pckg-list').classList.remove('package-list1');
-        }
-    }, [packages.length]);
-
     const EditPckg = (item) => {
         setPackageId(item.packageId);
         setType(item.type);
@@ -83,7 +72,7 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
                     <></>
                 )}
             </div>
-            <div className='package-list' id='pckg-list'>
+            <div className={(packages.length === 3) ? 'package-list' : 'package-list1'}>
                 {packages.map((item, index) => (
                     <div key={`id-${index}`} className='package-list-cntr'>
                         <div className='pckg-white-cntr'>

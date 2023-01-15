@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../General/Navbar';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import '../Services/DetailService.css';
@@ -65,9 +64,6 @@ const SellerOrderInProgress = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <div className="nav-link">Seller</div>
                 <i className='bx bx-chevron-right'></i>

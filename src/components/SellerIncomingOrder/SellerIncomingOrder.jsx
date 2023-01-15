@@ -1,7 +1,6 @@
 import './SellerIncomingOrder.css';
 import '../Services/DetailService.css';
 import React, { useEffect } from 'react';
-import Navbar from '../General/Navbar';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewOrderDetail } from '../../redux/actions/NewOrderDetailSeller';
@@ -36,9 +35,6 @@ const SellerIncomingOrder = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <div className="nav-link">Seller</div>
                 <i className='bx bx-chevron-right'></i>

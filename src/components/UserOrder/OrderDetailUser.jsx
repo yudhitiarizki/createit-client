@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import Navbar from "../General/Navbar";
 import '../Services/DetailService.css';
 import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
@@ -67,9 +66,6 @@ const OrderDetailUser = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <div>User</div>
                 <i className='bx bx-chevron-right'></i>
