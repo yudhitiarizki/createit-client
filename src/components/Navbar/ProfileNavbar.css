@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.prfl-dropdown-menu {
+    position: absolute;
+    top: 58px;
+    right: -5%;
+    z-index: 99;
+    width: 220px;
+    background-color: #F7F7F7;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 25px 20px;
+}
+
+.prfl-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 10%;
+    z-index: 99;
+    width: 15px;
+    height: 15px;
+    background-color: #F7F7F7;
+    transform: rotate(45deg);
+}
+
+.prfl-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: 0.5s ease;
+}
+
+.prfl-nonactive {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 0.5s ease;
+}
+
+.profilenav-cntr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.profilenav-cntr img {
+    display: none;
+}
+
+.prfl-nav-info {
+    width: calc(220px - 40px);
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prflnav-username {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #333333;
+    margin-bottom: 5px;
+}
+
+.prflnav-role {
+    text-align: center;
+    font-size: 15px;
+}
+
+.prfl-dropdown-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+}
+
+.prfl-dropdown-menu ul li {
+    width: calc(220px - 40px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.prfl-dropdown-menu ul li:hover {
+    color: #E8504B;
+    cursor: pointer;
+}
+
+.prfl-dropdown-menu ul li i {
+    font-size: 18px;
+}
+
+.prfl-logout {
+    color: #E8504B;
+    font-size: 15px;
+}
+
+.prfl-header {
+    display: none;
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .prfl-dropdown-menu {
+        top: 50px;
+        right: -7%;
+        width: 220px;
+    }
+    
+    .prflnav-username {
+        font-size: 15px;
+    }
+    
+    .prflnav-role {
+        font-size: 14px;
+    }
+    
+    .prfl-dropdown-menu ul li {
+        font-size: 14px;
+    }
+
+    .prfl-logout {
+        font-size: 14px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .prfl-dropdown-menu {
+        position: fixed;
+        top: 0;
+        left: -100vw;
+        z-index: 99;
+        width: 100vw;
+        height: 100vh;
+        background-color: #F7F7F7;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        overflow: hidden;
+        transition: all 1s ease;
+    }
+
+    .prfl-dropdown-menu::before {
+        display: none;
+    }
+
+    .prfl-active {
+        transform: translateX(100vw);
+    }
+
+    .prfl-nonactive {
+        transform: translateX(-100vw);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .prfl-dropdown-menu .prfl-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background: #E8504B;
+        padding: 20px 25px;
+        width: 100vw;
+        height: 80px;
+    }
+
+    .prfl-dropdown-menu ul {
+        width: 100vw;
+        max-height: calc(100vh - 80px);
+        padding: 0;
+        justify-content: center;
+        margin: 0;
+        gap: 20px;
+    }
+
+    .profilenav-cntr {
+        width: 100vw;
+        background: #FFFFFF;
+        padding: 20px 25px;
+        margin: 20px 0px;
+    }
+
+    .profilenav-cntr img {
+        display: flex;
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
+    }
+
+    .prfl-nav-info {
+        width: calc(100vw - 50px - 80px);
+    }
+
+    .prfl-dropdown-menu ul li {
+        padding: 0px 25px;
+        width: 100vw;
+        font-weight: 500;
+        font-size: 17px;
+        justify-content: center;
+    }
+
+    .prfl-dropdown-menu ul li i {
+        display: none;
+    }
+
+    .prfl-logout {
+        padding: 0px 25px;
+        width: 100vw;
+        color: #E8504B;
+        font-weight: 500;
+        font-size: 17px;
+        text-align: center;
+    }
+}
