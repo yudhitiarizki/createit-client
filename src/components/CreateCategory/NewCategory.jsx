@@ -3,8 +3,8 @@ import '../Services/DetailService.css';
 import './NewCategory.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createCategory, getCategory } from '../../redux/actions/category';
-import { ToastContainer } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
+import loader from '../../asset/Login/loader.gif';
 
 const NewCategory = () => {
     const dispatch = useDispatch();
@@ -14,10 +14,11 @@ const NewCategory = () => {
     const [catImg, setCatImg] = useState('');
     const [category, setCategory] = useState('');
     const [description, setdescription] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-    if(isLoggedIn) {
-        if (role !== 3) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
+    if (isLoggedIn) {
+        if (role !== 3) { return <Navigate to='/' /> }
+    } else { return <Navigate to='/' /> }
 
     const uploadFile = () => {
         document.getElementById('real-inputfile3').click();
@@ -38,8 +39,10 @@ const NewCategory = () => {
     };
 
     const handleCreateCtgr = () => {
+        setIsLoading(true);
         dispatch(createCategory(category, description, catImg)).then(() => {
             dispatch(getCategory());
+            setIsLoading(false);
             setCatImg('');
             setCategory('');
             setdescription('');
@@ -59,16 +62,16 @@ const NewCategory = () => {
                     <div className='newcatform-title'>CREATE CATEGORY</div>
                     <div className='newcatform-row'>
                         <div className='newcatform-col1'><div>Category Name</div><span> *</span></div>
-                        <input value={category} onChange={(event) => {setCategory(event.target.value)}} />
+                        <input value={category} onChange={(event) => { setCategory(event.target.value) }} />
                     </div>
                     <div className='newcatform-row'>
                         <div className='newcatform-col1'><div>Description</div><span> *</span></div>
-                        <input value={description} onChange={(event) => {setdescription(event.target.value)}} />
+                        <input value={description} onChange={(event) => { setdescription(event.target.value) }} />
                     </div>
                     <div className='newcatform-row'>
                         <div className='newcatform-col1'><div>Category Image</div><span> *</span></div>
                         <div className='newcatform-imginput'>
-                            <input type='file' id='real-inputfile3' onChange={handleFileChange} accept="image/*"/>
+                            <input type='file' id='real-inputfile3' onChange={handleFileChange} accept="image/*" />
                             <div className='cstm-imginput3'>
                                 <div id='custom-inputtext3' className='thumb2'></div>
                                 <div className='custominputimg3-btn' onClick={uploadFile}>
@@ -78,10 +81,13 @@ const NewCategory = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='createcategory-btn' onClick={handleCreateCtgr}>CREATE</div>
+                    {isLoading ?
+                        <img src={loader} alt='' className='Loading'></img>
+                        :
+                        <div className='createcategory-btn' onClick={handleCreateCtgr}>CREATE</div>
+                    }
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 };

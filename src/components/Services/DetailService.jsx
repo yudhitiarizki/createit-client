@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 
 import './DetailService.css';
@@ -9,23 +9,13 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-import { getServiceBySlug } from "../../redux/actions/service";
-
 import Packages from "../Packages/Packages";
 import ReviewsList from "./ReviewsList";
 import Gif from '../../asset/Login/loader.gif';
 import { ToastContainer } from 'react-toastify';
 
-const DetailService = () => {
-    const { slug } = useParams();
-
-    const dispatch = useDispatch();
-
+const DetailService = ({slug}) => {
     const { detail } = useSelector(state => state.service);
-
-    useEffect(() => {
-        dispatch(getServiceBySlug(slug));
-    }, [dispatch]);
 
     return (
         <div>

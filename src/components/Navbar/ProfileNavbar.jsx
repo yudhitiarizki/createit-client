@@ -3,7 +3,7 @@ import './NewNavbar.css';
 import './NotifNavbar.css';
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout, switchtoBuyer, switchtoSeller } from '../../redux/actions/auth';
 import { useEffect, useRef, useState } from 'react';
 
