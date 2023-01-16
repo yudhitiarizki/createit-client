@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Footer from '../components/General/Footer';
+import Loader from '../components/General/Loader';
 import Profile from '../components/SellerProfile/Profile';
 import ServiceList from '../components/SellerProfile/ServiceList';
+import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
+import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import { getMySeller } from '../redux/actions/seller';
-import { deleteService, getServiceByUser } from '../redux/actions/service';
+import { getServiceByUser } from '../redux/actions/service';
 
 
 const OtherSellerProfile = () => {
@@ -14,29 +17,34 @@ const OtherSellerProfile = () => {
     const { id } = useParams();
     const sellerId = +id;
 
-    const seller = useSelector(state => state.seller);
+    const { isLoading, isError } = useSelector(state => state.Loading);
 
     useEffect(() => {
+        dispatch(setToLoad())
         dispatch(getMySeller(sellerId));
         dispatch(getServiceByUser(sellerId))
+            .then(() => {
+                dispatch(setToNotLoad());
+            })
+            .catch(error => {
+                dispatch(setWentWrong());
+            })
     }, [dispatch, sellerId]);
-
-    const onDelete = (serviceId) => {
-        dispatch(deleteService(serviceId)).then(() => {
-            dispatch(getServiceByUser(sellerId))
-        })
-    }
-    
-    const getServiceButton = () => {
-        dispatch(getServiceByUser(sellerId))
-    }
 
     return (
         <>
-            <Profile seller={seller} />
-            <ServiceList seller={seller} onDelete={onDelete} getServiceButton={getServiceButton}/>
-            <Footer />
-            <ToastContainer />
+            {isLoading ?
+                <Loader /> :
+                (isError ?
+                    <SomethingWrong /> :
+                    <>
+                        <Profile />
+                        <ServiceList />
+                        <Footer />
+                        <ToastContainer />
+                    </>
+                )
+            }
         </>
     );
 };

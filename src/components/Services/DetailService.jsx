@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Navbar from "../General/Navbar";
 import OwlCarousel from 'react-owl-carousel';
 
 import './DetailService.css';
@@ -30,9 +29,6 @@ const DetailService = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <Link to='/' className="nav-link">Home</Link>
                 <i className='bx bx-chevron-right'></i>

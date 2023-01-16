@@ -1,6 +1,7 @@
 import {
     SET_TO_LOADING,
-    SET_TO_NOT_LOADING
+    SET_TO_NOT_LOADING,
+    SOMETHING_WENT_WRONG
 } from './types';
 
 export const setToLoad = () => {
@@ -14,3 +15,9 @@ export const setToNotLoad = () => {
         type: SET_TO_NOT_LOADING
     }
 };
+
+export const setWentWrong = () => {
+    return {
+        type: SOMETHING_WENT_WRONG
+    }
+}

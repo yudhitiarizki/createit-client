@@ -5,7 +5,7 @@ import './Modal.css';
 
 const EditProfile = () => {
     return (
-    <div class="modal fade" id="EditService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="EditProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-body">

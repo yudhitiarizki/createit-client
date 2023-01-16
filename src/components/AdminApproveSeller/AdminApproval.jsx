@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSeller, sellerApprove, sellerReject } from "../../redux/actions/user";
 import { Link, Navigate } from "react-router-dom";
-import Navbar from "../General/Navbar";
 import '../Services/DetailService.css';
 import './AdminApproval.css';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
@@ -46,9 +45,6 @@ const AdminApproval = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className="navbar-text1">
                 <Link to='/' className="nav-link">Home</Link>
                 <i className='bx bx-chevron-right'></i>

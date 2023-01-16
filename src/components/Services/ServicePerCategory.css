@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 35px;
     color: #333333;
 }
 
@@ -38,7 +38,7 @@
 .searchbox-cntr1 {
     position: absolute;
     left: 10%;
-    top: 40%;
+    top: 55%;
 }
 
 .catlist-cntr11 {
@@ -92,13 +92,13 @@
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .nav-seller2 {
         left: 10%;
-        top: 120px;
+        top: 3%;
         font-size: 18px;
     }
     
     .text1-container11 {
         left: 10%;
-        top: 32%;
+        top: 18%;
         gap: 20px;
     }
     
@@ -112,7 +112,7 @@
     
     .searchbox-cntr1 {
         left: 10%;
-        top: 63%;
+        top: 58%;
     }
     
     .catlist-cntr11 {
@@ -129,7 +129,7 @@
         width: calc((84vw - 60px)/4);
         height: 88px;
         padding: 16px;
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
@@ -137,13 +137,13 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
     .nav-seller2 {
         left: 10%;
-        top: 25%;
-        font-size: 18px;
+        top: 3%;
+        font-size: 14px;
     }
     
     .text1-container11 {
         left: 10%;
-        top: 36%;
+        top: 20%;
         gap: 15px;
     }
     
@@ -157,7 +157,7 @@
     
     .searchbox-cntr1 {
         left: 10%;
-        top: 63%;
+        top: 57%;
     }
     
     .catlist-cntr11 {
@@ -182,13 +182,13 @@
 @media (max-width: 767.98px) {
     .nav-seller2 {
         left: 10%;
-        top: 25%;
+        top: 3%;
         font-size: 12px;
     }
     
     .text1-container11 {
         left: 10%;
-        top: 36%;
+        top: 20%;
         gap: 15px;
     }
     
@@ -202,7 +202,7 @@
     
     .searchbox-cntr1 {
         left: 10%;
-        top: 63%;
+        top: 57%;
     }
     
     .catlist-cntr11 {
