@@ -31,7 +31,7 @@ const OtherSellerProfile = () => {
 
     return (
         <>
-            {isLoading ?
+            { isLoading ?
                 <Loader /> :
                 (isError ?
                     <SomethingWrong /> :

@@ -7,7 +7,6 @@ const UserOrderDetail = () => {
         <>
             <OrderDetailUser />
             <Footer />
-            <ToastContainer />
         </>
     )
 };

@@ -9,7 +9,7 @@ import {
 
 import PackagesService from '../../services/packages';
 
-import { toast } from 'react-toastify';
+import { sendMessage } from './message';
 
 export const getPackage = (serviceId) => async dispatch => {
     return PackagesService.getPackage(serviceId).then(
@@ -21,26 +21,14 @@ export const getPackage = (serviceId) => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -57,26 +45,14 @@ export const getPackageBySlug = (slug) => async dispatch => {
                 }
             });
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: response.data.message,
-                    status: response.status
-                },
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         },
         error => {
             const message = error.response;
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: {
-                    message: message.data.message,
-                    status: message.status
-                },
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         },
@@ -90,32 +66,14 @@ export const createPackage = (serviceId, type, delivery, revision, noOfConcept, 
                 type: CREATE_PACKAGES,
             });
 
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, 
         error => {
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }
@@ -129,32 +87,14 @@ export const deletePackage = (packageId) => async dispatch => {
                 type: DELETE_PACKAGES,
             });
 
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, 
         error => {
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }
@@ -168,32 +108,14 @@ export const editPackage = (packageId, serviceId, type, delivery, revision, noOf
                 type: EDIT_PACKAGES,
             });
 
-            toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('success', response.data.message);
 
             return Promise.resolve();
         }, 
         error => {
             const message = error.response;
 
-            toast.error(message.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            sendMessage('error', message.data.message);
 
             return Promise.reject();
         }

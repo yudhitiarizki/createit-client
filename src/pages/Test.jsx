@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../redux/actions/category";
 import { getServiceByCategory, getService, getDetailService, getTopService, getServiceBySlug } from "../redux/actions/service";
@@ -8,22 +8,30 @@ import { getOrderUser } from "../redux/actions/order";
 import { getNotification } from "../redux/actions/notification";
 import { getUser } from "../redux/actions/user";
 import { useNavigate, Link } from "react-router-dom";
+import { SocketContext } from "../context/socket-context";
 
 const Test = () => {
-    const dispatch = useDispatch();
-
-    const payment = useSelector(state => state.payment);
+    const socket = useContext(SocketContext)
+    const { user } = useSelector(state => state.auth);
 
     useEffect(() => {
-        dispatch(getTopService());
-        window.location.href = 'https://www.figma.com/file/kc6Zh5kRKw9BhEqqfv4dGX/Create-it?node-id=10%3A2&t=LscuWeOMhi8pHhCd-0'
-    }, [dispatch]);
-
-    console.log(payment)
+        socket.on('getMessage', data => console.log(data))
+    },[])
+    
+    const sendMessage = () => {
+        console.log('tk')
+        socket.emit('sendMessage', {
+            senderId:user.userId, 
+            reseiverId: 2, 
+            text: 'test',
+            date: Date.now()
+        })
+    }
 
     return (
         <>Halaman Test
-            <Link to={'https://www.figma.com/file/kc6Zh5kRKw9BhEqqfv4dGX/Create-it?node-id=10%3A2&t=LscuWeOMhi8pHhCd-0'} >testttttt</Link>
+            <input type="text" placeholder="testttt"/>
+            <button onClick={sendMessage}>send Message</button>
         </>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "../Helpers/ScrollToTop";
 import ApplyAsSeller from "../pages/ApplyAsSeller";
@@ -24,16 +24,40 @@ import About from "../pages/About";
 import EmailVerif from '../pages/EmailVerify';
 import NewNavbar from "../components/Navbar/NewNavbar";
 import { useSelector } from "react-redux";
+import { SocketContext } from "../context/socket-context";
+import { sendMessage } from "../redux/actions/message";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Router = () => {
+  const socket = useContext(SocketContext);
   const location = useLocation();
   const [nav, setNav] = useState(true);
-
-  const { role } = useSelector(state => state.auth);
+  const [message, setMessage] = useState({date:'', text:''});
+  const { user } = useSelector(state => state.auth);
 
   useEffect(() => {
     ['/login', '/register', '*'].includes(location.pathname) ? setNav(false) : setNav(true);
   }, [location]);
+
+  useEffect(() => {
+      if (user) {
+        socket.emit('addUser', user.userId);
+        socket.on('getUsers', users => console.log(users))
+      }
+  }, [user])
+
+  useEffect(() => {
+    socket.on('getMessage', data => {
+      setMessage(data)
+    })
+  },[])
+
+  useEffect(() => {
+    if(message.date){
+      ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text);
+    }
+  }, [message])
 
   return (
     <>
@@ -62,6 +86,7 @@ const Router = () => {
         <Route exact path="/verif/:token" element={<EmailVerif />} />
         <Route exact path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
