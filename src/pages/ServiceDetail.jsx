@@ -14,8 +14,12 @@ const ServiceDetail = () => {
     const dispatch = useDispatch();
 
     const { isLoading, isError } = useSelector(state => state.Loading);
+    const { detail } = useSelector(state => state.service);
+
+
 
     useEffect(() => {
+        console.log('ok')
         dispatch(setToLoad());
         dispatch(getServiceBySlug(slug))
             .then(() => {
@@ -35,7 +39,7 @@ const ServiceDetail = () => {
                     <SomethingWrong />
                     :
                     <>
-                        <DetailService slug={slug} />
+                        <DetailService slug={slug} detail={detail}/>
                         <Footer />
                     </>
                 )

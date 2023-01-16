@@ -9,7 +9,6 @@ import { deleteService, getMyService } from '../redux/actions/service';
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import Loader from '../components/General/Loader';
 import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
-import { getMyService } from '../redux/actions/service';
 
 const SellerProfile = () => {
   const dispatch = useDispatch();

@@ -13,7 +13,6 @@ const ApplyAsSeller = () => {
 
     const handleSubmit = (photoProfile, description, noRekening, bankName, cardHolder) => {
         dispatch(ApplySeller(photoProfile, description, noRekening, bankName, cardHolder)).then(() => {
-            window.location.reload()
             navigate('/')
         })
     };

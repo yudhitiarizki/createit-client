@@ -56,7 +56,6 @@ const SellerOrderInProgress = () => {
     };
 
     const handleShowDetail = (order) => {
-        console.log(order)
         dispatch(getOnProgressDetail(order));
         document.getElementById('custom-inputtext2').innerHTML = '';
     };

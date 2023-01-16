@@ -22,7 +22,7 @@ const UserOrders = () => {
     } else {return <Navigate to='/' />}
 
     const orderCompleted = Order.filter(item => (item.status === 'Approved' || item.status === 'Done'));
-    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working' || item.status === 'Reviewing'));
+    const orderOngoing = Order.filter(item => (item.status === 'Revising' || item.status === 'Working' || item.status === 'Reviewing' || item.status === 'settlement'));
 
     const allOrderTab = () => {
         document.getElementById('user-all-order').style.display = 'flex';
