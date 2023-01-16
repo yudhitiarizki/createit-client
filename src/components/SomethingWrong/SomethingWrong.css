@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.smtngwrong-cntr {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20vw;
+    margin: 0;
+}
+
+.smtngwrong-icon {
+    font-size: 100px;
+    color: #E8504B;
+}
+
+.smtngwrong-oops {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #333333;
+}
+
+.smtngwrong-msg {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: #333333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.smtngwrong-tips {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .smtngwrong-cntr {
+        padding: 0px 10vw;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .smtngwrong-cntr {
+        padding: 0px 10vw;
+    }
+
+    .smtngwrong-oops {
+        font-size: 30px;
+    }
+    
+    .smtngwrong-msg {
+        font-size: 20px;
+    }
+    
+    .smtngwrong-tips {
+        font-size: 14px;
+    }
+}
