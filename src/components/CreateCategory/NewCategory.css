@@ -12,7 +12,7 @@
 }
 
 .form-container {
-    margin: 70px 9% 0px 9%;
+    margin: 50px 9% 0px 9%;
     display: flex;
     justify-content: center;
 }
@@ -160,11 +160,11 @@
 /* Nest Hub */
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .newcat-container {
-        height: 1000px;
+        height: 1050px;
     }
     
     .newcat-cntr {
-        height: calc(1000px - 380px);
+        height: calc(1050px - 380px);
     }
     
     .newcat-form {
@@ -209,11 +209,11 @@
 /* Surface Pro 7, iPad Mini, iPad Air */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .newcat-container {
-        height: 100vh;
+        height: 1000px;
     }
     
     .newcat-cntr {
-        height: calc(100vh - 380px);
+        height: calc(1000px - 380px);
     }
 
     .form-container {
@@ -222,6 +222,7 @@
     
     .newcat-form {
         width: 50vw;
+        gap: 25px;
     }
     
     .newcatform-title {
@@ -277,6 +278,7 @@
     
     .newcat-form {
         width: 80vw;
+        gap: 15px;
         padding: 25px 20px;
     }
     
@@ -287,7 +289,7 @@
     
     .newcatform-col1 {
         width: calc(80vw - 40px);
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .newcatform-row input {

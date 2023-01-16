@@ -6,43 +6,52 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getMySeller } from '../redux/actions/seller';
 import { useNavigate } from 'react-router-dom';
 import { deleteService, getMyService } from '../redux/actions/service';
+import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
+import Loader from '../components/General/Loader';
+import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
+import { getMyService } from '../redux/actions/service';
 
 const SellerProfile = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const seller = useSelector(state => state.seller);
-    const { user, isLoggedIn, role } = useSelector(state => state.auth);
+  const { user, isLoggedIn, role, isSeller } = useSelector(state => state.auth);
+  const { isLoading, isError } = useSelector(state => state.Loading);
 
-    useEffect(() => {
-      if(!isLoggedIn){
-        navigate('/')
-      } else if ( role !== 2) {
-        navigate('/');
-      }
-    }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/')
+    } else if (!(role === 2 && isSeller === true)) {
+      navigate('/');
+    }
+  }, [isLoggedIn]);
 
-    useEffect(() => {
-        dispatch(getMySeller(user.seller.sellerId));
-        dispatch(getMyService())
-    }, [dispatch]);
-
-    const onDelete = (serviceId) => {
-      dispatch(deleteService(serviceId)).then(() => {
-          dispatch(getMyService());
-      })
-  }
-
-  const getServiceButton = () => {
+  useEffect(() => {
+    dispatch(setToLoad());
+    dispatch(getMySeller(user.seller.sellerId));
     dispatch(getMyService())
-}
+      .then(() => {
+        dispatch(setToNotLoad());
+      })
+      .catch(() => {
+        dispatch(setWentWrong());
+      })
+  }, [dispatch]);
 
-    return (
-        <>
-          <Profile seller={seller} />
-          <ServiceList seller={seller} onDelete={onDelete} getServiceButton={getServiceButton}/>
-          <Footer />
-        </>
+  return (
+    <>
+      {isLoading ?
+        <Loader />
+        : (isError ?
+          <SomethingWrong />
+          :
+          <>
+            <Profile />
+            <ServiceList />
+            <Footer />
+          </>
+        )}
+    </>
   );
 };
 

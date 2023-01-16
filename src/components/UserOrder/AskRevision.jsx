@@ -5,18 +5,26 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { orderRevising } from '../../redux/actions/order';
+import loader from '../../asset/Login/loader.gif';
 
 const AskRevision = ({ orderId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [note, setNote] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const submitRevision = () => {
-        dispatch(orderRevising(orderId, note)).then(() => {
-            setNote('');
-            navigate('/user/order');
-        })
+        setIsLoading(true);
+        dispatch(orderRevising(orderId, note))
+            .then(() => {
+                setNote('');
+                setIsLoading(false);
+                navigate('/user/order');
+            })
+            .catch(() => {
+                setIsLoading(false);
+            })
     }
 
     const handleCancel = () => {
@@ -33,11 +41,17 @@ const AskRevision = ({ orderId }) => {
                     <div className="modal-content askrvsn-modal">
                         <div className="modal-title22" id="exampleModalLabel">Revision Note</div>
                         <div className="modal-body22">
-                            <textarea rows={6} className='askrvsn-box' value={note} onChange={(event) => {setNote(event.target.value)}}/>
+                            <textarea rows={6} className='askrvsn-box' value={note} onChange={(event) => { setNote(event.target.value) }} />
                         </div>
                         <div className="modal-footer22">
-                            <button type="button" className="askrvsn-cancelbtn" data-bs-dismiss="modal" onClick={handleCancel}>Cancel</button>
-                            <button type="button" className="askrevsn-submit" onClick={submitRevision}>Add</button>
+                            {isLoading ?
+                                <img src={loader} alt='' className='Loading'></img>
+                                :
+                                <>
+                                    <button type="button" className="askrvsn-cancelbtn" data-bs-dismiss="modal" onClick={handleCancel}>Cancel</button>
+                                    <button type="button" className="askrevsn-submit" onClick={submitRevision}>Add</button>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>

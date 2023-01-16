@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/General/Navbar';
 import '../components/CreateOrder/Order.css';
 import OrderData from '../components/CreateOrder/OrderData';
 import OrderSummary from '../components/CreateOrder/OrderSummary';

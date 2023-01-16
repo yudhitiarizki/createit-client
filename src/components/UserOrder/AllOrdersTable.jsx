@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { sendPayment } from '../../redux/actions/payment';
 import { setDetailOrder } from '../../redux/actions/order';
 

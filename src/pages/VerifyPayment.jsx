@@ -1,7 +1,6 @@
 import React from 'react';
 import PaymentSummary from '../components/VerifyPayment/PaymentSummary';
 import '../components/Services/DetailService.css';
-import Navbar from '../components/General/Navbar';
 import Footer from '../components/General/Footer';
 import { useSelector } from 'react-redux';
 import '../components/VerifyPayment/PaymentSummary.css';
@@ -12,9 +11,6 @@ const VerifyPayment = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             { payment.order_id ? (
                 <PaymentSummary data={payment} />
             ) : (

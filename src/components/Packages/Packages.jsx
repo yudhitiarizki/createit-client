@@ -8,14 +8,18 @@ import React, { useEffect, useState } from 'react';
 import AddPackage from './AddPackage';
 import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
 import { sendMessage } from "../../redux/actions/message";
+import loader from '../../asset/Login/loader.gif';
 
 const Packages = ({ data, serviceId, slug, name, userId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const packages = data;
-    
+
     const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading2, setIsLoading2] = useState(false);
+    const [idLoad, setIdLoad] = useState(0);
 
     const [packageId, setPackageId] = useState('');
     const [type, setType] = useState('');
@@ -25,17 +29,6 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
     const [noOfPages, setnoOfPages] = useState('');
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
-
-
-    useEffect(() => {
-        if (packages.length !== 3) {
-            document.getElementById('pckg-list').classList.remove('package-list');
-            document.getElementById('pckg-list').classList.add('package-list1');
-        } else {
-            document.getElementById('pckg-list').classList.add('package-list');
-            document.getElementById('pckg-list').classList.remove('package-list1');
-        }
-    }, [packages.length]);
 
     const EditPckg = (item) => {
         setPackageId(item.packageId);
@@ -49,21 +42,33 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
     }
 
     const handleEditPckg = () => {
-        dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price)).then(() => {
-            dispatch(getPackageBySlug(slug));
-            window.location.reload();
-        })
+        setIsLoading(true)
+        dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price))
+            .then(() => {
+                setIsLoading(false)
+                dispatch(getPackageBySlug(slug));
+                window.location.reload();
+            })
+            .catch(() => {
+                setIsLoading(false)
+            })
     }
 
     const handleDeletePckg = (packageId) => {
-        dispatch(deletePackage(packageId)).then(() => {
-            dispatch(getPackageBySlug(slug));
-        })
+        setIsLoading2(true)
+        dispatch(deletePackage(packageId))
+            .then(() => {
+                setIsLoading2(false)
+                dispatch(getPackageBySlug(slug));
+            })
+            .catch(() => {
+                setIsLoading2(false)
+            })
     }
 
     const orderNow = (packageData) => {
         if (isLoggedIn) {
-            navigate('/createorder', {state: {package: packageData, service: name}});
+            navigate('/createorder', { state: { package: packageData, service: name } });
         } else {
             sendMessage('error', "Login is required.");
         }
@@ -77,96 +82,105 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
                     ((packages.length === 3) ? (
                         <></>
                     ) : (
-                        <AddPackage serviceId={serviceId} slug={slug} packages={packages}/>
+                        <AddPackage serviceId={serviceId} slug={slug} packages={packages} />
                     ))
                 ) : (
                     <></>
                 )}
             </div>
-            <div className='package-list' id='pckg-list'>
+            <div className={(packages.length === 3) ? 'package-list' : 'package-list1'}>
                 {packages.map((item, index) => (
                     <div key={`id-${index}`} className='package-list-cntr'>
-                        <div className='pckg-white-cntr'>
-                            <div className='pckg-detail-cntr'>
-                                <div className='pckgdetail-title'>DETAILS</div>
-                                <div className='pckgdetail-info'>
-                                    <div>Delivery Time: {item.delivery} days</div>
-                                    <div>Limit of Revisions: {item.revision}</div>
-                                    {(item.noOfConcept) ? (
-                                        <div>Number of noOfConcept: {item.noOfConcept}</div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                    {(item.noOfnoOfPages) ? (
-                                        <div>Number of noOfPages: {item.noOfnoOfPages}</div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                    {(item.maxDuration) ? (
-                                        <div>Max Duration: {item.maxDuration} minutes</div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                        {(index === 0) ? (
+                        {(idLoad === item.packageId) ?
+                            (isLoading2 ?
+                                <img src={loader} alt='' className='Loading'></img>
+                                :
+                                <></>
+                            ) :
                             <>
-                                <div className='orange-arrow top-pckg-cntr'>
-                                    <div className='pckgdetail-price'>Rp {item.price},-</div>
-                                    {(isLoggedIn && user.role === 2 && isSeller) ? (
-                                        <div className='edit-delete'>
-                                            <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
-                                                <i className='bx bx-edit'></i>
-                                            </div>
-                                            <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
+                                <div className='pckg-white-cntr'>
+                                    <div className='pckg-detail-cntr'>
+                                        <div className='pckgdetail-title'>DETAILS</div>
+                                        <div className='pckgdetail-info'>
+                                            <div>Delivery Time: {item.delivery} days</div>
+                                            <div>Limit of Revisions: {item.revision}</div>
+                                            {(item.noOfConcept) ? (
+                                                <div>Number of noOfConcept: {item.noOfConcept}</div>
+                                            ) : (
+                                                <></>
+                                            )}
+                                            {(item.noOfnoOfPages) ? (
+                                                <div>Number of noOfPages: {item.noOfnoOfPages}</div>
+                                            ) : (
+                                                <></>
+                                            )}
+                                            {(item.maxDuration) ? (
+                                                <div>Max Duration: {item.maxDuration} minutes</div>
+                                            ) : (
+                                                <></>
+                                            )}
                                         </div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                    <div className='pckgdetail-type'>{item.type}</div>
+                                    </div>
                                 </div>
-                                <div className='ordernow-btn orange-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
+                                {(index === 0) ? (
+                                    <>
+                                        <div className='orange-arrow top-pckg-cntr'>
+                                            <div className='pckgdetail-price'>Rp {item.price},-</div>
+                                            {(isLoggedIn && user.role === 2 && isSeller) ? (
+                                                <div className='edit-delete'>
+                                                    <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
+                                                        <i className='bx bx-edit'></i>
+                                                    </div>
+                                                    <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
+                                                </div>
+                                            ) : (
+                                                <></>
+                                            )}
+                                            <div className='pckgdetail-type'>{item.type}</div>
+                                        </div>
+                                        <div className='ordernow-btn orange-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
+                                    </>
+                                ) : (
+                                    (index === 1) ? (
+                                        <>
+                                            <div className='pink-arrow top-pckg-cntr'>
+                                                <div className='pckgdetail-price'>Rp {item.price},-</div>
+                                                {(isLoggedIn && user.role === 2 && isSeller) ? (
+                                                    <div className='edit-delete'>
+                                                        <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
+                                                            <i className='bx bx-edit'></i>
+                                                        </div>
+                                                        <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
+                                                    </div>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                <div className='pckgdetail-type'>{item.type}</div>
+                                            </div>
+                                            <div className='ordernow-btn pink-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className='purple-arrow top-pckg-cntr'>
+                                                <div className='pckgdetail-price'>Rp {item.price},-</div>
+                                                {(isLoggedIn && user.role === 2 && isSeller) ? (
+                                                    <div className='edit-delete'>
+                                                        <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
+                                                            <i className='bx bx-edit'></i>
+                                                        </div>
+                                                        <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
+                                                    </div>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                <div className='pckgdetail-type'>{item.type}</div>
+                                            </div>
+                                            <div className='ordernow-btn purple-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
+                                        </>
+                                    )
+                                )}
                             </>
-                        ) : (
-                            (index === 1) ? (
-                                <>
-                                    <div className='pink-arrow top-pckg-cntr'>
-                                        <div className='pckgdetail-price'>Rp {item.price},-</div>
-                                        {(isLoggedIn && user.role === 2 && isSeller) ? (
-                                            <div className='edit-delete'>
-                                                <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
-                                                    <i className='bx bx-edit'></i>
-                                                </div>
-                                                <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
-                                            </div>
-                                        ) : (
-                                            <></>
-                                        )}
-                                        <div className='pckgdetail-type'>{item.type}</div>
-                                    </div>
-                                    <div className='ordernow-btn pink-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className='purple-arrow top-pckg-cntr'>
-                                        <div className='pckgdetail-price'>Rp {item.price},-</div>
-                                        {(isLoggedIn && user.role === 2 && isSeller) ? (
-                                            <div className='edit-delete'>
-                                                <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
-                                                    <i className='bx bx-edit'></i>
-                                                </div>
-                                                <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
-                                            </div>
-                                        ) : (
-                                            <></>
-                                        )}
-                                        <div className='pckgdetail-type'>{item.type}</div>
-                                    </div>
-                                    <div className='ordernow-btn purple-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
-                                </>
-                            )
-                        )}
+                        }
                     </div>
                 ))}
             </div>
@@ -219,7 +233,11 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
                         </div>
 
                         <div className="modal-footer1">
-                            <button className="modal-save-btn" onClick={handleEditPckg}>Edit Package</button>
+                            {isLoading ?
+                                <img src={loader} alt='' className='Loading'></img>
+                                :
+                                <button className="modal-save-btn" onClick={handleEditPckg}>Edit Package</button>
+                            }
                         </div>
                     </div>
                 </div>

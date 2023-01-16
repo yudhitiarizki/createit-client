@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import '../components/VerifyPayment/PaymentSummary.css';
 import tickCircle from '../asset/Payment/tick-circle.svg';
-import Navbar from "../components/General/Navbar";
 import Footer from "../components/General/Footer";
 import Gif from '../asset/Login/loader.gif';
 import { useDispatch } from "react-redux";

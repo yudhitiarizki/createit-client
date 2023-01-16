@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-
-.banner {
-    width: 100%;
-    background: url('../../asset/HomePage/top-Banner.svg') bottom no-repeat;
-    background-size: cover;
-}
-
-.profile{
-    padding: 80px 120px;
+.profile {
+    padding: 40px 9vw 30px 9vw;
+    background: #faf3cc;
     width: 100%;
     display: flex;
     flex-direction: row;
+}
+
+.banner {
+    width: 100%;
+    height: 100px;
+    background: url('../../asset/HomePage/top-Banner.svg') bottom no-repeat;
+    background-size: cover;
 }
 
 .photo-profile {
@@ -21,119 +22,117 @@
 }
 
 .detail-profile {
-    padding-left: 50px;
-    height: 10px;
-    width: 80%;
-}
-
-h1 {
-    font-size: 3rem;
-    font-family: 'poppins';
-    font-weight: 700;
-}
-
-.edit-name{
-    margin-top: 10px;
-    height: 20px;
+    margin-left: 50px;
+    width: calc(82vw - 50px - 250px);
 }
 
 .name-profile {
-    padding-top: 20px;
+    padding-top: 10px;
+    width: calc(82vw - 50px - 250px);
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
 }
 
+.name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.edit-name {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}
+
+.edit-name:hover {
+    color: #E8504B;
+}
 
 .profile-description p {
-    font-size: 22px;
+    text-align: justify;
+    font-size: 18px;
 }
 
-
-@media (max-width: 991.98px) {
-
-}
-
-@media (max-width: 767.98px) {
-}
-
-@media (max-width: 575.98px) {
-    .section-container {
-        padding: 0px;
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .profile {
+        padding: 40px 9vw 30px 9vw;
     }
+
     .banner {
-        padding: 0px;
+        height: 70px;
+    }
+
+    .photo-profile {
+        height: 200px;
+        width: 200px;
     }
 
     .detail-profile {
-        margin: 0px;
-        padding: 0px;
-    }
-    
-    .name {
-        text-align: center;
-    }
-
-    .name h1 {
-        margin: 0px;
-        font-size: 25px;
-    }
-
-    .edit-name {
-        margin-top: -8px;
-    }
-
-    .edit-icon {
-        margin: 0px;
-        padding: 0px;
-        height: 20px;
+        margin-left: 40px;
+        width: calc(82vw - 40px - 200px);
     }
 
     .name-profile {
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 20px;
+        padding-top: 10px;
+        width: calc(82vw - 40px - 200px);
+        gap: 30px;
     }
 
-     
-    .profile-description {
-        text-align: center;
+    .name {
+        font-size: 30px;
     }
 
+    .edit-name {
+        font-size: 22px;
+    }
+
+    .profile-description p {
+        font-size: 16px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .profile {
+        padding: 20px 8vw 20px 8vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .banner {
+        height: 50px;
+    }
 
     .photo-profile {
         height: 100px;
         width: 100px;
     }
 
-    .profile {
-        margin: auto;
-        flex-direction: column;
-        align-items: center;
-        padding: 150px 0px;
-    }
-
-}
-
-@media (max-width: 767.98px) {
-    .photo-profile {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 20px;
-    }
-
-    .profile {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px;
+    .detail-profile {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 84vw;
     }
 
     .name-profile {
-        margin-bottom: 10px;
+        padding-top: 10px;
+        width: 84vw;
+        gap: 30px;
+    }
+
+    .name {
+        font-size: 25px;
+    }
+
+    .edit-name {
+        font-size: 22px;
     }
 
     .profile-description p {
-        font-size: 15px;
-        margin-top: 10px;
+        font-size: 14px;
     }
 }

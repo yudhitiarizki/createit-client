@@ -4,6 +4,7 @@ import { hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSell
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import './SellerOrderInProgress.css';
 import { OrderUploadFile, getOrderProgress } from '../../redux/actions/order';
+import loader from '../../asset/Login/loader.gif';
 
 const SellerInProgressDetail = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const SellerInProgressDetail = () => {
     const [upldFileType, setUpldFileType] = useState(1);
     const [urlinput, setUrlInput] = useState('');
     const [fileSizeMsg, setFileSizeMsg] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const addDays = (date, days) => {
         const result = new Date(date);
@@ -110,17 +112,29 @@ const SellerInProgressDetail = () => {
         if (upldFileType === 1) {
             if (!fileSizeMsg) {
                 const file = upldFile;
-                dispatch(OrderUploadFile(orderId, upldFileType, file)).then(() => {
-                    dispatch(getOrderProgress());
-                    hideDetail()
-                });
+                setIsLoading(true)
+                dispatch(OrderUploadFile(orderId, upldFileType, file))
+                    .then(() => {
+                        setIsLoading(false);
+                        dispatch(getOrderProgress());
+                        hideDetail()
+                    })
+                    .catch(() => {
+                        setIsLoading(false);
+                    })
             }
         } else {
             const file = urlinput;
-            dispatch(OrderUploadFile(orderId, upldFileType, file)).then(() => {
-                dispatch(getOrderProgress());
-                hideDetail();
-            });
+            setIsLoading(true)
+            dispatch(OrderUploadFile(orderId, upldFileType, file))
+                .then(() => {
+                    setIsLoading(false)
+                    dispatch(getOrderProgress());
+                    hideDetail();
+                })
+                .catch(() => {
+                    setIsLoading(false)
+                })
         }
     }
 
@@ -158,12 +172,12 @@ const SellerInProgressDetail = () => {
                         <div className='ordersummary-row2'>{deliveryTime}</div>
                     </div>
 
-                    { orderDetail.note && (
+                    {orderDetail.note && (
                         orderDetail.note.length && (
-                        <div className='ordersummary-row orange'>
-                            <div className='ordersummary-row1'>Order Note</div>
-                            <div className='ordersummary-row2'>{orderDetail.note[0].note}</div>
-                        </div>
+                            <div className='ordersummary-row orange'>
+                                <div className='ordersummary-row1'>Order Note</div>
+                                <div className='ordersummary-row2'>{orderDetail.note[0].note}</div>
+                            </div>
                         )
                     )}
                     {(orderDetail.noOfConcept) ? (
@@ -243,7 +257,11 @@ const SellerInProgressDetail = () => {
                                 <div className='external-link' onClick={handleChangeUpload}>Switch to file upload</div>
                             </div>
 
-                            <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId)}>SEND</div></div>
+                            {isLoading ?
+                                <img src={loader} alt='' className='Loading'></img>
+                                :
+                                <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId)}>SEND</div></div>
+                            }
                         </>
                     ) : (null)}
                 </div>
