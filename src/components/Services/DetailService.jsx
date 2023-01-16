@@ -96,7 +96,6 @@ const DetailService = ({slug}) => {
                     <img  src={Gif} alt="" className='Loading' />
                 </div>
             ) }
-
         </div>
     )
 };
