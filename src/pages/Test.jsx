@@ -9,7 +9,6 @@ import { getNotification } from "../redux/actions/notification";
 import { getUser } from "../redux/actions/user";
 import { useNavigate, Link } from "react-router-dom";
 import { SocketContext } from "../context/socket-context";
-import { ToastContainer } from "react-toastify";
 
 const Test = () => {
     const socket = useContext(SocketContext)
@@ -18,8 +17,6 @@ const Test = () => {
     useEffect(() => {
         socket.on('getMessage', data => console.log(data))
     },[])
-
-    
     
     const sendMessage = () => {
         console.log('tk')
@@ -35,7 +32,6 @@ const Test = () => {
         <>Halaman Test
             <input type="text" placeholder="testttt"/>
             <button onClick={sendMessage}>send Message</button>
-            <ToastContainer />
         </>
     )
 }

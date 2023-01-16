@@ -6,7 +6,6 @@ import Footer from "../components/General/Footer";
 import Gif from '../asset/Login/loader.gif';
 import { useDispatch } from "react-redux";
 import { VerifEmail } from "../redux/actions/auth";
-import { ToastContainer } from "react-toastify";
 
 const EmailVerif = () => {
     const dispatch = useDispatch();
@@ -45,7 +44,6 @@ const EmailVerif = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
             <Footer />
         </div>
         

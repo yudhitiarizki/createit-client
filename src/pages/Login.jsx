@@ -3,8 +3,6 @@ import '../components/General/Sign.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/auth';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Gif from '../asset/Login/loader.gif'
 
 const Login = () => {
@@ -68,7 +66,6 @@ const Login = () => {
                             <img src={Gif} alt="" className='Loading' />
                         )}
                     </div>
-                    <ToastContainer />
                 </div>
             </div>
         </div>
