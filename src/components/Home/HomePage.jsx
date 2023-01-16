@@ -8,7 +8,6 @@ import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
 import Feature from '../../asset/HomePage/Feature.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeSearchResult from './HomeSearchResult';
 import { sendMessage } from '../../redux/actions/message';
@@ -122,7 +121,6 @@ const HomePage = () => {
                     <Link to='/' className='nav-link getservice-btn'>Get Service</Link>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 }

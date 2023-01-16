@@ -14,7 +14,6 @@ import calendar from '../../asset/Seller/calendar.svg';
 import { Link } from 'react-router-dom';
 
 import RegSellerForm from './RegSellerForm';
-import { ToastContainer } from 'react-toastify';
 
 const ApplySeller = ({ handleSubmit }) => {
     return (
@@ -82,7 +81,6 @@ const ApplySeller = ({ handleSubmit }) => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
             <RegSellerForm handleSubmit={handleSubmit} />
         </div>
     )

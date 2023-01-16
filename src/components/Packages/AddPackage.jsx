@@ -2,8 +2,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { useState } from 'react';
 import './Packages.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { createPackage, getPackageBySlug } from '../../redux/actions/packages';
 import Gif from '../../asset/Login/loader.gif';
@@ -125,7 +123,6 @@ const AddPackage = ({ serviceId, packages, slug }) => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 };

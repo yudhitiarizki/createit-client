@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import './Packages.css';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AddPackage from './AddPackage';
 import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
 import { sendMessage } from "../../redux/actions/message";
