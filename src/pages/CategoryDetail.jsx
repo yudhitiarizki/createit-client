@@ -22,7 +22,7 @@ const CategoryDetail = () => {
       .then(() => {
         dispatch(setToNotLoad());
       })
-      .catch(error => {
+      .catch(() => {
         dispatch(setWentWrong());
       });
   }, [id, dispatch]);

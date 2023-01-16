@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getTopService } from "../../redux/actions/service";
-
+import React from "react";
+import { useSelector } from "react-redux";
 import './TopRatedServices.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { Link } from 'react-router-dom';
 
 const TopRatedServices = () => {
-
-    const dispatch = useDispatch();
-
     const { service } = useSelector(state => state.service);
-
-    useEffect(() => {
-        dispatch(getTopService());
-    }, [dispatch]);
 
     return (
         <div className='toprated-container'>

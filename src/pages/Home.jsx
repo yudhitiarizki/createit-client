@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
-import { getService } from '../redux/actions/service';
+import { getService, getTopService } from '../redux/actions/service';
 import Loader from '../components/General/Loader';
 import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
 
@@ -16,11 +16,15 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(setToLoad());
+    dispatch(getTopService())
+      .catch(() => {
+        dispatch(setWentWrong());
+      });
     dispatch(getService())
       .then(() => {
         dispatch(setToNotLoad());
       })
-      .catch(error => {
+      .catch(() => {
         dispatch(setWentWrong())
       })
   }, [dispatch]);
