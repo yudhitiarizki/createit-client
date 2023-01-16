@@ -24,9 +24,6 @@ const EmailVerif = () => {
 
     return (
         <div>
-            <div className="detailservice-navbar">
-                <Navbar />
-            </div>
             <div className='paymentdata-cntr'>
                 <div className='paymentdata-box'>
                     <div className='pymntdata-header'>

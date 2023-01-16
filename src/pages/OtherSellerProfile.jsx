@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import Footer from '../components/General/Footer';
 import Profile from '../components/SellerProfile/Profile';
 import ServiceList from '../components/SellerProfile/ServiceList';
@@ -36,7 +35,6 @@ const OtherSellerProfile = () => {
             <Profile seller={seller} />
             <ServiceList seller={seller} onDelete={onDelete} getServiceButton={getServiceButton}/>
             <Footer />
-            <ToastContainer />
         </>
     );
 };

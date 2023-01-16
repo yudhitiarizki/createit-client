@@ -5,7 +5,6 @@ import ServiceList from '../components/SellerProfile/ServiceList';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMySeller } from '../redux/actions/seller';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import { deleteService, getMyService } from '../redux/actions/service';
 
 const SellerProfile = () => {
@@ -43,7 +42,6 @@ const SellerProfile = () => {
           <Profile seller={seller} />
           <ServiceList seller={seller} onDelete={onDelete} getServiceButton={getServiceButton}/>
           <Footer />
-          <ToastContainer />
         </>
   );
 };

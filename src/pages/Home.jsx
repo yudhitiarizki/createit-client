@@ -17,6 +17,9 @@ const Home = () => {
     dispatch(setToLoad());
     dispatch(getService()).then(() => {
       dispatch(setToNotLoad());
+    }).catch(() => {
+      console.log('error')
+      dispatch(setToNotLoad());
     })
   }, [dispatch]);
 

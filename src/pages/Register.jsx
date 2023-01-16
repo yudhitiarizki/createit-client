@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/actions/auth';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Gif from '../asset/Login/loader.gif'
 import '../components/General/Sign.css';
 import { Link } from 'react-router-dom';
@@ -113,7 +111,6 @@ const Register = () => {
                             <img src={Gif} alt="" className='Loading' />
                         )}
                     </div>
-                    <ToastContainer />
                 </div>
             </div>
         </div>

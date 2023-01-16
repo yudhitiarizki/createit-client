@@ -74,7 +74,7 @@ export const logout = () => dispatch => {
                 type: LOGOUT
             });
 
-            sendMessage('success', response.data.message);
+            sendMessage('success', 'Logout Success');
 
             return Promise.resolve();
         },

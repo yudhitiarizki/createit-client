@@ -26,6 +26,8 @@ import NewNavbar from "../components/Navbar/NewNavbar";
 import { useSelector } from "react-redux";
 import { SocketContext } from "../context/socket-context";
 import { sendMessage } from "../redux/actions/message";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Router = () => {
   const socket = useContext(SocketContext);
@@ -39,8 +41,10 @@ const Router = () => {
   }, [location]);
 
   useEffect(() => {
-      socket.emit('addUser', user.userId);
-      socket.on('getUsers', users => console.log(users))
+      if (user) {
+        socket.emit('addUser', user.userId);
+        socket.on('getUsers', users => console.log(users))
+      }
   }, [user])
 
   useEffect(() => {
@@ -50,7 +54,9 @@ const Router = () => {
   },[])
 
   useEffect(() => {
-    ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text);
+    if(message.date){
+      ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text);
+    }
   }, [message])
 
   return (
@@ -80,6 +86,7 @@ const Router = () => {
         <Route exact path="/verif/:token" element={<EmailVerif />} />
         <Route exact path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };

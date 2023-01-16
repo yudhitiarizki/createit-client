@@ -15,7 +15,6 @@ import { getServiceBySlug } from "../../redux/actions/service";
 import Packages from "../Packages/Packages";
 import ReviewsList from "./ReviewsList";
 import Gif from '../../asset/Login/loader.gif';
-import { ToastContainer } from 'react-toastify';
 
 const DetailService = () => {
     const { slug } = useParams();
@@ -112,7 +111,6 @@ const DetailService = () => {
                 </div>
             ) }
 
-            <ToastContainer />
         </div>
     )
 };
