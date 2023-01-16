@@ -7,7 +7,6 @@ import { getOrderApprove, patchOrderDone, setDetailOrder } from '../redux/action
 import { Navigate } from "react-router-dom";
 import Gif from '../asset/Login/loader.gif';
 import '../components/General/loading.css';
-import { ToastContainer } from 'react-toastify';
 
 const AdminApproveOrder = () => {
     const dispatch = useDispatch();
@@ -38,7 +37,6 @@ const AdminApproveOrder = () => {
         <>
             { loading ? (<div className="container-loading"><img src={Gif} className='loading'></img></div>) : (<ManageRequestOrder handleDetail={handleDetail} handleDone={handleDone} />)}
             <Footer />
-            <ToastContainer />
         </>
     )
 }

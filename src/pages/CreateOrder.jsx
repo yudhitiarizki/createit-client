@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/General/Footer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { createOrder } from '../redux/actions/order';
 
@@ -70,7 +68,6 @@ const CreateOrder = () => {
             ) }
             
             <Footer />
-            <ToastContainer />
         </div>
     );
 };

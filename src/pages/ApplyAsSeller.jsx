@@ -1,7 +1,6 @@
 import React from 'react';
 import Footer from '../components/General/Footer';
 import ApplySellers from '../components/ApplyAsSeller/ApplySeller';
-import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { ApplySeller } from '../redux/actions/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -27,7 +26,6 @@ const ApplyAsSeller = () => {
         <>
             <ApplySellers handleSubmit={handleSubmit}/>
             <Footer />
-            <ToastContainer />
         </>
     );
 };

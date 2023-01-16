@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import Footer from '../components/General/Footer';
 import Loader from '../components/General/Loader';
 import Profile from '../components/SellerProfile/Profile';
@@ -10,7 +9,6 @@ import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import { getMySeller } from '../redux/actions/seller';
 import { getServiceByUser } from '../redux/actions/service';
-
 
 const OtherSellerProfile = () => {
     const dispatch = useDispatch();
@@ -41,7 +39,6 @@ const OtherSellerProfile = () => {
                         <Profile />
                         <ServiceList />
                         <Footer />
-                        <ToastContainer />
                     </>
                 )
             }

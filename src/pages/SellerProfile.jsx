@@ -5,7 +5,6 @@ import ServiceList from '../components/SellerProfile/ServiceList';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMySeller } from '../redux/actions/seller';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import Loader from '../components/General/Loader';
 import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
@@ -49,7 +48,6 @@ const SellerProfile = () => {
             <Profile />
             <ServiceList />
             <Footer />
-            <ToastContainer />
           </>
         )}
     </>

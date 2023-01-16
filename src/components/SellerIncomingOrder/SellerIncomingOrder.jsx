@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getNewOrderDetail } from '../../redux/actions/NewOrderDetailSeller';
 import SellerNewOrderDetail from './SellerNewOrderDetail';
 import { getOrderNew, patchOrderWorking } from '../../redux/actions/order';
-import { ToastContainer } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 import loader from '../../asset/Login/loader.gif';
 
@@ -88,7 +87,6 @@ const SellerIncomingOrder = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 };

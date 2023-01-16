@@ -1,10 +1,8 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import './Packages.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AddPackage from './AddPackage';
 import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
 import { sendMessage } from "../../redux/actions/message";
@@ -242,8 +240,6 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
                     </div>
                 </div>
             </div>
-
-            <ToastContainer />
         </>
     )
 };

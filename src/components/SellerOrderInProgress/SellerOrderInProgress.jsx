@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOnProgressDetail, hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
 import SellerInProgressDetail from './SellerInProgressDetail';
 import { getOrderProgress } from '../../redux/actions/order';
-import { ToastContainer } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 
 const SellerOrderInProgress = () => {
@@ -106,7 +105,6 @@ const SellerOrderInProgress = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 };
