@@ -62,8 +62,6 @@ const OrderDetailUser = () => {
             })
     }
 
-    console.log(order)
-
     return (
         <div>
             <div className="navbar-text1">

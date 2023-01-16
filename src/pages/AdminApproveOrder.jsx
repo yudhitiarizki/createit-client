@@ -12,7 +12,6 @@ import { ToastContainer } from 'react-toastify';
 const AdminApproveOrder = () => {
     const dispatch = useDispatch();
 
-    const { order } = useSelector(state => state.order);
     const { role, isLoggedIn } = useSelector(state => state.auth);
     const [loading, setLoading] = useState(false);
 
@@ -37,9 +36,8 @@ const AdminApproveOrder = () => {
 
     return (
         <>
-            { loading ? (<div className="container-loading"><img src={Gif} className='loading'></img></div>) : (<ManageRequestOrder order={order} handleDetail={handleDetail} handleDone={handleDone} />)}
+            { loading ? (<div className="container-loading"><img src={Gif} className='loading'></img></div>) : (<ManageRequestOrder handleDetail={handleDetail} handleDone={handleDone} />)}
             <Footer />
-            
             <ToastContainer />
         </>
     )

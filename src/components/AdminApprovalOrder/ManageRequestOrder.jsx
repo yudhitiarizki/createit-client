@@ -3,8 +3,10 @@ import './AdminApproveOrder.css';
 import '../Services/DetailService.css';
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import RequestDetail from './RequestDetails';
+import { useSelector } from "react-redux";
 
-const ManageRequestOrder = ({order, handleDetail, handleDone}) => {
+const ManageRequestOrder = ({handleDetail, handleDone}) => {
+    const { order } = useSelector(state => state.order);
 
     return (
         <div>

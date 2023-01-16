@@ -67,7 +67,6 @@ const Login = () => {
                         ) : (
                             <img src={Gif} alt="" className='Loading' />
                         )}
-
                     </div>
                     <ToastContainer />
                 </div>
