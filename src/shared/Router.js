@@ -23,10 +23,13 @@ import NotFound from "../pages/NotFound";
 import About from "../pages/About";
 import EmailVerif from '../pages/EmailVerify';
 import NewNavbar from "../components/Navbar/NewNavbar";
+import { useSelector } from "react-redux";
 
 const Router = () => {
   const location = useLocation();
   const [nav, setNav] = useState(true);
+
+  const { role } = useSelector(state => state.auth);
 
   useEffect(() => {
     ['/login', '/register', '*'].includes(location.pathname) ? setNav(false) : setNav(true);

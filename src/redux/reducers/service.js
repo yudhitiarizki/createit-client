@@ -6,7 +6,8 @@ import {
     FETCH_SERVICE_BYSLUG,
     CREATE_SERVICE,
     FETCH_MY_SERVICE,
-    DELETE_SERVICE
+    DELETE_SERVICE,
+    FETCH_SERVICE_BYUSER
 } from "../actions/types";
 
 
@@ -56,6 +57,11 @@ const serviceReducer = (service = initialState, action) => {
         case CREATE_SERVICE:
             return service;
         case FETCH_MY_SERVICE:
+            return service = {
+                ...service,
+                service: payload.service
+            };
+        case FETCH_SERVICE_BYUSER:
             return service = {
                 ...service,
                 service: payload.service

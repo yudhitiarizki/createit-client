@@ -33,6 +33,10 @@ const deleteService = (serviceId) => {
     return Api.delete(`/service/${serviceId}`, {headers: AuthHeader()})
 }
 
+const getServiceByUser = (sellerId) => {
+    return Api.get(`/service/user/${sellerId}`, {headers: AuthHeader()})
+}
+
 const ServiceServices = {
     getServiceByCategory,
     getService,
@@ -41,7 +45,8 @@ const ServiceServices = {
     getServiceBySlug,
     createService,
     getMyService,
-    deleteService
+    deleteService,
+    getServiceByUser
 };
 
 export default ServiceServices;
