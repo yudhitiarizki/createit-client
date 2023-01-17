@@ -19,6 +19,9 @@ const UserOrder = () => {
   const [activeTab, setActiveTab] = useState('alltab');
   const [activeOrder, setActiverOrder] = useState([]);
 
+  const admin = role === 3;
+  const seller = role === 2 && isSeller === true;
+
   useEffect(() => {
     dispatch(setToLoad());
     dispatch(getOrderUser())
@@ -145,7 +148,7 @@ const UserOrder = () => {
   }, [searchkey, services])
 
   if (isLoggedIn) {
-    if (role === 3 || (role === 2 && isSeller === true)) { return <Navigate to='/' /> }
+    if ( admin || seller ) { return <Navigate to='/' /> }
   } else { return <Navigate to='/' /> }
 
   return (

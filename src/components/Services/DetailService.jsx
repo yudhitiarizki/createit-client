@@ -13,8 +13,7 @@ import Packages from "../Packages/Packages";
 import ReviewsList from "./ReviewsList";
 import Gif from '../../asset/Login/loader.gif';
 
-const DetailService = ({slug}) => {
-    const { detail } = useSelector(state => state.service);
+const DetailService = ({slug, detail}) => {
 
     return (
         <div>

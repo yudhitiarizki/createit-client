@@ -42,7 +42,7 @@ const AllOrdersTable = ({ services, searchMessage, searchkey, handleSortPrice, h
 
     const handleShowDetail = useCallback((order) => {
         const data = JSON.parse(order.response)
-        if (order.status === 'pending') {
+        if (order.status === 'pending' || order.status === 'Waiting payment') {
             dispatch(sendPayment(data)).then(() => {
                 navigate('/verifypayment');
             })
