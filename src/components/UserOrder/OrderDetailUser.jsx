@@ -1,50 +1,56 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import '../Services/DetailService.css';
 import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
 import './OrderDetailUser.css';
 import './UserOrders.css';
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 
-const OrderDetailUser = () => {
+const getTime = (data) => {
+    const date = new Date(data);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
+const OrderDetailUser = ({order}) => {
     const [deliveryTime, setDeliveryTime] = useState('');
     const [copyMsg, setCopyMsg] = useState('');
     const { id } = useParams();
 
-    const { detail } = useSelector(state => state.order);
     const { role, isLoggedIn, isSeller } = useSelector(state => state.auth);
 
-    const order = detail.order
+    const admin = role === 3;
+    const seller = role === 2 && isSeller === true;
+    const approved = order.status === 'Approved';
+    const done = order.status === 'Done';
+    const reviewing = order.status === 'Reviewing';
 
-    const addDays = (date, days) => {
+    const addDays = useCallback((date, days) => {
         const result = new Date(date);
         result.setDate(result.getDate() + days);
         return result;
-    }
+    }, []);
 
     useEffect(() => {
         if (order.status === 'Working') {
             const dueDate = addDays(order.createdAt, order.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0]);
+            setDeliveryTime(getTime(dueDate));
         } else if (order.status === 'Revising') {
             const dueDate = addDays(order.updatedAt, order.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0]);
+            setDeliveryTime(getTime(dueDate));
         } else {
-            setDeliveryTime(new Date(order.updatedAt).toString().split('(')[0]);
+            setDeliveryTime(getTime(order.updatedAt));
         }
-    }, [order.status, order.createdAt, order.updatedAt, order.delivery]);
+    }, [order.status, order.createdAt, order.updatedAt, order.delivery, addDays]);
 
-    if(isLoggedIn) {
-        if (role === 3 || (role === 2 && isSeller === true)) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
-
-    const handleDownload = (url) => {
+    const handleDownload = useCallback((url) => {
         const fileName = new URL(url).pathname.split("/").pop();
         window.location.href = `https://magnificent-regular-transport.glitch.me/download/${fileName}`
-    };
+    }, []);
 
-    const handleCopyUrl = () => {
+    const handleCopyUrl = useCallback(() => {
         navigator.clipboard.writeText(document.getElementById('url-file').innerText)
             .then(success => {
                 setCopyMsg('url copied')
@@ -60,7 +66,11 @@ const OrderDetailUser = () => {
                 }, 2000)
                 return () => clearTimeout(timer)
             })
-    }
+    }, []);
+
+    if (isLoggedIn) {
+        if (admin || seller) { return <Navigate to='/' /> }
+    } else { return <Navigate to='/' /> }
 
     return (
         <div>
@@ -94,7 +104,7 @@ const OrderDetailUser = () => {
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary-row1'>Order Status</div>
-                        {(order.status === 'Approved' || order.status === 'Done') ? (
+                        {(approved || done) ? (
                             <div className='ordersummary-row2'>Completed</div>
                         ) : (
                             <div className='ordersummary-row2'>{order.status}</div>
@@ -106,11 +116,11 @@ const OrderDetailUser = () => {
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary22-row1'>Created At</div>
-                        <div className='ordersummary22-row2'>{new Date(order.createdAt).toString().split('(')[0]}</div>
+                        <div className='ordersummary22-row2'>{getTime(order.createdAt)}</div>
                     </div>
                     <div className='ordersummary22-row orange'>
                         <div className='ordersummary22-row1'>Updated At</div>
-                        <div className='ordersummary22-row2'>{new Date(order.updatedAt).toString().split('(')[0]}</div>
+                        <div className='ordersummary22-row2'>{getTime(order.updatedAt)}</div>
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary22-row1'>Delivery Time</div>
@@ -139,8 +149,8 @@ const OrderDetailUser = () => {
                         </div>
                     ) : (null)}
 
-                    {(order.status === 'Reviewing' || order.status === 'Approved' || order.status === 'Done') ? (
-                        order.OrderFiles && ( 
+                    {(reviewing || approved || done) ? (
+                        order.OrderFiles && (
                             order.OrderFiles.length && (
                                 <div>
                                     <div className='order-summary22 order-file22'>ORDER FILE</div>
@@ -166,12 +176,15 @@ const OrderDetailUser = () => {
                                             )) : (null)}
                                         </div>
                                     )}
-                                    <div className="revapprv-btn">
-                                        {(order.revisionLeft !== 0) ? (
-                                            <AskRevision orderId={+id} />
-                                        ) : (null)}
-                                        <ApproveOrder orderId={+id} />
-                                    </div>
+                                    {reviewing ?
+                                        <div className="revapprv-btn">
+                                            {(order.revisionLeft !== 0) ? (
+                                                <AskRevision orderId={+id} />
+                                            ) : (null)}
+                                            <ApproveOrder orderId={+id} />
+                                        </div>
+                                        : null
+                                    }
                                 </div>
                             )
                         )

@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React, useCallback, useEffect, useState } from 'react';
 import './UserOrders.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -10,92 +10,18 @@ import { setDetailOrder } from '../../redux/actions/order';
 
 const getTime = (data) => {
     const date = new Date(data);
-    const options = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'};
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
 
     return date.toLocaleDateString('id-ID', options);
 }
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+}
 
-const AllOrdersTable = ({ Order }) => {
+const AllOrdersTable = ({ services, searchMessage, searchkey, handleSortPrice, handleSortDate, handleSearchKey }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    // search button
-    const [services, setServices] = useState([]);
-    const [msg, setMsg] = useState('');
-    const [searchkey, setSearchkey] = useState('');
-    const regexSearch = new RegExp(`.*(${searchkey.toUpperCase()}).*`);
-
-    useEffect(() => {
-        if (!searchkey) {
-            setServices(Order);
-        } else {
-            const filteredOrder1 = Order.filter(item => (
-                regexSearch.exec(item.title.toUpperCase()) ||
-                regexSearch.exec(item.type.toUpperCase())
-            ))
-            setServices(filteredOrder1);
-        }
-    }, [searchkey, Order]) 
-
-    //sort
-    const [dateSort, setDateSort] = useState(0);
-    const [priceSort, setPriceSort] = useState(0);
-
-    const handleSortPrice = () => {
-        if (priceSort) {
-            if (searchkey) {
-                const ordered0 = [...services]
-                ordered0.sort((a, b) => (a.price - b.price));
-                setServices(ordered0);
-            } else {
-                const ordered1 = [...Order];
-                ordered1.sort((a, b) => (a.price - b.price));
-                setServices(ordered1);
-            }
-            setPriceSort(0)
-        } else {
-            if (searchkey) {
-                const ordered10 = [...services]
-                ordered10.sort((a, b) => (b.price - a.price));
-                setServices(ordered10);
-            } else {
-                const ordered11 = [...Order]
-                ordered11.sort((a, b) => (b.price - a.price));
-                setServices(ordered11);
-            }
-            setPriceSort(1)
-        }
-    }
-
-    const handleSortDate = () => {
-        if (dateSort) {
-            if (searchkey) {
-                const ordered0 = [...services]
-                ordered0.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                setServices(ordered0);
-            } else {
-                const ordered1 = [...Order];
-                ordered1.sort((a, b) => (new Date(a.createdAt) - new Date(b.createdAt)));
-                setServices(ordered1);
-            }
-            setDateSort(0)
-        } else {
-            if (searchkey) {
-                const ordered10 = [...services]
-                ordered10.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                setServices(ordered10);
-            } else {
-                const ordered11 = [...Order]
-                ordered11.sort((a, b) => (new Date(b.createdAt) - new Date(a.createdAt)));
-                setServices(ordered11);
-            }
-            setDateSort(1)
-        }
-    }
 
     // react paginate
     const [currentItems, setCurrentItems] = useState([]);
@@ -109,24 +35,12 @@ const AllOrdersTable = ({ Order }) => {
         setPageCount(Math.ceil(services.length / itemsPerPage))
     }, [itemOffset, itemsPerPage, services]);
 
-    const handlePageClick = (event) => {
+    const handlePageClick = useCallback((event) => {
         const newOffset = (event.selected * itemsPerPage) % services.length;
         setItemOffset(newOffset);
-    };
+    }, [itemsPerPage, services]);
 
-    useEffect(() => {
-        if (searchkey) {
-            if (services.length === 0) {
-                setMsg('Order not found');
-            } else {
-                setMsg('');
-            }
-        } else {
-            setMsg('');
-        }
-    }, [searchkey, services])
-
-    const handleShowDetail = (order) => {
+    const handleShowDetail = useCallback((order) => {
         const data = JSON.parse(order.response)
         if (order.status === 'pending' || order.status === 'Waiting payment') {
             dispatch(sendPayment(data)).then(() => {
@@ -136,17 +50,17 @@ const AllOrdersTable = ({ Order }) => {
             dispatch(setDetailOrder(order.orderId, order))
             navigate(`/user/order/${order.orderId}`)
         }
-    }
+    }, [dispatch, navigate])
 
     return (
         <>
             <div className="usr-all-order-cntr">
                 <div className='searchbox-usrorder'>
                     <i className='bx bx-search'></i>
-                    <input type='text' placeholder='Search by service or package name...' value={searchkey} onChange={(event) => { setSearchkey(event.target.value) }}></input>
+                    <input type='text' placeholder='Search by service or package name...' value={searchkey} onChange={handleSearchKey}></input>
                 </div>
-                {(msg) ? (
-                    <div className='order-not-found'>{msg}</div>
+                {(searchMessage) ? (
+                    <div className='order-not-found'>{searchMessage}</div>
                 ) : (
                     <div>
                         <table className='table table-striped tbl-usr-order'>
@@ -187,7 +101,7 @@ const AllOrdersTable = ({ Order }) => {
                                                 <td><div className='pending-status'>{capitalizeFirstLetter(item.status)}</div></td>
                                             ))
                                         )}
-                                        <td className='usr-order-show'><i className='bx bx-show' onClick={() => {handleShowDetail(item)}}></i></td>
+                                        <td className='usr-order-show'><i className='bx bx-show' onClick={() => { handleShowDetail(item) }}></i></td>
                                     </tr>
                                 ))}
                             </tbody>

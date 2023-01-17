@@ -207,7 +207,7 @@
     background: #6cdf32;
 }
 
-.askrvsn-modal {
+.askrvsn-modal .modal-dialog .modal-content {
     padding: 30px 40px;
 }
 
@@ -247,6 +247,13 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 18px;
+}
+
+.middle-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .askrvsn-cancelbtn {
@@ -442,7 +449,7 @@
         padding: 10px 15px;
     }
 
-    .askrvsn-modal {
+    .askrvsn-modal .modal-dialog .modal-content {
         padding: 30px 20px;
     }
 

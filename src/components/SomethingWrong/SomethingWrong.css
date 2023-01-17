@@ -40,6 +40,24 @@
     text-align: center;
 }
 
+.back-button {
+    margin-top: 15px;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 1s ease;
+}
+
+.back-button:hover {
+    color: #FFFFFF;
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
 /* Surface Pro 7, iPad Mini, iPad Air */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .smtngwrong-cntr {
@@ -62,6 +80,10 @@
     }
     
     .smtngwrong-tips {
+        font-size: 14px;
+    }
+
+    .back-button {
         font-size: 14px;
     }
 }
