@@ -16,6 +16,7 @@ const SellerInProgressDetail = () => {
     const [urlinput, setUrlInput] = useState('');
     const [fileSizeMsg, setFileSizeMsg] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [fileName, setFileName] = useState('');
 
     const addDays = (date, days) => {
         const result = new Date(date);
@@ -36,8 +37,8 @@ const SellerInProgressDetail = () => {
     }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 
     const handleDownload = (url) => {
-        const fileName = new URL(url).pathname.split("/").pop();
-        window.location.href = `https://magnificent-regular-transport.glitch.me/download/${fileName}`
+        const file = new URL(url).pathname.split("/").pop();
+        window.location.href = `https://magnificent-regular-transport.glitch.me/download/${file}`
     }
 
     const handleCopyUrl = () => {
@@ -64,6 +65,7 @@ const SellerInProgressDetail = () => {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+        setFileName(selectedFile.name);
 
         if (selectedFile) {
             document.getElementById('custom-inputtext2').innerHTML = selectedFile.name;
@@ -113,7 +115,7 @@ const SellerInProgressDetail = () => {
             if (!fileSizeMsg) {
                 const file = upldFile;
                 setIsLoading(true)
-                dispatch(OrderUploadFile(orderId, upldFileType, file))
+                dispatch(OrderUploadFile(orderId, upldFileType, file, fileName))
                     .then(() => {
                         setIsLoading(false);
                         dispatch(getOrderProgress());

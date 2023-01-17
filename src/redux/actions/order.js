@@ -175,8 +175,8 @@ export const deleteDetailOrder = () => ({
     }
 })
 
-export const OrderUploadFile = (orderId, upldFileType, file) => async dispatch => {
-    return OrderService.uploadFile(orderId, upldFileType, file).then(
+export const OrderUploadFile = (orderId, upldFileType, file, fileName) => async dispatch => {
+    return OrderService.uploadFile(orderId, upldFileType, file, fileName).then(
         response => {
             dispatch({
                 type: ORDER_FILE_UPLOAD

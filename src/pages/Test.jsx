@@ -19,11 +19,11 @@ const Test = () => {
     },[])
     
     const sendMessage = () => {
-        console.log('tk')
+        console.log('ak')
         socket.emit('sendMessage', {
             senderId:user.userId, 
-            reseiverId: 2, 
-            text: 'test',
+            reseiverId: 4, 
+            text: 'mantul',
             date: Date.now()
         })
     }

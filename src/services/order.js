@@ -25,8 +25,8 @@ const getOrderProgress = () => {
     return Api.get('/seller/order/onprogress', {headers: AuthHeader()});
 }
 
-const uploadFile = (orderId, upldFileType, file) => {
-    return Api.post('/file', {orderId, upldFileType, file}, {headers: AuthHeader()})
+const uploadFile = (orderId, upldFileType, file, fileName) => {
+    return Api.post('/file', {orderId, upldFileType, file, fileName}, {headers: AuthHeader()})
 }
 
 const getOrderApprove = () => {
