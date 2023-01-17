@@ -7,15 +7,20 @@ import './OrderDetailUser.css';
 import './UserOrders.css';
 import { useSelector } from "react-redux";
 
-const OrderDetailUser = () => {
+const getTime = (data) => {
+    const date = new Date(data);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
+const OrderDetailUser = ({order}) => {
     const [deliveryTime, setDeliveryTime] = useState('');
     const [copyMsg, setCopyMsg] = useState('');
     const { id } = useParams();
 
-    const { detail } = useSelector(state => state.order);
     const { role, isLoggedIn, isSeller } = useSelector(state => state.auth);
 
-    const order = detail.order;
     const admin = role === 3;
     const seller = role === 2 && isSeller === true;
     const approved = order.status === 'Approved';
@@ -31,12 +36,12 @@ const OrderDetailUser = () => {
     useEffect(() => {
         if (order.status === 'Working') {
             const dueDate = addDays(order.createdAt, order.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0]);
+            setDeliveryTime(getTime(dueDate));
         } else if (order.status === 'Revising') {
             const dueDate = addDays(order.updatedAt, order.delivery);
-            setDeliveryTime(dueDate.toString().split('(')[0]);
+            setDeliveryTime(getTime(dueDate));
         } else {
-            setDeliveryTime(new Date(order.updatedAt).toString().split('(')[0]);
+            setDeliveryTime(getTime(order.updatedAt));
         }
     }, [order.status, order.createdAt, order.updatedAt, order.delivery, addDays]);
 
@@ -64,7 +69,7 @@ const OrderDetailUser = () => {
     }, []);
 
     if (isLoggedIn) {
-        if ( admin || seller) { return <Navigate to='/' /> }
+        if (admin || seller) { return <Navigate to='/' /> }
     } else { return <Navigate to='/' /> }
 
     return (
@@ -99,7 +104,7 @@ const OrderDetailUser = () => {
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary-row1'>Order Status</div>
-                        {( approved || done ) ? (
+                        {(approved || done) ? (
                             <div className='ordersummary-row2'>Completed</div>
                         ) : (
                             <div className='ordersummary-row2'>{order.status}</div>
@@ -111,11 +116,11 @@ const OrderDetailUser = () => {
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary22-row1'>Created At</div>
-                        <div className='ordersummary22-row2'>{new Date(order.createdAt).toString().split('(')[0]}</div>
+                        <div className='ordersummary22-row2'>{getTime(order.createdAt)}</div>
                     </div>
                     <div className='ordersummary22-row orange'>
                         <div className='ordersummary22-row1'>Updated At</div>
-                        <div className='ordersummary22-row2'>{new Date(order.updatedAt).toString().split('(')[0]}</div>
+                        <div className='ordersummary22-row2'>{getTime(order.updatedAt)}</div>
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary22-row1'>Delivery Time</div>
@@ -144,7 +149,7 @@ const OrderDetailUser = () => {
                         </div>
                     ) : (null)}
 
-                    {( reviewing || approved || done) ? (
+                    {(reviewing || approved || done) ? (
                         order.OrderFiles && (
                             order.OrderFiles.length && (
                                 <div>
@@ -171,12 +176,15 @@ const OrderDetailUser = () => {
                                             )) : (null)}
                                         </div>
                                     )}
-                                    <div className="revapprv-btn">
-                                        {(order.revisionLeft !== 0) ? (
-                                            <AskRevision orderId={+id} />
-                                        ) : (null)}
-                                        <ApproveOrder orderId={+id} />
-                                    </div>
+                                    {reviewing ?
+                                        <div className="revapprv-btn">
+                                            {(order.revisionLeft !== 0) ? (
+                                                <AskRevision orderId={+id} />
+                                            ) : (null)}
+                                            <ApproveOrder orderId={+id} />
+                                        </div>
+                                        : null
+                                    }
                                 </div>
                             )
                         )

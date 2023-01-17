@@ -22,7 +22,7 @@ const Test = () => {
         console.log('tk')
         socket.emit('sendMessage', {
             senderId:user.userId, 
-            reseiverId: 2, 
+            reseiverId: 3, 
             text: 'test',
             date: Date.now()
         })
