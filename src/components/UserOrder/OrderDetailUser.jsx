@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import '../Services/DetailService.css';
 import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
 import './OrderDetailUser.css';
 import './UserOrders.css';
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 
 const OrderDetailUser = () => {
     const [deliveryTime, setDeliveryTime] = useState('');
@@ -15,13 +15,18 @@ const OrderDetailUser = () => {
     const { detail } = useSelector(state => state.order);
     const { role, isLoggedIn, isSeller } = useSelector(state => state.auth);
 
-    const order = detail.order
+    const order = detail.order;
+    const admin = role === 3;
+    const seller = role === 2 && isSeller === true;
+    const approved = order.status === 'Approved';
+    const done = order.status === 'Done';
+    const reviewing = order.status === 'Reviewing';
 
-    const addDays = (date, days) => {
+    const addDays = useCallback((date, days) => {
         const result = new Date(date);
         result.setDate(result.getDate() + days);
         return result;
-    }
+    }, []);
 
     useEffect(() => {
         if (order.status === 'Working') {
@@ -33,18 +38,14 @@ const OrderDetailUser = () => {
         } else {
             setDeliveryTime(new Date(order.updatedAt).toString().split('(')[0]);
         }
-    }, [order.status, order.createdAt, order.updatedAt, order.delivery]);
+    }, [order.status, order.createdAt, order.updatedAt, order.delivery, addDays]);
 
-    if(isLoggedIn) {
-        if (role === 3 || (role === 2 && isSeller === true)) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
-
-    const handleDownload = (url) => {
+    const handleDownload = useCallback((url) => {
         const fileName = new URL(url).pathname.split("/").pop();
         window.location.href = `https://magnificent-regular-transport.glitch.me/download/${fileName}`
-    };
+    }, []);
 
-    const handleCopyUrl = () => {
+    const handleCopyUrl = useCallback(() => {
         navigator.clipboard.writeText(document.getElementById('url-file').innerText)
             .then(success => {
                 setCopyMsg('url copied')
@@ -60,7 +61,11 @@ const OrderDetailUser = () => {
                 }, 2000)
                 return () => clearTimeout(timer)
             })
-    }
+    }, []);
+
+    if (isLoggedIn) {
+        if ( admin || seller) { return <Navigate to='/' /> }
+    } else { return <Navigate to='/' /> }
 
     return (
         <div>
@@ -94,7 +99,7 @@ const OrderDetailUser = () => {
                     </div>
                     <div className='ordersummary22-row'>
                         <div className='ordersummary-row1'>Order Status</div>
-                        {(order.status === 'Approved' || order.status === 'Done') ? (
+                        {( approved || done ) ? (
                             <div className='ordersummary-row2'>Completed</div>
                         ) : (
                             <div className='ordersummary-row2'>{order.status}</div>
@@ -139,8 +144,8 @@ const OrderDetailUser = () => {
                         </div>
                     ) : (null)}
 
-                    {(order.status === 'Reviewing' || order.status === 'Approved' || order.status === 'Done') ? (
-                        order.OrderFiles && ( 
+                    {( reviewing || approved || done) ? (
+                        order.OrderFiles && (
                             order.OrderFiles.length && (
                                 <div>
                                     <div className='order-summary22 order-file22'>ORDER FILE</div>
