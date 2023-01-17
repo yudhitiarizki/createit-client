@@ -28,7 +28,6 @@ const ServiceDetail = () => {
     const { detail } = useSelector(state => state.service);
 
     useEffect(() => {
-        console.log('ok')
         dispatch(setToLoad());
         dispatch(getServiceBySlug(slug))
             .then(() => {
@@ -58,7 +57,6 @@ const ServiceDetail = () => {
                             </div>
 
                             { detail ? (
-
                                 <>
                                     <div className="detailsrvc-seller">
                                         { detail.photoProfile ? ( <> <img src={detail.photoProfile} alt=''></img> <Link to={`/seller/${detail.sellerId}`} className="nav-link">{detail.firstName + ' ' + detail.lastName}</Link> </> ) : (  <img  src={Gif} alt="" className='Loading' /> )}
