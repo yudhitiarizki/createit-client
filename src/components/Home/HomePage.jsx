@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import './HomePage.css';
-import Pose10 from '../../asset/HomePage/Pose10.svg';
+import { Link, useNavigate } from 'react-router-dom';
+
 import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
-import Feature from '../../asset/HomePage/Feature.svg';
-import { Link, useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import HomeSearchResult from './HomeSearchResult';
+
 import { sendMessage } from '../../redux/actions/message';
+
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './HomePage.css';
+
+import Pose10 from '../../asset/HomePage/Pose10.svg';
+import Feature from '../../asset/HomePage/Feature.svg';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -22,14 +26,11 @@ const HomePage = () => {
     const [srchMsg, setSrchMsg] = useState('');
     const [searchDisplay, setSearchDisplay] = useState('none');
 
-    const ordinaryUser = user.role === 1;
-    const admin = user.role === 3;
-
     const toApplySellerPage = useCallback(() => {
         if (isLoggedIn) {
-            if (ordinaryUser) {
+            if (user.role === 1) {
                 navigate('/applyseller');
-            } else if (admin) {
+            } else if (user.role === 3) {
                 sendMessage('error', "Admin can't access this page.");
             } else {
                 sendMessage('error', 'You already become a seller.');
@@ -37,10 +38,10 @@ const HomePage = () => {
         } else {
             sendMessage('error', 'Login is needed.');
         }
-    }, [isLoggedIn, ordinaryUser, admin, navigate])
+    }, [isLoggedIn, user, navigate])
 
     useEffect(() => {
-        if(!searchkey) {
+        if (!searchkey) {
             setSrchResult([]);
             setSrchMsg('');
             setSearchDisplay('none');
@@ -48,12 +49,12 @@ const HomePage = () => {
     }, [searchkey]);
 
     const regexSearch = useMemo(() => new RegExp(`.*(${searchkey.toUpperCase()}).*`), [searchkey]);
-    
+
     const handleSearch = useCallback(() => {
-        if(searchkey) {
+        if (searchkey) {
             const filtered = allservice.filter(item => regexSearch.exec(item.title.toUpperCase()));
             setSrchResult(filtered);
-            
+
             if (filtered.length === 0) {
                 setSrchMsg('Data not found.')
             } else {
@@ -73,7 +74,7 @@ const HomePage = () => {
             <div className='top-container'>
                 <div className='Banner1'>
                     <div className='ellipse1'>
-                        <img src={Pose10} alt='' className='pose1'></img>
+                        <img src={Pose10} alt={1} className='pose1'></img>
                     </div>
                     <div className='text1-container'>
                         <div className='text1-1'>It's Nothing But Service</div>
@@ -88,8 +89,8 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div id='srchresult' style={{'display': `${searchDisplay}`}} className='srchresult-cntr'>
-                <HomeSearchResult data={srchResult} message={srchMsg}/>
+            <div id='srchresult' style={{ 'display': `${searchDisplay}` }} className='srchresult-cntr'>
+                <HomeSearchResult data={srchResult} message={srchMsg} />
             </div>
 
             <div className='textcategory-container'>
@@ -116,7 +117,7 @@ const HomePage = () => {
                 </div>
             </div>
             <div className='text4container'>
-                <img src={Feature} alt=''></img>
+                <img src={Feature} alt={1}></img>
                 <div className='text5-container'>
                     <div className='text5-1-cntr'>
                         <div className='text5-1'>Our Awesome Create IT Features!</div>

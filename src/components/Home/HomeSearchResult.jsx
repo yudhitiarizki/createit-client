@@ -23,7 +23,7 @@ const HomeSearchResult = ({ data, message }) => {
                     }) => (
                         <div className="serviceslist22-box" key={`id-${serviceId}`}>
                             <Link className="service1imgcntr22" to={`/service/${slug}`}>
-                                <img src={ServiceImages[0].image} alt='' className="servicelist22-img"></img>
+                                <img src={ServiceImages[0].image} alt={1} className="servicelist22-img"></img>
                                 <div className='toprated-ratebuy22'>
                                     <div><i className='bx bx-star'></i>{rating || 0}</div>
                                     <div><i className='bx bx-group'></i>{noOfBuyer || 0}</div>
@@ -32,7 +32,7 @@ const HomeSearchResult = ({ data, message }) => {
                             <div className="servicelist22-info">
                                 <div className="service22-info1">
                                     <div className="service22-info2">
-                                        <img src={photoProfile} alt=''></img>
+                                        <img src={photoProfile} alt={1}></img>
                                         <Link to={`/seller/${sellerId}`} className='nav-link'>{firstName} {lastName}</Link>
                                     </div>
                                     <Link to={`/service/${slug}`} className="service22-info3 nav-link">{title}</Link>

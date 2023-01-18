@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import Footer from '../components/General/Footer';
-import HomePage from '../components/Home/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import { getService, getTopService } from '../redux/actions/service';
+
 import Loader from '../components/General/Loader';
 import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
+import Footer from '../components/General/Footer';
+import HomePage from '../components/Home/HomePage';
 
 const Home = () => {
   const dispatch = useDispatch();

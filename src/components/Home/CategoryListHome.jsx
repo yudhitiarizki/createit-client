@@ -1,10 +1,11 @@
-import "./CategoryListHome.css";
 import React from 'react';
 import { useSelector } from "react-redux";
 import OwlCarousel from 'react-owl-carousel';
+import { Link } from 'react-router-dom';
+
+import "./CategoryListHome.css";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { Link } from 'react-router-dom';
 
 const owlCarousel = (
     containerClass,
@@ -32,7 +33,7 @@ const owlCarousel = (
             >
                 {category.map(({ categoryId, image, category }) => (
                     <div className={`item ${imgContainerClass}`} key={`id-${categoryId}`}>
-                        <img src={image} alt='' className={imgClass}></img>
+                        <img src={image} alt={1} className={imgClass}></img>
                         <Link to={`/category/${categoryId}`} className={categoryClass}><span>{category}</span></Link>
                     </div>
                 ))}

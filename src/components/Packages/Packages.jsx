@@ -2,23 +2,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import './Packages.css';
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import AddPackage from './AddPackage';
 import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
 import { sendMessage } from "../../redux/actions/message";
 import loader from '../../asset/Login/loader.gif';
 
-const Packages = ({ data, serviceId, slug, name, userId }) => {
+const Packages = ({ data, serviceId, slug, name }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
+
     const packages = data;
 
-    const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading2, setIsLoading2] = useState(false);
     const [idLoad, setIdLoad] = useState(0);
-
     const [packageId, setPackageId] = useState('');
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
@@ -28,7 +28,7 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
-    const EditPckg = (item) => {
+    const EditPckg = useCallback((item) => {
         setPackageId(item.packageId);
         setType(item.type);
         setDelivery(item.delivery);
@@ -37,27 +37,31 @@ const Packages = ({ data, serviceId, slug, name, userId }) => {
         setnoOfPages(item.noOfnoOfPages);
         setmaxDuration(item.maxDuration);
         setPrice(item.price);
-    }
+        console.log('edit package')
+    }, [])
 
-    const handleEditPckg = () => {
+    const handleEditPckg = useCallback(() => {
         setIsLoading(true)
         dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price))
             .then(() => {
-                setIsLoading(false)
+                setIsLoading(false);
+                setIdLoad(0);
                 dispatch(getPackageBySlug(slug));
                 window.location.reload();
             })
             .catch(() => {
                 setIsLoading(false)
             })
-    }
+    }, [dispatch, packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price, slug])
 
     const handleDeletePckg = (packageId) => {
         setIsLoading2(true)
         dispatch(deletePackage(packageId))
             .then(() => {
-                setIsLoading2(false)
+                setIsLoading2(false);
+                setIdLoad(0);
                 dispatch(getPackageBySlug(slug));
+                window.location.reload();
             })
             .catch(() => {
                 setIsLoading2(false)

@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+
 import Footer from '../components/General/Footer';
 import Loader from '../components/General/Loader';
 import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
+import AllOrdersTable from '../components/UserOrder/AllOrdersTable';
+
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import { getOrderUser } from '../redux/actions/order';
+
 import '../components/UserOrder/UserOrders.css';
-import AllOrdersTable from '../components/UserOrder/AllOrdersTable';
 
 const UserOrder = () => {
   const dispatch = useDispatch();
