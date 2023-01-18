@@ -1,10 +1,12 @@
-import './OrderDetailUser.css';
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Modal } from "react-bootstrap";
+
 import { orderRevising } from '../../redux/actions/order';
 import loader from '../../asset/Login/loader.gif';
-import { Modal } from "react-bootstrap";
+
+import './OrderDetailUser.css';
 import "bootstrap/dist/css/bootstrap.css";
 
 const AskRevision = ({ orderId }) => {

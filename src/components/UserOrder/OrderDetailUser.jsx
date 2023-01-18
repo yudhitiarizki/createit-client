@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import '../Services/DetailService.css';
+import { useSelector } from "react-redux";
+
 import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
+
+import '../Services/DetailService.css';
 import './OrderDetailUser.css';
 import './UserOrders.css';
-import { useSelector } from "react-redux";
 
 const getTime = (data) => {
     const date = new Date(data);
@@ -130,16 +132,16 @@ const OrderDetailUser = ({order}) => {
                         <div className='ordersummary22-row1'>Order Note</div>
                         <div className='ordersummary22-row2'>{order.note}</div>
                     </div>
-                    {(order.noOfConcept) ? (
+                    {(order.noOfConcepts) ? (
                         <div className='ordersummary22-row'>
                             <div className='ordersummary22-row1'>Number of Concepts</div>
-                            <div className='ordersummary22-row2'>{order.noOfConcept}</div>
+                            <div className='ordersummary22-row2'>{order.noOfConcepts}</div>
                         </div>
                     ) : (null)}
-                    {(order.noOfPages) ? (
+                    {(order.noOfPage) ? (
                         <div className='ordersummary22-row'>
                             <div className='ordersummary22-row1'>Number of Pages</div>
-                            <div className='ordersummary22-row2'>{order.noOfPages}</div>
+                            <div className='ordersummary22-row2'>{order.noOfPage}</div>
                         </div>
                     ) : (null)}
                     {(order.maxDuration) ? (

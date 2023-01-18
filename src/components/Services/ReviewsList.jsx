@@ -8,13 +8,13 @@ const ReviewsList = ({ data }) => {
     return (
         <div className="review-cntr">
             <div className='review-cntr2'>
-                {Reviews.map((item) => (
-                    <div key={`key-${item.reviewId}`} className='review-item'>
+                {Reviews.map(({ reviewId, Order, rating, review }) => (
+                    <div key={`key-${reviewId}`} className='review-item'>
                         <div className='review-name-star'>
-                            <div>{item.Order.User.firstName} {item.Order.User.lastName}</div>
-                            <Star star={item.rating} />
+                            <div>{Order.User.firstName} {Order.User.lastName}</div>
+                            <Star star={rating} />
                         </div>
-                        <div className='review-review'>{item.review}</div>
+                        <div className='review-review'>{review}</div>
                     </div>
                 ))}
             </div>

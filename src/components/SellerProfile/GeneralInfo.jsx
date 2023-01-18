@@ -26,7 +26,7 @@ const GeneralInfo = (props) => {
             </div>
             <div className="list-info">
                 <h6>Rating</h6>
-                <p>{props.rating}/5</p>
+                <p>{props.rating || 0}/5</p>
             </div>
         </div>
     )

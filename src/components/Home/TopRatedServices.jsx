@@ -1,42 +1,55 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+
 import './TopRatedServices.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { Link } from 'react-router-dom';
 
 const TopRatedServices = () => {
     const { service } = useSelector(state => state.service);
 
     return (
         <div className='toprated-container'>
-            {service.map((service) => (
-                <div className='topratedservc-cntr' key={`id-${service.serviceId}`}>
-                    <Link className='toprated-imgcntr' to={`/service/${service.slug}`}>
-                        <img src={service.image} alt='' className='toprated-img'></img>
+            {service.map(({
+                serviceId,
+                image,
+                slug,
+                rating,
+                noOfBuyer,
+                photoProfile,
+                sellerId,
+                firstName,
+                lastName,
+                title,
+                startingPrice
+            }) => (
+                <div className='topratedservc-cntr' key={`id-${serviceId}`}>
+                    <Link className='toprated-imgcntr' to={`/service/${slug}`}>
+                        <img src={image} alt={1} className='toprated-img'></img>
                         <div className='toprated-ratebuy'>
-                            <div><i className='bx bx-star'></i>{service.rating ? service.rating : 0}</div>
-                            <div><i className='bx bx-group'></i>{service.noOfBuyer}</div>
+                            <div><i className='bx bx-star'></i>{rating || 0}</div>
+                            <div><i className='bx bx-group'></i>{noOfBuyer || 0}</div>
                         </div>
                     </Link>
                     <div className='toprated-info'>
                         <div className='toprated-infotop'>
                             <div className='topratedinfotop-profile'>
-                                <img src={service.photoProfile} alt=''></img>
-                                <Link to={`/seller/${service.sellerId}`} className='nav-link link2'>{service.firstName} {service.lastName}</Link>
+                                <img src={photoProfile} alt={1}></img>
+                                <Link to={`/seller/${sellerId}`} className='nav-link link2'>{firstName} {lastName}</Link>
                             </div>
-                            <Link to={`/service/${service.slug}`} className='nav-link link2 link3'>{service.title}</Link>
+                            <Link to={`/service/${slug}`} className='nav-link link2 link3'>{title}</Link>
                         </div>
                         <div className='toprated-infobot'>
                             <div>
                                 <i className='bx bx-dollar-circle'></i>
-                                {(service.startingPrice % 1000 === 0) ? (
-                                    <span>Start from Rp {service.startingPrice/1000}.000,-</span>
+                                {(startingPrice % 1000 === 0) ? (
+                                    <span>Start from Rp {startingPrice/1000}.000,-</span>
                                 ) : (
-                                    <span>Start from Rp {service.startingPrice/1000},-</span>
+                                    <span>Start from Rp {startingPrice/1000},-</span>
                                 )}
                             </div>
-                            <Link to={`/service/${service.slug}`}><i className='bx bx-right-arrow-alt toprated-rightarrow'></i></Link>
+                            <Link to={`/service/${slug}`}><i className='bx bx-right-arrow-alt toprated-rightarrow'></i></Link>
                         </div>
                     </div>
                 </div>

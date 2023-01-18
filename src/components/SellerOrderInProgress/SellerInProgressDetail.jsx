@@ -182,16 +182,16 @@ const SellerInProgressDetail = () => {
                             </div>
                         )
                     )}
-                    {(orderDetail.noOfConcept) ? (
+                    {(orderDetail.noOfConcepts) ? (
                         <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Concepts</div>
-                            <div className='ordersummary-row2'>{orderDetail.noOfConcept}</div>
+                            <div className='ordersummary-row2'>{orderDetail.noOfConcepts}</div>
                         </div>
                     ) : (null)}
-                    {(orderDetail.noOfPages) ? (
+                    {(orderDetail.noOfPage) ? (
                         <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Pages</div>
-                            <div className='ordersummary-row2'>{orderDetail.noOfPages}</div>
+                            <div className='ordersummary-row2'>{orderDetail.noOfPage}</div>
                         </div>
                     ) : (null)}
                     {(orderDetail.maxDuration) ? (

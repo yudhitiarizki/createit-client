@@ -14,7 +14,7 @@
 
 .carouselimg-container {
     width: calc((82vw - 40px)/3);
-    height: 440px;
+    height: calc(440/337 * (82vw - 40px)/3);
     border-radius: 16px;
     overflow: clip;
     cursor: pointer;
@@ -22,7 +22,7 @@
 
 .carouselimg {
     width: calc((82vw - 40px)/3);
-    height: 440px;
+    height: calc(440/337 * (82vw - 40px)/3);
     border-radius: 16px;
     object-fit: cover;
     transition: all 0.3s ease;
@@ -38,7 +38,7 @@
     left: 0;
     top: 0;
     width: calc((82vw - 40px)/3);
-    height: 440px;
+    height: calc(440/337 * (82vw - 40px)/3);
     border-radius: 16px;
     background: linear-gradient(0deg, #000000bb, #07070700);
 }
@@ -59,7 +59,7 @@
     width: 80px;
     border-radius: 50%;
     position: absolute;
-    top: 180px;
+    top: calc(440/337 * (82vw - 40px)/6 - 40px);
 }
 
 .owl-next {
@@ -92,17 +92,17 @@
     
     .carouselimg-container {
         width: calc((84vw - 40px)/3);
-        height: 380px;
+        height: calc(440/337 * (84vw - 40px)/3);
     }
     
     .carouselimg {
         width: calc((84vw - 40px)/3);
-        height: 380px;
+        height: calc(440/337 * (84vw - 40px)/3);
     }
     
     .categoryname-carousel {
         width: calc((84vw - 40px)/3);
-        height: 380px;
+        height: calc(440/337 * (84vw - 40px)/3);
     }
     
     .categoryname-carousel span {
@@ -113,7 +113,7 @@
     
     .owl-next, 
     .owl-prev {
-        top: calc(380px/2 - 40px);
+        top: calc(440/337 * (84vw - 40px)/6 - 40px);
     }
 }
 
@@ -130,17 +130,21 @@
     
     .carouselimg-container11 {
         width: calc((82vw - 30px)/2);
-        height: 400px;
+        height: calc(440/340 * (82vw - 30px)/2);
+        border-radius: 16px;
     }
     
     .carouselimg11 {
         width: calc((82vw - 30px)/2);
-        height: 400px;
+        height: calc(440/340 * (82vw - 30px)/2);
+        border-radius: 16px;
+        object-fit: cover;
     }
     
     .categoryname-carousel11 {
         width: calc((82vw - 30px)/2);
-        height: 400px;
+        height: calc(440/340 * (82vw - 30px)/2);
+        border-radius: 16px;
     }
     
     .categoryname-carousel11 span {
@@ -153,7 +157,7 @@
     .owlcarousel-container11 .owl-carousel .owl-nav .owl-prev {
         height: 60px;
         width: 60px;
-        top: calc(400px/2 - 30px);
+        top: calc(440/340 * (82vw - 30px)/4 - 30px);
     }
     
     .owlcarousel-container11 .owl-carousel .owl-nav .owl-next {
@@ -182,17 +186,21 @@
     
     .carouselimg-container22 {
         width: 70vw;
-        height: 380px;
+        height: calc(440/340 * 70vw);
+        border-radius: 16px;
     }
     
     .carouselimg22 {
         width: 70vw;
-        height: 380px;
+        height: calc(440/340 * 70vw);
+        border-radius: 16px;
+        object-fit: cover;
     }
     
     .categoryname-carousel22 {
         width: 70vw;
-        height: 380px;
+        height: calc(440/340 * 70vw);
+        border-radius: 16px;
     }
     
     .categoryname-carousel22 span {
@@ -205,7 +213,7 @@
     .owlcarousel-container22 .owl-carousel .owl-nav .owl-prev {
         height: 50px;
         width: 50px;
-        top: calc(380px/2 - 25px);
+        top: calc(440/340 * 70vw/2 - 25px);
     }
     
     .owlcarousel-container22 .owl-carousel .owl-nav .owl-next {

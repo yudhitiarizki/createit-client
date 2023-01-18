@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import './HomePage.css';
-import Pose10 from '../../asset/HomePage/Pose10.svg';
+import { Link, useNavigate } from 'react-router-dom';
+
 import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
-import Feature from '../../asset/HomePage/Feature.svg';
-import { Link, useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import HomeSearchResult from './HomeSearchResult';
+
 import { sendMessage } from '../../redux/actions/message';
+
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './HomePage.css';
+
+import Pose10 from '../../asset/HomePage/Pose10.svg';
+import Feature from '../../asset/HomePage/Feature.svg';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -20,8 +24,9 @@ const HomePage = () => {
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
+    const [searchDisplay, setSearchDisplay] = useState('none');
 
-    const toApplySellerPage = () => {
+    const toApplySellerPage = useCallback(() => {
         if (isLoggedIn) {
             if (user.role === 1) {
                 navigate('/applyseller');
@@ -33,43 +38,43 @@ const HomePage = () => {
         } else {
             sendMessage('error', 'Login is needed.');
         }
-    }
+    }, [isLoggedIn, user, navigate])
 
     useEffect(() => {
-        if(!searchkey) {
+        if (!searchkey) {
             setSrchResult([]);
             setSrchMsg('');
-            document.getElementById('srchresult').style.display = 'none';
+            setSearchDisplay('none');
         }
     }, [searchkey]);
 
-    const regexSearch = new RegExp(`.*(${searchkey.toUpperCase()}).*`);
-    
-    const handleSearch = () => {
-        if(searchkey) {
+    const regexSearch = useMemo(() => new RegExp(`.*(${searchkey.toUpperCase()}).*`), [searchkey]);
+
+    const handleSearch = useCallback(() => {
+        if (searchkey) {
             const filtered = allservice.filter(item => regexSearch.exec(item.title.toUpperCase()));
             setSrchResult(filtered);
-            
+
             if (filtered.length === 0) {
                 setSrchMsg('Data not found.')
             } else {
                 setSrchMsg('');
             }
 
-            document.getElementById('srchresult').style.display = 'flex';
+            setSearchDisplay('flex');
         } else {
             setSrchResult([]);
             setSrchMsg('');
-            document.getElementById('srchresult').style.display = 'none';
+            setSearchDisplay('none');
         }
-    };
+    }, [searchkey, allservice, regexSearch]);
 
     return (
         <div>
             <div className='top-container'>
                 <div className='Banner1'>
                     <div className='ellipse1'>
-                        <img src={Pose10} alt='' className='pose1'></img>
+                        <img src={Pose10} alt={1} className='pose1'></img>
                     </div>
                     <div className='text1-container'>
                         <div className='text1-1'>It's Nothing But Service</div>
@@ -77,15 +82,15 @@ const HomePage = () => {
                     </div>
                     <div className='searchbox-cntr'>
                         <div className="search-container1">
-                            <input type="text" placeholder="Search..." value={searchkey} onChange={(event) => { setSearchkey(event.target.value) }} className="search-input1" />
+                            <input type="text" placeholder="Search..." value={searchkey} onChange={(event) => setSearchkey(event.target.value)} className="search-input1" />
                             <div type="button" className="search-button1" onClick={handleSearch}>Search</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id='srchresult' style={{'display': 'none'}} className='srchresult-cntr'>
-                <HomeSearchResult data={srchResult} message={srchMsg}/>
+            <div id='srchresult' style={{ 'display': `${searchDisplay}` }} className='srchresult-cntr'>
+                <HomeSearchResult data={srchResult} message={srchMsg} />
             </div>
 
             <div className='textcategory-container'>
@@ -112,7 +117,7 @@ const HomePage = () => {
                 </div>
             </div>
             <div className='text4container'>
-                <img src={Feature} alt=''></img>
+                <img src={Feature} alt={1}></img>
                 <div className='text5-container'>
                     <div className='text5-1-cntr'>
                         <div className='text5-1'>Our Awesome Create IT Features!</div>

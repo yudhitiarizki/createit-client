@@ -59,8 +59,8 @@ export const getPackageBySlug = (slug) => async dispatch => {
     );
 };
 
-export const createPackage = (serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price) => async dispatch => {
-    return PackagesService.createPackage(serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price).then(
+export const createPackage = (serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price) => async dispatch => {
+    return PackagesService.createPackage(serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price).then(
         response => {
             dispatch({
                 type: CREATE_PACKAGES,
@@ -101,8 +101,8 @@ export const deletePackage = (packageId) => async dispatch => {
     )
 }
 
-export const editPackage = (packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price) => async dispatch => {
-    PackagesService.editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price).then(
+export const editPackage = (packageId, serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price) => async dispatch => {
+    PackagesService.editPackage(packageId, serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price).then(
         response => {
             dispatch({
                 type: EDIT_PACKAGES,

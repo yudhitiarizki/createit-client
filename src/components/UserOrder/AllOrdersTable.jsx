@@ -1,12 +1,14 @@
 import { React, useCallback, useEffect, useState } from 'react';
-import './UserOrders.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import { sendPayment } from '../../redux/actions/payment';
 import { setDetailOrder } from '../../redux/actions/order';
+
+import './UserOrders.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 const getTime = (data) => {
     const date = new Date(data);
