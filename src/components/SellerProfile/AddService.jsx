@@ -52,6 +52,7 @@ const AddService = () => {
             .then(() => {
                 setIsLoading(false);
                 dispatch(getMyService());
+                window.location.reload();
             })
             .catch(() => {
                 setIsLoading(false);

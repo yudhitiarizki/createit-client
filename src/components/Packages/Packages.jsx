@@ -37,7 +37,6 @@ const Packages = ({ data, serviceId, slug, name }) => {
         setnoOfPages(item.noOfnoOfPages);
         setmaxDuration(item.maxDuration);
         setPrice(item.price);
-        console.log('edit package')
     }, [])
 
     const handleEditPckg = useCallback(() => {
