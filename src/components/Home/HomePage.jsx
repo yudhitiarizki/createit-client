@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -20,12 +20,16 @@ const HomePage = () => {
     const [srchResult, setSrchResult] = useState([]);
     const [searchkey, setSearchkey] = useState('');
     const [srchMsg, setSrchMsg] = useState('');
+    const [searchDisplay, setSearchDisplay] = useState('none');
 
-    const toApplySellerPage = () => {
+    const ordinaryUser = user.role === 1;
+    const admin = user.role === 3;
+
+    const toApplySellerPage = useCallback(() => {
         if (isLoggedIn) {
-            if (user.role === 1) {
+            if (ordinaryUser) {
                 navigate('/applyseller');
-            } else if (user.role === 3) {
+            } else if (admin) {
                 sendMessage('error', "Admin can't access this page.");
             } else {
                 sendMessage('error', 'You already become a seller.');
@@ -33,19 +37,19 @@ const HomePage = () => {
         } else {
             sendMessage('error', 'Login is needed.');
         }
-    }
+    }, [isLoggedIn, ordinaryUser, admin, navigate])
 
     useEffect(() => {
         if(!searchkey) {
             setSrchResult([]);
             setSrchMsg('');
-            document.getElementById('srchresult').style.display = 'none';
+            setSearchDisplay('none');
         }
     }, [searchkey]);
 
-    const regexSearch = new RegExp(`.*(${searchkey.toUpperCase()}).*`);
+    const regexSearch = useMemo(() => new RegExp(`.*(${searchkey.toUpperCase()}).*`), [searchkey]);
     
-    const handleSearch = () => {
+    const handleSearch = useCallback(() => {
         if(searchkey) {
             const filtered = allservice.filter(item => regexSearch.exec(item.title.toUpperCase()));
             setSrchResult(filtered);
@@ -56,13 +60,13 @@ const HomePage = () => {
                 setSrchMsg('');
             }
 
-            document.getElementById('srchresult').style.display = 'flex';
+            setSearchDisplay('flex');
         } else {
             setSrchResult([]);
             setSrchMsg('');
-            document.getElementById('srchresult').style.display = 'none';
+            setSearchDisplay('none');
         }
-    };
+    }, [searchkey, allservice, regexSearch]);
 
     return (
         <div>
@@ -77,14 +81,14 @@ const HomePage = () => {
                     </div>
                     <div className='searchbox-cntr'>
                         <div className="search-container1">
-                            <input type="text" placeholder="Search..." value={searchkey} onChange={(event) => { setSearchkey(event.target.value) }} className="search-input1" />
+                            <input type="text" placeholder="Search..." value={searchkey} onChange={(event) => setSearchkey(event.target.value)} className="search-input1" />
                             <div type="button" className="search-button1" onClick={handleSearch}>Search</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id='srchresult' style={{'display': 'none'}} className='srchresult-cntr'>
+            <div id='srchresult' style={{'display': `${searchDisplay}`}} className='srchresult-cntr'>
                 <HomeSearchResult data={srchResult} message={srchMsg}/>
             </div>
 
