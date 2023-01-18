@@ -15,6 +15,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
     const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
 
     const packages = data;
+    console.log(packages)
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading2, setIsLoading2] = useState(false);
@@ -23,8 +24,8 @@ const Packages = ({ data, serviceId, slug, name }) => {
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
     const [revision, setRevision] = useState('');
-    const [noOfConcept, setnoOfConcept] = useState('');
-    const [noOfPages, setnoOfPages] = useState('');
+    const [noOfConcepts, setnoOfConcepts] = useState('');
+    const [noOfPage, setnoOfPage] = useState('');
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
@@ -33,15 +34,15 @@ const Packages = ({ data, serviceId, slug, name }) => {
         setType(item.type);
         setDelivery(item.delivery);
         setRevision(item.revision);
-        setnoOfConcept(item.noOfConcept);
-        setnoOfPages(item.noOfnoOfPages);
+        setnoOfConcepts(item.noOfConcepts);
+        setnoOfPage(item.noOfPage);
         setmaxDuration(item.maxDuration);
         setPrice(item.price);
     }, [])
 
     const handleEditPckg = useCallback(() => {
         setIsLoading(true)
-        dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price))
+        dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price))
             .then(() => {
                 setIsLoading(false);
                 setIdLoad(0);
@@ -51,7 +52,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
             .catch(() => {
                 setIsLoading(false)
             })
-    }, [dispatch, packageId, serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price, slug])
+    }, [dispatch, packageId, serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price, slug])
 
     const handleDeletePckg = (packageId) => {
         setIsLoading2(true)
@@ -105,13 +106,13 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                         <div className='pckgdetail-info'>
                                             <div>Delivery Time: {item.delivery} days</div>
                                             <div>Limit of Revisions: {item.revision}</div>
-                                            {(item.noOfConcept) ? (
-                                                <div>Number of noOfConcept: {item.noOfConcept}</div>
+                                            {(item.noOfConcepts) ? (
+                                                <div>Number of noOfConcept: {item.noOfConcepts}</div>
                                             ) : (
                                                 <></>
                                             )}
-                                            {(item.noOfnoOfPages) ? (
-                                                <div>Number of noOfPages: {item.noOfnoOfPages}</div>
+                                            {(item.noOfPage) ? (
+                                                <div>Number of noOfPages: {item.noOfPage}</div>
                                             ) : (
                                                 <></>
                                             )}
@@ -209,16 +210,16 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                 <label>Delivery Time (in days) <span>*</span></label>
                                 <input type='number' min='1' className='inputfield-2' value={delivery} onChange={(event) => { setDelivery(event.target.value) }} required />
                             </div>
-                            {(noOfConcept) ? (
+                            {(noOfConcepts) ? (
                                 <div className='modal1-inputcntr'>
                                     <label>No of noOfConcept <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={noOfConcept} onChange={(event) => { setnoOfConcept(event.target.value) }} required />
+                                    <input type='number' min='1' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}
-                            {(noOfPages) ? (
+                            {(noOfPage) ? (
                                 <div className='modal1-inputcntr'>
                                     <label>No of noOfPages <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={noOfPages} onChange={(event) => { setnoOfPages(event.target.value) }} required />
+                                    <input type='number' min='1' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}
                             {(maxDuration) ? (

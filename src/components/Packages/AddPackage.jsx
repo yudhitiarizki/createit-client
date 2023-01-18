@@ -13,8 +13,8 @@ const AddPackage = ({ serviceId, packages, slug }) => {
     const [type, setType] = useState('');
     const [delivery, setDelivery] = useState('');
     const [revision, setRevision] = useState('');
-    const [noOfConcept, setnoOfConcept] = useState('');
-    const [noOfPages, setnoOfPages] = useState('');
+    const [noOfConcepts, setnoOfConcepts] = useState('');
+    const [noOfPage, setnoOfPage] = useState('');
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
 
@@ -22,16 +22,17 @@ const AddPackage = ({ serviceId, packages, slug }) => {
 
     const handleAddPckg = () => {
         setLoading(true);
-        dispatch(createPackage(serviceId, type, delivery, revision, noOfConcept, noOfPages, maxDuration, price)).then(() => {
+        dispatch(createPackage(serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price)).then(() => {
             dispatch(getPackageBySlug(slug));
             setType('');
             setDelivery('');
             setRevision('');
-            setnoOfConcept(null);
-            setnoOfPages(null);
+            setnoOfConcepts(null);
+            setnoOfPage(null);
             setmaxDuration(null);
             setPrice('');
             setLoading(false);
+            window.location.reload();
         }).catch(() => {
             setLoading(false);
         })
@@ -72,12 +73,12 @@ const AddPackage = ({ serviceId, packages, slug }) => {
                                     <div className='modal1-inputcntr'>
                                         <label>No of noOfConcept</label>
                                         <span className='keterangan-modal'>(Fill this if you provide a service related to design)</span>
-                                        <input type='number' min='0' className='inputfield-2' value={noOfConcept} onChange={(event) => { setnoOfConcept(event.target.value) }}/>
+                                        <input type='number' min='0' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }}/>
                                     </div>
                                     <div className='modal1-inputcntr'>
                                         <label>No of noOfPages</label>
                                         <span className='keterangan-modal'>(Fill this if you provide a service related to web/mobile design etc.)</span>
-                                        <input type='number' min='0' className='inputfield-2' value={noOfPages} onChange={(event) => { setnoOfPages(event.target.value) }}/>
+                                        <input type='number' min='0' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }}/>
                                     </div>
                                     <div className='modal1-inputcntr'>
                                         <label>Max Duration (in minutes)</label>
@@ -87,16 +88,16 @@ const AddPackage = ({ serviceId, packages, slug }) => {
                                 </>
                             ) : (
                                 <>
-                                    {(packages[0].noOfConcept) ? (
+                                    {(packages[0].noOfConcepts) ? (
                                         <div className='modal1-inputcntr'>
                                             <label>No of noOfConcept <span>*</span></label>
-                                            <input type='number' min='1' className='inputfield-2' value={noOfConcept} onChange={(event) => { setnoOfConcept(event.target.value) }} required />
+                                            <input type='number' min='1' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} required />
                                         </div>
                                     ) : (<></>)}
-                                    {(packages[0].noOfnoOfPages) ? (
+                                    {(packages[0].noOfPage) ? (
                                         <div className='modal1-inputcntr'>
                                             <label>No of noOfPages <span>*</span></label>
-                                            <input type='number' min='1' className='inputfield-2' value={noOfPages} onChange={(event) => { setnoOfPages(event.target.value) }} required />
+                                            <input type='number' min='1' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} required />
                                         </div>
                                     ) : (<></>)}
                                     {(packages[0].maxDuration) ? (

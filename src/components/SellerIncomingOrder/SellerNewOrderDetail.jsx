@@ -48,16 +48,16 @@ const SellerNewOrderDetail = () => {
                             <div className="ordrdetail-rowright">: Rp {orderDetail.price / 1000},-</div>
                         )}
                     </div>
-                    {(orderDetail.noOfConcept) ? (
+                    {(orderDetail.noOfConcepts) ? (
                         <div className="ordrdetail-row">
                             <div className="ordrdetail-rowleft">No of concepts</div>
-                            <div className="ordrdetail-rowright">: {orderDetail.noOfConcept}</div>
+                            <div className="ordrdetail-rowright">: {orderDetail.noOfConcepts}</div>
                         </div>
                     ) : (null)}
-                    {(orderDetail.noOfPages) ? (
+                    {(orderDetail.noOfPage) ? (
                         <div className="ordrdetail-row">
                             <div className="ordrdetail-rowleft">No of Pages</div>
-                            <div className="ordrdetail-rowright">: {orderDetail.noOfPages}</div>
+                            <div className="ordrdetail-rowright">: {orderDetail.noOfPage}</div>
                         </div>
                     ) : (null)}
                     {(orderDetail.maxDuration) ? (

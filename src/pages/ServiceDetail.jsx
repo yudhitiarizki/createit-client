@@ -38,8 +38,6 @@ const ServiceDetail = () => {
             });
     }, [dispatch, slug]);
 
-    console.log(detail)
-
     return (
         <>
             {isLoading ?

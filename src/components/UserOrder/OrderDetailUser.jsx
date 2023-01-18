@@ -130,16 +130,16 @@ const OrderDetailUser = ({order}) => {
                         <div className='ordersummary22-row1'>Order Note</div>
                         <div className='ordersummary22-row2'>{order.note}</div>
                     </div>
-                    {(order.noOfConcept) ? (
+                    {(order.noOfConcepts) ? (
                         <div className='ordersummary22-row'>
                             <div className='ordersummary22-row1'>Number of Concepts</div>
-                            <div className='ordersummary22-row2'>{order.noOfConcept}</div>
+                            <div className='ordersummary22-row2'>{order.noOfConcepts}</div>
                         </div>
                     ) : (null)}
-                    {(order.noOfPages) ? (
+                    {(order.noOfPage) ? (
                         <div className='ordersummary22-row'>
                             <div className='ordersummary22-row1'>Number of Pages</div>
-                            <div className='ordersummary22-row2'>{order.noOfPages}</div>
+                            <div className='ordersummary22-row2'>{order.noOfPage}</div>
                         </div>
                     ) : (null)}
                     {(order.maxDuration) ? (
