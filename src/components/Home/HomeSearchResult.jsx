@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './HomeSearchResult.css';
 
 const HomeSearchResult = ({ data, message }) => {
+
     return (
         <div>
             {message && <div className='searchhome-msg'>{message}</div>}
@@ -11,7 +12,7 @@ const HomeSearchResult = ({ data, message }) => {
                     {data.map(({
                         serviceId,
                         slug,
-                        ServiceImages,
+                        image,
                         rating,
                         noOfBuyer,
                         photoProfile,
@@ -23,7 +24,7 @@ const HomeSearchResult = ({ data, message }) => {
                     }) => (
                         <div className="serviceslist22-box" key={`id-${serviceId}`}>
                             <Link className="service1imgcntr22" to={`/service/${slug}`}>
-                                <img src={ServiceImages[0].image} alt={1} className="servicelist22-img"></img>
+                                <img src={image} alt={1} className="servicelist22-img"></img>
                                 <div className='toprated-ratebuy22'>
                                     <div><i className='bx bx-star'></i>{rating || 0}</div>
                                     <div><i className='bx bx-group'></i>{noOfBuyer || 0}</div>
@@ -49,7 +50,8 @@ const HomeSearchResult = ({ data, message }) => {
                         </div>
                     ))}
                 </div>
-                : null}
+                : null
+            }
         </div>
     )
 }

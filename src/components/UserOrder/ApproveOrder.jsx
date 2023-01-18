@@ -1,12 +1,14 @@
-import './OrderDetailUser.css';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Modal } from "react-bootstrap";
+
 import { orderApprove } from '../../redux/actions/order';
 import { createReview } from '../../redux/actions/review';
+
 import loader from '../../asset/Login/loader.gif';
-import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import './OrderDetailUser.css';
 
 const ApproveOrder = ({ orderId }) => {
     const navigate = useNavigate();

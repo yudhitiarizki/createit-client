@@ -1,11 +1,17 @@
-
 import { useDispatch, useSelector } from "react-redux";
-import './Packages.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
+import { Modal } from "react-bootstrap";
+
 import AddPackage from './AddPackage';
-import { deletePackage, editPackage, getPackageBySlug } from "../../redux/actions/packages";
+
+import { deletePackage, editPackage } from "../../redux/actions/packages";
 import { sendMessage } from "../../redux/actions/message";
+import { getServiceBySlug } from "../../redux/actions/service";
+
+import './Packages.css';
+import '../General/Sign.css';
+import "bootstrap/dist/css/bootstrap.css";
 import loader from '../../asset/Login/loader.gif';
 
 const Packages = ({ data, serviceId, slug, name }) => {
@@ -15,7 +21,6 @@ const Packages = ({ data, serviceId, slug, name }) => {
     const { isLoggedIn, user, isSeller } = useSelector(state => state.auth);
 
     const packages = data;
-    console.log(packages)
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading2, setIsLoading2] = useState(false);
@@ -28,6 +33,9 @@ const Packages = ({ data, serviceId, slug, name }) => {
     const [noOfPage, setnoOfPage] = useState('');
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
+    const [show, setShow] = useState(false);
+
+    const handleClose = useCallback(() => setShow(false), []);
 
     const EditPckg = useCallback((item) => {
         setPackageId(item.packageId);
@@ -38,6 +46,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
         setnoOfPage(item.noOfPage);
         setmaxDuration(item.maxDuration);
         setPrice(item.price);
+        setShow(true);
     }, [])
 
     const handleEditPckg = useCallback(() => {
@@ -45,36 +54,34 @@ const Packages = ({ data, serviceId, slug, name }) => {
         dispatch(editPackage(packageId, serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price))
             .then(() => {
                 setIsLoading(false);
-                setIdLoad(0);
-                dispatch(getPackageBySlug(slug));
-                window.location.reload();
+                setShow(false);
+                dispatch(getServiceBySlug(slug));
             })
             .catch(() => {
                 setIsLoading(false)
             })
     }, [dispatch, packageId, serviceId, type, delivery, revision, noOfConcepts, noOfPage, maxDuration, price, slug])
 
-    const handleDeletePckg = (packageId) => {
+    const handleDeletePckg = useCallback((packageId) => {
         setIsLoading2(true)
         dispatch(deletePackage(packageId))
             .then(() => {
                 setIsLoading2(false);
                 setIdLoad(0);
-                dispatch(getPackageBySlug(slug));
-                window.location.reload();
+                dispatch(getServiceBySlug(slug));
             })
             .catch(() => {
                 setIsLoading2(false)
             })
-    }
+    }, [dispatch, slug])
 
-    const orderNow = (packageData) => {
+    const orderNow = useCallback((packageData) => {
         if (isLoggedIn) {
             navigate('/createorder', { state: { package: packageData, service: name } });
         } else {
             sendMessage('error', "Login is required.");
         }
-    }
+    }, [isLoggedIn, navigate, name])
 
     return (
         <>
@@ -127,7 +134,11 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                 {(index === 0) ? (
                                     <>
                                         <div className='orange-arrow top-pckg-cntr'>
-                                            <div className='pckgdetail-price'>Rp {item.price},-</div>
+                                            {item.price % 1000 === 0 ?
+                                                <div className='pckgdetail-price'>Rp {item.price / 1000}.000,-</div>
+                                                : <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
+                                            }
+
                                             {(isLoggedIn && user.role === 2 && isSeller) ? (
                                                 <div className='edit-delete'>
                                                     <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
@@ -146,7 +157,11 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                     (index === 1) ? (
                                         <>
                                             <div className='pink-arrow top-pckg-cntr'>
-                                                <div className='pckgdetail-price'>Rp {item.price},-</div>
+                                                {item.price % 1000 === 0 ?
+                                                    <div className='pckgdetail-price'>Rp {item.price / 1000}.000,-</div>
+                                                    : <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
+                                                }
+
                                                 {(isLoggedIn && user.role === 2 && isSeller) ? (
                                                     <div className='edit-delete'>
                                                         <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
@@ -164,10 +179,14 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                     ) : (
                                         <>
                                             <div className='purple-arrow top-pckg-cntr'>
-                                                <div className='pckgdetail-price'>Rp {item.price},-</div>
+                                                {item.price % 1000 === 0 ?
+                                                    <div className='pckgdetail-price'>Rp {item.price / 1000}.000,-</div>
+                                                    : <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
+                                                }
+
                                                 {(isLoggedIn && user.role === 2 && isSeller) ? (
                                                     <div className='edit-delete'>
-                                                        <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
+                                                        <div type="button" className='edit-btn-modal' onClick={() => { EditPckg(item) }}>
                                                             <i className='bx bx-edit'></i>
                                                         </div>
                                                         <i className='bx bx-trash' type='button' onClick={() => { handleDeletePckg(item.packageId) }}></i>
@@ -188,62 +207,58 @@ const Packages = ({ data, serviceId, slug, name }) => {
             </div>
 
             {/* Modal */}
-            <div className="modal fade" id="editpckg-modal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header1">
-                            <div></div>
-                            <span id="exampleModalLabel">Edit Package</span>
-                            <button className="btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i className='bx bx-x'></i></button>
-                        </div>
+            <Modal show={show} onHide={handleClose}>
+                <div className="modal-header1">
+                    <div></div>
+                    <span>Edit Package</span>
+                    <button className="btn-close-modal" onClick={handleClose}><i className='bx bx-x'></i></button>
+                </div>
 
-                        <div className="modal-body1">
-                            <div className='modal1-inputcntr'>
-                                <label>Type <span>*</span></label>
-                                <input type='text' className='inputfield-2' value={type} onChange={(event) => { setType(event.target.value) }} required />
-                            </div>
-                            <div className='modal1-inputcntr'>
-                                <label>Limit of Revision <span>*</span></label>
-                                <input type='number' min='0' className='inputfield-2' value={revision} onChange={(event) => { setRevision(event.target.value) }} required />
-                            </div>
-                            <div className='modal1-inputcntr'>
-                                <label>Delivery Time (in days) <span>*</span></label>
-                                <input type='number' min='1' className='inputfield-2' value={delivery} onChange={(event) => { setDelivery(event.target.value) }} required />
-                            </div>
-                            {(noOfConcepts) ? (
-                                <div className='modal1-inputcntr'>
-                                    <label>No of noOfConcept <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} required />
-                                </div>
-                            ) : (<></>)}
-                            {(noOfPage) ? (
-                                <div className='modal1-inputcntr'>
-                                    <label>No of noOfPages <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} required />
-                                </div>
-                            ) : (<></>)}
-                            {(maxDuration) ? (
-                                <div className='modal1-inputcntr'>
-                                    <label>Max Duration (in minutes) <span>*</span></label>
-                                    <input type='number' min='1' className='inputfield-2' value={maxDuration} onChange={(event) => { setmaxDuration(event.target.value) }} required />
-                                </div>
-                            ) : (<></>)}
-                            <div className='modal1-inputcntr'>
-                                <label>Price (Rp) <span>*</span></label>
-                                <input type='number' min='0' className='inputfield-2' value={price} onChange={(event) => { setPrice(event.target.value) }} required />
-                            </div>
+                <div className="modal-body1">
+                    <div className='modal1-inputcntr'>
+                        <label>Type <span>*</span></label>
+                        <input type='text' className='inputfield-2' value={type} onChange={(event) => { setType(event.target.value) }} required />
+                    </div>
+                    <div className='modal1-inputcntr'>
+                        <label>Limit of Revision <span>*</span></label>
+                        <input type='number' min='0' className='inputfield-2' value={revision} onChange={(event) => { setRevision(event.target.value) }} required />
+                    </div>
+                    <div className='modal1-inputcntr'>
+                        <label>Delivery Time (in days) <span>*</span></label>
+                        <input type='number' min='1' className='inputfield-2' value={delivery} onChange={(event) => { setDelivery(event.target.value) }} required />
+                    </div>
+                    {(noOfConcepts) ? (
+                        <div className='modal1-inputcntr'>
+                            <label>No of noOfConcept <span>*</span></label>
+                            <input type='number' min='1' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} required />
                         </div>
-
-                        <div className="modal-footer1">
-                            {isLoading ?
-                                <img src={loader} alt='' className='Loading'></img>
-                                :
-                                <button className="modal-save-btn" onClick={handleEditPckg}>Edit Package</button>
-                            }
+                    ) : (<></>)}
+                    {(noOfPage) ? (
+                        <div className='modal1-inputcntr'>
+                            <label>No of noOfPages <span>*</span></label>
+                            <input type='number' min='1' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} required />
                         </div>
+                    ) : (<></>)}
+                    {(maxDuration) ? (
+                        <div className='modal1-inputcntr'>
+                            <label>Max Duration (in minutes) <span>*</span></label>
+                            <input type='number' min='1' className='inputfield-2' value={maxDuration} onChange={(event) => { setmaxDuration(event.target.value) }} required />
+                        </div>
+                    ) : (<></>)}
+                    <div className='modal1-inputcntr'>
+                        <label>Price (Rp) <span>*</span></label>
+                        <input type='number' min='0' className='inputfield-2' value={price} onChange={(event) => { setPrice(event.target.value) }} required />
                     </div>
                 </div>
-            </div>
+
+                <div className="modal-footer1">
+                    {isLoading ?
+                        <img src={loader} alt={1} className='Loading'></img>
+                        :
+                        <button className="modal-save-btn" onClick={handleEditPckg}>Edit Package</button>
+                    }
+                </div>
+            </Modal>
         </>
     )
 };

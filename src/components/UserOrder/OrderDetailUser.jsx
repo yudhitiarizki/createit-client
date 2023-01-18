@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import '../Services/DetailService.css';
+import { useSelector } from "react-redux";
+
 import ApproveOrder from "./ApproveOrder";
 import AskRevision from "./AskRevision";
+
+import '../Services/DetailService.css';
 import './OrderDetailUser.css';
 import './UserOrders.css';
-import { useSelector } from "react-redux";
 
 const getTime = (data) => {
     const date = new Date(data);
