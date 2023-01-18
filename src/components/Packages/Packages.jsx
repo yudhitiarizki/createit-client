@@ -114,12 +114,12 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                             <div>Delivery Time: {item.delivery} days</div>
                                             <div>Limit of Revisions: {item.revision}</div>
                                             {(item.noOfConcepts) ? (
-                                                <div>Number of noOfConcept: {item.noOfConcepts}</div>
+                                                <div>Number of Concept: {item.noOfConcepts}</div>
                                             ) : (
                                                 <></>
                                             )}
                                             {(item.noOfPage) ? (
-                                                <div>Number of noOfPages: {item.noOfPage}</div>
+                                                <div>Number of Pages: {item.noOfPage}</div>
                                             ) : (
                                                 <></>
                                             )}

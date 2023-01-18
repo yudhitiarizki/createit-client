@@ -10,11 +10,11 @@
 }
 
 .pckg-header {
-    padding-bottom: 20px;
-    width: calc(94vw/5);
+    padding-bottom: 15px;
+    width: 250px;
     border-bottom: 2px solid #E8504B;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     color: #333333;
 }
 
@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0px 3%;
+    margin: 0px 3vw;
 }
 
 .package-list1 {
@@ -30,7 +30,7 @@
     flex-direction: row;
     justify-content: flex-start;
     gap: 8%;
-    margin: 0px 3%;
+    margin: 0px 3vw;
 }
 
 .package-list-cntr {
@@ -39,7 +39,7 @@
 
 .pckg-white-cntr {
     width: calc(94vw/4.3);
-    height: 420px;
+    height: 390px;
     background: #FFFFFF;
     border: 1px solid #F7F7F7;
     box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
@@ -56,7 +56,7 @@
 .pckgdetail-title {
     text-align: center;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     color: #333333;
 }
 
@@ -66,7 +66,7 @@
     align-items: flex-start;
     gap: 16px;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 15px;
     color: #333333;
 }
 
@@ -99,10 +99,10 @@
     width: calc(94vw/5.8);
     background: #FFFFFF;
     border-radius: 0px 16px 16px 0px;
-    padding: 16px 35px;
+    padding: 15px 30px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 18px;
     color: #E8504B;
     filter: drop-shadow(0px 2px 18px rgba(0, 0, 0, 0.1));
 }
@@ -124,7 +124,7 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 22px;
     color: #FFFFFF;
 }
 
@@ -134,7 +134,7 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     padding: 8px 0px;
     color: #F7F7F7;
     position: absolute;
@@ -169,6 +169,7 @@
     background: linear-gradient(264.06deg, #5A48C9 -93.27%, #5A48C9 -93.27%);
 }
 
+/* Edit package */
 .edit-btn-modal {
     padding: 0;
     border: none;
@@ -269,4 +270,370 @@
 
 .modal-save-btn:hover {
     background: linear-gradient(255.68deg, #E8504B 8.13%, #E8504B 8.13%);
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .package-header {
+        margin-bottom: 70px;
+    }
+
+    .pckg-header {
+        padding-bottom: 15px;
+        width: 250px;
+        font-size: 18px;
+    }
+
+    .package-list {
+        margin: 0px 2vw;
+    }
+
+    .package-list1 {
+        gap: 8%;
+        margin: 0px 2vw;
+    }
+
+    .pckg-white-cntr {
+        width: calc(96vw/4.3);
+        height: 350px;
+        box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+
+    .pckg-detail-cntr {
+        padding: 58% 15% 0 15%;
+        gap: 20px;
+    }
+
+    .pckgdetail-title {
+        font-size: 16px;
+    }
+
+    .pckgdetail-info {
+        gap: 16px;
+        font-size: 14px;
+    }
+
+    .top-pckg-cntr {
+        width: calc(96vw/3.9);
+        height: 140px;
+        left: calc((96vw/4.3 - 96vw/3.9)/2);
+    }
+
+    .pckgdetail-price {
+        top: -26px;
+        width: calc(96vw/5.9);
+        border-radius: 0px 16px 16px 0px;
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+
+    .edit-delete {
+        gap: 10px;
+        padding: 15px 15px 0 0;
+        font-size: 18px;
+    }
+
+    .pckgdetail-type {
+        margin-top: 20%;
+        font-size: 18px;
+    }
+
+    .ordernow-btn {
+        width: calc(96vw/7);
+        border-radius: 32px;
+        font-size: 15px;
+        padding: 8px 0px;
+        left: calc(50% - 96vw/14);
+        bottom: -18px;
+    }
+
+    /* Edit package */
+    .pckg-new-btn {
+        padding: 8px 15px;
+        font-size: 15px;
+    }
+
+    .modal-header1 {
+        padding: 20px 8% 15px 8%;
+        font-size: 20px;
+    }
+
+    .btn-close-modal {
+        font-size: 35px;
+    }
+
+    .modal-body1 {
+        padding: 0px 8% 15px 8%;
+        gap: 12px;
+    }
+
+    .modal1-inputcntr label {
+        font-size: 15px;
+    }
+
+    .keterangan-modal {
+        font-size: 13px;
+    }
+
+    .inputfield-2 {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .modal-footer1 {
+        margin: 15px auto 30px;
+    }
+
+    .modal-save-btn {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .package-header {
+        margin-bottom: 50px;
+    }
+
+    .pckg-header {
+        padding-bottom: 10px;
+        width: 200px;
+        font-size: 16px;
+    }
+
+    .package-list {
+        margin: 0px;
+    }
+
+    .package-list1 {
+        gap: 5%;
+        margin: 0px;
+    }
+
+    .pckg-white-cntr {
+        width: calc(100vw/4.3);
+        height: 280px;
+        box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .pckg-detail-cntr {
+        padding: 58% 9% 0 9%;
+        gap: 15px;
+    }
+
+    .pckgdetail-title {
+        font-size: 14px;
+    }
+
+    .pckgdetail-info {
+        gap: 15px;
+        font-size: 12px;
+    }
+
+    .top-pckg-cntr {
+        width: calc(100vw/3.9);
+        height: 120px;
+        left: calc((100vw/4.3 - 100vw/3.9)/2);
+    }
+
+    .pckgdetail-price {
+        top: -18px;
+        width: calc(96vw/5.9);
+        border-radius: 0px 10px 10px 0px;
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    .edit-delete {
+        gap: 10px;
+        padding: 10px 10px 0 0;
+        font-size: 15px;
+    }
+
+    .pckgdetail-type {
+        margin-top: 18%;
+        font-size: 15px;
+    }
+
+    .ordernow-btn {
+        width: calc(100vw/7);
+        border-radius: 30px;
+        font-size: 12px;
+        padding: 8px 0px;
+        left: calc(50% - 100vw/14);
+        bottom: -18px;
+    }
+
+    /* Edit package */
+    .pckg-new-btn {
+        padding: 8px 15px;
+        font-size: 15px;
+    }
+
+    .modal-header1 {
+        padding: 20px 8% 15px 8%;
+        font-size: 20px;
+    }
+
+    .btn-close-modal {
+        font-size: 35px;
+    }
+
+    .modal-body1 {
+        padding: 0px 8% 15px 8%;
+        gap: 12px;
+    }
+
+    .modal1-inputcntr label {
+        font-size: 15px;
+    }
+
+    .keterangan-modal {
+        font-size: 13px;
+    }
+
+    .inputfield-2 {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .modal-footer1 {
+        margin: 15px auto 30px;
+    }
+
+    .modal-save-btn {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .package-header {
+        margin-bottom: 40px;
+    }
+
+    .pckg-header {
+        padding-bottom: 10px;
+        width: 150px;
+        font-size: 14px;
+    }
+
+    .package-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 60px;
+        margin: 3vw;
+    }
+
+    .package-list1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 60px;
+        margin: 3vw;
+    }
+
+    .pckg-white-cntr {
+        width: 200px;
+        height: 300px;
+        box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .pckg-detail-cntr {
+        padding: 58% 9% 0 9%;
+        gap: 15px;
+    }
+
+    .pckgdetail-title {
+        font-size: 14px;
+    }
+
+    .pckgdetail-info {
+        gap: 15px;
+        font-size: 12px;
+    }
+
+    .top-pckg-cntr {
+        width: 220px;
+        height: 100px;
+        left: calc((200px - 220px)/2);
+    }
+
+    .pckgdetail-price {
+        top: -18px;
+        width: 140px;
+        border-radius: 0px 10px 10px 0px;
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    .edit-delete {
+        gap: 10px;
+        padding: 10px 10px 0 0;
+        font-size: 16px;
+    }
+
+    .pckgdetail-type {
+        margin-top: 18%;
+        font-size: 16px;
+    }
+
+    .ordernow-btn {
+        width: 130px;
+        border-radius: 30px;
+        font-size: 12px;
+        padding: 8px 0px;
+        left: calc(50% - 130px/2);
+        bottom: -18px;
+    }
+
+    /* Edit package */
+    .pckg-new-btn {
+        padding: 8px 15px;
+        font-size: 15px;
+    }
+
+    .modal-header1 {
+        padding: 20px 8% 15px 8%;
+        font-size: 18px;
+    }
+
+    .btn-close-modal {
+        font-size: 35px;
+    }
+
+    .modal-body1 {
+        padding: 0px 8% 15px 8%;
+        gap: 12px;
+    }
+
+    .modal1-inputcntr label {
+        font-size: 15px;
+    }
+
+    .keterangan-modal {
+        font-size: 13px;
+    }
+
+    .inputfield-2 {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .modal-footer1 {
+        margin: 15px auto 30px;
+    }
+
+    .modal-save-btn {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
 }
