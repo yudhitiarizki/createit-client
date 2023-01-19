@@ -152,7 +152,7 @@ const UserOrder = () => {
 
   if (isLoggedIn) {
     if ( admin || seller ) { return <Navigate to='/' /> }
-  } else { return <Navigate to='/' /> }
+  } else { return <Navigate to='/login' /> }
 
   return (
     <>

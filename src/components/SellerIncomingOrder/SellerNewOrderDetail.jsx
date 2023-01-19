@@ -1,15 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import { hideNewOrderDetail } from "../../redux/actions/NewOrderDetailSeller";
+import React from "react";
+import { useSelector } from "react-redux";
 import './SellerIncomingOrder.css';
 
-const SellerNewOrderDetail = () => {
-    const dispatch = useDispatch();
+const SellerNewOrderDetail = ({hideDetail}) => {
     const orderDetail = useSelector((state) => state.neworderdetailseller);
     const orderId = orderDetail.orderId;
-
-    const hideDetail = () => {
-        dispatch(hideNewOrderDetail());
-    }
 
     return (
         <div className={orderId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
@@ -19,7 +14,7 @@ const SellerNewOrderDetail = () => {
             </div>
             <div className="newordrlist-cntr1">
                 <div className="newordrlist-inside1">
-                    <img src={orderDetail.image} alt=''></img>
+                    <img src={orderDetail.image} alt={1}></img>
                     <div className="ordrdetail-row">
                         <div className="ordrdetail-rowleft">Buyer's Name</div>
                         <div className="ordrdetail-rowright">: {orderDetail.firstName} {orderDetail.lastName}</div>

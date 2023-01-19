@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../redux/actions/order";
+import loader from '../../asset/Login/loader.gif';
 import './Order.css';
 
 const NewOrder = () => {
@@ -21,6 +22,7 @@ const NewOrder = () => {
     const [message1, setMessage1] = useState('');
     const [message2, setMessage2] = useState('');
     const [message3, setMessage3] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleNote = useCallback((event) => {
         setNote(event.target.value);
@@ -55,9 +57,11 @@ const NewOrder = () => {
         }
 
         if (paymentMethod && bankName && method) {
+            setIsLoading(true)
             dispatch(createOrder(packageId, note, paymentMethod, bankName)).then(() => {
                 setMessage1('');
                 setMessage2('');
+                setIsLoading(false);
                 navigate('/verifypayment');
             });
         } else if (method) {
@@ -187,7 +191,11 @@ const NewOrder = () => {
                             <p>Rp {state.package.price} ,-</p>
                         </div>
                         <div className="button-footer">
-                            <div type='button' className="button-order" onClick={() => handleOrder()}>Order Now</div>
+                            {isLoading ?
+                                <img src={loader} alt={1} className='Loading'></img>
+                                :
+                                <div type='button' className="button-order" onClick={() => handleOrder()}>Order Now</div>
+                            }
                         </div>
                     </div>
                 </div>
