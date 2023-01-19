@@ -57,7 +57,7 @@ const OrderDetailUser = ({ order }) => {
     }, []);
 
     const handleCopyUrl = useCallback(() => {
-        navigator.clipboard.writeText(document.getElementById('url-file').innerText)
+        navigator.clipboard.writeText(lastFile.file)
             .then(success => {
                 setCopyMsg('url copied')
                 const timer = setTimeout(() => {
@@ -72,7 +72,7 @@ const OrderDetailUser = ({ order }) => {
                 }, 2000)
                 return () => clearTimeout(timer)
             })
-    }, []);
+    }, [lastFile]);
 
     if (isLoggedIn) {
         if (admin || seller) { return <Navigate to='/' /> }
@@ -181,7 +181,7 @@ const OrderDetailUser = ({ order }) => {
                                         <div className='download-file22'>
                                             <div className='upload-file-22'>View latest uploaded file</div>
                                             <div className='file-link-cntr22'>
-                                                <div className='url-container22' id='url-file'>{lastFile.file}</div>
+                                                <div className='url-container22'>{lastFile.file}</div>
                                                 <div className='copy-cntr22' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
                                             </div>
                                             {(copyMsg) ? ((copyMsg === 'url copied') ? (
