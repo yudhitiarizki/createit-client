@@ -75,12 +75,12 @@ const AddPackage = ({ serviceId, packages, slug }) => {
                     {(packages.length === 0) ? (
                         <>
                             <div className='modal1-inputcntr'>
-                                <label>No of noOfConcept</label>
+                                <label>No of Concept</label>
                                 <span className='keterangan-modal'>(Fill this if you provide a service related to design)</span>
                                 <input type='number' min='0' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} />
                             </div>
                             <div className='modal1-inputcntr'>
-                                <label>No of noOfPages</label>
+                                <label>No of Pages</label>
                                 <span className='keterangan-modal'>(Fill this if you provide a service related to web/mobile design etc.)</span>
                                 <input type='number' min='0' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} />
                             </div>
@@ -94,13 +94,13 @@ const AddPackage = ({ serviceId, packages, slug }) => {
                         <>
                             {(packages[0].noOfConcepts) ? (
                                 <div className='modal1-inputcntr'>
-                                    <label>No of noOfConcept <span>*</span></label>
+                                    <label>No of Concept <span>*</span></label>
                                     <input type='number' min='1' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}
                             {(packages[0].noOfPage) ? (
                                 <div className='modal1-inputcntr'>
-                                    <label>No of noOfPages <span>*</span></label>
+                                    <label>No of Pages <span>*</span></label>
                                     <input type='number' min='1' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} required />
                                 </div>
                             ) : (<></>)}

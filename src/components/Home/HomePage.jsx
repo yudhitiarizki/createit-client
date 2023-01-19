@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import CategoryListHome from './CategoryListHome';
 import TopRatedServices from './TopRatedServices';
@@ -36,7 +36,7 @@ const HomePage = () => {
                 sendMessage('error', 'You already become a seller.');
             }
         } else {
-            sendMessage('error', 'Login is needed.');
+            navigate('/login');
         }
     }, [isLoggedIn, user, navigate])
 
@@ -68,6 +68,10 @@ const HomePage = () => {
             setSearchDisplay('none');
         }
     }, [searchkey, allservice, regexSearch]);
+
+    const handleScrollToTop = useCallback(() => {
+        window.scrollTo(0,0);
+    }, []);
 
     return (
         <div>
@@ -123,7 +127,7 @@ const HomePage = () => {
                         <div className='text5-1'>Our Awesome Create IT Features!</div>
                         <div className='text5-2'>We have many categories of services that you can get easily, find professional frelancers, and order services trustworthy</div>
                     </div>
-                    <Link to='/' className='nav-link getservice-btn'>Get Service</Link>
+                    <div type='button' onClick={handleScrollToTop} className='nav-link getservice-btn'>Get Service</div>
                 </div>
             </div>
         </div>

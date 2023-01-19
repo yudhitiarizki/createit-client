@@ -1,6 +1,4 @@
 .notfound-bg {
-    background: url('../../asset/Packages/mushroom.svg') center no-repeat;
-    background-size: cover;
     width: 100%;
     height: 650px;
     display: flex;

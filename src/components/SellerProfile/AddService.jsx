@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Modal.css';
 import { useDispatch, useSelector } from "react-redux";
+
 import { createService, getMyService } from "../../redux/actions/service";
+import { sendMessage } from '../../redux/actions/message';
 import loader from '../../asset/Login/loader.gif';
 
 const AddService = () => {
@@ -52,7 +54,7 @@ const AddService = () => {
             .then(() => {
                 setIsLoading(false);
                 dispatch(getMyService());
-                window.location.reload();
+                sendMessage('success', 'Please create a package first on service detail page.')
             })
             .catch(() => {
                 setIsLoading(false);
