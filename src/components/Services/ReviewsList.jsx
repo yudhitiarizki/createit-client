@@ -12,7 +12,7 @@ const ReviewsList = ({ data }) => {
                     <div key={`key-${reviewId}`} className='review-item'>
                         <div className='review-name-star'>
                             <div>{Order.User.firstName} {Order.User.lastName}</div>
-                            <Star star={rating} />
+                            <Star star={rating} className={'star-icon'} />
                         </div>
                         <div className='review-review'>{review}</div>
                     </div>

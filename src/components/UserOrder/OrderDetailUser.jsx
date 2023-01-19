@@ -16,7 +16,7 @@ const getTime = (data) => {
     return date.toLocaleDateString('id-ID', options);
 }
 
-const OrderDetailUser = ({order}) => {
+const OrderDetailUser = ({ order }) => {
     const [deliveryTime, setDeliveryTime] = useState('');
     const [copyMsg, setCopyMsg] = useState('');
     const { id } = useParams();
@@ -28,6 +28,10 @@ const OrderDetailUser = ({order}) => {
     const approved = order.status === 'Approved';
     const done = order.status === 'Done';
     const reviewing = order.status === 'Reviewing';
+    const fileLength = order.OrderFiles.length;
+    const lastFile = order.OrderFiles[fileLength - 1];
+    const orderNotesLength = order.OrderNotes.length;
+    const lastOrderNote = order.OrderNotes[orderNotesLength - 1];
 
     const addDays = useCallback((date, days) => {
         const result = new Date(date);
@@ -128,10 +132,19 @@ const OrderDetailUser = ({order}) => {
                         <div className='ordersummary22-row1'>Delivery Time</div>
                         <div className='ordersummary22-row2'>{deliveryTime}</div>
                     </div>
-                    <div className='ordersummary22-row orange'>
-                        <div className='ordersummary22-row1'>Order Note</div>
-                        <div className='ordersummary22-row2'>{order.note}</div>
-                    </div>
+
+                    {orderNotesLength ?
+                        <div className='ordersummary22-row orange'>
+                            <div className='ordersummary22-row1'>Order Note</div>
+                            <div className='ordersummary22-row2'>{lastOrderNote.note}</div>
+                        </div>
+                        :
+                        <div className='ordersummary22-row orange'>
+                            <div className='ordersummary22-row1'>Order Note</div>
+                            <div className='ordersummary22-row2'>{order.note}</div>
+                        </div>
+                    }
+
                     {(order.noOfConcepts) ? (
                         <div className='ordersummary22-row'>
                             <div className='ordersummary22-row1'>Number of Concepts</div>
@@ -153,14 +166,14 @@ const OrderDetailUser = ({order}) => {
 
                     {(reviewing || approved || done) ? (
                         order.OrderFiles && (
-                            order.OrderFiles.length && (
+                            fileLength && (
                                 <div>
                                     <div className='order-summary22 order-file22'>ORDER FILE</div>
-                                    {(order.OrderFiles[0].upldFileType === 1) ? (
+                                    {(lastFile.upldFileType === 1) ? (
                                         <div className='download-file22'>
                                             <div className='upload-file-22'>Download latest uploaded file</div>
                                             <div className='download-btn22'>
-                                                <div onClick={() => handleDownload(order.OrderFiles[0].file)}>Download</div>
+                                                <div onClick={() => handleDownload(lastFile.file)}>Download</div>
                                                 <i className='bx bxs-download'></i>
                                             </div>
                                         </div>
@@ -168,7 +181,7 @@ const OrderDetailUser = ({order}) => {
                                         <div className='download-file22'>
                                             <div className='upload-file-22'>View latest uploaded file</div>
                                             <div className='file-link-cntr22'>
-                                                <div className='url-container22' id='url-file'>{order.OrderFiles[0].file}</div>
+                                                <div className='url-container22' id='url-file'>{lastFile.file}</div>
                                                 <div className='copy-cntr22' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
                                             </div>
                                             {(copyMsg) ? ((copyMsg === 'url copied') ? (

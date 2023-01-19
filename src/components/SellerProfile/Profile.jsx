@@ -30,7 +30,7 @@ const Profile = () => {
 
                     </div>
                     <div className="profile-rating row">
-                        <Star star={seller.rating || 0} />
+                        <Star star={seller.rating || 0} className={'icon-style'} />
                     </div>
                     <div className="profile-description">
                         <p>{seller.description}</p>

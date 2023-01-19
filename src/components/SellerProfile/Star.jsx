@@ -3,7 +3,7 @@ import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { AiOutlineStar } from "react-icons/ai";
 import './Star.css';
 
-const Star = ({ star }) => {
+const Star = ({ star, className }) => {
     const ratingStar = Array.from({ length: 5 }, (elem, index) => {
 
         let number = index + 0.5;
@@ -24,7 +24,7 @@ const Star = ({ star }) => {
     })
     return (
         <div>
-            <div className="icon-style">
+            <div className={className}>
                 {ratingStar}
                 <p>{star}/5</p>
             </div>

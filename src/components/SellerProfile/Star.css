@@ -15,15 +15,41 @@
     color: #FFC53D;
 }
 
-.icon {
+.icon-style .icon {
     color: #FFC53D;
     font-size: 25px;
     margin-right: 15px;
 }
 
-.icon-empty {
+.icon-style .icon-empty {
     margin-top: 2px;
     font-size: 30px;
+}
+
+.star-icon {
+    margin: 5px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.star-icon p {
+    font-family: 'poppins';
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    color: #FFC53D;
+}
+
+.star-icon .icon {
+    color: #FFC53D;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.star-icon .icon-empty {
+    margin-top: 2px;
+    font-size: 20px;
 }
 
 /* Surface Pro 7, iPad Mini, iPad Air */
@@ -32,26 +58,26 @@
         font-size: 18px;
     }
     
-    .icon {
+    .icon-style .icon {
         font-size: 20px;
     }
     
-    .icon-empty {
+    .icon-style .icon-empty {
         font-size: 23px;
     }
 }
 
 /* Small devices */
 @media (max-width: 767.98px) {
-    .icon-style p {
+    .icon-style .icon-style p {
         font-size: 16px;
     }
     
-    .icon {
+    .icon-style .icon {
         font-size: 18px;
     }
     
-    .icon-empty {
+    .icon-style .icon-empty {
         font-size: 20px;
     }
 }
