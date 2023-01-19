@@ -16,7 +16,7 @@ const initialState = user
     ? user.role === 2 ?  { 
         isLoggedIn: true,
         isVerified: user.seller.isVerified,
-        isSeller: true,
+        isSeller: false,
         role: user.role,
         user: user,
 
