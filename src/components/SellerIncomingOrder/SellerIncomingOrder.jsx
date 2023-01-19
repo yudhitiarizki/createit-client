@@ -50,7 +50,7 @@ const SellerIncomingOrder = ({ approveLoading, idLoad, handleDetail, handleAppro
                                                 </div>
                                             </div>
                                             <div className='newordr-item-right'>
-                                                <div className='approve-btn-seller-order' onClick={() => handleApproved(order.orderId)}>Approve</div>
+                                                <div className='approve-btn-seller-order' onClick={() => handleApproved(order.orderId, order.userId)}>Approve</div>
                                                 <div className='showdetail-btn' onClick={() => { handleDetail(order) }}><i className='bx bx-right-arrow-alt'></i></div>
                                             </div>
                                         </>

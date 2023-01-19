@@ -35,9 +35,7 @@ const EditProfile = ({data}) => {
             }
         }
     }, [photoProfile, setPhoto]);
-
-    console.log(data)
-
+    
     const onSubmit = useCallback(() => {
         if(photoProfile.update){
             dispatch(editProfile(firstName, lastName, description, photoProfile.photoProfile)).then(() => {
