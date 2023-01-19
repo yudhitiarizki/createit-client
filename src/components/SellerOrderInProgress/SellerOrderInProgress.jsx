@@ -1,64 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getOnProgressDetail, hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
+
+import SellerInProgressDetail from './SellerInProgressDetail';
+
 import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import '../Services/DetailService.css';
 import './SellerOrderInProgress.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOnProgressDetail, hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
-import SellerInProgressDetail from './SellerInProgressDetail';
-import { getOrderProgress } from '../../redux/actions/order';
-import { Navigate } from 'react-router-dom';
 
 const SellerOrderInProgress = () => {
     const dispatch = useDispatch();
 
-    const { order } = useSelector(state => state.order);
-    const { role, isLoggedIn, isSeller, isVerified } = useSelector(state => state.auth);
+    const order = useSelector(state => state.order.order);
 
-    useEffect(() => {
-        dispatch(getOrderProgress())
-    }, [dispatch]);
+    console.log('order', order)
 
     const workingOrder = order.filter(order => order.status === 'Working');
     const revisingOrder = order.filter(order => order.status === 'Revising');
     const reviewingOrder = order.filter(order => order.status === 'Reviewing');
 
-    const [sellerOrder, setSellerOrder] = useState(workingOrder);
     const [activeTab, setActiveTab] = useState('workingtab');
+    const [sellerOrder, setSellerOrder] = useState([]);
+    const [thumbTxt, setThumbTxt] = useState('');
 
     useEffect(() => {
-        setSellerOrder(workingOrder)
-    }, [order])
+        if (activeTab === 'workingtab') {
+            setSellerOrder(order.filter(order => order.status === 'Working'))
+        }
+    }, [activeTab, order])
 
-    if(isLoggedIn) {
-        if (!(role === 2 && isVerified && isSeller)) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
-
-    const workingtab = () => {
+    const workingtab = useCallback(() => {
         setActiveTab('workingtab');
-        setSellerOrder(workingOrder);
         dispatch(hideOnProgressDetail());
-        document.getElementById('custom-inputtext2').innerHTML = '';
-    };
+        setThumbTxt('');
+    }, [dispatch]);
 
-    const reviewingtab = () => {
+    const reviewingtab = useCallback(() => {
         setActiveTab('reviewingtab');
         setSellerOrder(reviewingOrder);
         dispatch(hideOnProgressDetail());
-        document.getElementById('custom-inputtext2').innerHTML = '';
-    }
+        setThumbTxt('');
+    }, [dispatch, reviewingOrder])
 
-    const revisiontab = () => {
+    const revisiontab = useCallback(() => {
         setActiveTab('revisiontab');
         setSellerOrder(revisingOrder);
         dispatch(hideOnProgressDetail());
-        document.getElementById('custom-inputtext2').innerHTML = '';
-    };
+        setThumbTxt('');
+    }, [dispatch, revisingOrder]);
 
-    const handleShowDetail = (order) => {
+    const handleShowDetail = useCallback((order) => {
         dispatch(getOnProgressDetail(order));
-        document.getElementById('custom-inputtext2').innerHTML = '';
-    };
+       setThumbTxt('');
+    }, [dispatch]);
+
+    const getTime = useCallback((data) => {
+        const date = new Date(data);
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    
+        return date.toLocaleDateString('id-ID', options);
+    }, []);
 
     return (
         <div>
@@ -69,11 +72,11 @@ const SellerOrderInProgress = () => {
             </div>
             <div className='sllr-inprgrsorder-tab'>
                 <div className={(activeTab === 'workingtab') ? 'sllrorder-actvtab' : ''} onClick={workingtab}>Working ({workingOrder.length})</div>
-                <div className={(activeTab === 'reviewingtab') ? 'sllrorder-actvtab' : ''} onClick={reviewingtab}>Need Review ({reviewingOrder.length})</div>
+                <div className={(activeTab === 'reviewingtab') ? 'sllrorder-actvtab' : ''} onClick={reviewingtab}>In Review ({reviewingOrder.length})</div>
                 <div className={(activeTab === 'revisiontab') ? 'sllrorder-actvtab' : ''} onClick={revisiontab}>Revision ({revisingOrder.length})</div>
             </div>
             <div className='incomingorder-cntr'>
-                <SellerInProgressDetail />
+                <SellerInProgressDetail thumbTxt={thumbTxt} getTime={getTime} setThumbTxt={setThumbTxt} />
                 <div className='newordersellerlist'>
                     <div className='newordrlist-hdr'>Manage Request</div>
                     <div className='newordrlist-cntr'>
@@ -89,9 +92,9 @@ const SellerOrderInProgress = () => {
                                             </div>
                                             <div>Buyer's Name: {order.firstName} {order.lastName}</div>
                                             {(order.status === 'Working') ? (
-                                                <div>{order.createdAt}</div>
+                                                <div>{getTime(order.createdAt)}</div>
                                             ) : (
-                                                <div>{order.updatedAt}</div>
+                                                <div>{getTime(order.updatedAt)}</div>
                                             )}
                                         </div>
                                     </div>

@@ -13,14 +13,14 @@ const initialState = {
     type: '',
     delivery: '',
     revision: '',
-    noOfConcept: '',
-    noOfPages: '',
+    noOfConcepts: '',
+    noOfPage: '',
     maxDuration: '',
     note: '',
     createdAt: '',
     updatedAt: '',
-    file: '',
-    fileType: '',
+    OrderFiles: [],
+    OrderNotes: [],
     status: ''
 };
 
@@ -41,14 +41,14 @@ const sllrOnPrgrssOrderDetailReducer = (state = initialState, action) => {
                 type: payload.type,
                 delivery: payload.delivery,
                 revision: payload.revision,
-                noOfConcept: payload.noOfConcept,
-                noOfPages: payload.noOfPages,
+                noOfConcepts: payload.noOfConcepts,
+                noOfPage: payload.noOfPage,
                 maxDuration: payload.maxDuration,
-                note: payload.OrderNotes,
+                note: payload.note,
                 createdAt: payload.createdAt,
                 updatedAt: payload.updatedAt,
-                file: payload.OrderFiles,
-                fileType: '',
+                OrderFiles: payload.OrderFiles,
+                OrderNotes: payload.OrderNotes,
                 status: payload.status
             }
         case HIDE_ONPROGRESS_ORDER_DETAIL_SELLER:
@@ -62,14 +62,14 @@ const sllrOnPrgrssOrderDetailReducer = (state = initialState, action) => {
                 type: '',
                 delivery: '',
                 revision: '',
-                noOfConcept: '',
-                noOfPages: '',
+                noOfConcepts: '',
+                noOfPage: '',
                 maxDuration: '',
                 note: '',
                 createdAt: '',
                 updatedAt: '',
-                file: '',
-                fileType: '',
+                OrderFiles: [],
+                OrderNotes: [],
                 status: ''
             }
         default:
