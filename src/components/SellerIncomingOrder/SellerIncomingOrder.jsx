@@ -1,49 +1,23 @@
-import './SellerIncomingOrder.css';
-import '../Services/DetailService.css';
-import React, { useEffect, useState } from 'react';
-import MessageQuestion from '../../asset/Navbar/message-question.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { getNewOrderDetail } from '../../redux/actions/NewOrderDetailSeller';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import SellerNewOrderDetail from './SellerNewOrderDetail';
-import { getOrderNew, patchOrderWorking } from '../../redux/actions/order';
-import { Navigate } from 'react-router-dom';
+
+import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import loader from '../../asset/Login/loader.gif';
 
-const SellerIncomingOrder = () => {
-    const dispatch = useDispatch();
+import './SellerIncomingOrder.css';
+import '../Services/DetailService.css';
 
+const getTime = (data) => {
+    const date = new Date(data);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+    return date.toLocaleDateString('id-ID', options);
+}
+
+const SellerIncomingOrder = ({ approveLoading, idLoad, handleDetail, handleApproved, hideDetail }) => {
     const { order } = useSelector(state => state.order);
-    const { role, isLoggedIn, isSeller, isVerified } = useSelector(state => state.auth);
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [idLoad, setIdLoad] = useState(0);
-
-    useEffect(() => {
-        dispatch(getOrderNew())
-    }, [dispatch]);
-
-    if (isLoggedIn) {
-        if (!(role === 2 && isVerified && isSeller)) { return <Navigate to='/' /> }
-    } else { return <Navigate to='/' /> }
-
-    const handleDetail = (order) => {
-        dispatch(getNewOrderDetail(order))
-    };
-
-    const handleApproved = (orderId) => {
-        setIsLoading(true);
-        setIdLoad(orderId);
-        dispatch(patchOrderWorking(orderId))
-            .then(() => {
-                dispatch(getOrderNew())
-                setIsLoading(false);
-                setIdLoad(0);
-            })
-            .catch(() => {
-                setIsLoading(false);
-                setIdLoad(0);
-            })
-    };
 
     return (
         <div>
@@ -53,7 +27,7 @@ const SellerIncomingOrder = () => {
                 <div>Incoming Order List</div>
             </div>
             <div className='incomingorder-cntr'>
-                <SellerNewOrderDetail />
+                <SellerNewOrderDetail hideDetail={hideDetail} />
                 <div className='newordersellerlist'>
                     <div className='newordrlist-hdr'>Manage Request</div>
                     <div className='newordrlist-cntr'>
@@ -61,18 +35,18 @@ const SellerIncomingOrder = () => {
                             {order.map((order) => (
                                 <div key={`id-${order.orderId}`} className='newordr-item-cntr'>
                                     {(idLoad === order.orderId) ?
-                                        (isLoading ?
-                                            <img src={loader} alt='' className='Loading'></img>
+                                        (approveLoading ?
+                                            <img src={loader} alt={1} className='Loading approve-loading'></img>
                                             :
-                                            <></>
+                                            null
                                         ) :
                                         <>
                                             <div className='newordr-item-left'>
-                                                <img src={MessageQuestion} alt=''></img>
+                                                <img src={MessageQuestion} alt={1}></img>
                                                 <div className='second-left-item'>
                                                     <div className='second-leftitem-title'>New Pending Order</div>
                                                     <div>Buyer's Name: {order.firstName} {order.lastName}</div>
-                                                    <div>{order.createdAt}</div>
+                                                    <div>{getTime(order.createdAt)}</div>
                                                 </div>
                                             </div>
                                             <div className='newordr-item-right'>

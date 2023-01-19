@@ -207,6 +207,12 @@
     width: 65%;
 }
 
+.approve-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Nest Hub */
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .incomingorder-cntr {
