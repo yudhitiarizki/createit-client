@@ -33,6 +33,9 @@ const Packages = ({ data, serviceId, slug, name }) => {
     const [noOfPage, setnoOfPage] = useState('');
     const [maxDuration, setmaxDuration] = useState('');
     const [price, setPrice] = useState('');
+    const [prevNoConcepts, setPrevNoConcepts] = useState('');
+    const [prevNoPage, setPrevNoPage] = useState('');
+    const [prevMaxDuration, setPrevMaxDuration] = useState('');
     const [show, setShow] = useState(false);
 
     const handleClose = useCallback(() => setShow(false), []);
@@ -43,8 +46,11 @@ const Packages = ({ data, serviceId, slug, name }) => {
         setDelivery(item.delivery);
         setRevision(item.revision);
         setnoOfConcepts(item.noOfConcepts);
+        setPrevNoConcepts(item.noOfConcepts);
         setnoOfPage(item.noOfPage);
+        setPrevNoPage(item.noOfPage);
         setmaxDuration(item.maxDuration);
+        setPrevMaxDuration(item.maxDuration);
         setPrice(item.price);
         setShow(true);
     }, [])
@@ -77,11 +83,16 @@ const Packages = ({ data, serviceId, slug, name }) => {
 
     const orderNow = useCallback((packageData) => {
         if (isLoggedIn) {
-            navigate('/createorder', { state: { package: packageData, service: name } });
+            if (user.role === 3 || (user.role === 2 && isSeller)) {
+                sendMessage('error', 'You must be an ordinary user')
+            } else {
+                navigate('/createorder', { state: { package: packageData, service: name } });
+            }
+            
         } else {
             sendMessage('error', "Login is required.");
         }
-    }, [isLoggedIn, navigate, name])
+    }, [isLoggedIn, navigate, name, user.role, isSeller])
 
     return (
         <>
@@ -227,19 +238,19 @@ const Packages = ({ data, serviceId, slug, name }) => {
                         <label>Delivery Time (in days) <span>*</span></label>
                         <input type='number' min='1' className='inputfield-2' value={delivery} onChange={(event) => { setDelivery(event.target.value) }} required />
                     </div>
-                    {(noOfConcepts) ? (
+                    {(prevNoConcepts) ? (
                         <div className='modal1-inputcntr'>
                             <label>No of noOfConcept <span>*</span></label>
                             <input type='number' min='1' className='inputfield-2' value={noOfConcepts} onChange={(event) => { setnoOfConcepts(event.target.value) }} required />
                         </div>
                     ) : (<></>)}
-                    {(noOfPage) ? (
+                    {(prevNoPage) ? (
                         <div className='modal1-inputcntr'>
                             <label>No of noOfPages <span>*</span></label>
                             <input type='number' min='1' className='inputfield-2' value={noOfPage} onChange={(event) => { setnoOfPage(event.target.value) }} required />
                         </div>
                     ) : (<></>)}
-                    {(maxDuration) ? (
+                    {(prevMaxDuration) ? (
                         <div className='modal1-inputcntr'>
                             <label>Max Duration (in minutes) <span>*</span></label>
                             <input type='number' min='1' className='inputfield-2' value={maxDuration} onChange={(event) => { setmaxDuration(event.target.value) }} required />
