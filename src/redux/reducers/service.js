@@ -7,7 +7,9 @@ import {
     CREATE_SERVICE,
     FETCH_MY_SERVICE,
     DELETE_SERVICE,
-    FETCH_SERVICE_BYUSER
+    FETCH_SERVICE_BYUSER,
+    EDIT_SERVICE,
+    GET_DETAIL_SERVICE
 } from "../actions/types";
 
 
@@ -68,6 +70,13 @@ const serviceReducer = (service = initialState, action) => {
             };
         case DELETE_SERVICE:
             return service;
+        case EDIT_SERVICE:
+            return service;
+        case GET_DETAIL_SERVICE:
+            return service = {
+                ...service, 
+                detail: payload
+            }
         default: 
             return service;
     }

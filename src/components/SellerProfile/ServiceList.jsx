@@ -9,7 +9,7 @@ import Edit from '../../asset/Seller/edit.png';
 import Trash from '../../asset/Seller/trash.png';
 import AddService from './AddService';
 import EditService from "./EditService";
-import { deleteService, getMyService } from "../../redux/actions/service";
+import { deleteService, getMyService, getDetail } from "../../redux/actions/service";
 import loader from '../../asset/Login/loader.gif';
 
 const ServiceList = () => {
@@ -64,7 +64,7 @@ const ServiceList = () => {
                                 :
                                 <>
                                     <Link className="service1imgcntr" to={`/service/${service.slug}`}>
-                                        <img src={service.image} alt='' className="servicelist1-img"></img>
+                                        <img src={service.image[0].image} alt='' className="servicelist1-img"></img>
                                         <div className='toprated-ratebuy1'>
                                             <div><i className='bx bx-star'></i>{service.rating}</div>
                                             <div><i className='bx bx-group'></i>{service.noOfBuyer}</div>
@@ -85,7 +85,7 @@ const ServiceList = () => {
                                             </div>
                                             {isLoggedIn ? (seller.userId === user.userId) ?
                                                 <div className="service-edit">
-                                                    <Link type="button" data-bs-toggle="modal" data-bs-target="#EditService">
+                                                    <Link type="button" data-bs-toggle="modal" onClick={() => dispatch(getDetail(service))} data-bs-target="#EditService">
                                                         <img className="icon-edit" src={Edit} alt="" />
                                                     </Link>
                                                     <Link>

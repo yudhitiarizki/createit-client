@@ -7,7 +7,9 @@ import {
     CREATE_SERVICE,
     FETCH_MY_SERVICE, 
     DELETE_SERVICE,
-    FETCH_SERVICE_BYUSER
+    FETCH_SERVICE_BYUSER,
+    EDIT_SERVICE, 
+    GET_DETAIL_SERVICE
 } from './types';
 
 import { sendMessage } from './message';
@@ -228,3 +230,30 @@ export const deleteService = (serviceId) => async dispatch => {
         },
     );
 };
+
+export const updateService = (serviceId, title, description, categoryId, image, newImage) => async dispatch => {
+    return Service.updateService(serviceId, title, description, categoryId, image, newImage).then(
+        response => {
+            dispatch({
+                type: EDIT_SERVICE
+            })
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        },
+        error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        },
+    )
+}
+
+export const getDetail = (payload) => {
+    return {
+        type: GET_DETAIL_SERVICE,
+        payload: payload
+    }
+}

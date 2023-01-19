@@ -2,7 +2,8 @@ import {
     FETCH_USER,
     FETCH_SELLER,
     APPROVE_SELLER,
-    REJECT_SELLER
+    REJECT_SELLER,
+    EDIT_PROFILE
 } from "../actions/types";
 
 
@@ -19,6 +20,8 @@ const userReducer = (user = initialState, action) => {
         case APPROVE_SELLER: 
             return user;
         case REJECT_SELLER: 
+            return user;
+        case EDIT_PROFILE: 
             return user;
         default: 
             return user;

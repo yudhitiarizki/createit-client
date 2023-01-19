@@ -39,7 +39,7 @@ const Profile = () => {
             </div>
             <div className='banner'></div>
 
-            <EditProfile />
+            <EditProfile data={seller} />
         </div>
     )
 }
