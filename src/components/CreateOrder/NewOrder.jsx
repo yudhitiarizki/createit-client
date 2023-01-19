@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -14,83 +14,59 @@ const NewOrder = () => {
     const { user } = useSelector(state => state.auth);
     const { packageId } = state.package;
 
+    const [method, setMethod] = useState('');
     const [paymentMethod, setpaymentMethod] = useState('');
     const [bankName, setbankName] = useState('');
     const [note, setNote] = useState('');
+    const [message1, setMessage1] = useState('');
+    const [message2, setMessage2] = useState('');
+    const [message3, setMessage3] = useState('');
 
-    const method = [
-        { id: 'bank_transfer', name: 'Bank Transfer' }, { id: 'e-bank', name: 'M-Banking' }
-    ]
+    const handleNote = useCallback((event) => {
+        setNote(event.target.value);
+        setMessage3('');
+    }, []);
 
-    var bank = [
-        {
-            id: 1,
-            forKey: 'bank_transfer',
-            method: 'bank_transfer',
-            bank: 'bri'
-        },
-        {
-            id: 2,
-            forKey: 'bank_transfer',
-            method: 'bank_transfer',
-            bank: 'bni'
-        },
-        {
-            id: 3,
-            forKey: 'bank_transfer',
-            method: 'bank_transfer',
-            bank: 'bca'
-        },
-        {
-            id: 4,
-            forKey: 'e-bank',
-            method: 'bca_klikpay',
-            bank: 'bca_klikpay'
-        },
-        {
-            id: 5,
-            forKey: 'e-bank',
-            method: 'cimb_clicks',
-            bank: 'cimb_clicks'
-        },
-        {
-            id: 6,
-            forKey: 'e-bank',
-            method: 'danamon_online',
-            bank: 'danamon_online'
-        },
-        {
-            id: 7,
-            forKey: 'e-bank',
-            method: 'bri_epay',
-            bank: 'bri_epay'
-        },
-    ]
+    const onChangePay = useCallback((event) => {
+        setMethod(event.target.value);
+        setbankName('');
+        setpaymentMethod('');
+        setMessage1('');
+    }, []);
 
-    const filterData = bank.filter(bank => bank.forKey === paymentMethod)
+    const onChangeBank = useCallback((event) => {
+        const bank = event.target.value;
+        setbankName(bank);
 
-    const handleNote = (event) => {
-        setNote(event.target.value)
-    }
+        if (method === 'bank_transfer') {
+            setpaymentMethod('bank_transfer')
+        } else {
+            setpaymentMethod(bank);
+        }
 
-    const onChangePay = (event) => {
-        setpaymentMethod(event.target.value);
-    };
+        setMessage1('');
+        setMessage2('');
 
-    const onChangeBank = (event) => {
-        bank.forEach(banks => {
-            if (banks.id == event.target.value) {
-                setpaymentMethod(banks.method);
-                setbankName(banks.bank);
-            }
-        });
-    }
+    }, [method])
 
-    const handleOrder = () => {
-        dispatch(createOrder(packageId, note, paymentMethod, bankName)).then(() => {
-            navigate('/verifypayment')
-        });
-    }
+    const handleOrder = useCallback(() => {
+        if (!note) {
+            setMessage3('Please leave an order note');
+        }
+
+        if (paymentMethod && bankName && method) {
+            dispatch(createOrder(packageId, note, paymentMethod, bankName)).then(() => {
+                setMessage1('');
+                setMessage2('');
+                navigate('/verifypayment');
+            });
+        } else if (method) {
+            setMessage2('Please select a valid bank name')
+        } else {
+            setMessage1('Please select a valid payment method')
+        }
+
+    }, [packageId, note, paymentMethod, bankName, method, dispatch, navigate])
 
     return (
         <>
@@ -128,6 +104,7 @@ const NewOrder = () => {
                                 <div className="form-input">
                                     <label htmlFor="description">Notes <span>*</span></label>
                                     <textarea name="description" value={note} onChange={handleNote} id="" cols="20" rows="3"></textarea>
+                                    {message3 && <div className="payment-err-msg">{message3}</div>}
                                 </div>
                             </div>
                         </div>
@@ -139,28 +116,40 @@ const NewOrder = () => {
                             <div className="personal-info">
                                 <div className="form-input">
                                     <label htmlFor="Payment">Payment Method <span>*</span></label>
-                                    <select onChange={onChangePay} className="form-select" id="Payment" aria-label="Default select example" key={paymentMethod}>
-                                        <option defaultValue>Select Options</option>
-                                        {method.map(method =>
-                                            <option value={method.id} key={`id-${method.id}`}>{method.name}</option>
-                                        )}
+                                    <select value={method} onChange={onChangePay} className="form-select">
+                                        <option value='' defaultValue>Select Options</option>
+                                        <option value='bank_transfer'>Bank Transfer</option>
+                                        <option value='e-bank'>M-Banking</option>
                                     </select>
+                                    {message1 && <div className="payment-err-msg">{message1}</div>}
                                 </div>
-                                <div className="form-input">
-                                    <label htmlFor="bank">Bank Name <span>*</span></label>
-                                    {paymentMethod ? (
-                                        <select onChange={onChangeBank} className="form-select" id="bank" aria-label="Default select example">
-                                            <option defaultValue>Select Options</option>
-                                            {filterData.map(bank => (
-                                                <option value={bank.id} key={`id-${bank.id}`}>{bank.bank.toUpperCase()}</option>
-                                            ))}
+                                {method ?
+                                    <div className="form-input">
+                                        <label htmlFor="bank">Bank Name <span>*</span></label>
+                                        <select className="form-select" value={bankName} onChange={onChangeBank}>
+                                            {
+                                                method === 'bank_transfer' ?
+                                                    <>
+                                                        <option value='' defaultValue>Select Options</option>
+                                                        <option value='bri'>BRI</option>
+                                                        <option value='bni'>BNI</option>
+                                                        <option value='bca'>BCA</option>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <option value='' defaultValue>Select Options</option>
+                                                        <option value='bca_klikpay'>BCA KLIKPAY</option>
+                                                        <option value='cimb_clicks'>CIMB CLICKS</option>
+                                                        <option value='danamon_online'>DANAMON ONLINE</option>
+                                                        <option value='bri_epay'>BRI EPAY</option>
+                                                    </>
+                                            }
                                         </select>
-                                    ) : (
-                                        <select disabled className="form-select" id="bank" aria-label="Default select example">
-                                            <option defaultValue>Select Options</option>
-                                        </select>
-                                    )}
-                                </div>
+                                        {message2 && <div className="payment-err-msg">{message2}</div>}
+                                    </div>
+                                    : null
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -198,7 +187,7 @@ const NewOrder = () => {
                             <p>Rp {state.package.price} ,-</p>
                         </div>
                         <div className="button-footer">
-                            <div className="button-order" onClick={() => handleOrder()}>Order Now</div>
+                            <div type='button' className="button-order" onClick={() => handleOrder()}>Order Now</div>
                         </div>
                     </div>
                 </div>
