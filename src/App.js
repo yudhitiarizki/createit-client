@@ -28,6 +28,7 @@ import { SocketContext } from "./context/socket-context";
 import { sendMessage } from "./redux/actions/message";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Inbox from "./pages/Inbox";
 
 const App = () => {
   const socket = useContext(SocketContext);
@@ -45,19 +46,19 @@ const App = () => {
         socket.emit('addUser', user.userId);
         socket.on('getUsers', users => console.log(users))
       }
-  }, [user])
+  }, [user, socket])
 
   useEffect(() => {
     socket.on('getMessage', data => {
       setMessage(data)
     })
-  },[])
+  },[socket])
 
   useEffect(() => {
     if(message.date){
       ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text);
     }
-  }, [message])
+  }, [message, location.pathname])
 
   return (
       <>
@@ -84,6 +85,7 @@ const App = () => {
           <Route exact path="/verifypayment" element={<VerifyPayment />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/verif/:token" element={<EmailVerif />} />
+          <Route exact path="/chat" element={<Inbox />} />
           <Route exact path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer />
