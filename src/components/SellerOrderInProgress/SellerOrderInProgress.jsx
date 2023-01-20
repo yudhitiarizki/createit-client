@@ -15,8 +15,6 @@ const SellerOrderInProgress = () => {
 
     const order = useSelector(state => state.order.order);
 
-    console.log('order', order)
-
     const workingOrder = order.filter(order => order.status === 'Working');
     const revisingOrder = order.filter(order => order.status === 'Revising');
     const reviewingOrder = order.filter(order => order.status === 'Reviewing');

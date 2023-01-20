@@ -130,7 +130,7 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                     .then(() => {
                         setIsLoading(false);
                         dispatch(getOrderProgress());
-                        hideDetail()
+                        hideDetail();
                     })
                     .catch(() => {
                         setIsLoading(false);
