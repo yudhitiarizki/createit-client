@@ -61,7 +61,7 @@ const SellerNewOrder = () => {
         setApproveLoading(false);
         setIdLoad(0);
       })
-  }, [dispatch]);
+  }, [dispatch, socket, user]);
 
   if (isLoggedIn) {
     if (!(role === 2 && isVerified && isSeller)) { return <Navigate to='/' /> }
