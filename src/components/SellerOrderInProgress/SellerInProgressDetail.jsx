@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
-import { OrderUploadFile, getOrderProgress } from '../../redux/actions/order';
-
-import loader from '../../asset/Login/loader.gif';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import './SellerOrderInProgress.css';
+import { OrderUploadFile, getOrderProgress } from '../../redux/actions/order';
+import loader from '../../asset/Login/loader.gif';
+import { SocketContext } from '../../context/socket-context';
 
-const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
+const SellerInProgressDetail = () => {
     const dispatch = useDispatch();
+    const socket = useContext(SocketContext);
 
     const orderDetail = useSelector((state) => state.sllrOnPrgrssOrderDetail);
-
+    const { user } = useSelector(state => state.auth);
     const [deliveryTime, setDeliveryTime] = useState('');
     const [upldFile, setUpldFile] = useState();
     const [copyMsg, setCopyMsg] = useState('');
@@ -21,65 +21,58 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
     const [fileSizeMsg, setFileSizeMsg] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [fileName, setFileName] = useState('');
-    const [fileDisplay, setFileDisplay] = useState('block');
-    const [urlDisplay, setUrlDisplay] = useState('none'); 
 
-    const fileLength = orderDetail.OrderFiles.length;
-    const lastFile = orderDetail.OrderFiles[fileLength - 1];
-    const orderNotesLength = orderDetail.OrderNotes.length;
-    const lastOrderNote = orderDetail.OrderNotes[orderNotesLength - 1];
-
-    const addDays = useCallback((date, days) => {
+    const addDays = (date, days) => {
         const result = new Date(date);
         result.setDate(result.getDate() + days);
         return result
-    }, []);
+    }
 
     useEffect(() => {
         if (orderDetail.status === 'Working') {
             const dueDate = addDays(orderDetail.createdAt, orderDetail.delivery);
-            setDeliveryTime(getTime(dueDate));
+            setDeliveryTime(dueDate.toString().split('(')[0]);
         } else if (orderDetail.status === 'Revising') {
             const dueDate = addDays(orderDetail.updatedAt, orderDetail.delivery);
-            setDeliveryTime(getTime(dueDate));
+            setDeliveryTime(dueDate.toString().split('(')[0]);
         } else {
-            setDeliveryTime(getTime(orderDetail.updatedAt));
+            setDeliveryTime(new Date(orderDetail.updatedAt).toString().split('(')[0]);
         }
-    }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery, getTime, addDays])
+    }, [orderDetail.status, orderDetail.createdAt, orderDetail.updatedAt, orderDetail.delivery])
 
-    const handleDownload = useCallback((url) => {
+    const handleDownload = (url) => {
         const file = new URL(url).pathname.split("/").pop();
         window.location.href = `https://magnificent-regular-transport.glitch.me/download/${file}`
-    }, []);
+    }
 
-    const handleCopyUrl = useCallback(() => {
-        navigator.clipboard.writeText(orderDetail.file[0].file)
-            .then(() => {
+    const handleCopyUrl = () => {
+        navigator.clipboard.writeText(document.getElementById('url-file').innerText)
+            .then(success => {
                 setCopyMsg('url copied')
                 const timer = setTimeout(() => {
                     setCopyMsg('')
                 }, 2000)
                 return () => clearTimeout(timer)
             })
-            .catch(() => {
+            .catch(err => {
                 setCopyMsg('error copying url')
                 const timer = setTimeout(() => {
                     setCopyMsg('')
                 }, 2000)
                 return () => clearTimeout(timer)
             })
-    }, [orderDetail]);
+    }
 
-    const uploadFile = useCallback(() => {
+    const uploadFile = () => {
         document.getElementById('real-inputfile2').click();
-    }, []);
+    };
 
-    const handleFileChange = useCallback((event) => {
+    const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         setFileName(selectedFile.name);
 
         if (selectedFile) {
-            setThumbTxt(selectedFile.name);
+            document.getElementById('custom-inputtext2').innerHTML = selectedFile.name;
 
             const fileSize = selectedFile.size;
             const fileMB = fileSize / 1024 ** 2;
@@ -99,35 +92,42 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                 setFileSizeMsg('');
             }
         } else {
-            setThumbTxt('');
+            document.getElementById('custom-inputtext2').innerHTML = '';
             setFileSizeMsg('');
         }
-    }, [setThumbTxt]);
+    };
 
-    const handleChangeUrl = useCallback(() => {
-        setFileDisplay('none');
-        setUrlDisplay('block');
+    const handleChangeUrl = () => {
+        document.getElementById('upload-file-field').style.display = 'none';
+        document.getElementById('urlfile-input').style.display = 'block';
         setUpldFileType(2);
-    }, []);
+    }
 
-    const handleChangeUpload = useCallback(() => {
-        setFileDisplay('block');
-        setUrlDisplay('none');
+    const handleChangeUpload = () => {
+        document.getElementById('upload-file-field').style.display = 'block';
+        document.getElementById('urlfile-input').style.display = 'none';
         setUpldFileType(1);
-    }, []);
+    }
 
-    const hideDetail = useCallback(() => {
+    const hideDetail = () => {
         dispatch(hideOnProgressDetail());
-        setThumbTxt('');
-    }, [dispatch, setThumbTxt]);
+        document.getElementById('custom-inputtext2').innerHTML = '';
+    };
 
-    const handleSubmitFile = useCallback((orderId) => {
+    const handleSubmitFile = (orderId, userId) => {
+        
         if (upldFileType === 1) {
             if (!fileSizeMsg) {
                 const file = upldFile;
                 setIsLoading(true)
                 dispatch(OrderUploadFile(orderId, upldFileType, file, fileName))
                     .then(() => {
+                        socket.emit('sendMessage', {
+                            senderId: user.userId, 
+                            reseiverId: userId, 
+                            text: `Order #${orderId} completed, Please Review!`,
+                            date: Date.now()
+                        })
                         setIsLoading(false);
                         dispatch(getOrderProgress());
                         hideDetail();
@@ -141,6 +141,12 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
             setIsLoading(true)
             dispatch(OrderUploadFile(orderId, upldFileType, file))
                 .then(() => {
+                    socket.emit('sendMessage', {
+                        senderId: user.userId, 
+                        reseiverId: userId, 
+                        text: `Order #${orderId} completed, Please Review!`,
+                        date: Date.now()
+                    })
                     setIsLoading(false)
                     dispatch(getOrderProgress());
                     hideDetail();
@@ -149,7 +155,7 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                     setIsLoading(false)
                 })
         }
-    }, [dispatch, upldFileType, upldFile, fileName, fileSizeMsg, hideDetail, urlinput])
+    }
 
     return (
         <div className={orderDetail.orderId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
@@ -174,43 +180,37 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                     </div>
                     <div className='ordersummary-row'>
                         <div className='ordersummary-row1'>Created At</div>
-                        <div className='ordersummary-row2'>{getTime(orderDetail.createdAt)}</div>
+                        <div className='ordersummary-row2'>{new Date(orderDetail.createdAt).toString().split('(')[0]}</div>
                     </div>
                     <div className='ordersummary-row orange'>
                         <div className='ordersummary-row1'>Updated At</div>
-                        <div className='ordersummary-row2'>{getTime(orderDetail.updatedAt)}</div>
+                        <div className='ordersummary-row2'>{new Date(orderDetail.updatedAt).toString().split('(')[0]}</div>
                     </div>
                     <div className='ordersummary-row'>
                         <div className='ordersummary-row1'>Delivery Time</div>
                         <div className='ordersummary-row2'>{deliveryTime}</div>
                     </div>
 
-                    {orderNotesLength ?
-                        <div className='ordersummary-row orange'>
-                            <div className='ordersummary-row1'>Order Note</div>
-                            <div className='ordersummary-row2'>{lastOrderNote.note}</div>
-                        </div>
-                        :
-                        <div className='ordersummary-row orange'>
-                            <div className='ordersummary-row1'>Order Note</div>
-                            <div className='ordersummary-row2'>{orderDetail.note}</div>
-                        </div>
-                    }
-
-                    {(orderDetail.noOfConcepts) ? (
+                    {orderDetail.note && (
+                        orderDetail.note.length && (
+                            <div className='ordersummary-row orange'>
+                                <div className='ordersummary-row1'>Order Note</div>
+                                <div className='ordersummary-row2'>{orderDetail.note[0].note}</div>
+                            </div>
+                        )
+                    )}
+                    {(orderDetail.noOfConcept) ? (
                         <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Concepts</div>
-                            <div className='ordersummary-row2'>{orderDetail.noOfConcepts}</div>
+                            <div className='ordersummary-row2'>{orderDetail.noOfConcept}</div>
                         </div>
                     ) : (null)}
-
-                    {(orderDetail.noOfPage) ? (
+                    {(orderDetail.noOfPages) ? (
                         <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Number of Pages</div>
-                            <div className='ordersummary-row2'>{orderDetail.noOfPage}</div>
+                            <div className='ordersummary-row2'>{orderDetail.noOfPages}</div>
                         </div>
                     ) : (null)}
-
                     {(orderDetail.maxDuration) ? (
                         <div className='ordersummary-row'>
                             <div className='ordersummary-row1'>Maximum Duration</div>
@@ -220,12 +220,12 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
 
                     <div className='order-summary11 order-file1'>ORDER FILE</div>
                     {(orderDetail.status !== 'Revising') ? (null) : (
-                        (fileLength) ? (
-                            (lastFile.upldFileType === 1) ? (
+                        (orderDetail.OrderFiles.length) ? (
+                            (orderDetail.OrderFiles[0].upldFileType === 1) ? (
                                 <div className='download-file'>
                                     <div className='upload-file-2'>Download latest uploaded file</div>
                                     <div className='download-btn1'>
-                                        <div onClick={() => handleDownload(lastFile.file)}>Download</div>
+                                        <div onClick={() => handleDownload(orderDetail.file[0].file)}>Download</div>
                                         <i className='bx bxs-download'></i>
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                                 <div className='download-file'>
                                     <div className='upload-file-2'>View latest uploaded file</div>
                                     <div className='file-link-cntr'>
-                                        <div className='url-container'>{lastFile.file}</div>
+                                        <div className='url-container' id='url-file'>{orderDetail.file[0].file}</div>
                                         <div className='copy-cntr' onClick={handleCopyUrl}><i className='bx bxs-copy'></i></div>
                                     </div>
                                     {(copyMsg) ? ((copyMsg === 'url copied') ? (
@@ -254,13 +254,12 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                             {(fileSizeMsg) ? (
                                 <div className='filesize-msg'>{fileSizeMsg}</div>
                             ) : (null)}
-
-                            <div style={{'display': `${fileDisplay}`}}>
+                            <div id='upload-file-field'>
                                 <div className='text-99'>(maximum file size: 50MB)</div>
                                 <div className='inputFile'>
                                     <input type='file' id='real-inputfile2' onChange={handleFileChange} />
                                     <div className='custom-fileinput2'>
-                                        <div className='thumb1'>{thumbTxt}</div>
+                                        <div id='custom-inputtext2' className='thumb1'></div>
                                         <div id='custom-inputfile2' className='custominputfile2-btn' onClick={uploadFile}>
                                             <div className='link-img'></div>
                                             <div>Upload File</div>
@@ -272,7 +271,7 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                                 <div className='external-link' onClick={handleChangeUrl}>Use external link instead...</div>
                             </div>
 
-                            <div style={{ 'display': `${urlDisplay}` }}>
+                            <div id='urlfile-input' style={{ 'display': 'none' }}>
                                 <input value={urlinput} onChange={(event) => { setUrlInput(event.target.value) }} className='urlfile-input' placeholder='Put the file url here...' />
                                 <div className='external-link' onClick={handleChangeUpload}>Switch to file upload</div>
                             </div>
@@ -280,7 +279,7 @@ const SellerInProgressDetail = ({ thumbTxt, setThumbTxt, getTime }) => {
                             {isLoading ?
                                 <img src={loader} alt='' className='Loading'></img>
                                 :
-                                <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId)}>SEND</div></div>
+                                <div className='send-btn'><div onClick={() => handleSubmitFile(orderDetail.orderId, orderDetail.userId)}>SEND</div></div>
                             }
                         </>
                     ) : (null)}

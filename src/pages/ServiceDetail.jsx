@@ -27,6 +27,8 @@ const ServiceDetail = () => {
     const { isLoading, isError } = useSelector(state => state.Loading);
     const { detail } = useSelector(state => state.service);
 
+    console.log(detail)
+
     useEffect(() => {
         dispatch(setToLoad());
         dispatch(getServiceBySlug(slug))

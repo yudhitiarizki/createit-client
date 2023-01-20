@@ -207,6 +207,10 @@
         width: 100%;
     }
 
+    .order-create-path{
+        display: none;
+    }
+
     .order-summary {
         width: 100%;
     }

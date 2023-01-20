@@ -11,7 +11,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { SocketContext } from "../context/socket-context";
 
 const Test = () => {
-    const socket = useContext(SocketContext)
+    const socket = useContext(SocketContext);
     const { user } = useSelector(state => state.auth);
 
     useEffect(() => {
@@ -19,10 +19,9 @@ const Test = () => {
     },[])
     
     const sendMessage = () => {
-        console.log('ak')
         socket.emit('sendMessage', {
             senderId:user.userId, 
-            reseiverId: 4, 
+            reseiverId: 10, 
             text: 'mantul',
             date: Date.now()
         })

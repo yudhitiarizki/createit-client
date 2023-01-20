@@ -37,6 +37,10 @@ const getServiceByUser = (sellerId) => {
     return Api.get(`/service/user/${sellerId}`, {headers: AuthHeader()})
 }
 
+const updateService = (serviceId, title, description, categoryId, image, newImage ) => {
+    return Api.put(`/service/${serviceId}`, {title, description, categoryId, image, newImage}, {headers: AuthHeader()})
+}
+
 const ServiceServices = {
     getServiceByCategory,
     getService,
@@ -46,7 +50,8 @@ const ServiceServices = {
     createService,
     getMyService,
     deleteService,
-    getServiceByUser
+    getServiceByUser,
+    updateService 
 };
 
 export default ServiceServices;

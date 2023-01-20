@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
@@ -10,11 +10,13 @@ import Footer from '../components/General/Footer';
 import SellerIncomingOrder from '../components/SellerIncomingOrder/SellerIncomingOrder';
 import Loader from '../components/General/Loader';
 import SomethingWrong from '../components/SomethingWrong/SomethingWrong';
+import { SocketContext } from '../context/socket-context';
 
 const SellerNewOrder = () => {
   const dispatch = useDispatch();
+  const socket = useContext(SocketContext);
 
-  const { role, isLoggedIn, isSeller, isVerified } = useSelector(state => state.auth);
+  const { user, role, isLoggedIn, isSeller, isVerified } = useSelector(state => state.auth);
   const { isLoading, isError } = useSelector(state => state.Loading);
 
   const [approveLoading, setApproveLoading] = useState(false);
@@ -39,11 +41,17 @@ const SellerNewOrder = () => {
     dispatch(hideNewOrderDetail());
 }, [dispatch]);
 
-  const handleApproved = useCallback((orderId) => {
+  const handleApproved = useCallback((orderId, userId) => {
     setApproveLoading(true);
     setIdLoad(orderId);
     dispatch(patchOrderWorking(orderId))
       .then(() => {
+        socket.emit('sendMessage', {
+          senderId: user.userId, 
+          reseiverId: userId, 
+          text: `Order #${orderId} has working!`,
+          date: Date.now()
+        })
         dispatch(getOrderNew());
         dispatch(hideNewOrderDetail());
         setApproveLoading(false);

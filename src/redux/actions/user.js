@@ -2,7 +2,8 @@ import {
     FETCH_USER,
     FETCH_SELLER,
     APPROVE_SELLER,
-    REJECT_SELLER
+    REJECT_SELLER,
+    EDIT_PROFILE
 } from  './types';
 
 import UserServices from '../../services/user';
@@ -78,6 +79,26 @@ export const sellerReject = (userId) => async dispatch => {
         response => {
             dispatch({
                 type: REJECT_SELLER
+            });
+
+            sendMessage('success', response.data.message);
+
+            return Promise.resolve();
+        }, error => {
+            const message = error.response;
+
+            sendMessage('error', message.data.message);
+
+            return Promise.reject();
+        }
+    )
+}
+
+export const editProfile = (firstName, lastName, description, photoProfile) => async dispatch => {
+    return UserServices.editProfile(firstName, lastName, description, photoProfile).then(
+        response => {
+            dispatch({
+                type: EDIT_PROFILE
             });
 
             sendMessage('success', response.data.message);

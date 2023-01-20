@@ -17,8 +17,12 @@ const sellerReject = (userId) => {
     return Api.patch('/regseller/reject', {userId}, {headers: AuthHeader()});
 }
 
+const editProfile = (firstName, lastName, description, photoProfile) => {
+    return Api.put('/seller', {firstName, lastName, description, photoProfile}, {headers: AuthHeader()});
+}
+
 const UserServices = {
-    getUser, getSeller, sellerApprove, sellerReject
+    getUser, getSeller, sellerApprove, sellerReject, editProfile
 };
 
 export default UserServices;
