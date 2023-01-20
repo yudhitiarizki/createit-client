@@ -81,9 +81,9 @@ const EditService = () => {
     const onSubmit = useCallback(() => {
         const filter = newImage.filter(img => img.image !== null);
         const Sendimage = filter.map((image) => {return image.image});
-        const imgFilter = images.filter(img => img.update == true);
+        const imgFilter = images.filter(img => img.update === true);
         dispatch(updateService(detail.serviceId, title, description, categoryId, imgFilter, Sendimage));
-    }, [newImage, title, description, categoryId, images, detail])
+    }, [newImage, title, description, categoryId, images, detail, dispatch])
     
     return (
         <div className="modal fade" id="EditService" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,7 +118,7 @@ const EditService = () => {
                         return (
                             <div className="form-input">
                                 <label htmlFor="file-input">Image </label>
-                                <img src={image.image} alt={'image-1'}></img>
+                                <img src={image.image} alt={1}></img>
                                 <input type="file" id="file-input" className="form-file" onChange={handleChangeImage(image.imageId)}/>
                             </div>
                         )

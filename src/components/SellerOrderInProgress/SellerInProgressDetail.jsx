@@ -107,11 +107,13 @@ const SellerInProgressDetail = () => {
         document.getElementById('upload-file-field').style.display = 'block';
         document.getElementById('urlfile-input').style.display = 'none';
         setUpldFileType(1);
+        setUrlInput('');
     }
 
     const hideDetail = () => {
         dispatch(hideOnProgressDetail());
         document.getElementById('custom-inputtext2').innerHTML = '';
+        setUrlInput('');
     };
 
     const handleSubmitFile = (orderId, userId) => {
@@ -130,7 +132,7 @@ const SellerInProgressDetail = () => {
                         })
                         setIsLoading(false);
                         dispatch(getOrderProgress());
-                        hideDetail()
+                        hideDetail();
                     })
                     .catch(() => {
                         setIsLoading(false);

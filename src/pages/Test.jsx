@@ -1,13 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategory } from "../redux/actions/category";
-import { getServiceByCategory, getService, getDetailService, getTopService, getServiceBySlug } from "../redux/actions/service";
-import { getPackage, getPackageBySlug } from "../redux/actions/packages";
-import { getReview, getReviewBySlug } from "../redux/actions/review";
-import { getOrderUser } from "../redux/actions/order";
-import { getNotification } from "../redux/actions/notification";
-import { getUser } from "../redux/actions/user";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { SocketContext } from "../context/socket-context";
 
 const Test = () => {
@@ -16,7 +8,7 @@ const Test = () => {
 
     useEffect(() => {
         socket.on('getMessage', data => console.log(data))
-    },[])
+    },[socket])
     
     const sendMessage = () => {
         socket.emit('sendMessage', {

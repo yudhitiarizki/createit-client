@@ -88,25 +88,28 @@ const Packages = ({ data, serviceId, slug, name }) => {
             } else {
                 navigate('/createorder', { state: { package: packageData, service: name } });
             }
-            
+
         } else {
             sendMessage('error', "Login is required.");
         }
-    }, [isLoggedIn, navigate, name, user.role, isSeller])
+    }, [isLoggedIn, navigate, name, user, isSeller])
 
     return (
         <>
             <div className='package-header'>
                 <div className='pckg-header'>Packages</div>
-                {(isLoggedIn && user.role === 2 && isSeller) ? (
-                    ((packages.length === 3) ? (
-                        <></>
+                {isLoggedIn ?
+                    (user.role === 2 && isSeller) ? (
+                        ((packages.length === 3) ? (
+                            <></>
+                        ) : (
+                            <AddPackage serviceId={serviceId} slug={slug} packages={packages} />
+                        ))
                     ) : (
-                        <AddPackage serviceId={serviceId} slug={slug} packages={packages} />
-                    ))
-                ) : (
-                    <></>
-                )}
+                        <></>
+                    )
+                    : null
+                }
             </div>
             <div className={(packages.length === 3) ? 'package-list' : 'package-list1'}>
                 {packages.map((item, index) => (
@@ -150,7 +153,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                                 : <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
                                             }
 
-                                            {(isLoggedIn && user.role === 2 && isSeller) ? (
+                                            {isLoggedIn ? (user.role === 2 && isSeller) ? (
                                                 <div className='edit-delete'>
                                                     <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
                                                         <i className='bx bx-edit'></i>
@@ -159,7 +162,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                                 </div>
                                             ) : (
                                                 <></>
-                                            )}
+                                            ) : null}
                                             <div className='pckgdetail-type'>{item.type}</div>
                                         </div>
                                         <div className='ordernow-btn orange-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
@@ -173,7 +176,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                                     : <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
                                                 }
 
-                                                {(isLoggedIn && user.role === 2 && isSeller) ? (
+                                                {isLoggedIn ? (user.role === 2 && isSeller) ? (
                                                     <div className='edit-delete'>
                                                         <div type="button" className='edit-btn-modal' data-bs-toggle="modal" data-bs-target="#editpckg-modal" onClick={() => { EditPckg(item) }}>
                                                             <i className='bx bx-edit'></i>
@@ -182,7 +185,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                                     </div>
                                                 ) : (
                                                     <></>
-                                                )}
+                                                ) : null}
                                                 <div className='pckgdetail-type'>{item.type}</div>
                                             </div>
                                             <div className='ordernow-btn pink-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
@@ -195,7 +198,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                                     : <div className='pckgdetail-price'>Rp {item.price / 1000},-</div>
                                                 }
 
-                                                {(isLoggedIn && user.role === 2 && isSeller) ? (
+                                                {isLoggedIn ? (user.role === 2 && isSeller) ? (
                                                     <div className='edit-delete'>
                                                         <div type="button" className='edit-btn-modal' onClick={() => { EditPckg(item) }}>
                                                             <i className='bx bx-edit'></i>
@@ -204,7 +207,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                                                     </div>
                                                 ) : (
                                                     <></>
-                                                )}
+                                                ): null}
                                                 <div className='pckgdetail-type'>{item.type}</div>
                                             </div>
                                             <div className='ordernow-btn purple-btn' type='button' onClick={() => orderNow(item)}>ORDER NOW</div>
