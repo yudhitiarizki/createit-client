@@ -1,0 +1,264 @@
+.inbox-container {
+    margin: 50px 9vw 70px 9vw;
+    position: relative;
+    height: 700px;
+}
+
+.inboxlist-cntr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(82vw/2.2);
+    background: #FFFFFF;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    height: 700px;
+}
+
+.inbox-header {
+    width: 100%;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #E85048;
+    color: #E8504B;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+}
+
+.lastmsg-cntr {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2px;
+    max-height: calc(700px - 80px - 63px);
+    overflow-y: scroll;
+}
+
+.lastmsg-cntr::-webkit-scrollbar {
+    width: 0px;
+}
+
+.lastmsg-box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.lastmsg-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.lastmsg-center {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.lastmsg-time {
+    font-size: 12px;
+    color: #666666;
+    font-weight: 400;
+}
+
+.lastmsg-name {
+    font-size: 16px;
+    color: #E8504B;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.lastmsg-msg {
+    width: calc(82vw/2.2 - 120px - 110px);
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.lastmsg-det-btn {
+    font-size: 18px;
+    color: #E85048;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 2px solid #E85048;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lastmsg-det-btn:hover {
+    background: #E85048;
+    color: #FFFFFF;
+}
+
+/* Nest Hub */
+@media (min-width: 992px) and (max-width: 1119.98px) {
+    .inbox-container {
+        margin: 50px 9vw 70px 9vw;
+        height: 640px;
+    }
+    
+    .inboxlist-cntr {
+        width: calc(82vw/2.1);
+        padding: 35px 30px;
+        height: 640px;
+    }
+    
+    .inbox-header {
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+        font-size: 18px;
+    }
+    
+    .lastmsg-cntr {
+        gap: 20px;
+        max-height: calc(640px - 70px - 58px);
+    }
+    
+    .lastmsg-box {
+        padding: 20px;
+    }
+    
+    .lastmsg-photo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .lastmsg-time {
+        font-size: 12px;
+    }
+    
+    .lastmsg-name {
+        font-size: 16px;
+    }
+    
+    .lastmsg-msg {
+        width: calc(82vw/2.1 - 100px - 100px);
+        font-size: 14px;
+    }
+    
+    .lastmsg-det-btn {
+        font-size: 18px;
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* Surface Pro 7, iPad Mini, iPad Air */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .inbox-container {
+        margin: 50px 5vw 70px 5vw;
+        height: 640px;
+    }
+    
+    .inboxlist-cntr {
+        width: calc(90vw/2.1);
+        padding: 30px 25px;
+        height: 640px;
+    }
+    
+    .inbox-header {
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        font-size: 16px;
+    }
+    
+    .lastmsg-cntr {
+        gap: 15px;
+        max-height: calc(640px - 60px - 51px);
+    }
+    
+    .lastmsg-box {
+        padding: 15px;
+    }
+    
+    .lastmsg-photo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lastmsg-time {
+        font-size: 12px;
+    }
+    
+    .lastmsg-name {
+        font-size: 15px;
+    }
+    
+    .lastmsg-msg {
+        width: calc(90vw/2.1 - 80px - 90px);
+        font-size: 13px;
+    }
+    
+    .lastmsg-det-btn {
+        font-size: 18px;
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* Small devices */
+@media (max-width: 767.98px) {
+    .inbox-container {
+        margin: 30px 4vw 50px 4vw;
+        height: 550px;
+    }
+    
+    .inboxlist-cntr {
+        width: calc(92vw);
+        padding: 30px 25px;
+        height: 550px;
+    }
+    
+    .inbox-header {
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        font-size: 16px;
+    }
+    
+    .lastmsg-cntr {
+        gap: 15px;
+        max-height: calc(550px - 60px - 51px);
+    }
+    
+    .lastmsg-box {
+        padding: 15px;
+    }
+    
+    .lastmsg-photo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lastmsg-time {
+        font-size: 11px;
+    }
+    
+    .lastmsg-name {
+        font-size: 14px;
+    }
+    
+    .lastmsg-msg {
+        width: calc(92vw - 80px - 90px);
+        font-size: 12px;
+    }
+    
+    .lastmsg-det-btn {
+        font-size: 16px;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #E85048;
+    }
+}
