@@ -4,10 +4,15 @@
     font-family: 'poppins';
 }
 
+.profile-section {
+    width: 100%;
+}
+
 .service-section {
     display: flex;
     flex-direction: row;
     padding: 50px 120px;
+    width: 100%;
 }
 
 .my-service {
@@ -46,7 +51,10 @@
 
 .servicelist {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .servicelists1 {

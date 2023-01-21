@@ -4,10 +4,10 @@ import io from 'socket.io-client';
 export const SocketContext = createContext();
 
 export function SocketProvider({ children }) {
-  const [socket, setSocket] = useState(io('https://magnificent-regular-transport.glitch.me/'));
+  const [socket, setSocket] = useState(io('http://localhost:3001/'));
   
   useEffect(() => {
-    setSocket(io('https://magnificent-regular-transport.glitch.me/'));
+    setSocket(io('http://localhost:3001/'));
   }, []);
 
   return (

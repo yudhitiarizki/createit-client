@@ -12,12 +12,50 @@
     gap: 10px;
 }
 
+.button-profile {
+    display: flex;
+    gap: 10px;
+}
+
+.profile-inf .nav-link {
+    margin-bottom: 10px;
+}
+
+.button-profile .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 15px;
+
+    border: #E8504B solid;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.button-profile .button p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    margin: auto;
+    /* identical to box height */
+
+    text-align: justify;
+
+    /* Primary/Linear */
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .detailsrvc-seller {
     margin-left: 9vw;
     margin-bottom: 48px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 32px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
