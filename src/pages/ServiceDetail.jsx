@@ -104,7 +104,7 @@ const ServiceDetail = () => {
                                 <div className="list-review-star">
                                     <div><i className='bx bxs-star'></i></div>
                                     <div>
-                                        {detail.rating || 0}/5 <span>({detail.noOfBuyer} Reviews)</span>
+                                        {detail.rating || 0}/5 <span>({detail.Reviews ? detail.Reviews.length : 0} Reviews)</span>
                                     </div>
                                 </div>
                             </div>

@@ -46,6 +46,17 @@
     padding: 15px;
 }
 
+.topratedservc-cntr:hover .toprated-ratebuy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.link2:hover {
+    color: #E8504B;
+}
+
 .toprated-ratebuy div i {
     margin-right: 5px;
 }
@@ -119,28 +130,6 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-}
-
-@media (hover: hover) {
-    .topratedservc-cntr:hover .toprated-ratebuy {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-
-    .link2:hover {
-        color: #E8504B;
-    }
-}
-
-@media (hover: none) {
-    .topratedservc-cntr .toprated-ratebuy {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
 }
 
 /* Nest Hub */

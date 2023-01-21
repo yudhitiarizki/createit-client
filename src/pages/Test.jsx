@@ -1,13 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategory } from "../redux/actions/category";
-import { getServiceByCategory, getService, getDetailService, getTopService, getServiceBySlug } from "../redux/actions/service";
-import { getPackage, getPackageBySlug } from "../redux/actions/packages";
-import { getReview, getReviewBySlug } from "../redux/actions/review";
-import { getOrderUser } from "../redux/actions/order";
-import { getNotification } from "../redux/actions/notification";
-import { getUser } from "../redux/actions/user";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { SocketContext } from "../context/socket-context";
 
 const Test = () => {
@@ -23,6 +15,7 @@ const Test = () => {
     
 
     useEffect(() => {
+<<<<<<< HEAD
         socket.on('getChat', data => setReceiver(data));
         setRevUser(part.find(pr => pr.userId !== user.userId))
         
@@ -35,6 +28,10 @@ const Test = () => {
     }, [receiver.date])
 
     console.log(message);
+=======
+        socket.on('getMessage', data => console.log(data))
+    },[socket])
+>>>>>>> 468545b8ea5f032009e5ea1ed88e1701204366aa
     
     const sendMessage = () => {
         socket.emit('sendChat', {

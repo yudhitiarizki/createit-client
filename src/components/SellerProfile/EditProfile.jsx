@@ -34,7 +34,7 @@ const EditProfile = ({data}) => {
                 setPhoto({photoProfile: filedata, update: true});
             }
         }
-    }, [photoProfile, setPhoto]);
+    }, [setPhoto]);
     
     const onSubmit = useCallback(() => {
         if(photoProfile.update){
@@ -47,7 +47,7 @@ const EditProfile = ({data}) => {
             })
         }
         
-    }, [firstName, lastName, description, photoProfile])
+    }, [firstName, lastName, description, photoProfile, dispatch, user])
 
     return (
     <div className="modal fade" id="EditProfile" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -75,7 +75,7 @@ const EditProfile = ({data}) => {
 
                 <div className="form-input">
                     <label htmlFor="file-input">Photo Profile </label>
-                    <img src={photoProfile.photoProfile} alt={'image-1'}></img>
+                    <img src={photoProfile.photoProfile} alt={1}></img>
                     <input type="file" id="file-input" className="form-file" onChange={handleFileChange}/>
                 </div>
 
