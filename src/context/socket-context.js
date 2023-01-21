@@ -4,10 +4,10 @@ import io from 'socket.io-client';
 export const SocketContext = createContext();
 
 export function SocketProvider({ children }) {
-  const [socket, setSocket] = useState(io('http://localhost:3001/'));
+  const [socket, setSocket] = useState(io(window.env.SERVER_URL));
   
   useEffect(() => {
-    setSocket(io('http://localhost:3001/'));
+    setSocket(io(window.env.SERVER_URL));
   }, []);
 
   return (

@@ -42,7 +42,7 @@ const SellerInProgressDetail = () => {
 
     const handleDownload = (url) => {
         const file = new URL(url).pathname.split("/").pop();
-        window.location.href = `https://magnificent-regular-transport.glitch.me/download/${file}`
+        window.location.href = `${window.env.SERVER_URL}/download/${file}`
     }
 
     const handleCopyUrl = () => {
