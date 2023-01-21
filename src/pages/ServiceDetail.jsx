@@ -27,8 +27,6 @@ const ServiceDetail = () => {
     const { isLoading, isError } = useSelector(state => state.Loading);
     const { detail } = useSelector(state => state.service);
 
-    console.log(detail)
-
     useEffect(() => {
         dispatch(setToLoad());
         dispatch(getServiceBySlug(slug))
@@ -45,7 +43,7 @@ const ServiceDetail = () => {
             {isLoading ?
                 <Loader />
                 :
-                (isError ?
+                (isError ?  
                     <SomethingWrong />
                     :
                     <>
@@ -60,7 +58,14 @@ const ServiceDetail = () => {
 
                             <div className="detailsrvc-seller">
                                 <img src={detail.photoProfile} alt={1}></img>
-                                <Link to={`/seller/${detail.sellerId}`} className="nav-link">{detail.firstName + ' ' + detail.lastName}</Link>
+                                <div className="profile-inf">
+                                    <Link to={`/seller/${detail.sellerId}`} className="nav-link">{detail.firstName + ' ' + detail.lastName}</Link>
+                                    <div className="button-profile">
+                                        <Link to={`/seller/${detail.sellerId}`} style={{ textDecoration: 'none' }} className="button"><p>Visit The Store</p></Link>
+                                        <Link style={{ textDecoration: 'none' }} className="button"><p>Chat Now</p></Link>
+                                    </div>
+                                </div>
+                                
                             </div>
 
                             {detail.image ?
