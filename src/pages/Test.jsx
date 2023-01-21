@@ -116,7 +116,7 @@ const Test = () => {
             roomId: room.roomId, 
             message: text, 
             receiverId: receiverUser.userId,
-            createdAt: Date.now()
+            createdAt: new Date().toISOString()
         });
         const updatedData = data.map(item => {
             if (item.roomId === room.roomId) {
@@ -124,7 +124,7 @@ const Test = () => {
                 message: text,
                 userId: user.userId, 
                 roomId: room.roomId, 
-                createdAt: Date.now()});
+                createdAt: new Date().toISOString()});
             }
             return item;
           });

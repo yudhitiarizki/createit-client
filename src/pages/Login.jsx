@@ -30,9 +30,8 @@ const Login = () => {
         dispatch(login(Username, Password)).then(() => {
             setEyeclass('bx bxs-hide');
             setType('password');
-            navigate('/').then(() => {
-                window.location.reload();
-            });
+            navigate('/')
+            window.location.reload();
         }).catch(() => {
             setLoading(false)
         });
