@@ -110,22 +110,16 @@ const Test = () => {
     }, [receiver.createdAt]);
 
     const sendMessage = () => {
-        console.log(receiverUser.userId)
-        socket.emit('sendChat', {
+        const data = {
             userId: user.userId, 
             roomId: room.roomId, 
             message: text, 
             receiverId: receiverUser.userId,
             createdAt: new Date().toISOString()
-        });
+        }
+        socket.emit('sendChat', data);
         const updatedData = data.map(item => {
-            if (item.roomId === room.roomId) {
-              item.Messages.push({
-                message: text,
-                userId: user.userId, 
-                roomId: room.roomId, 
-                createdAt: new Date().toISOString()});
-            }
+            if (item.roomId === room.roomId) { item.Messages.push(data); }
             return item;
           });
         setData(updatedData);

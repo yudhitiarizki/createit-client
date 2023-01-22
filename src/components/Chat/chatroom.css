@@ -1,0 +1,136 @@
+.chat-room {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(82vw/2.2);
+    background: #FFFFFF;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    height: 700px;
+}
+
+.chat-header {
+    width: 100%;
+    height: 10%;
+
+    background: linear-gradient(255.68deg, #E8504B 8.13%, #F2703C 93.86%);
+    border-radius: 16px 16px 0px 0px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 15px 30px;
+    gap: 25px;
+
+
+}
+
+.chat-message {
+    width: 100%;
+    height: 75%;
+    padding: 20px;
+
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.chat-message::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+}
+
+.chat-send {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: 100%;
+    height: 15%;
+    background-color: #fff;
+    border-radius: 0px 0px 16px 16px ;
+    padding: 20px;
+}
+
+.chat-input {
+    height: 100%;
+    background-color: #fff;
+    border: none;
+    border-radius: 0px 0px 0px 16px;
+    width: 90%;
+    position: relative;
+    word-wrap: break-word;
+    resize: none;
+}
+
+.chat-input::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+}
+
+.chat-input:focus {
+    outline: none !important;
+}
+
+.send-button {
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.send-button button {
+    background-color: #fff;
+    border: none;
+}
+
+.info-user {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.info-user h6 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFF;
+    margin: 0px;
+}
+
+.info-user p {
+    text-align: start;
+    margin: 0px;
+    color: #FFF;
+    font-size: 12px;
+}
+
+.message {
+    width: fit-content;
+    height: fit-content;
+    max-width: 90%;
+    padding: 8px 16px;
+    background: #F2F2F2;
+    border-radius: 0px 16px 16px 16px;
+    margin-top: 20px;
+}
+
+.right {
+    border-radius: 16px 0px 16px 16px;
+    align-self: flex-end;
+}
+
+.message-cont {
+    width: 100%;
+    display: flex;
+}
+
+.me {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.message p {
+    margin: 0px;
+    font-size: 10px;
+}
