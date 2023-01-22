@@ -1,3 +1,3 @@
 window.env = {
-  "SERVER_URL": "https://magnificent-regular-transport.glitch.me"
+  "SERVER_URL": "https://aquamarine-mulberry-kicker.glitch.me/"
 };

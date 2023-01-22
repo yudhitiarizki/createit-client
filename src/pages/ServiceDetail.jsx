@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 
 import { setToLoad, setToNotLoad, setWentWrong } from '../redux/actions/loader';
 import { getServiceBySlug } from '../redux/actions/service';
+import { getOtherPart } from '../redux/actions/participant';
+import { createRoom } from '../redux/actions/participant';
 
 import Packages from "../components/Packages/Packages";
 import ReviewsList from "../components/Services/ReviewsList";
@@ -23,12 +25,17 @@ const ServiceDetail = () => {
     const { slug } = useParams();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { isLoading, isError } = useSelector(state => state.Loading);
     const { detail } = useSelector(state => state.service);
 
+    const participant = useSelector(state => state.participant);
+    const { user } = useSelector(state => state.auth);
+
     useEffect(() => {
         dispatch(setToLoad());
+        dispatch(getOtherPart());
         dispatch(getServiceBySlug(slug))
             .then(() => {
                 dispatch(setToNotLoad());
@@ -37,6 +44,17 @@ const ServiceDetail = () => {
                 dispatch(setWentWrong());
             });
     }, [dispatch, slug]);
+
+    const onChat = () => {
+        const userRoom = participant.findIndex(part => part === detail.userId);
+        if(userRoom === -1){
+            dispatch(createRoom(user.userId, detail.userId)).then(() => {
+                navigate('/chat', { state: { sellerId: detail.userId } });
+            })
+        } else {
+            navigate('/chat', { state: { sellerId: detail.userId } });
+        }
+    }
 
     return (
         <>
@@ -62,7 +80,7 @@ const ServiceDetail = () => {
                                     <Link to={`/seller/${detail.sellerId}`} className="nav-link">{detail.firstName + ' ' + detail.lastName}</Link>
                                     <div className="button-profile">
                                         <Link to={`/seller/${detail.sellerId}`} style={{ textDecoration: 'none' }} className="button"><p>Visit The Store</p></Link>
-                                        <Link style={{ textDecoration: 'none' }} className="button"><p>Chat Now</p></Link>
+                                        <button style={{ textDecoration: 'none' }} onClick={onChat} className="button"><p>Chat Now</p></button>
                                     </div>
                                 </div>
                                 

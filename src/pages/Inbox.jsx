@@ -8,11 +8,16 @@ import Ellipse2 from '../asset/Navbar/Ellipse2.png';
 import '../components/Chat/Inbox.css';
 import { SocketContext } from '../context/socket-context';
 import { setChat } from '../redux/actions/chat';
+import { useLocation } from 'react-router-dom';
+import { getRoomUser, getRoomSeller } from '../redux/actions/chat';
 
 const Inbox = () => {
     const dispatch = useDispatch();
-    const socket = useContext(SocketContext)
-    const {user} = useSelector(state => state.auth);
+    const location = useLocation();
+    const socket = useContext(SocketContext);
+    const { user, isSeller } = useSelector(state => state.auth);
+
+    const { state } = location;
 
     const [lastData, setLastData] = useState([]);
     const [Warning, setWarning] = useState('');
@@ -31,8 +36,11 @@ const Inbox = () => {
     const filterRoom = useCallback(() => {
         let filteredData = [];
         data.forEach(room => {
-            const messageLength = room.Messages.length;
-            const lastMessage = room.Messages[messageLength - 1];
+            let lastMessage = null;
+            if (room.Messages.length){
+                const messageLength = room.Messages.length;
+                lastMessage = room.Messages[messageLength - 1];
+            }
 
             const lastUser = room.RoomParticipants.filter(person => person.userId !== user.userId)[0];
             const result = {
@@ -69,6 +77,10 @@ const Inbox = () => {
     },[])
 
     useEffect(() => {
+        isSeller ? dispatch(getRoomSeller()) : dispatch(getRoomUser());
+    }, [dispatch, isSeller])
+
+    useEffect(() => {
         setRevUser(room.RoomParticipants.find(pr => pr.userId !== user.userId));
         setMessage(room.Messages);
     }, [room.roomId])
@@ -85,6 +97,18 @@ const Inbox = () => {
         }
     }, [receiver.createdAt]);
 
+
+    useEffect(() => {
+        if(state){
+            let filteredData = data.filter(room => {
+                return room.RoomParticipants.some(participant => participant.userId === state.sellerId);
+            });
+            if (filteredData.length){
+                setRoom(filteredData[0]);
+            }
+        }
+    }, [state, location])
+
     const handleRoomDetail = useCallback((roomId) => {
         const selectedRoom = data.find(room => room.roomId === roomId);
         setRoom(selectedRoom);
@@ -98,22 +122,33 @@ const Inbox = () => {
                 <div className='inboxlist-cntr'>
                     <div className='inbox-header'>Inbox</div>
                     <div className='lastmsg-cntr'>
-                        {data.length &&
-                            lastData.map(({ roomId, lastUser, lastMessage }) => (
+                        {data.length ?
+                            (lastData.map(({ roomId, lastUser, lastMessage }) => (
                                 <div key={`id-${roomId}`} className='lastmsg-box'>
-                                    <img src={lastUser.photoProfile} alt={1} className='lastmsg-photo'></img>
+                                    { lastUser.role === 2 ? (
+                                        <img src={lastUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
+                                    ) : (                                        
+                                        <img src={Ellipse2} alt={1} className='lastmsg-photo'></img>
+                                    )}
                                     <div className='lastmsg-center'>
-                                        <div className='lastmsg-time'>{getTime(lastMessage.createdAt)}</div>
-                                        <div className='lastmsg-name'>{lastUser.firstName} {lastUser.lastName}</div>
-                                        <div className='lastmsg-msg'>{lastMessage.message}</div>
+                                        { lastMessage && (
+                                            <div className='lastmsg-time'>{getTime(lastMessage.createdAt)}</div>
+                                        )}
+                                        <div className='lastmsg-name'>{lastUser.User.firstName} {lastUser.User.lastName}</div>
+                                        { lastMessage && (
+                                            <div className='lastmsg-msg'>{lastMessage.message}</div>
+                                        )}
                                     </div>
                                     <div onClick={() => { handleRoomDetail(roomId) }} className='lastmsg-det-btn'>
                                         <i className='bx bx-right-arrow-alt'></i>
                                     </div>
                                 </div>
-                            ))
+                            ))) : (
+                                <div>{Warning}</div>
+                            )
                         }
-                        {Warning && <div>{Warning}</div>}
+                        
+
                     </div>
                 </div>
             </div>

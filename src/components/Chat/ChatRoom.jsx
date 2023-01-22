@@ -4,7 +4,7 @@ import iconSend from '../../asset/General/send.png'
 import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import { useDispatch, useSelector } from "react-redux";
 import { SocketContext } from "../../context/socket-context";
-import { setChat } from "../../redux/actions/chat";
+import { setChat, sendChat } from "../../redux/actions/chat";
 
 const ChatRoom = ({room, message, receiverUser}) => {
     const dispatch = useDispatch();
@@ -16,28 +16,41 @@ const ChatRoom = ({room, message, receiverUser}) => {
     const data = useSelector(state => state.chat);
 
     const [isOnline, setOnline] = useState(false);
+    const [onlineList, setList] = useState([]);
 
-    console.log(message, 'asdkl')
+    useEffect(() => {
+        socket.on('getUsers', users => setList(users))  
+    }, [user]);
+
+    useEffect(() => {
+        if(receiverUser){
+            let index = onlineList.findIndex(item => item.userId === receiverUser.userId);
+            index !== -1 ? setOnline(true) : setOnline(false);
+        }
+    }, [onlineList, receiverUser])
 
     useEffect(() => {
         setMessage(message.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)))
     }, [room.roomId, message.length]);
 
     const onSending = useCallback(() => {
-        const dataSend = {
-            userId: user.userId, 
-            roomId: room.roomId, 
-            message: text, 
-            receiverId: receiverUser.userId,
-            createdAt: new Date().toISOString()
-        }
-        socket.emit('sendChat', dataSend);
-        const updatedData = data.map(item => {
-            if (item.roomId === room.roomId) { item.Messages.push(dataSend); }
-                return item;
-            });
-        dispatch(setChat(updatedData));
-        setText('')
+        dispatch(sendChat(room.roomId, text)).then(() => {
+            const dataSend = {
+                userId: user.userId, 
+                roomId: room.roomId, 
+                message: text, 
+                receiverId: receiverUser.userId,
+                createdAt: new Date().toISOString()
+            }
+            console.log(dataSend)
+            socket.emit('sendChat', dataSend);
+            const updatedData = data.map(item => {
+                if (item.roomId === room.roomId) { item.Messages.push(dataSend); }
+                    return item;
+                });
+            dispatch(setChat(updatedData));
+            setText('')
+        })
     }, [text])
     
     return (
@@ -47,9 +60,13 @@ const ChatRoom = ({room, message, receiverUser}) => {
                 <div className="chat-header">
                     { receiverUser && (
                         <>
-                        <img src={receiverUser.photoProfile} alt={1} className='lastmsg-photo'></img>
+                        { receiverUser.role === 2 ? (
+                            <img src={receiverUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
+                        ) : (
+                            <img src={Ellipse2} alt={1} className='lastmsg-photo'></img>
+                        ) }
                         <div className="info-user">
-                            <h6>{receiverUser.firstName} {receiverUser.lastName}</h6>
+                            <h6>{receiverUser.User.firstName} {receiverUser.User.lastName}</h6>
                             { isOnline && (  <p>Online</p> ) }
                         </div>
                         </>
