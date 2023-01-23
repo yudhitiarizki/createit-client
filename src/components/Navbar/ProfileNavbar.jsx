@@ -119,6 +119,10 @@ const ProfileNavbar = () => {
                                         <i className='bx bx-chevron-right'></i>
                                     </li>
                                     <li>
+                                        <Link to="/chat" className="nav-link">Inbox</Link>
+                                        <i className='bx bx-chevron-right'></i>
+                                    </li>
+                                    <li>
                                         <Link to="/seller/order/new" className="nav-link">Incoming Order</Link>
                                         <i className='bx bx-chevron-right'></i>
                                     </li>

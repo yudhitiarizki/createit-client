@@ -1,95 +1,46 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Footer from '../components/General/Footer';
 import ChatRoom from '../components/Chat/ChatRoom';
 
 import Ellipse2 from '../asset/Navbar/Ellipse2.png';
 import '../components/Chat/Inbox.css';
+import { SocketContext } from '../context/socket-context';
+import { setChat } from '../redux/actions/chat';
+import { useLocation } from 'react-router-dom';
+import { getRoomUser, getRoomSeller } from '../redux/actions/chat';
 
 const Inbox = () => {
-    // const {user} = useSelector(state => state.auth);
-    const user = useMemo(() => ({ userId: 1 }), []); //data dummy
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const socket = useContext(SocketContext);
+    const { user, isSeller } = useSelector(state => state.auth);
+
+    const { state } = location;
 
     const [lastData, setLastData] = useState([]);
-    const [message, setMessage] = useState('');
+    const [Warning, setWarning] = useState('');
 
-    const room = useMemo(() => [
-        {
-            roomId: 1,
-            name: 'room 1',
-            RoomParticipants: [
-                {
-                    role: 1,
-                    firstName: 'Wednesday',
-                    lastName: 'Addams',
-                    userId: 1,
-                    photoProfile: Ellipse2
-                },
-                {
-                    role: 2,
-                    firstName: 'Enid',
-                    lastName: 'Sinclair',
-                    userId: 2,
-                    photoProfile: Ellipse2
-                }
-            ],
-            Messages: [
-                {
-                    messageId: 1,
-                    userId: 1,
-                    message: 'I want to ask about this service...',
-                    createdAt: '01-02-2022'
-                },
-                {
-                    messageId: 2,
-                    userId: 2,
-                    message: 'Hi! thank you for reaching us. We provide 3 types of packages, standard, premium, and business. Which package do you have interest in?',
-                    createdAt: '01-02-2023'
-                }
-            ]
-        },
-        {
-            roomId: 2,
-            name: 'room 2',
-            RoomParticipants: [
-                {
-                    role: 1,
-                    firstName: 'Wednesday',
-                    lastName: 'Addams',
-                    userId: 1,
-                    photoProfile: Ellipse2
-                },
-                {
-                    role: 2,
-                    firstName: 'Enid',
-                    lastName: 'Sinclair',
-                    userId: 2,
-                    photoProfile: Ellipse2
-                }
-            ],
-            Messages: [
-                {
-                    messageId: 1,
-                    userId: 1,
-                    message: 'I want to ask about this service...',
-                    createdAt: '01-02-2022'
-                },
-                {
-                    messageId: 2,
-                    userId: 2,
-                    message: 'Hi! thank you for reaching us. We provide 3 types of packages, standard, premium, and business. Which package do you have interest in?',
-                    createdAt: '01-02-2023'
-                }
-            ]
-        }
-    ], []);
+    const [room, setRoom] = useState({
+        roomId: '',
+        RoomParticipants: [],
+        Messages: []
+    });
+    const [receiverUser, setRevUser] = useState({userId: ''})
+    const [message, setMessage] = useState([]);
+    const [receiver, setReceiver] = useState({});
+
+    const data = useSelector(state => state.chat)
 
     const filterRoom = useCallback(() => {
         let filteredData = [];
-        room.forEach(room => {
-            const messageLength = room.Messages.length;
-            const lastMessage = room.Messages[messageLength - 1];
+        data.forEach(room => {
+            let lastMessage = null;
+            if (room.Messages.length){
+                const messageLength = room.Messages.length;
+                lastMessage = room.Messages[messageLength - 1];
+            }
 
             const lastUser = room.RoomParticipants.filter(person => person.userId !== user.userId)[0];
             const result = {
@@ -102,16 +53,16 @@ const Inbox = () => {
         })
 
         setLastData(filteredData);
-    }, [room, user]);
+    }, [data]);
 
     useEffect(() => {
-        if (room.length) {
+        if (data.length) {
             filterRoom();
-            setMessage('');
+            setWarning('');
         } else {
-            setMessage('There is currently no chat.')
+            setWarning('There is currently no chat.')
         }
-    }, [filterRoom, room]);
+    }, [filterRoom]);
 
     const getTime = useCallback((data) => {
         const date = new Date(data);
@@ -120,37 +71,84 @@ const Inbox = () => {
         return date.toLocaleDateString('id-ID', options);
     }, []);
 
+
+    useEffect(() => {
+        socket.on('getChat', data => {setReceiver(data)});
+    },[])
+
+    useEffect(() => {
+        isSeller ? dispatch(getRoomSeller()) : dispatch(getRoomUser());
+    }, [dispatch, isSeller])
+
+    useEffect(() => {
+        setRevUser(room.RoomParticipants.find(pr => pr.userId !== user.userId));
+        setMessage(room.Messages);
+    }, [room.roomId])
+
+    useEffect(() => {
+        if(receiver.message){
+            const updatedData = data.map(item => {
+                if (item.roomId === receiver.roomId) {
+                  item.Messages.push(receiver);
+                }
+                return item;
+              });
+            dispatch(setChat(updatedData));
+        }
+    }, [receiver.createdAt]);
+
+
+    useEffect(() => {
+        if(state){
+            let filteredData = data.filter(room => {
+                return room.RoomParticipants.some(participant => participant.userId === state.sellerId);
+            });
+            if (filteredData.length){
+                setRoom(filteredData[0]);
+            }
+        }
+    }, [state, location])
+
     const handleRoomDetail = useCallback((roomId) => {
-        const selectedRoom = room.filter(room => room.roomId === roomId);
-
-        // dispatch pakai payload selectedRoom
-
-    }, [room]);
+        const selectedRoom = data.find(room => room.roomId === roomId);
+        setRoom(selectedRoom);
+    }, [data]);
 
     return (
         <>
             <div className='inbox-container'>
-                <ChatRoom />
+                <ChatRoom room={room} message={message} receiverUser={receiverUser}/>
 
                 <div className='inboxlist-cntr'>
                     <div className='inbox-header'>Inbox</div>
                     <div className='lastmsg-cntr'>
-                        {room.length &&
-                            lastData.map(({ roomId, lastUser, lastMessage }) => (
+                        {data.length ?
+                            (lastData.map(({ roomId, lastUser, lastMessage }) => (
                                 <div key={`id-${roomId}`} className='lastmsg-box'>
-                                    <img src={lastUser.photoProfile} alt={1} className='lastmsg-photo'></img>
+                                    { lastUser.role === 2 ? (
+                                        <img src={lastUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
+                                    ) : (                                        
+                                        <img src={Ellipse2} alt={1} className='lastmsg-photo'></img>
+                                    )}
                                     <div className='lastmsg-center'>
-                                        <div className='lastmsg-time'>{getTime(lastMessage.createdAt)}</div>
-                                        <div className='lastmsg-name'>{lastUser.firstName} {lastUser.lastName}</div>
-                                        <div className='lastmsg-msg'>{lastMessage.message}</div>
+                                        { lastMessage && (
+                                            <div className='lastmsg-time'>{getTime(lastMessage.createdAt)}</div>
+                                        )}
+                                        <div className='lastmsg-name'>{lastUser.User.firstName} {lastUser.User.lastName}</div>
+                                        { lastMessage && (
+                                            <div className='lastmsg-msg'>{lastMessage.message}</div>
+                                        )}
                                     </div>
                                     <div onClick={() => { handleRoomDetail(roomId) }} className='lastmsg-det-btn'>
                                         <i className='bx bx-right-arrow-alt'></i>
                                     </div>
                                 </div>
-                            ))
+                            ))) : (
+                                <div>{Warning}</div>
+                            )
                         }
-                        {message && <div>{message}</div>}
+                        
+
                     </div>
                 </div>
             </div>

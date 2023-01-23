@@ -14,6 +14,8 @@ import neworderdetailseller from './neworderdetailseller';
 import sllrOnPrgrssOrderDetail from './workingorderdetailseller';
 import newSellerDetail from './newsellerdetail';
 import Loading from './loading';
+import chat from './chat';
+import participant from './participant';
 
 export default combineReducers({
     auth,
@@ -30,5 +32,7 @@ export default combineReducers({
     sllrOnPrgrssOrderDetail,
     payment,
     newSellerDetail,
-    Loading
+    Loading,
+    chat,
+    participant
 });

@@ -75,3 +75,9 @@ export const SWITCH_TO_BUYER = 'SWITCH_TO_BUYER';
 export const SET_TO_LOADING = 'SET_TO_LOADING';
 export const SET_TO_NOT_LOADING = 'SET_TO_NOT_LOADING';
 export const SOMETHING_WENT_WRONG = 'SOMETHING_WENT_WRONG';
+
+export const SET_CHAT = 'SET_CHAT';
+export const GET_ROOM_USER = 'GET_ROOM_USER';
+export const SEND_CHAT = 'SEND_CHAT';
+export const CREATE_ROOM = 'CREATE_ROOM';
+export const GET_OTHER_PARTICIPANT = 'GET_OTHER_PARTICIPANT';

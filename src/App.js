@@ -35,28 +35,18 @@ const App = () => {
   const location = useLocation();
   const [nav, setNav] = useState(true);
   const [message, setMessage] = useState({date:'', text:''});
-  const { user } = useSelector(state => state.auth);
 
   useEffect(() => {
     ['/login', '/register', '*'].includes(location.pathname) ? setNav(false) : setNav(true);
   }, [location]);
 
   useEffect(() => {
-      if (user) {
-        socket.emit('addUser', user.userId);
-        socket.on('getUsers', users => console.log(users))
-      }
-  }, [user, socket])
-
-  useEffect(() => {
-    socket.on('getMessage', data => {
-      setMessage(data)
-    })
+    socket.on('getMessage', data => setMessage(data))
   },[socket])
 
   useEffect(() => {
-    if(message.date){
-      ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text);
+    if(message.date){ 
+      ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text); 
     }
   }, [message, location.pathname])
 
