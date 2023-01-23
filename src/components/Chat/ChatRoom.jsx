@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SocketContext } from "../../context/socket-context";
 import { setChat, sendChat } from "../../redux/actions/chat";
 
-const ChatRoom = ({room, message, receiverUser}) => {
+const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
     const dispatch = useDispatch();
     const socket = useContext(SocketContext);
     const { user } = useSelector(state => state.auth);
@@ -51,15 +51,20 @@ const ChatRoom = ({room, message, receiverUser}) => {
             dispatch(setChat(updatedData));
             setText('')
         })
-    }, [text])
+    }, [text]);
+
+    const hideDetail = useCallback(() => {
+        setTransition(false);
+    }, []);
     
     return (
-        <div className="chat-room">
+        <div className={`chat-room ${transition ? 'chat-transition' : ''}`}>
             {room.roomId && (
                 <>
                 <div className="chat-header">
                     { receiverUser && (
                         <>
+                        <div className="back-chat-arrow" onClick={hideDetail}><i className='bx bx-chevron-left'></i></div>
                         { receiverUser.role === 2 ? (
                             <img src={receiverUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
                         ) : (

@@ -21,12 +21,14 @@ const Inbox = () => {
 
     const [lastData, setLastData] = useState([]);
     const [Warning, setWarning] = useState('');
+    const [transition, setTransition] = useState(false);
 
     const [room, setRoom] = useState({
         roomId: '',
         RoomParticipants: [],
         Messages: []
     });
+
     const [receiverUser, setRevUser] = useState({userId: ''})
     const [message, setMessage] = useState([]);
     const [receiver, setReceiver] = useState({});
@@ -112,12 +114,13 @@ const Inbox = () => {
     const handleRoomDetail = useCallback((roomId) => {
         const selectedRoom = data.find(room => room.roomId === roomId);
         setRoom(selectedRoom);
+        setTransition(true);
     }, [data]);
 
     return (
         <>
             <div className='inbox-container'>
-                <ChatRoom room={room} message={message} receiverUser={receiverUser}/>
+                <ChatRoom room={room} message={message} receiverUser={receiverUser} transition={transition} setTransition={setTransition}/>
 
                 <div className='inboxlist-cntr'>
                     <div className='inbox-header'>Inbox</div>
