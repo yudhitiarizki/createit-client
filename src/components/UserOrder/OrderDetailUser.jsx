@@ -53,7 +53,7 @@ const OrderDetailUser = ({ order }) => {
 
     const handleDownload = useCallback((url) => {
         const fileName = new URL(url).pathname.split("/").pop();
-        window.location.href = `${window.env.SERVER_URL}/download/${fileName}`
+        window.location.href = `https://aquamarine-mulberry-kicker.glitch.me/download/${fileName}`
     }, []);
 
     const handleCopyUrl = useCallback(() => {

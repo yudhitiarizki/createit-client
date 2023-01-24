@@ -42,7 +42,7 @@ const SellerInProgressDetail = () => {
 
     const handleDownload = (url) => {
         const file = new URL(url).pathname.split("/").pop();
-        window.location.href = `${window.env.SERVER_URL}/download/${file}`
+        window.location.href = `https://aquamarine-mulberry-kicker.glitch.m/download/${file}`
     }
 
     const handleCopyUrl = () => {

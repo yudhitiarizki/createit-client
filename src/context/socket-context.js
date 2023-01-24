@@ -5,11 +5,11 @@ import io from 'socket.io-client';
 export const SocketContext = createContext();
 
 export function SocketProvider({ children }) {
-  const [socket, setSocket] = useState(io(window.env.SERVER_URL));
+  const [socket, setSocket] = useState(io('https://aquamarine-mulberry-kicker.glitch.me/'));
   const { user } = useSelector(state => state.auth)
   
   useEffect(() => {
-    setSocket(io(window.env.SERVER_URL));
+    setSocket(io('https://aquamarine-mulberry-kicker.glitch.me/'));
   }, []);
 
   useEffect(() => {

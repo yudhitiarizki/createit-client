@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: window.env.SERVER_URL,
+    baseURL: 'https://aquamarine-mulberry-kicker.glitch.me/',
 });
 
