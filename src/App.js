@@ -47,6 +47,7 @@ const App = () => {
   useEffect(() => {
     if(message.date){ 
       ['/test'].includes(location.pathname) ? <></> : sendMessage('success', message.text); 
+      setMessage('');
     }
   }, [message, location.pathname])
 
