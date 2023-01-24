@@ -55,6 +55,7 @@ const NewNavbar = () => {
                             <div className='right-nav-cntr'>
                                 {isLoggedIn ?
                                     <ul>
+                                        <Link to='/chat' className='nav-link'><div className='nav-link inbox-icon'><i className='bx bxs-chat'></i></div></Link>
                                         <NotifNavbar />
                                         <ProfileNavbar />
                                     </ul>

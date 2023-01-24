@@ -29,8 +29,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start", 
-    "build": "react-dotenv && react-scripts build", 
+    "start": "react-dotenv && react-scripts start",
+    "build": "react-dotenv && react-scripts build",
     "serve": "react-dotenv && serve build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -57,6 +57,8 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "react-dotenv": {
-    "whitelist": ["SERVER_URL"]
+    "whitelist": [
+      "SERVER_URL"
+    ]
   }
 }
