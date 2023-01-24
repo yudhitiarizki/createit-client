@@ -20,6 +20,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import { sendMessage } from '../redux/actions/message';
 
 const ServiceDetail = () => {
     const { slug } = useParams();
@@ -31,11 +32,13 @@ const ServiceDetail = () => {
     const { detail } = useSelector(state => state.service);
 
     const participant = useSelector(state => state.participant);
-    const { user } = useSelector(state => state.auth);
+    const { user, isLoggedIn } = useSelector(state => state.auth);
 
     useEffect(() => {
         dispatch(setToLoad());
-        dispatch(getOtherPart());
+        if(isLoggedIn){
+            dispatch(getOtherPart());
+        }
         dispatch(getServiceBySlug(slug))
             .then(() => {
                 dispatch(setToNotLoad());
@@ -46,14 +49,19 @@ const ServiceDetail = () => {
     }, [dispatch, slug]);
 
     const onChat = () => {
-        const userRoom = participant.findIndex(part => part === detail.userId);
-        if(userRoom === -1){
-            dispatch(createRoom(user.userId, detail.userId)).then(() => {
+        if (isLoggedIn){
+            const userRoom = participant.findIndex(part => part === detail.userId);
+            if(userRoom === -1){
+                dispatch(createRoom(user.userId, detail.userId)).then(() => {
+                    navigate('/chat', { state: { sellerId: detail.userId } });
+                })
+            } else {
                 navigate('/chat', { state: { sellerId: detail.userId } });
-            })
+            }
         } else {
-            navigate('/chat', { state: { sellerId: detail.userId } });
+            sendMessage('error','Login First!');
         }
+        
     }
 
     return (
