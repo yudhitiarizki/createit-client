@@ -73,8 +73,8 @@ const Inbox = () => {
 
 
     useEffect(() => {
-        socket.on('getChat', data => {setReceiver(data)});
-    },[])
+        socket && socket.on('getChat', data => {setReceiver(data)});
+    },[socket])
 
     useEffect(() => {
         isSeller ? dispatch(getRoomSeller()) : dispatch(getRoomUser());

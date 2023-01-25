@@ -41,7 +41,7 @@ const App = () => {
   }, [location]);
 
   useEffect(() => {
-    socket.on('getMessage', data => setMessage(data))
+    socket && socket.on('getMessage', data => setMessage(data))
   },[socket])
 
   useEffect(() => {
