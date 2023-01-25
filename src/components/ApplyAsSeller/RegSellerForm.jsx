@@ -1,22 +1,23 @@
+import React, { useState, useCallback } from 'react';
+
 import './ApplySeller.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import React, { useState } from 'react';
+
 import link from '../../asset/Seller/link.png';
 
 const RegSellerForm = ({handleSubmit}) => {
-
     const [photoProfile, setPhotoProfile] = useState();
     const [description, setDescription] = useState('');
     const [noRekening, setNoRekening] = useState('');
     const [bankName, setBankName] = useState('');
     const [cardHolder, setCardHolder] = useState('');
 
-    const uploadFile = () => {
+    const uploadFile = useCallback(() => {
         document.getElementById('real-inputfile1').click();
-    };
+    }, []);
 
-    const handleFileChange = (event) => {
+    const handleFileChange = useCallback((event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
             document.getElementById('custom-inputtext1').innerHTML = selectedFile.name;
@@ -28,11 +29,11 @@ const RegSellerForm = ({handleSubmit}) => {
                 setPhotoProfile(filedata);
             }
         }
-    };
+    }, []);
 
-    const handleSubmitSeller = () => {
+    const handleSubmitSeller = useCallback(() => {
         handleSubmit(photoProfile, description, noRekening, bankName, cardHolder);
-    };
+    }, [handleSubmit, photoProfile, description, noRekening, bankName, cardHolder]);
 
     return (
         <div className='applyseller-formcntr'>

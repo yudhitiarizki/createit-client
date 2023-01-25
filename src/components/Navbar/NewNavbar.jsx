@@ -1,11 +1,12 @@
-import './NewNavbar.css';
-import logo from '../../asset/Navbar/logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import NotifNavbar from './NotifNavbar';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { getCategory } from '../../redux/actions/category';
+
+import NotifNavbar from './NotifNavbar';
 import ProfileNavbar from './ProfileNavbar';
+import { getCategory } from '../../redux/actions/category';
+
+import './NewNavbar.css';
 
 const NewNavbar = () => {
     const dispatch = useDispatch();
@@ -50,11 +51,12 @@ const NewNavbar = () => {
                     <header>
                         <div className='container-navbar'>
                             <div className='logo-container'>
-                                <img src={logo} alt='' className='navbar-logo'></img>
+                                <img src="https://ik.imagekit.io/createit/logo.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000231" alt={1} className='navbar-logo'></img>
                             </div>
                             <div className='right-nav-cntr'>
                                 {isLoggedIn ?
                                     <ul>
+                                        <Link to='/chat' className='nav-link'><div className='nav-link inbox-icon'><i className='bx bxs-chat'></i></div></Link>
                                         <NotifNavbar />
                                         <ProfileNavbar />
                                     </ul>
@@ -69,7 +71,7 @@ const NewNavbar = () => {
                             </div>
                             <nav className={`navmid-cntr ${navopen ? 'navmid-active' : 'navmid-inactive'} ${isLoggedIn ? '' : 'navmid-notlogin'}`}>
                                 <div className='midnavbar-cntr'>
-                                    <img src={logo} alt='' className='navbar-logo'></img>
+                                    <img src="https://ik.imagekit.io/createit/logo.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000231" alt={1} className='navbar-logo'></img>
                                     <div onClick={() => { setNavOpen(false) }}><i className='bx bx-x'></i></div>
                                 </div>
                                 <ul>

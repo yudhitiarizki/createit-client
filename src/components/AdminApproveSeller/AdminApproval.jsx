@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSeller, sellerApprove, sellerReject } from "../../redux/actions/user";
 import { Link, Navigate } from "react-router-dom";
+
 import '../Services/DetailService.css';
 import './AdminApproval.css';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import MessageQuestion from '../../asset/Navbar/message-question.svg';
+
+import { getSeller, sellerApprove, sellerReject } from "../../redux/actions/user";
 import { getNewSellerDetail, hideNewSellerDetail } from "../../redux/actions/NewSellerDetail";
 import NewSellerDetail from "./NewSellerDetail";
 
@@ -21,27 +22,27 @@ const AdminApproval = () => {
         dispatch(getSeller());
     }, [dispatch]);
 
-    if(isLoggedIn) {
-        if (role !== 3) { return <Navigate to='/' />}
-    } else {return <Navigate to='/' />}
-
-    const showdetail = (item) => {
+    const showdetail = useCallback((item) => {
         dispatch(getNewSellerDetail(item))
-    };
+    }, [dispatch]);
 
-    const approveSeller = (userId) => {
+    const approveSeller = useCallback((userId) => {
         dispatch(sellerApprove(userId)).then(() => {
             dispatch(getSeller());
             dispatch(hideNewSellerDetail());
         })
-    };
+    }, [dispatch]);
 
-    const rejectSeller = (userId) => {
+    const rejectSeller = useCallback((userId) => {
         dispatch(sellerReject(userId)).then(() => {
             dispatch(getSeller());
             dispatch(hideNewSellerDetail());
         })
-    }
+    }, [dispatch])
+
+    if(isLoggedIn) {
+        if (role !== 3) { return <Navigate to='/' />}
+    } else {return <Navigate to='/' />}
 
     return (
         <div>
@@ -60,7 +61,7 @@ const AdminApproval = () => {
                             {seller.map((item) => (
                                 <div key={`id-${item.sellerId}`} className='newordr-item-cntr'>
                                     <div className='newordr-item-left22'>
-                                        <img src={MessageQuestion} alt=''></img>
+                                        <img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1} loading="lazy"></img>
                                         <div className='second-left-item'>
                                             <div className='second-leftitem-title'>New Seller Account Submission</div>
                                             <div>Seller Name: {item.firstName} {item.lastName}</div>

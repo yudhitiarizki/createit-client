@@ -13,9 +13,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './HomePage.css';
 
-import Pose10 from '../../asset/HomePage/Pose10.svg';
-import Feature from '../../asset/HomePage/Feature.svg';
-
 const HomePage = () => {
     const navigate = useNavigate();
 
@@ -78,7 +75,7 @@ const HomePage = () => {
             <div className='top-container'>
                 <div className='Banner1'>
                     <div className='ellipse1'>
-                        <img src={Pose10} alt={1} className='pose1'></img>
+                        <img src="https://ik.imagekit.io/createit/Pose10.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674640770720" alt={1} loading="lazy" className='pose1'></img>
                     </div>
                     <div className='text1-container'>
                         <div className='text1-1'>It's Nothing But Service</div>
@@ -121,7 +118,7 @@ const HomePage = () => {
                 </div>
             </div>
             <div className='text4container'>
-                <img src={Feature} alt={1}></img>
+                <img src="https://ik.imagekit.io/createit/Feature.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674640894247" alt={1} loading="lazy"></img>
                 <div className='text5-container'>
                     <div className='text5-1-cntr'>
                         <div className='text5-1'>Our Awesome Create IT Features!</div>

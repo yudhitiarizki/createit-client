@@ -122,7 +122,7 @@ const AddPackage = ({ serviceId, packages, slug }) => {
                     {!Loading ? (
                         <button className="modal-save-btn" onClick={handleAddPckg}>Add Package</button>
                     ) : (
-                        <img src={Gif} alt={1} className='Loading' />
+                        <img src={Gif} alt={1} className='Loading' loading="lazy"/>
                     )}
                 </div>
             </Modal>

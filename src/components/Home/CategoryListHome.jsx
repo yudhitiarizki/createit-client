@@ -33,7 +33,7 @@ const owlCarousel = (
             >
                 {category.map(({ categoryId, image, category }) => (
                     <div className={`item ${imgContainerClass}`} key={`id-${categoryId}`}>
-                        <img src={image} alt={1} className={imgClass}></img>
+                        <img src={image} alt={1} className={imgClass} loading="lazy"></img>
                         <Link to={`/category/${categoryId}`} className={categoryClass}><span>{category}</span></Link>
                     </div>
                 ))}

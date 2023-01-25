@@ -51,6 +51,15 @@ header {
     list-style-type: none;
 }
 
+.inbox-icon {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.inbox-icon:hover {
+    color: #E8504B;
+}
+
 .loginnav-btn {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -72,7 +81,7 @@ header {
 /* Midlle navbar items */
 .navmid-cntr {
     position: absolute;
-    right: calc(9vw + 88px + 25px + 40px);
+    right: calc(9vw + 88px + 50px + 80px);
 }
 
 .navmid-notlogin {
@@ -216,7 +225,7 @@ header {
 
     /* Midlle navbar items */
     .navmid-cntr {
-        right: calc(8vw + 88px + 25px + 40px);
+        right: calc(8vw + 88px + 50px + 80px);
     }
 
     .navmid-notlogin {
@@ -286,6 +295,10 @@ header {
 
     .right-nav-cntr ul {
         gap: 20px;
+    }
+
+    .inbox-icon {
+        font-size: 22px;
     }
 
     .loginnav-btn {

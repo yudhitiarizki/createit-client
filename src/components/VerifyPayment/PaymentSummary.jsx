@@ -1,18 +1,20 @@
-import './PaymentSummary.css';
-import tickCircle from '../../asset/Payment/tick-circle.svg';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useCallback } from 'react';
+
+import './PaymentSummary.css';
+import tickCircle from '../../asset/Payment/tick-circle.svg';
 
 const PaymentSummary = ({ data }) => {
     const { role, isLoggedIn, isSeller } = useSelector(state => state.auth);
 
+    const onPay = useCallback(() => {
+        window.open(data.redirect_url);
+    }, [data.redirect_url]);
+
     if(isLoggedIn) {
         if (role === 3 || (role === 2 && isSeller === true)) { return <Navigate to='/' />}
     } else {return <Navigate to='/' />}
-
-    const onPay = () => {
-        window.open(data.redirect_url);
-    }
 
     return (
         <div className='paymentdata-cntr'>

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import './ServicePerCategory.css';
-import '../Home/HomePage.css';
-import Pose10 from '../../asset/HomePage/Pose10.svg';
 import { Link, useParams } from 'react-router-dom';
+
 import ServiceListCategory from './ServicesListCategory';
 import ServiceSearchResult from './ServiceSearchResult';
+
+import './ServicePerCategory.css';
+import '../Home/HomePage.css';
 
 const ServicePerCategory = ({service}) => {
     const { id } = useParams();
@@ -23,9 +24,9 @@ const ServicePerCategory = ({service}) => {
         }
     }, [searchkey]);
 
-    const regexSearch = new RegExp(`.*(${searchkey.toUpperCase()}).*`);
+    const regexSearch = useMemo(() => (new RegExp(`.*(${searchkey.toUpperCase()}).*`)), [searchkey]);
 
-    const handleSearch = () => {
+    const handleSearch = useCallback(() => {
         if (searchkey) {
             const filtered = service.filter(item => regexSearch.exec(item.title.toUpperCase()));
             setSrchResult(filtered);
@@ -42,14 +43,14 @@ const ServicePerCategory = ({service}) => {
             setSrchMsg('');
             document.getElementById('srchresult2').style.display = 'none';
         }
-    };
+    }, [service, searchkey, regexSearch]);
 
     return (
         <div>
             <div className='top-container'>
                 <div className='Banner1'>
                     <div className='ellipse1'>
-                        <img src={Pose10} alt='' className='pose1'></img>
+                        <img src="https://ik.imagekit.io/createit/Pose10.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674640770720" alt={1} loading="lazy" className='pose1'></img>
                     </div>
                     <div className='nav-seller2'>
                         <Link to='/' className='nav-link'>Home</Link>
