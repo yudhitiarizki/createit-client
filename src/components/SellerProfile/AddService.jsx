@@ -74,14 +74,14 @@ const AddService = () => {
                             <label htmlFor="Category">Category <span>*</span></label>
                             {category.length < 1 ? (
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>Category not Found</option>
+                                    <option defaultValue>Category not Found</option>
                                 </select>
                             ) : (
                                 <select class="form-select" aria-label="Default select example" onChange={event => setcategory(event.target.value)}>
-                                    <option selected>Select Category</option>
+                                    <option defaultValue>Select Category</option>
                                     {
                                         category.map(cat => {
-                                            return <option value={cat.categoryId}>{cat.category}</option>
+                                            return <option value={cat.categoryId} key={`id-${cat.categoryId}`}>{cat.category}</option>
                                         })
                                     }
                                 </select>

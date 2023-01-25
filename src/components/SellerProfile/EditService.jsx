@@ -98,7 +98,7 @@ const EditService = () => {
                         <label htmlFor="Category">Category <span>*</span></label>
                         <select className="form-select" aria-label="Default select example" onChange={event => setcategory(event.target.value)}>
                         { category.map(cat => (
-                            <option value={cat.categoryId} selected={cat.categoryId === detail.categoryId}>
+                            <option key={`id-${cat.categoryId}`} value={cat.categoryId} defaultValue={cat.categoryId === detail.categoryId}>
                                 {cat.category}
                             </option>
                         )) }
@@ -117,7 +117,7 @@ const EditService = () => {
                     
                     { detail.image && detail.image.map(image => {
                         return (
-                            <div className="form-input">
+                            <div className="form-input" key={`id-${image.imageId}`}>
                                 <label htmlFor="file-input">Image </label>
                                 <img src={image.image} alt={1} loading="lazy"></img>
                                 <input type="file" id="file-input" className="form-file" onChange={handleChangeImage(image.imageId)}/>
@@ -130,7 +130,7 @@ const EditService = () => {
                         <div className="form-input image">
                             <label htmlFor="file-input">Image </label>
                             { newImage.map(img => {
-                                return <input type="file" id="file-input" className="form-file" onChange={handleChangeNewImage(img.id)} />
+                                return <input key={`id-${img.id}`} type="file" id="file-input" className="form-file" onChange={handleChangeNewImage(img.id)} />
                             }) }
                         </div>
                     ) }
