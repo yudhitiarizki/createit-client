@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { updateService } from "../../redux/actions/service";
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Modal.css';
-import { useSelector, useDispatch } from "react-redux";
-import { updateService } from "../../redux/actions/service";
 
 const EditService = () => {
     const dispatch = useDispatch();
@@ -118,7 +119,7 @@ const EditService = () => {
                         return (
                             <div className="form-input">
                                 <label htmlFor="file-input">Image </label>
-                                <img src={image.image} alt={1}></img>
+                                <img src={image.image} alt={1} loading="lazy"></img>
                                 <input type="file" id="file-input" className="form-file" onChange={handleChangeImage(image.imageId)}/>
                             </div>
                         )

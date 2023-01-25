@@ -26,7 +26,7 @@ const TopRatedServices = () => {
             }) => (
                 <div className='topratedservc-cntr' key={`id-${serviceId}`}>
                     <Link className='toprated-imgcntr' to={`/service/${slug}`}>
-                        <img src={image} alt={1} className='toprated-img'></img>
+                        <img src={image} alt={1} className='toprated-img' loading="lazy"></img>
                         <div className='toprated-ratebuy'>
                             <div><i className='bx bx-star'></i>{rating || 0}</div>
                             <div><i className='bx bx-group'></i>{noOfBuyer || 0}</div>
@@ -35,7 +35,7 @@ const TopRatedServices = () => {
                     <div className='toprated-info'>
                         <div className='toprated-infotop'>
                             <div className='topratedinfotop-profile'>
-                                <img src={photoProfile} alt={1}></img>
+                                <img src={photoProfile} alt={1} loading="lazy"></img>
                                 <Link to={`/seller/${sellerId}`} className='nav-link link2'>{firstName} {lastName}</Link>
                             </div>
                             <Link to={`/service/${slug}`} className='nav-link link2 link3'>{title}</Link>

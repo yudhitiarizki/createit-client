@@ -1,7 +1,9 @@
-import './AdminApproval.css';
-import '../SellerIncomingOrder/SellerIncomingOrder.css';
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { hideNewSellerDetail } from '../../redux/actions/NewSellerDetail';
+
+import './AdminApproval.css';
+import '../SellerIncomingOrder/SellerIncomingOrder.css';
 
 const NewSellerDetail = () => {
     const dispatch = useDispatch();
@@ -15,9 +17,9 @@ const NewSellerDetail = () => {
         description
     } = useSelector(state => state.newSellerDetail);
 
-    const hideDetail = () => {
+    const hideDetail = useCallback(() => {
         dispatch(hideNewSellerDetail());
-    }
+    }, [dispatch])
 
     return (
         <div className={sellerId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
@@ -28,7 +30,7 @@ const NewSellerDetail = () => {
             <div className="newordrlist-cntr33">
                 <div className="newordrlist-inside1">
                     <div className='photoprofile'>
-                        <img src={photoProfile} alt=''></img>
+                        <img src={photoProfile} alt={1} loading="lazy"></img>
                     </div>
                     <div className="ordrdetail-row">
                         <div className="ordrdetail-rowleft newseller-rowleft">Username</div>

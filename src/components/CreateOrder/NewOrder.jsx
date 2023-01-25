@@ -2,7 +2,9 @@ import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+
 import { createOrder } from "../../redux/actions/order";
+
 import loader from '../../asset/Login/loader.gif';
 import './Order.css';
 
@@ -192,7 +194,7 @@ const NewOrder = () => {
                         </div>
                         <div className="button-footer">
                             {isLoading ?
-                                <img src={loader} alt={1} className='Loading'></img>
+                                <img src={loader} alt={1} className='Loading' loading="lazy"></img>
                                 :
                                 <div type='button' className="button-order" onClick={() => handleOrder()}>Order Now</div>
                             }

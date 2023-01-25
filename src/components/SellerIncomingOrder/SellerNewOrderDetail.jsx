@@ -14,7 +14,7 @@ const SellerNewOrderDetail = ({hideDetail}) => {
             </div>
             <div className="newordrlist-cntr1">
                 <div className="newordrlist-inside1">
-                    <img src={orderDetail.image} alt={1}></img>
+                    <img src={orderDetail.image} alt={1} loading="lazy"></img>
                     <div className="ordrdetail-row">
                         <div className="ordrdetail-rowleft">Buyer's Name</div>
                         <div className="ordrdetail-rowright">: {orderDetail.firstName} {orderDetail.lastName}</div>

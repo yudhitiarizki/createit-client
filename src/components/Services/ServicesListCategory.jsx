@@ -1,6 +1,7 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useCallback } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
+
 import './ServicesListCategory.css';
 import '../Home/HomeSearchResult.css';
 
@@ -16,10 +17,10 @@ const ServiceListCategory = ({ service }) => {
         setPageCount(Math.ceil(service.length / itemsPerPage))
     }, [itemOffset, itemsPerPage, service]);
 
-    const handlePageClick = (event) => {
+    const handlePageClick = useCallback((event) => {
         const newOffset = (event.selected * itemsPerPage) % service.length;
         setItemOffset(newOffset);
-    };
+    }, [service.length]);
 
     return (
         <div className="servicelists11">
@@ -29,7 +30,7 @@ const ServiceListCategory = ({ service }) => {
                         {currentItems.map(item => (
                             <div className="serviceslist22-box" key={`id-${item.serviceId}`}>
                                 <Link className="service1imgcntr22" to={`/service/${item.slug}`}>
-                                    <img src={item.image} alt='' className="servicelist22-img"></img>
+                                    <img src={item.image} alt={1} className="servicelist22-img" loading="lazy"></img>
                                     <div className='toprated-ratebuy22'>
                                         <div><i className='bx bx-star'></i>{item.rating}</div>
                                         <div><i className='bx bx-group'></i>{item.noOfBuyer}</div>
@@ -38,7 +39,7 @@ const ServiceListCategory = ({ service }) => {
                                 <div className="servicelist22-info">
                                     <div className="service22-info1">
                                         <div className="service22-info2">
-                                            <img src={item.photoProfile} alt=''></img>
+                                            <img src={item.photoProfile} alt={1} loading="lazy"></img>
                                             <Link to={`/seller/${item.sellerId}`} className='nav-link'>{item.firstName} {item.lastName}</Link>
                                         </div>
                                         <Link to={`/service/${item.slug}`} className="service22-info3 nav-link">{item.title}</Link>

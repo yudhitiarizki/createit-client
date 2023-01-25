@@ -1,12 +1,13 @@
-import React, { useState } from "react"
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import './Modal.css';
+import React, { useState, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux";
 
 import { createService, getMyService } from "../../redux/actions/service";
 import { sendMessage } from '../../redux/actions/message';
+
 import loader from '../../asset/Login/loader.gif';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import './Modal.css';
 
 const AddService = () => {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const AddService = () => {
         { id: 4, file: null },
     ]);
 
-    const handleChange = (id) => (event) => {
+    const handleChange = useCallback((id) => (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
             const reader = new FileReader();
@@ -42,9 +43,9 @@ const AddService = () => {
             }
         }
 
-    };
+    }, [imagesSend]);
 
-    const submit = () => {
+    const submit = useCallback(() => {
         const filter = imagesSend.filter(img => img.file !== null)
         const image = filter.map((image) => {
             return image.file
@@ -59,7 +60,7 @@ const AddService = () => {
             .catch(() => {
                 setIsLoading(false);
             })
-    }
+    }, [categoryId, title, description, dispatch, imagesSend])
 
     return (
         <div class="modal fade" id="AddService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,7 +110,7 @@ const AddService = () => {
 
                         <div class="modal-footer">
                             {isLoading ?
-                                <img src={loader} alt='' className='Loading'></img>
+                                <img src={loader} alt={1} className='Loading'></img>
                                 :
                                 <>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

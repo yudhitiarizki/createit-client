@@ -1,10 +1,9 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Footer from '../components/General/Footer';
 import ChatRoom from '../components/Chat/ChatRoom';
 
-import Ellipse2 from '../asset/Navbar/Ellipse2.png';
 import '../components/Chat/Inbox.css';
 import { SocketContext } from '../context/socket-context';
 import { setChat } from '../redux/actions/chat';
@@ -55,7 +54,7 @@ const Inbox = () => {
         })
 
         setLastData(filteredData);
-    }, [data]);
+    }, [data, user.userId]);
 
     useEffect(() => {
         if (data.length) {
@@ -64,7 +63,7 @@ const Inbox = () => {
         } else {
             setWarning('There is currently no chat.')
         }
-    }, [filterRoom]);
+    }, [filterRoom, data.length]);
 
     const getTime = useCallback((data) => {
         const date = new Date(data);
@@ -76,7 +75,7 @@ const Inbox = () => {
 
     useEffect(() => {
         socket.on('getChat', data => {setReceiver(data)});
-    },[])
+    },[socket])
 
     useEffect(() => {
         isSeller ? dispatch(getRoomSeller()) : dispatch(getRoomUser());
@@ -85,7 +84,7 @@ const Inbox = () => {
     useEffect(() => {
         setRevUser(room.RoomParticipants.find(pr => pr.userId !== user.userId));
         setMessage(room.Messages);
-    }, [room.roomId])
+    }, [room, user.userId])
 
     useEffect(() => {
         if(receiver.message){
@@ -97,7 +96,7 @@ const Inbox = () => {
               });
             dispatch(setChat(updatedData));
         }
-    }, [receiver.createdAt]);
+    }, [receiver.createdAt, data, dispatch, receiver]);
 
 
     useEffect(() => {
@@ -109,7 +108,7 @@ const Inbox = () => {
                 setRoom(filteredData[0]);
             }
         }
-    }, [state, location])
+    }, [state, location, data])
 
     const handleRoomDetail = useCallback((roomId) => {
         const selectedRoom = data.find(room => room.roomId === roomId);
@@ -131,7 +130,7 @@ const Inbox = () => {
                                     { lastUser.role === 2 ? (
                                         <img src={lastUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
                                     ) : (                                        
-                                        <img src={Ellipse2} alt={1} className='lastmsg-photo'></img>
+                                        <img src="https://ik.imagekit.io/createit/Ellipse2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000226" alt={1} className='lastmsg-photo'></img>
                                     )}
                                     <div className='lastmsg-center'>
                                         { lastMessage && (
@@ -150,8 +149,6 @@ const Inbox = () => {
                                 <div>{Warning}</div>
                             )
                         }
-                        
-
                     </div>
                 </div>
             </div>

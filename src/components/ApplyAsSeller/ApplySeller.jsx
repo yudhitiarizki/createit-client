@@ -1,17 +1,9 @@
-import React from 'react';
+import React from "react";
+import { Link } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './ApplySeller.css';
-import Group12 from '../../asset/Seller/Group12.svg';
-import MoneyReceive from '../../asset/Seller/money-recive.svg';
-import BagTimer from '../../asset/Seller/bag-timer.svg';
-import Frame from '../../asset/Seller/frame.svg';
-import Building3 from '../../asset/Seller/building-3.svg';
-import FolderFavorite from '../../asset/Seller/folder-favorite.svg';
-import book from '../../asset/Seller/book.svg';
-import codecircle from '../../asset/Seller/code-circle.svg';
-import calendar from '../../asset/Seller/calendar.svg';
-import { Link } from 'react-router-dom';
 
 import RegSellerForm from './RegSellerForm';
 
@@ -21,7 +13,7 @@ const ApplySeller = ({ handleSubmit }) => {
             <div className='top-container1'>
                 <div className='Banner1-1'>
                     <div className='ellipse1-1'>
-                        <img src={Group12} alt='' className='group12'></img>
+                        <img src="https://ik.imagekit.io/createit/Group12.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641856868" alt={1} loading="lazy" className='group12'></img>
                     </div>
                     <div className='nav-seller1'>
                         <Link to='/' className='nav-link'>Home</Link>
@@ -43,39 +35,39 @@ const ApplySeller = ({ handleSubmit }) => {
                 <div className='cntrmid-benefit'>
                     <div className='midbenefit-row1'>
                         <div className='midbenefit-box'>
-                            <img src={MoneyReceive} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/money-recive.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641853083" alt={1} loading="lazy"></img>
                             <div>Multiple Sources of Income</div>
                         </div>
                         <div className='midbenefit-box'>
-                            <img src={BagTimer} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/bag-timer.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641808044" alt={1} loading="lazy"></img>
                             <div>Flexible Hours</div>
                         </div>
                         <div className='midbenefit-box'>
-                            <img src={Frame} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/frame.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641854484" alt={1} loading="lazy"></img>
                             <div>Self-Management</div>
                         </div>
                     </div>
                     <div className='midbenefit-row1'>
                         <div className='midbenefit-box'>
-                            <img src={Building3} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/building-3.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641852270" alt={1} loading="lazy"></img>
                             <div>Location Flexibility</div>
                         </div>
                         <div className='midbenefit-box'>
-                            <img src={FolderFavorite} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/folder-favorite.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641853209" alt={1} loading="lazy"></img>
                             <div>Choose the Work You Want</div>
                         </div>
                         <div className='midbenefit-box'>
-                            <img src={book} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/book.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641853999" alt={1} loading="lazy"></img>
                             <div>Build Up Interpersonal Skills</div>
                         </div>
                     </div>
                     <div className='midbenefit-row2'>
                         <div className='midbenefit-box'>
-                            <img src={codecircle} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/code-circle.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641853139" alt={1} loading="lazy"></img>
                             <div>Improved Skill Set</div>
                         </div>
                         <div className='midbenefit-box'>
-                            <img src={calendar} alt=''></img>
+                            <img src="https://ik.imagekit.io/createit/calendar.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641854210" alt={1} loading="lazy"></img>
                             <div>Variety in Daily Activities</div>
                         </div>
                     </div>

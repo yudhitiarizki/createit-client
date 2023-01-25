@@ -46,9 +46,9 @@ const ServiceDetail = () => {
             .catch(() => {
                 dispatch(setWentWrong());
             });
-    }, [dispatch, slug]);
+    }, [dispatch, slug, isLoggedIn]);
 
-    const onChat = () => {
+    const onChat = useCallback(() => {
         if (isLoggedIn){
             const userRoom = participant.findIndex(part => part === detail.userId);
             if(userRoom === -1){
@@ -60,9 +60,8 @@ const ServiceDetail = () => {
             }
         } else {
             sendMessage('error','Login First!');
-        }
-        
-    }
+        }    
+    }, [dispatch, navigate, user, detail, isLoggedIn, participant])
 
     return (
         <>
@@ -83,7 +82,7 @@ const ServiceDetail = () => {
                             </div>
 
                             <div className="detailsrvc-seller">
-                                <img src={detail.photoProfile} alt={1}></img>
+                                <img src={detail.photoProfile} alt={1} loading="lazy"></img>
                                 <div className="profile-inf">
                                     <Link to={`/seller/${detail.sellerId}`} className="nav-link">{detail.firstName + ' ' + detail.lastName}</Link>
                                     <div className="button-profile">
@@ -105,7 +104,7 @@ const ServiceDetail = () => {
                                         autoplaySpeed={1}
                                     >
                                         {detail.image.map(({ image, imageId }) => (
-                                            <img src={image} alt={1} key={`id-${imageId}`} className='detailsrvc-carouselimg'></img>
+                                            <img src={image} alt={1} key={`id-${imageId}`} className='detailsrvc-carouselimg' loading="lazy"></img>
                                         ))}
                                     </OwlCarousel>
                                 </div>

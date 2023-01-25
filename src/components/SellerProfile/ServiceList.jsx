@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import './Service.css';
-import GeneralInfo from "./GeneralInfo";
 import { Link } from "react-router-dom";
-import Edit from '../../asset/Seller/edit.png';
-import Trash from '../../asset/Seller/trash.png';
+
+import GeneralInfo from "./GeneralInfo";
 import AddService from './AddService';
 import EditService from "./EditService";
 import { deleteService, getMyService, getDetail } from "../../redux/actions/service";
+
 import loader from '../../asset/Login/loader.gif';
+import Edit from '../../asset/Seller/edit.png';
+import Trash from '../../asset/Seller/trash.png';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import './Service.css';
 
 const ServiceList = () => {
     const dispatch = useDispatch();
@@ -22,7 +25,7 @@ const ServiceList = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [idLoad, setIdLoad] = useState(0);
 
-    const onDelete = (serviceId) => {
+    const onDelete = useCallback((serviceId) => {
         setIsLoading(true);
         setIdLoad(serviceId);
         dispatch(deleteService(serviceId))
@@ -35,7 +38,7 @@ const ServiceList = () => {
                 setIdLoad(0);
                 setIsLoading(false);
             })
-    }
+    }, [dispatch])
 
     return (
         <div className="service-section">
@@ -56,7 +59,7 @@ const ServiceList = () => {
                                 (isLoading ?
                                     <div className="deletesrv-load">
                                         <div>Deleting service</div>
-                                        <img src={loader} alt='' className='Loading'></img>
+                                        <img src={loader} alt={1} className='Loading' loading="lazy"></img>
                                     </div>
                                     :
                                     <></>
@@ -64,7 +67,7 @@ const ServiceList = () => {
                                 :
                                 <>
                                     <Link className="service1imgcntr" to={`/service/${service.slug}`}>
-                                        <img src={service.image[0].image} alt='' className="servicelist1-img"></img>
+                                        <img src={service.image[0].image} alt={1} className="servicelist1-img" loading="lazy"></img>
                                         <div className='toprated-ratebuy1'>
                                             <div><i className='bx bx-star'></i>{service.rating}</div>
                                             <div><i className='bx bx-group'></i>{service.noOfBuyer}</div>
@@ -73,7 +76,7 @@ const ServiceList = () => {
                                     <div className="servicelist1-info">
                                         <div className="service1-info1">
                                             <div className="service1-info2">
-                                                <img src={service.photoProfile} alt=''></img>
+                                                <img src={service.photoProfile} alt={1} loading="lazy"></img>
                                                 <Link to={`/seller/${service.id}`} className='nav-link'>{service.firstName} {service.lastName}</Link>
                                             </div>
                                             <Link to={`/service/${service.slug}`} className="service1-info3 nav-link">{service.title}</Link>
@@ -86,10 +89,10 @@ const ServiceList = () => {
                                             {isLoggedIn ? (seller.userId === user.userId) ?
                                                 <div className="service-edit">
                                                     <Link type="button" data-bs-toggle="modal" onClick={() => dispatch(getDetail(service))} data-bs-target="#EditService">
-                                                        <img className="icon-edit" src={Edit} alt="" />
+                                                        <img className="icon-edit" src={Edit} alt={1} />
                                                     </Link>
                                                     <Link>
-                                                        <img className="icon-delete" onClick={() => onDelete(service.serviceId)} src={Trash} alt="" />
+                                                        <img className="icon-delete" onClick={() => onDelete(service.serviceId)} src={Trash} alt={1} />
                                                     </Link>
                                                 </div>
                                                 : null

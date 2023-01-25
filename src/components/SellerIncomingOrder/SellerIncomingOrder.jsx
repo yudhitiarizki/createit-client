@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import SellerNewOrderDetail from './SellerNewOrderDetail';
 
-import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import loader from '../../asset/Login/loader.gif';
 
 import './SellerIncomingOrder.css';
@@ -42,7 +41,7 @@ const SellerIncomingOrder = ({ approveLoading, idLoad, handleDetail, handleAppro
                                         ) :
                                         <>
                                             <div className='newordr-item-left'>
-                                                <img src={MessageQuestion} alt={1}></img>
+                                                <img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1}></img>
                                                 <div className='second-left-item'>
                                                     <div className='second-leftitem-title'>New Pending Order</div>
                                                     <div>Buyer's Name: {order.firstName} {order.lastName}</div>

@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { hideOnProgressDetail } from '../../redux/actions/DetailWorkingOrderSeller';
+import { OrderUploadFile, getOrderProgress } from '../../redux/actions/order';
+import { SocketContext } from '../../context/socket-context';
+
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import './SellerOrderInProgress.css';
-import { OrderUploadFile, getOrderProgress } from '../../redux/actions/order';
 import loader from '../../asset/Login/loader.gif';
-import { SocketContext } from '../../context/socket-context';
 
 const SellerInProgressDetail = () => {
     const dispatch = useDispatch();

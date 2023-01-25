@@ -1,10 +1,10 @@
-import './NotifNavbar.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { getNotification, patchReadNotif, deleteNotification } from '../../redux/actions/notification';
+
+import './NotifNavbar.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 const NotifNavbar = () => {
     const dispatch = useDispatch();
@@ -87,7 +87,7 @@ const NotifNavbar = () => {
                         <ul>
                             {adminNotif.map((notif) => (
                                 <li key={`id-${notif.notifId}`}>
-                                    <div><img src={MessageQuestion} alt=''></img></div>
+                                    <div><img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1}></img></div>
                                     <div className='notifmsg-container'>
                                         <div>{notif.message}</div>
                                         <div className='read-del-btn'>
@@ -109,7 +109,7 @@ const NotifNavbar = () => {
                             <ul>
                                 {sellerNotif.map((notif) => (
                                     <li key={`id-${notif.notifId}`}>
-                                        <div><img src={MessageQuestion} alt=''></img></div>
+                                        <div><img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1}></img></div>
                                         <div className='notifmsg-container'>
                                             <div>{notif.message}</div>
                                             <div className='read-del-btn'>
@@ -130,7 +130,7 @@ const NotifNavbar = () => {
                             <ul>
                                 {userNotif.map((notif) => (
                                     <li key={`id-${notif.notifId}`}>
-                                        <div><img src={MessageQuestion} alt=''></img></div>
+                                        <div><img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1}></img></div>
                                         <div className='notifmsg-container'>
                                             <div>{notif.message}</div>
                                             <div className='read-del-btn'>

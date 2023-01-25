@@ -4,6 +4,7 @@ import { register } from '../redux/actions/auth';
 import Gif from '../asset/Login/loader.gif'
 import '../components/General/Sign.css';
 import { Link } from 'react-router-dom';
+import { useCallback } from "react";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Register = () => {
     const [type2, setType2] = useState('password');
     const [eyeclass2, setEyeclass2] = useState('bx bxs-hide');
 
-    const onHandleRegister = () => {
+    const onHandleRegister = useCallback(() => {
         setLoading(true);
         dispatch(register(firstName, lastName, email, username, password, repassword, phoneNumber)).then(() => {
             setLoading(false);
@@ -39,9 +40,9 @@ const Register = () => {
         }).catch(() => {
             setLoading(false);
         })
-    };
+    }, [dispatch, firstName, lastName, email, username, password, repassword, phoneNumber]);
     
-    const changePWDisplay1 = () => {
+    const changePWDisplay1 = useCallback(() => {
         if (type1 === 'password') {
             setEyeclass1('bx bxs-show');
             setType1('text');
@@ -49,9 +50,9 @@ const Register = () => {
             setEyeclass1('bx bxs-hide');
             setType1('password');
         }
-    };
+    }, [type1]);
 
-    const changePWDisplay2 = () => {
+    const changePWDisplay2 = useCallback(() => {
         if (type2 === 'password') {
             setEyeclass2('bx bxs-show');
             setType2('text');
@@ -59,7 +60,7 @@ const Register = () => {
             setEyeclass2('bx bxs-hide');
             setType2('password');
         }
-    };
+    }, [type2]);
 
     return (
         <div className='section-container'>

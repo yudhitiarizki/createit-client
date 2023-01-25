@@ -73,7 +73,7 @@
     font-size: 15px;
 }
 
-.prfl-dropdown-menu ul {
+.right-nav-cntr ul li .prfl-dropdown-menu ul {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
