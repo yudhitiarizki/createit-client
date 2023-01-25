@@ -17,7 +17,7 @@ export function SocketProvider({ children }) {
       socket.on('connect', () => { socket.emit('addUser', user.userId) });
       socket.on('getUsers', users => console.log(users))  
     }
-}, [user])
+  }, [user, socket])
 
   return (
     <SocketContext.Provider value={socket}>

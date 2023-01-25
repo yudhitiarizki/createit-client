@@ -1,9 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import './AdminApproveOrder.css';
 import '../Services/DetailService.css';
-import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import RequestDetail from './RequestDetails';
-import { useSelector } from "react-redux";
 
 const ManageRequestOrder = ({handleDetail, handleDone}) => {
     const { order } = useSelector(state => state.order);
@@ -24,7 +24,7 @@ const ManageRequestOrder = ({handleDetail, handleDone}) => {
                             {order.map((order) => (
                                 <div key={`id-${order.orderId}`} className='newordr-item-cntr'>
                                     <div className='newordr-item-left'>
-                                        <img src={MessageQuestion} alt=''></img>
+                                        <img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1} loading="lazy"></img>
                                         <div className='second-left-item'>
                                             <div className='second-leftitem-title'>New Approved Order</div>
                                             <div>Username: {order.firstName} {order.lastName}</div>

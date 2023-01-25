@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+import { createCategory, getCategory } from '../../redux/actions/category';
+
 import '../Services/DetailService.css';
 import './NewCategory.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { createCategory, getCategory } from '../../redux/actions/category';
-import { Navigate } from 'react-router-dom';
 import loader from '../../asset/Login/loader.gif';
 
 const NewCategory = () => {
@@ -16,15 +18,11 @@ const NewCategory = () => {
     const [description, setdescription] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    if (isLoggedIn) {
-        if (role !== 3) { return <Navigate to='/' /> }
-    } else { return <Navigate to='/' /> }
-
-    const uploadFile = () => {
+    const uploadFile = useCallback(() => {
         document.getElementById('real-inputfile3').click();
-    };
+    }, []);
 
-    const handleFileChange = (event) => {
+    const handleFileChange = useCallback((event) => {
         const selectedFile = event.target.files[0];
 
         if (selectedFile) {
@@ -36,9 +34,9 @@ const NewCategory = () => {
                 setCatImg(image);
             }
         };
-    };
+    }, []);
 
-    const handleCreateCtgr = () => {
+    const handleCreateCtgr = useCallback(() => {
         setIsLoading(true);
         dispatch(createCategory(category, description, catImg)).then(() => {
             dispatch(getCategory());
@@ -48,7 +46,11 @@ const NewCategory = () => {
             setdescription('');
             document.getElementById('custom-inputtext3').innerHTML = '';
         });
-    }
+    }, [category, description, catImg, dispatch]);
+
+    if (isLoggedIn) {
+        if (role !== 3) { return <Navigate to='/' /> }
+    } else { return <Navigate to='/' /> }
 
     return (
         <div className='newcat-cntr'>
@@ -82,7 +84,7 @@ const NewCategory = () => {
                         </div>
                     </div>
                     {isLoading ?
-                        <img src={loader} alt='' className='Loading'></img>
+                        <img src={loader} alt={1} className='Loading' loading='lazy'></img>
                         :
                         <div className='createcategory-btn' onClick={handleCreateCtgr}>CREATE</div>
                     }

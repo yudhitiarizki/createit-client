@@ -5,7 +5,6 @@ import { getOnProgressDetail, hideOnProgressDetail } from '../../redux/actions/D
 
 import SellerInProgressDetail from './SellerInProgressDetail';
 
-import MessageQuestion from '../../asset/Navbar/message-question.svg';
 import '../SellerIncomingOrder/SellerIncomingOrder.css';
 import '../Services/DetailService.css';
 import './SellerOrderInProgress.css';
@@ -82,7 +81,7 @@ const SellerOrderInProgress = () => {
                             {sellerOrder.map((order) => (
                                 <div key={`id-${order.orderId}`} className='newordr-item-cntr'>
                                     <div className='newordr-item-left'>
-                                        <img src={MessageQuestion} alt=''></img>
+                                        <img src="https://ik.imagekit.io/createit/message-question.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1674641940805" alt={1} loading="lazy"></img>
                                         <div className='second-left-item'>
                                             <div className='second-leftitem-title'>
                                                 <span>Order {order.orderId} </span>

@@ -116,7 +116,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
                     <div key={`id-${index}`} className='package-list-cntr'>
                         {(idLoad === item.packageId) ?
                             (isLoading2 ?
-                                <img src={loader} alt='' className='Loading'></img>
+                                <img src={loader} alt={1} className='Loading' loading="lazy"></img>
                                 :
                                 <></>
                             ) :
@@ -267,7 +267,7 @@ const Packages = ({ data, serviceId, slug, name }) => {
 
                 <div className="modal-footer1">
                     {isLoading ?
-                        <img src={loader} alt={1} className='Loading'></img>
+                        <img src={loader} alt={1} className='Loading' loading="lazy"></img>
                         :
                         <button className="modal-save-btn" onClick={handleEditPckg}>Edit Package</button>
                     }

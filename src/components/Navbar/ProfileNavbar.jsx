@@ -1,11 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState, useCallback } from 'react';
+
+import { logout, switchtoBuyer, switchtoSeller } from '../../redux/actions/auth';
+
 import './ProfileNavbar.css';
 import './NewNavbar.css';
 import './NotifNavbar.css';
-import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { logout, switchtoBuyer, switchtoSeller } from '../../redux/actions/auth';
-import { useEffect, useRef, useState } from 'react';
 
 const ProfileNavbar = () => {
     const dispatch = useDispatch();
@@ -27,20 +28,20 @@ const ProfileNavbar = () => {
         return () => document.removeEventListener('mousedown', closeMenus);
     }, [prflOpen]);
 
-    const handleSwitch2User = () => {
+    const handleSwitch2User = useCallback(() => {
         dispatch(switchtoBuyer());
         navigate('/');
-    };
+    }, [dispatch, navigate]);
 
-    const handleSwitch2Seller = () => {
+    const handleSwitch2Seller = useCallback(() => {
         dispatch(switchtoSeller());
         navigate('/seller/profile');
-    };
+    }, [dispatch, navigate]);
 
-    const handleLogout2 = () => {
+    const handleLogout2 = useCallback(() => {
         dispatch(logout());
         navigate('/');
-    };
+    }, [dispatch, navigate]);
 
     return (
         <li ref={profileRef}>
@@ -48,7 +49,7 @@ const ProfileNavbar = () => {
                 {user.role === 2 ? (
                     <img src={user.seller.photoProfile} alt='' className='profile-pic-navbar'></img>
                 ) : (
-                    <img src={Ellipse2} alt='' className='profile-pic-navbar'></img>
+                    <img src="https://ik.imagekit.io/createit/Ellipse2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000226" alt={1} className='profile-pic-navbar'></img>
                 )}
             </div>
 
@@ -61,7 +62,7 @@ const ProfileNavbar = () => {
                     {(user.role === 3) ? (
                         <>
                             <div className='profilenav-cntr'>
-                                <img src={Ellipse2} alt=''></img>
+                                <img src="https://ik.imagekit.io/createit/Ellipse2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000226" alt={1}></img>
                                 <div className='prfl-nav-info'>
                                     <div className='prflnav-username'>{user.username}</div>
                                     <div className='prflnav-role'>Admin</div>
@@ -86,7 +87,7 @@ const ProfileNavbar = () => {
                         (user.role === 1) ? (
                             <>
                                 <div className='profilenav-cntr'>
-                                    <img src={Ellipse2} alt=''></img>
+                                    <img src="https://ik.imagekit.io/createit/Ellipse2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000226" alt={1}></img>
                                     <div className='prfl-nav-info'>
                                         <div className='prflnav-username'>{user.username}</div>
                                         <div className='prflnav-role'>User</div>

@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from "react";
+import React , { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import '../components/AdminApprovalOrder/AdminApproveOrder.css';
 import ManageRequestOrder from "../components/AdminApprovalOrder/ManageRequestOrder";
@@ -21,23 +21,23 @@ const AdminApproveOrder = () => {
         dispatch(getOrderApprove()).then(() => setLoading(false)).catch(() => setLoading(false))
     }, [dispatch]);
 
+    const handleDetail = useCallback((orderId, order) => {
+        dispatch(setDetailOrder(orderId, order))
+    }, [dispatch]);
+
+    const handleDone = useCallback((orderId) => {
+        dispatch(patchOrderDone(orderId)).then(() => {
+            dispatch(getOrderApprove())
+        })
+    }, [dispatch]);
+
     if(isLoggedIn) {
         if (role !== 3) { return <Navigate to='/' />}
     } else {return <Navigate to='/' />}
 
-    const handleDetail = (orderId, order) => {
-        dispatch(setDetailOrder(orderId, order))
-    };
-
-    const handleDone = (orderId) => {
-        dispatch(patchOrderDone(orderId)).then(() => {
-            dispatch(getOrderApprove())
-        })
-    };
-
     return (
         <>
-            { loading ? (<div className="container-loading"><img src={Gif} className='loading'></img></div>) : (<ManageRequestOrder order={order} handleDetail={handleDetail} handleDone={handleDone} />)}
+            { loading ? (<div className="container-loading"><img src={Gif} className='loading' alt={1}></img></div>) : (<ManageRequestOrder order={order} handleDetail={handleDetail} handleDone={handleDone} />)}
             <Footer />
         </>
     )

@@ -18,7 +18,7 @@ const EmailVerif = () => {
         }).catch(() => {
             setSuccess(3);
         });
-    }, [dispatch])
+    }, [dispatch, token])
 
     return (
         <div>
@@ -27,7 +27,7 @@ const EmailVerif = () => {
                     <div className='pymntdata-header'>
                         { success === 2 && (
                             <>
-                                <img src={tickCircle} alt=''></img>
+                                <img src={tickCircle} alt={1}></img>
                                 <div className='order-cnfrmd'>ACCOUNT IS VERIFY</div>
                                 <div className='paymentdata-msg'>Please login to try all features</div>
                             </>
@@ -39,7 +39,7 @@ const EmailVerif = () => {
                             </>
                         )}
                         { success === 1 && (
-                            <img src={Gif} alt=''></img>    
+                            <img src={Gif} alt={1}></img>    
                         )}
                     </div>
                 </div>

@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import Star from './Star';
+import EditProfile from './EditProfile';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './Profile.css';
-import { Link } from 'react-router-dom';
-import Star from './Star';
-import EditProfile from './EditProfile';
-import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const { user, isLoggedIn } = useSelector(state => state.auth);
@@ -14,7 +16,7 @@ const Profile = () => {
     return (
         <div>
             <div className="profile">
-                <img src={seller.photoProfile} alt='' className="photo-profile">
+                <img src={seller.photoProfile} alt={1} className="photo-profile" loading="lazy">
                 </img>
                 <div className="detail-profile">
                     <div className="name-profile">

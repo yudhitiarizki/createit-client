@@ -1,7 +1,6 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import './chatroom.css';
 import iconSend from '../../asset/General/send.png'
-import Ellipse2 from '../../asset/Navbar/Ellipse2.png';
 import { useDispatch, useSelector } from "react-redux";
 import { SocketContext } from "../../context/socket-context";
 import { setChat, sendChat } from "../../redux/actions/chat";
@@ -20,7 +19,7 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
 
     useEffect(() => {
         socket.on('getUsers', users => setList(users))  
-    }, [user]);
+    }, [user, socket]);
 
     useEffect(() => {
         if(receiverUser){
@@ -31,7 +30,7 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
 
     useEffect(() => {
         setMessage(message.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)))
-    }, [room.roomId, message.length]);
+    }, [room.roomId, message]);
 
     const onSending = useCallback(() => {
         dispatch(sendChat(room.roomId, text)).then(() => {
@@ -51,11 +50,11 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
             dispatch(setChat(updatedData));
             setText('')
         })
-    }, [text]);
+    }, [text, dispatch, data, receiverUser, user, room, socket]);
 
     const hideDetail = useCallback(() => {
         setTransition(false);
-    }, []);
+    }, [setTransition]);
     
     return (
         <div className={`chat-room ${transition ? 'chat-transition' : ''}`}>
@@ -68,7 +67,7 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
                         { receiverUser.role === 2 ? (
                             <img src={receiverUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
                         ) : (
-                            <img src={Ellipse2} alt={1} className='lastmsg-photo'></img>
+                            <img src="https://ik.imagekit.io/createit/Ellipse2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000226" alt={1} className='lastmsg-photo'></img>
                         ) }
                         <div className="info-user">
                             <h6>{receiverUser.User.firstName} {receiverUser.User.lastName}</h6>

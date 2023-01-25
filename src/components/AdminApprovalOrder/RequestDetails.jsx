@@ -1,17 +1,16 @@
-import React from "react";
+import React, {useCallback} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteDetailOrder } from "../../redux/actions/order";
 import './AdminApproveOrder.css';
 
 const RequestDetails = () => {
-
     const dispatch = useDispatch();
     const { detail } = useSelector((state) => state.order);
     const orderId = detail.orderId;
 
-    const hideDetail = () => {
+    const hideDetail = useCallback(() => {
         dispatch(deleteDetailOrder());
-    }
+    }, [dispatch]) 
 
     return (
         <div className={orderId ? "newordersellerlist1 ordrdetail-trnstn" : "newordersellerlist1"}>
@@ -21,7 +20,7 @@ const RequestDetails = () => {
             </div>
             <div className="newordrlist-cntr1">
                 <div className="newordrlist-inside1">
-                    <img src={detail.order.image} alt=''></img>
+                    <img src={detail.order.image} alt='' loading="lazy"></img>
                     { detail.order.User && (
                         <div className="ordrdetail-row">
                             <div className="ordrdetail-rowleft">Buyer's Name</div>
