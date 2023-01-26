@@ -9,12 +9,16 @@ export function SocketProvider({ children }) {
   const { user } = useSelector(state => state.auth)
   
   useEffect(() => {
-    setSocket(io('https://aquamarine-mulberry-kicker.glitch.me/'));
-  }, []);
+    if(user){
+      setSocket(io('https://aquamarine-mulberry-kicker.glitch.me/', {
+        query: { userId: user.userId }
+      }));
+    }
+  }, [user]);
 
   useEffect(() => {
     if (user && socket) {
-      socket.on('connect', () => { socket.emit('addUser', user.userId) });
+      socket.emit('addUser', user.userId);
       socket.on('getUsers', users => console.log(users))  
     }
   }, [user, socket])

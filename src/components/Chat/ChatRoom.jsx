@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SocketContext } from "../../context/socket-context";
 import { setChat, sendChat } from "../../redux/actions/chat";
 
-const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
+const ChatRoom = ({room, message, receiverUser, setTransition, transition, getTime}) => {
     const dispatch = useDispatch();
     const socket = useContext(SocketContext);
     const { user } = useSelector(state => state.auth);
@@ -18,7 +18,7 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
     const [onlineList, setList] = useState([]);
 
     useEffect(() => {
-        socket.on('getUsers', users => setList(users))  
+        socket && socket.on('getUsers', users => setList(users))  
     }, [user, socket]);
 
     useEffect(() => {
@@ -26,30 +26,31 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
             let index = onlineList.findIndex(item => item.userId === receiverUser.userId);
             index !== -1 ? setOnline(true) : setOnline(false);
         }
-    }, [onlineList, receiverUser])
+    }, [onlineList])
 
     useEffect(() => {
         setMessage(message.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)))
-    }, [room.roomId, message]);
+    }, [room.roomId, message.length]);
 
     const onSending = useCallback(() => {
-        dispatch(sendChat(room.roomId, text)).then(() => {
-            const dataSend = {
-                userId: user.userId, 
-                roomId: room.roomId, 
-                message: text, 
-                receiverId: receiverUser.userId,
-                createdAt: new Date().toISOString()
-            }
-            console.log(dataSend)
-            socket.emit('sendChat', dataSend);
-            const updatedData = data.map(item => {
-                if (item.roomId === room.roomId) { item.Messages.push(dataSend); }
-                    return item;
-                });
-            dispatch(setChat(updatedData));
-            setText('')
-        })
+        if(text === ''){return}
+        const dataSend = {
+            userId: user.userId, 
+            roomId: room.roomId, 
+            message: text, 
+            receiverId: receiverUser.userId,
+            createdAt: new Date().toISOString()
+        }
+        console.log(dataSend)
+        socket.emit('sendChat', dataSend);
+        const updatedData = data.map(item => {
+            if (item.roomId === room.roomId) { item.Messages.push(dataSend); }
+                return item;
+            });
+        console.log(updatedData, 'datasend');
+        dispatch(setChat(updatedData));
+        dispatch(sendChat(room.roomId, text))
+        setText('')
     }, [text, dispatch, data, receiverUser, user, room, socket]);
 
     const hideDetail = useCallback(() => {
@@ -84,7 +85,7 @@ const ChatRoom = ({room, message, receiverUser, setTransition, transition}) => {
                             <div className={`message-cont ${isUser ? 'me' : ''}`}>
                                 <div className={`message ${isUser ? 'right' : ''}`}>
                                     <h6>{msg.message}</h6>
-                                    <p>{'ok'}</p>
+                                    <p>{getTime(msg.createdAt)}</p>
                                 </div>
                             </div>
                         );

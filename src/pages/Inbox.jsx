@@ -63,6 +63,7 @@ const Inbox = () => {
         } else {
             setWarning('There is currently no chat.')
         }
+        console.log('qwe')
     }, [filterRoom, data.length]);
 
     const getTime = useCallback((data) => {
@@ -74,8 +75,8 @@ const Inbox = () => {
 
 
     useEffect(() => {
-        socket && socket.on('getChat', data => {setReceiver(data)});
-    },[socket])
+        socket && socket.on('getChat', data => {setReceiver(data); console.log(data, 'j')});
+    },[])
 
     useEffect(() => {
         isSeller ? dispatch(getRoomSeller()) : dispatch(getRoomUser());
@@ -113,13 +114,12 @@ const Inbox = () => {
     const handleRoomDetail = useCallback((roomId) => {
         const selectedRoom = data.find(room => room.roomId === roomId);
         setRoom(selectedRoom);
-        setTransition(true);
     }, [data]);
 
     return (
         <>
             <div className='inbox-container'>
-                <ChatRoom room={room} message={message} receiverUser={receiverUser} transition={transition} setTransition={setTransition}/>
+                <ChatRoom room={room} message={message} receiverUser={receiverUser} transition={transition} getTime={getTime} setTransition={setTransition}/>
 
                 <div className='inboxlist-cntr'>
                     <div className='inbox-header'>Inbox</div>
