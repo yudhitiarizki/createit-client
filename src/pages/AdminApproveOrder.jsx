@@ -9,7 +9,6 @@ import Gif from '../asset/Login/loader.gif';
 import '../components/General/loading.css';
 
 const AdminApproveOrder = () => {
-
     const dispatch = useDispatch();
 
     const { order } = useSelector(state => state.order);
