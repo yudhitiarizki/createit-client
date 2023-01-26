@@ -66,7 +66,7 @@
     display: none;
 }
 
-.notif-dropdown-menu ul {
+.right-nav-cntr ul li .notif-dropdown-menu ul {
     width: 100%;
     max-height: 290px;
     background-color: #F7F7F7;
@@ -216,7 +216,7 @@
         color: #FFFFFF;
     }
 
-    .notif-dropdown-menu ul {
+    .right-nav-cntr ul li .notif-dropdown-menu ul {
         max-height: calc(100vh - 40px - 45px);
         padding: 20px 25px;
     }

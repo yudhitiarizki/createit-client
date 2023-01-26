@@ -36,7 +36,7 @@ const ServiceDetail = () => {
 
     useEffect(() => {
         dispatch(setToLoad());
-        if(isLoggedIn){
+        if (isLoggedIn) {
             dispatch(getOtherPart());
         }
         dispatch(getServiceBySlug(slug))
@@ -49,9 +49,9 @@ const ServiceDetail = () => {
     }, [dispatch, slug, isLoggedIn]);
 
     const onChat = useCallback(() => {
-        if (isLoggedIn){
+        if (isLoggedIn) {
             const userRoom = participant.findIndex(part => part === detail.userId);
-            if(userRoom === -1){
+            if (userRoom === -1) {
                 dispatch(createRoom(user.userId, detail.userId)).then(() => {
                     navigate('/chat', { state: { sellerId: detail.userId } });
                 })
@@ -59,8 +59,8 @@ const ServiceDetail = () => {
                 navigate('/chat', { state: { sellerId: detail.userId } });
             }
         } else {
-            sendMessage('error','Login First!');
-        }    
+            sendMessage('error', 'Login First!');
+        }
     }, [dispatch, navigate, user, detail, isLoggedIn, participant])
 
     return (
@@ -68,7 +68,7 @@ const ServiceDetail = () => {
             {isLoading ?
                 <Loader />
                 :
-                (isError ?  
+                (isError ?
                     <SomethingWrong />
                     :
                     <>
@@ -87,10 +87,12 @@ const ServiceDetail = () => {
                                     <Link to={`/seller/${detail.sellerId}`} className="nav-link">{detail.firstName + ' ' + detail.lastName}</Link>
                                     <div className="button-profile">
                                         <Link to={`/seller/${detail.sellerId}`} style={{ textDecoration: 'none' }} className="button"><p>Visit The Store</p></Link>
-                                        <button style={{ textDecoration: 'none' }} onClick={onChat} className="button"><p>Chat Now</p></button>
+                                        {isLoggedIn && detail.userId !== user.userId &&
+                                            <button style={{ textDecoration: 'none' }} onClick={onChat} className="button"><p>Chat Now</p></button>
+                                        }
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             {detail.image ?
