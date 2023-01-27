@@ -47,7 +47,6 @@ const ChatRoom = ({ room, message, receiverUser, setTransition, transition, getT
             if (item.roomId === room.roomId) { item.Messages.push(dataSend); }
             return item;
         });
-        console.log(updatedData, 'datasend');
         
         dispatch(setChat(updatedData));
         dispatch(sendChat(room.roomId, text))

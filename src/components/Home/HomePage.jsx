@@ -127,6 +127,12 @@ const HomePage = () => {
                     <div type='button' onClick={handleScrollToTop} className='nav-link getservice-btn'>Get Service</div>
                 </div>
             </div>
+            <div className="tutorials">
+
+                <div className='text5-1'>Confused? Let's see the Video Tutorial <span>Create it!</span></div>
+                <div className='center-text-5'>Visit Create it and watch our video tutorials if you are confused. We will guide you step by step to create something interesting</div>
+                <iframe src="https://www.youtube.com/embed/foGZ3SqQntY" title="YouTube video player" frameborder="0" allowFullScreen></iframe>
+            </div>
         </div>
     )
 }

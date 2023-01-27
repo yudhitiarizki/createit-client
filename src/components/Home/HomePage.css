@@ -231,6 +231,33 @@
     margin: 100px 9vw 80px 9vw;
 }
 
+.tutorials {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    padding: 10%;
+}
+
+iframe {
+    margin-top: 30px;
+    width: 80%;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.text5-1 span {
+    color: #E8504B
+}
+
+.center-text-5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+}
+
 /* Nest Hub */
 @media (min-width: 992px) and (max-width: 1119.98px) {
     .Banner1 {
