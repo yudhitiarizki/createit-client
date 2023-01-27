@@ -28,32 +28,31 @@ const Inbox = () => {
         Messages: []
     });
 
-    const [receiverUser, setRevUser] = useState({userId: ''})
+    const [receiverUser, setRevUser] = useState({ userId: '' })
     const [message, setMessage] = useState([]);
     const [receiver, setReceiver] = useState({});
 
     const data = useSelector(state => state.chat)
 
+    // Set last data
     const filterRoom = useCallback(() => {
-        let filteredData = [];
-        data.forEach(room => {
+        const filteredData = data.map(room => {
             let lastMessage = null;
-            if (room.Messages.length){
+            if (room.Messages.length) {
                 const messageLength = room.Messages.length;
                 lastMessage = room.Messages[messageLength - 1];
             }
-
+    
             const lastUser = room.RoomParticipants.filter(person => person.userId !== user.userId)[0];
-            const result = {
+            return {
                 roomId: room.roomId,
                 lastUser: lastUser,
                 lastMessage: lastMessage
             }
-
-            filteredData = [...filteredData, result]
         })
-
+    
         setLastData(filteredData);
+
     }, [data, user.userId]);
 
     useEffect(() => {
@@ -63,7 +62,6 @@ const Inbox = () => {
         } else {
             setWarning('There is currently no chat.')
         }
-        console.log('qwe')
     }, [filterRoom, data.length]);
 
     const getTime = useCallback((data) => {
@@ -73,39 +71,46 @@ const Inbox = () => {
         return date.toLocaleDateString('id-ID', options);
     }, []);
 
-
     useEffect(() => {
-        socket && socket.on('getChat', data => {setReceiver(data); console.log(data, 'j')});
-    },[])
+        socket && socket.on('getChat', data => { setReceiver(data); console.log(data, 'pesan baru') });
+    }, [socket])
 
+    // From navbar
     useEffect(() => {
         isSeller ? dispatch(getRoomSeller()) : dispatch(getRoomUser());
     }, [dispatch, isSeller])
 
-    useEffect(() => {
-        setRevUser(room.RoomParticipants.find(pr => pr.userId !== user.userId));
-        setMessage(room.Messages);
-    }, [room, user.userId])
+    const setRevUserMessage = useCallback(() => {
+        const revUser = room.RoomParticipants.find(pr => pr.userId !== user.userId);
+        setRevUser(revUser);
+
+        const message = room.Messages;
+        setMessage(message);
+    }, [room, user.userId]);
 
     useEffect(() => {
-        if(receiver.message){
+        setRevUserMessage();
+    }, [setRevUserMessage]);
+
+    useEffect(() => {
+        if (receiver.message) {
             const updatedData = data.map(item => {
                 if (item.roomId === receiver.roomId) {
-                  item.Messages.push(receiver);
+                    item.Messages.push(receiver);
                 }
                 return item;
-              });
+            });
             dispatch(setChat(updatedData));
         }
     }, [receiver.createdAt, data, dispatch, receiver]);
 
-
+    // from page service detail
     useEffect(() => {
-        if(state){
+        if (state) {
             let filteredData = data.filter(room => {
                 return room.RoomParticipants.some(participant => participant.userId === state.sellerId);
             });
-            if (filteredData.length){
+            if (filteredData.length) {
                 setRoom(filteredData[0]);
             }
         }
@@ -119,7 +124,7 @@ const Inbox = () => {
     return (
         <>
             <div className='inbox-container'>
-                <ChatRoom room={room} message={message} receiverUser={receiverUser} transition={transition} getTime={getTime} setTransition={setTransition}/>
+                <ChatRoom room={room} message={message} receiverUser={receiverUser} transition={transition} getTime={getTime} setTransition={setTransition} />
 
                 <div className='inboxlist-cntr'>
                     <div className='inbox-header'>Inbox</div>
@@ -127,17 +132,17 @@ const Inbox = () => {
                         {data.length ?
                             (lastData.map(({ roomId, lastUser, lastMessage }) => (
                                 <div key={`id-${roomId}`} className='lastmsg-box'>
-                                    { lastUser.role === 2 ? (
+                                    {lastUser.role === 2 ? (
                                         <img src={lastUser.User.Seller.photoProfile} alt={1} className='lastmsg-photo'></img>
-                                    ) : (                                        
+                                    ) : (
                                         <img src="https://ik.imagekit.io/createit/Ellipse2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674642000226" alt={1} className='lastmsg-photo'></img>
                                     )}
                                     <div className='lastmsg-center'>
-                                        { lastMessage && (
+                                        {lastMessage && (
                                             <div className='lastmsg-time'>{getTime(lastMessage.createdAt)}</div>
                                         )}
                                         <div className='lastmsg-name'>{lastUser.User.firstName} {lastUser.User.lastName}</div>
-                                        { lastMessage && (
+                                        {lastMessage && (
                                             <div className='lastmsg-msg'>{lastMessage.message}</div>
                                         )}
                                     </div>

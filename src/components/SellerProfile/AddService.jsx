@@ -63,7 +63,7 @@ const AddService = () => {
     }, [categoryId, title, description, dispatch, imagesSend])
 
     return (
-        <div class="modal fade" id="AddService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="AddService" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">

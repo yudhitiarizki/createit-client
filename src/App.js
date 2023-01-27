@@ -23,7 +23,6 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import EmailVerif from './pages/EmailVerify';
 import NewNavbar from "./components/Navbar/NewNavbar";
-import { useSelector } from "react-redux";
 import { SocketContext } from "./context/socket-context";
 import { sendMessage } from "./redux/actions/message";
 import { ToastContainer } from "react-toastify";

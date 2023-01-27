@@ -176,7 +176,7 @@
         height: 80px;
     }
 
-    .prfl-dropdown-menu ul {
+    .right-nav-cntr ul li .prfl-dropdown-menu ul {
         width: 100vw;
         max-height: calc(100vh - 80px);
         padding: 0;
